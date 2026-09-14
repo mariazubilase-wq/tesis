@@ -1,0 +1,13 @@
+# Ficheros de secuencia propios: no versionados
+secuencias/*.gb
+secuencias/*.gbk
+secuencias/*.fa
+secuencias/*.fasta
+secuencias/*.dna
+secuencias/*.seq
+
+# Informes generados
+diseno/informe_*.md
+
+__pycache__/
+*.pyc
