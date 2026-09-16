@@ -8,6 +8,7 @@ silvestre, entregado como **minicírculos**.
 | Ruta | Qué es |
 |---|---|
 | `diseno/diseno_clonaje_KRT10_minicirculo.md` | **Diseño de clonaje de KRT10 en `pMC.EF1α-MCS-SV40polyA`.** Decisiones, protocolo, controles |
+| `diseno/produccion_minicirculos.md` | **Producción del minicírculo en el laboratorio.** Cómo funciona la cepa ZYCY10P3S2T, protocolo, QC, costes y alternativas |
 | `herramientas/disena_clonaje.py` | Calcula cebadores y tamaños a partir de los GenBank reales |
 | `secuencias/` | Aquí van los dos ficheros de secuencia (ver `secuencias/LEEME.md`) |
 
