@@ -1,36 +1,45 @@
 # Protocolos
 
-## `Tratamiento_muestras_ME-DNA_03-08-2026.docx`
+## `Informe_muestras_UCM_ensayo_03-08-2026.docx`
 
-Versión desarrollada y explicada de las notas de laboratorio del 03/08/2026
-(`MATERIALES_UCM.docx`), pensada para enviar a una persona ajena al ensayo.
+Informe dirigido al grupo de la UCM que envió las muestras (tanda de julio de
+2026), detallando cómo se ha tratado cada una en el ensayo del 03/08/2026.
 
-Contiene, para cada muestra (1, 2, 4 y 5) y para el control positivo:
+Se construye cruzando dos fuentes:
 
-- el procedimiento escrito paso a paso,
-- la tabla de pipeteo **reproducida literalmente** de las notas,
-- una tabla adicional con la dosis que recibe **cada pocillo**, calculada
-  dividiendo entre las 4 réplicas,
-- las abreviaturas y la nomenclatura de las condiciones.
+- las notas de laboratorio propias (`MATERIALES_UCM.docx`), que dan los
+  volúmenes pipeteados;
+- el correo de la UCM del 13/07/2026 con la corrección del 15/07/2026, que da
+  la composición y las concentraciones de cada muestra.
 
-«ME» es la microemulsión. Las muestras 1 y 5 emplean **dos preparaciones
-distintas** (37 µg/µl y 10 µg/µl respectivamente), por lo que sus dosis solo
-son comparables en masa o por el ratio ME:DNA; el documento lo advierte en el
-apartado 2 y en el 7.4. La muestra 3 no existe: no llegó a utilizarse.
+Para cada muestra recoge el procedimiento, la tabla de pipeteo, la dosis por
+pocillo y el **ratio DOTAP/pDNA**, que es la magnitud con la que la UCM
+caracteriza sus formulaciones. Los apartados 12 y 13 recogen las desviaciones
+respecto al procedimiento indicado y las consultas pendientes.
 
-El apartado 10 recoge lo que las notas no especifican y conviene completar
-antes de enviarlo (línea celular, formato de placa, tiempo de exposición,
-lectura del experimento, etc.).
+### Qué muestra es cada cosa
 
-> Los valores marcados como «calculado» son derivaciones aritméticas de las
-> notas, no medidas independientes.
+| Muestra | Formulación | Uso |
+|---|---|---|
+| 1 | Microemulsión O/A, DOTAP + DOPE (lípido total 37 mg/mL, DOTAP 3,4 mg/mL) | 12 condiciones |
+| 2 | Microemulsión A/O con pDNA encapsulado (10 µg/mL, DOTAP 1 %, ratio fijo 1000:1) | 4 condiciones |
+| 3 | Microemulsión A/O sin pDNA | No utilizada |
+| 4 | Liposomas liofilizados (10 µg DOTAP por liofilizado) | 1 condición, registro incompleto |
+| 5 | Liposomas sin liofilizar (10 mg/mL, DOTAP 1 mg/mL) | 6 condiciones |
 
-## `genera_documento.js`
+> Las muestras 4 y 5 son liposomas, no microemulsiones: las notas internas
+> usaban «ME» como abreviatura genérica para todas.
 
-Script que genera el `.docx` anterior. Para regenerarlo tras editar el texto:
+Tres concentraciones deducidas de las notas propias coinciden con las que da
+la UCM (37 µg/µl en la muestra 1, 10 µg/µl en la muestra 5, y el DOTAP al 1 %
+de la muestra 2 reproduce su ratio 1000:1).
+
+## `genera_informe.js`
+
+Script que genera el `.docx`. Para regenerarlo tras editar el texto:
 
 ```bash
 cd protocolos
 npm install docx      # solo la primera vez
-node genera_documento.js
+node genera_informe.js
 ```
