@@ -188,49 +188,118 @@ Arg). Mantienes la proteína silvestre exacta y encima el transgén deja de ser
 indistinguible del alelo WT endógeno en la ddPCR alelo-específica, lo cual es una
 ventaja, no un problema.
 
-### 3.6 Elección de la pareja de enzimas
+### 3.6 El MCS real y la elección de la pareja de enzimas
 
-De las seis del congelador:
+El MCS del parental es (48 nt facilitados):
 
-| Enzima | Papel en este diseño |
+```
+        1      7      13     16     21        30     36       44
+        TCTAGAGCTAGCGAATTCGAATTTAAATCGGATCCGCGGCCGCGTCGA…
+        └XbaI─┘└NheI─┘└EcoRI┘
+                      └BstBI┘
+                           └──SwaI──┘
+                                    └BamHI┘
+                                          └──NotI──┘
+                                                   └SalI (truncada)
+
+EF1α  ──────────────────────────────────────────────────────►  SV40 polyA
+```
+
+| # | Enzima | Diana | Posición | Saliente | ¿En el congelador? |
+|---|---|---|---|---|---|
+| 1 | **XbaI** | `T^CTAGA` | 1–6 | `CTAG` | **sí** |
+| 2 | **NheI-HF** | `G^CTAGC` | 7–12 | `CTAG` | **sí** |
+| 3 | EcoRI | `G^AATTC` | 13–18 | `AATT` | no |
+| 4 | BstBI | `TT^CGAA` | 16–21 | `CG` | no |
+| 5 | SwaI | `ATTT^AAAT` | 21–28 | romo | no |
+| 6 | **BamHI-HF** | `G^GATCC` | 30–35 | `GATC` | **sí** |
+| 7 | NotI | `GC^GGCCGC` | 36–43 | `GGCC` | no |
+| 8 | SalI | `G^TCGAC` | 44– | `TCGA` | no |
+
+**Esto obliga a corregir la recomendación anterior.** En el documento previo
+proponía **NheI + XhoI**; **en este MCS no hay XhoI**. Tampoco hay AsiSI ni PmeI.
+De tus seis enzimas, sólo tres están aquí: **XbaI, NheI y BamHI**.
+
+Tres observaciones antes de elegir:
+
+- **Lo que has pegado termina en `GTCGA`, que es una diana SalI (`GTCGAC`) cortada
+  por la mitad.** El MCS sigue un poco más allá de donde copiaste. Sin
+  consecuencias para el diseño, pero conviene saberlo.
+- **BstBI solapa con EcoRI** (`GAATTCGAA`): usar una destruye la otra. Irrelevante
+  aquí, pero no cuentes con las dos.
+- **SwaI no es PmeI.** `ATTT^AAAT` frente a `GTTT^AAAC`. Tu PmeI no corta aquí.
+
+#### La pareja
+
+> ## **NheI-HF (extremo 5') + BamHI-HF (extremo 3')**
+
+Por qué esta y no otra:
+
+1. **Las dos están ya en tu congelador.** Cero coste, cero espera.
+2. **Salientes incompatibles**, `CTAG` frente a `GATC` → clonaje direccional real:
+   el vector no se recirculariza y el inserto no puede entrar invertido.
+3. **Las dos son versiones HF**, sin actividad *star*. Y como todas las HF de NEB
+   están formuladas para CutSmart, **la doble digestión va en un solo tubo con
+   rCutSmart** (confírmalo en NEBcloner, pero es lo esperable).
+4. **Ninguna de las dos tiene problema de metilación en este contexto.** Lo he
+   comprobado sobre tu secuencia: el entorno de NheI (`TAGAGCTAGCGAAT`) está
+   limpio, y aunque el de BamHI contiene un `GATC` —dentro de su propia diana—
+   **a BamHI no la bloquea Dam**.
+5. **Deja `NotI` y `SalI` intactas por detrás del inserto.** NotI es un cortador de
+   8 pb: si es única en el parental, es tu enzima de linearización para el
+   diagnóstico. Estás conservando deliberadamente una herramienta de control.
+
+**Por qué no XbaI**, aun estando en el congelador y siendo la más 5':
+
+- Genera **el mismo saliente `CTAG` que NheI** → no puedes usar las dos.
+- **La bloquea la metilación Dam si queda como `GATCTAGA`.** Por detrás tiene `GC`,
+  así que ese lado está limpio, **pero lo que hay inmediatamente por delante no me
+  lo has dado**: si el vector termina en `…GA` justo antes del `TCTAGA`, XbaI
+  sencillamente no corta, y **no da ninguna señal de que no ha cortado**. NheI no
+  tiene ese riesgo.
+- No es versión HF.
+
+#### Qué hacer si el CDS de KRT10 lleva una de las dos dianas
+
+Es la única incógnita que queda, y es real: en un CDS de ~1,75 kb la probabilidad
+de que aparezca un `GGATCC` o un `GCTAGC` ronda el 35 % para cada uno. **Compruébalo
+antes de pedir oligos** — es instantáneo:
+
+```bash
+python3 disena_clonaje.py --donante ../secuencias/pCMV6-KRT10.gb \
+        --mcs tctagagctagcgaattcgaatttaaatcggatccgcggccgcgtcga
+```
+
+| Situación | Qué hacer |
 |---|---|
-| **NheI-HF** (`G^CTAGC`) | **Candidata preferente para el extremo 5'** |
-| **XhoI** (`C^TCGAG`) | **Candidata preferente para el extremo 3'** |
-| **BamHI-HF** (`G^GATCC`) | Alternativa de 5' si NheI no está en el MCS o corta el CDS |
-| XbaI (`T^CTAGA`) | **Evitar** |
-| AsiSI (`GCGAT^CGC`) | **Reservar** para diagnóstico |
-| PmeI (`GTTT^AAAC`) | **Reservar** para diagnóstico |
+| Ninguna corta | **NheI-HF + BamHI-HF.** Adelante, no compras nada |
+| **BamHI** corta el CDS | **NheI-HF + NotI-HF.** NotI es de 8 pb: ~97 % de probabilidad de estar ausente del CDS. Hay que comprarla (NEB R3189) |
+| **NheI** corta el CDS | **EcoRI-HF + BamHI-HF** (R3101). Descarta XbaI salvo que confirmes su contexto Dam en el mapa |
+| Cortan las dos | **EcoRI-HF + NotI-HF** |
+| Cortan casi todas | Plan B: ensamblaje Gibson (§4) |
 
-Los porqués:
+La herramienta ordena las parejas por sí misma con este criterio (las del
+congelador primero, premiando HF y penalizando el riesgo Dam) y te marca la
+recomendada.
 
-- **NheI + XhoI:** salientes `CTAG` y `TCGA`, incompatibles entre sí → clonaje
-  direccional de verdad, el vector no puede recircularizarse y el inserto no puede
-  entrar invertido. Además NheI-HF y BamHI-HF son versiones HF, sin actividad
-  *star*.
-- **XbaI se descarta por partida doble:** genera el mismo saliente `CTAG` que
-  NheI (religación cruzada si usas las dos), y la bloquea la metilación Dam si
-  queda como `GATCTAGA` o `TCTAGATC` — **sin dar ninguna señal: simplemente no
-  corta**.
-- **AsiSI y PmeI son cortadores de 8 pb: no los gastes en el clonaje.** Son
-  demasiado valiosos como enzimas de diagnóstico, porque casi con seguridad cortan
-  una sola vez y linearizan limpiamente el clon final. Reservarlas es una decisión
-  deliberada.
-- **BamHI no la bloquea Dam** aunque su diana `GGATCC` contenga `GATC`. Es la
-  excepción que tu documento sospechaba: no todo lo que contiene GATC está
-  bloqueado.
-- **AsiSI tampoco la bloquea Dam**, pese a contener `GATC`. La prueba práctica es
-  que todo el sistema PrecisionShuttle de OriGene se basa en cortar con SgfI (su
-  isoesquizómero) plásmido crecido en cepas Dam⁺ corrientes; si estuviera
-  bloqueada, no funcionaría nunca. Sí la bloquea la metilación **CpG**, irrelevante
-  en DNA de *E. coli*. (Esto cierra uno de los puntos que dejabas pendientes en
-  §8; confírmalo igualmente en NEBcloner, que cuesta un minuto.)
+#### Una comprobación que tienes que hacer en el mapa
 
-**La elección final la decide el mapa**, y la herramienta la hace por ti: exige
-que la diana sea **única en todo el plásmido parental**, que caiga **dentro de la
-ventana promotor–polyA**, que esté **dentro de la región attB–attP** y que **no
-corte el inserto**. Sólo propone parejas con salientes incompatibles.
+**La orientación.** He supuesto que el MCS está escrito en el sentido de la
+transcripción, es decir que **XbaI queda del lado del promotor EF1α y SalI del lado
+del SV40 polyA**. Es lo normal, pero es una suposición sobre un dato que no tengo.
 
----
+Si fuera al revés, **los papeles se invierten**: BamHI iría en el cebador directo y
+NheI en el reverso. La regla es sencilla: **el sitio del cebador directo es el que
+queda más cerca del EF1α.** Míralo una vez en el GenBank y ya está. (Si le pasas
+`--aceptor` junto con `--mcs`, la herramienta localiza el MCS en el plásmido y te
+avisa si aparece en la hebra contraria.)
+
+#### Qué se pierde y qué sobrevive
+
+Al clonar entre NheI (7) y BamHI (30) **desaparecen EcoRI, BstBI y SwaI**, que
+quedan en medio. Sobreviven **XbaI** por delante y **NotI + SalI** por detrás.
+Perder SwaI —un cortador de 8 pb— es el único peaje, y se compensa de sobra con
+quedarte NotI.
 
 ## 4. Estrategia: restricción direccional, y qué hacer si no sale
 
@@ -257,38 +326,78 @@ es repetitiva y muy GC**, y hay proveedores que la rechazan o la cobran como
 
 ### 5.1 Estructura
 
+Con la pareja elegida, los cebadores quedan **completos salvo la zona que aparea
+contra KRT10**, que es lo único que depende de una secuencia que no tengo:
+
 **Directo (5'→3'):**
 
 ```
-CACCAC      GCTAGC      GCCACC      ATG NNN NNN NNN ...
-└protección └NheI-HF    └Kozak      └inicio del CDS (18–24 nt, Tm ≈ 62 °C)
+CACCAC      GCTAGC      GCCACC      ATG NNNNNNNNNNNNNNNNNN
+└protección └NheI-HF    └Kozak      └inicio del CDS (18–21 nt, Tm ≈ 62 °C)
 ```
 
 **Reverso (5'→3'):**
 
 ```
-CACCAC      CTCGAG      TCATTA                      NNN NNN NNN ...
-└protección └XhoI       └ = TAA TGA en la hebra      └complementario inverso del
-                          codificante (dos stops)      final del CDS, SIN su stop
+CACCAC      GGATCC      TCATTA                     NNNNNNNNNNNNNNNNNNNNN
+└protección └BamHI-HF   └ = TAA TGA en la hebra    └complementario inverso del
+                          codificante (dos stops)    final del CDS, SIN su stop
 ```
 
 Notas sobre cada bloque:
 
 - **6 bases de protección.** Las enzimas cortan mal en el extremo de un fragmento.
-  `CACCAC` está elegido para no crear `GATC` (trampa Dam) ni `CCWGG` (Dcm) al
-  pegarse a la diana. La herramienta revisa este contexto y avisa si aparece.
+  He comprobado que `CACCAC` pegado a `GCTAGC` y a `GGATCC` **no crea ningún
+  `GATC` nuevo ni ningún sitio Dcm (`CCWGG`)**.
 - **`TCATTA` es el complementario inverso de `TAATGA`.** En el cebador reverso los
-  stops se escriben al revés. Comprobado sobre el amplicón reconstruido.
+  stops van escritos al revés. Verificado reconstruyendo el amplicón.
 - **La zona de apareamiento se ajusta por Tm**, no por longitud fija, y se prefiere
   terminar en G o C (pinza 3').
 
+### 5.1b Cómo quedan las uniones en el clon final
+
+Sirve de lista de comprobación cuando te llegue la secuencia:
+
+**Unión 5'** (la NheI se regenera):
+
+```
+…EF1α… TCTAGA G CTAGC GCCACC ATG TCT …
+       └XbaI  └─NheI─┘ └Kozak└ATG del CDS
+        (sobrevive, del vector)
+```
+
+**Unión 3'** (la BamHI se regenera):
+
+```
+… última base del CDS  TAA TGA  G GATCC  GCGGCCGC  GTCGAC … SV40 polyA
+                       └2 stops └─BamHI─┘ └─NotI──┘ └SalI─┘
+                                          (sobreviven, del vector)
+```
+
+Si al secuenciar ves exactamente esto, el clonaje ha salido.
+
 ### 5.2 Cómo obtener las secuencias literales
+
+**Ahora mismo, sólo con el donante y el MCS** (no hace falta el GenBank del
+parental para obtener los cebadores):
 
 ```bash
 cd herramientas
 python3 disena_clonaje.py \
     --donante ../secuencias/pCMV6-KRT10.gb \
+    --mcs tctagagctagcgaattcgaatttaaatcggatccgcggccgcgtcga \
+    --salida  ../diseno/informe_KRT10.md
+```
+
+**Cuando tengas el GenBank del parental** (necesario antes de digerir, porque es lo
+único que demuestra que las dianas son únicas en todo el plásmido y que el MCS cae
+dentro de attB–attP):
+
+```bash
+python3 disena_clonaje.py \
+    --donante ../secuencias/pCMV6-KRT10.gb \
     --aceptor ../secuencias/pMC.EF1a-MCS-SV40polyA.gb \
+    --mcs tctagagctagcgaattcgaatttaaatcggatccgcggccgcgtcga \
     --salida  ../diseno/informe_KRT10.md
 ```
 
@@ -300,7 +409,8 @@ Opciones útiles:
 
 | Opción | Para qué |
 |---|---|
-| `--pareja NheI-HF,XhoI` | Forzar una pareja concreta |
+| `--mcs <seq>` | Trabajar sólo con el MCS, sin el GenBank del parental |
+| `--pareja NheI-HF,BamHI-HF` | Forzar una pareja concreta |
 | `--fin-orf N` | Forzar el último nt del ORF nativo, si el recorte automático de la etiqueta no acierta |
 | `--inicio-orf N` | Forzar el ATG real, si hay un ATG en fase río arriba |
 | `--proteccion XXXXXX` | Cambiar las bases de protección |
@@ -349,9 +459,11 @@ que no es K10.
 ### 6.2 Digestiones
 
 - Digiere **por separado** el amplicón purificado y el vector parental.
-- Comprueba en NEBcloner que las dos enzimas son compatibles en **rCutSmart**; si
-  lo son, doble digestión en un tubo (es lo más probable con las seis de NEB, pero
-  compruébalo, no lo asumas).
+- **NheI-HF y BamHI-HF son las dos versiones HF, así que van en rCutSmart en un
+  solo tubo.** Confírmalo en NEBcloner igualmente, que cuesta un minuto.
+- El molde de la digestión del inserto es **producto de PCR, no metilado**: la
+  metilación Dam sólo condiciona el corte del **vector**, y ahí ya está comprobado
+  que ni NheI ni BamHI tienen problema en este contexto.
 - **Digiere generosamente:** ≥2 h, exceso de enzima. La razón está en §6.3.
 - Purifica los dos productos.
 
@@ -400,10 +512,16 @@ Defensas, por orden de importancia:
    directo en el **EF1α** del pMC y un reverso dentro de KRT10. El donante no tiene
    EF1α → no amplifica. Esto distingue construcción real de arrastre; una PCR con
    dos cebadores del inserto, no.
-4. **Digestión diagnóstica** con las enzimas de clonaje (libera el inserto) y con
-   **PmeI o AsiSI** (lineariza; tamaño limpio). La herramienta calcula cuántas
-   bandas esperar de cada una, y distingue si la diana cae en el esqueleto o dentro
-   de la región att — sólo esta última sirve luego para el QC del minicírculo.
+4. **Digestión diagnóstica** en dos frentes:
+   - **NheI-HF + BamHI-HF** → debe liberar el inserto (~1,8 kb).
+   - **Una enzima que linearice.** La candidata natural es **NotI**, que sobrevive
+     justo por detrás del inserto y es cortador de 8 pb — siempre que sea única en
+     el parental. Si no la tienes, **AsiSI o PmeI** sirven igual si resultan ser
+     únicas en el plásmido: ninguna de las dos está en el MCS, así que dependen de
+     lo que haya en el resto del vector. La herramienta te lo cuenta en cuanto le
+     pases el GenBank, y distingue si la diana cae en el esqueleto o dentro de la
+     región att — **sólo esta última sirve luego para el QC del minicírculo**, que
+     ya no tiene esqueleto.
 
 ---
 
@@ -509,7 +627,10 @@ Recopilado, porque todas son decisiones que parecen razonables:
 - ❌ Clonar el cDNA completo con su 3'UTR → pierdes la discriminación transgén/endógeno.
 - ❌ Conservar la etiqueta Myc-DDK → cola C-terminal comprometida.
 - ❌ Usar XbaI junto con NheI → mismo saliente `CTAG`.
-- ❌ Gastar AsiSI o PmeI en el clonaje → las necesitas de diagnóstico.
+- ❌ Contar con XhoI, AsiSI o PmeI para clonar en este MCS → **no están en él**.
+- ❌ Confundir SwaI (`ATTTAAAT`) del MCS con tu PmeI (`GTTTAAAC`).
+- ❌ Gastar en el clonaje una enzima que te sirva de diagnóstico (NotI sobrevive
+  por detrás del inserto: consérvala).
 - ❌ Usar Taq para el inserto.
 - ❌ Clonar en cualquier sitio único "que haya" → tiene que estar **dentro de attB–attP**.
 - ❌ Forzar una G en la posición +4 del Kozak → cambia el segundo aminoácido.
@@ -532,10 +653,20 @@ adelantando KRT1, no hay que rediseñar nada, sólo volver a ejecutarla.
 
 ## 13. Resumen de lo que queda por tu parte
 
-1. Descargar los dos GenBank (§1).
-2. Ejecutar la herramienta y **mirar los primeros y últimos 12 aminoácidos** (§5.3).
-3. Confirmar en NEBcloner: compatibilidad en rCutSmart de la pareja elegida y
-   sensibilidad a Dam/Dcm de lo que la herramienta marque con ⚠️.
-4. Confirmar el número de catálogo del parental al pedir (§1).
-5. Comprobar los marcadores de resistencia de los dos plásmidos (§6.5).
-6. Pedir la polimerasa de alta fidelidad y DpnI (§10).
+**Para cerrar los cebadores (hoy, sólo necesitas el donante):**
+
+1. Poner el GenBank de `pCMV6-KRT10` en `secuencias/`.
+2. Ejecutar la herramienta en modo `--mcs` (§5.2) y **mirar los primeros y últimos
+   12 aminoácidos que imprime** (§5.3).
+3. Ver si el CDS lleva `GCTAGC` o `GGATCC` y aplicar la tabla de §3.6. Si no lleva
+   ninguna, **pides los oligos y no compras ninguna enzima**.
+
+**Antes de tocar el banco:**
+
+4. Conseguir el GenBank del parental y volver a ejecutar con `--aceptor`. Es lo
+   único que comprueba que las dianas son **únicas en todo el plásmido** y que el
+   MCS cae **dentro de attB–attP**. Sin eso no se digiere.
+5. Confirmar en el mapa la **orientación del MCS** respecto a EF1α (§3.6).
+6. Comprobar los marcadores de resistencia de los dos plásmidos (§6.5).
+7. Pedir la polimerasa de alta fidelidad, DpnI y rSAP (§10).
+8. Confirmar el número de catálogo del parental al pedir (§1).

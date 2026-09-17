@@ -312,7 +312,7 @@ def ventana_mcs(reg: Registro, mapa: dict) -> tuple[int, int] | None:
 # Análisis de dianas
 # ===========================================================================
 def analiza_enzimas(aceptor: Registro, mapa: dict, ventana, inserto: str,
-                    panel: list[Enzima]) -> list[dict]:
+                    panel: list[Enzima], modo: str = "vector") -> list[dict]:
     filas = []
     n = len(aceptor.seq)
     contiene = mapa.get("contiene")
@@ -333,9 +333,12 @@ def analiza_enzimas(aceptor: Registro, mapa: dict, ventana, inserto: str,
 
         veredicto, motivo = "usable", ""
         if len(pos_ac) == 0:
-            veredicto, motivo = "no", "no corta el aceptor"
-        elif len(pos_ac) > 1:
+            veredicto, motivo = "no", ("no está en el MCS" if modo == "mcs"
+                                       else "no corta el aceptor")
+        elif len(pos_ac) > 1 and modo != "mcs":
             veredicto, motivo = "no", f"{len(pos_ac)} dianas en el aceptor (no es única)"
+        elif len(pos_ac) > 1:
+            veredicto, motivo = "no", f"{len(pos_ac)} dianas dentro del MCS"
         elif ventana and not en_ventana:
             veredicto, motivo = "no", "su única diana cae fuera del MCS (promotor-polyA)"
         elif region and not en_region:
@@ -368,12 +371,34 @@ def parejas(filas: list[dict], ventana) -> list[dict]:
             if pa == pb:
                 continue
             arriba, abajo = (a, b) if pa < pb else (b, a)
+            ea2, eb2 = arriba["enzima"], abajo["enzima"]
+            sep = abs(pa - pb)
+
+            # Puntuación: lo que ya tienes > sin actividad star > sin riesgo Dam.
+            punt = 0.0
+            razones = []
+            if ea2.nevera and eb2.nevera:
+                punt += 1000
+                razones.append("las dos en el congelador")
+            else:
+                punt += 300 * (ea2.nevera + eb2.nevera)
+            for e_ in (ea2, eb2):
+                if e_.nombre.endswith("-HF"):
+                    punt += 100
+                if e_.dam == "solapante":
+                    punt -= 300
+                    razones.append(f"{e_.nombre} puede bloquearla Dam")
+                if e_.saliente in (2, -2):
+                    punt -= 40      # salientes de 2 nt ligan peor
+            punt += sep
+            if not any(e_.nombre.endswith("-HF") for e_ in (ea2, eb2)):
+                razones.append("ninguna es versión HF")
             fuera.append({
                 "cinco": arriba, "tres": abajo,
-                "ambas_nevera": arriba["enzima"].nevera and abajo["enzima"].nevera,
-                "separacion": abs(pa - pb),
+                "ambas_nevera": ea2.nevera and eb2.nevera,
+                "separacion": sep, "punt": punt, "razones": razones,
             })
-    fuera.sort(key=lambda d: (not d["ambas_nevera"], -d["separacion"]))
+    fuera.sort(key=lambda d: -d["punt"])
     return fuera
 
 
@@ -458,7 +483,7 @@ def _avisos_metilacion(secuencia_final: str, enzimas: list[Enzima]) -> list[str]
 def informe(donante: Registro, aceptor: Registro, orf: dict, mapa: dict,
             ventana, filas: list[dict], pares: list[dict],
             elegido: dict | None, prim: dict | None,
-            proteccion: str) -> str:
+            proteccion: str, modo: str = "vector") -> str:
     L = []
     ap = L.append
     n = len(aceptor.seq)
@@ -466,6 +491,19 @@ def informe(donante: Registro, aceptor: Registro, orf: dict, mapa: dict,
     ap("# Informe de diseño de clonaje — generado por `disena_clonaje.py`\n")
     ap("> Todo lo que sigue está calculado sobre los ficheros indicados. "
        "Ninguna secuencia está escrita a mano.\n")
+    if modo == "mcs":
+        ap("> ### ⚠️ Modo MCS suelto\n>\n"
+           "> Se ha trabajado **sólo con la secuencia del MCS**, sin el mapa del "
+           "plásmido parental completo. Por tanto **NO se ha podido comprobar**:\n>\n"
+           "> 1. que cada diana sea **única en todo el plásmido parental** (si la "
+           "enzima corta también en el esqueleto, el vector se parte en dos y el "
+           "clonaje no sale);\n"
+           "> 2. que el MCS caiga **dentro de la región attB–attP** (si no, el "
+           "inserto acaba en el esqueleto que destruye la I-SceI y el minicírculo "
+           "sale vacío);\n"
+           "> 3. la **orientación** del MCS respecto al promotor EF1α.\n>\n"
+           "> Los tres son condiciones necesarias. Vuelve a ejecutar con "
+           "`--aceptor` en cuanto tengas el GenBank.\n")
 
     # --- Entradas
     ap("## 1. Entradas\n")
@@ -563,8 +601,10 @@ def informe(donante: Registro, aceptor: Registro, orf: dict, mapa: dict,
            f"→ **{mapa['region_len']} pb**.")
     if ventana:
         va, vz = ventana
-        ap(f"- **Ventana de clonaje utilizable (fin del promotor → inicio del "
-           f"polyA):** {va+1}–{vz} → {(vz-va) % n} pb.")
+        ancho = (vz - va) if (va <= vz and modo == "mcs") else ((vz - va) % n)
+        etiq = ("**MCS analizado:**" if modo == "mcs" else
+                "**Ventana de clonaje utilizable (fin del promotor → inicio del polyA):**")
+        ap(f"- {etiq} {va+1}–{vz} → {ancho} pb.")
         hueco = aceptor.seq[va:vz] if va <= vz else aceptor.seq[va:] + aceptor.seq[:vz]
         atgs = S.busca(hueco, "ATG")
         if atgs:
@@ -574,14 +614,43 @@ def informe(donante: Registro, aceptor: Registro, orf: dict, mapa: dict,
                f"por delante, usa el sitio más 3' posible.")
         else:
             ap("- Sin `ATG` espurios en la ventana por delante del ORF.")
+    if modo == "mcs":
+        truncadas = []
+        seq_mcs = aceptor.seq
+        for e in TODAS:
+            d = e.diana
+            for k in range(len(d) - 1, 3, -1):
+                if seq_mcs.endswith(d[:k]) and not S.busca(seq_mcs, d):
+                    truncadas.append((e.nombre, d, "final", d[:k]))
+                    break
+                if seq_mcs.startswith(d[-k:]) and not S.busca(seq_mcs, d):
+                    truncadas.append((e.nombre, d, "principio", d[-k:]))
+                    break
+        vistas, limpio = set(), []
+        for n_, d_, donde, trozo in truncadas:
+            if d_ in vistas:
+                continue
+            vistas.add(d_)
+            limpio.append((n_, d_, donde, trozo))
+        if limpio:
+            ap("- ⚠️ **Hay dianas cortadas por la mitad en los extremos de lo que "
+               "has pegado**, lo que significa que el MCS real continúa más allá: "
+               + "; ".join(f"`{n_}` ({d_}) — se ve `{trozo}` al {donde}"
+                           for n_, d_, donde, trozo in limpio)
+               + ". Pega el MCS completo o pasa el GenBank.")
     for av in mapa["avisos"]:
         ap(f"- ⚠️ {av}")
     ap("")
 
     # --- Enzimas
     ap("## 4. Dianas de restricción\n")
-    ap("Recuento sobre el **plásmido parental entero** (circular), sobre la "
-       "ventana promotor–polyA y sobre el **inserto**.\n")
+    if modo == "mcs":
+        ap("Recuento sobre **el MCS que has pasado** y sobre el **inserto**. "
+           "La columna «cortes aceptor» es aquí el MCS, no el plásmido: la "
+           "unicidad en el parental completo queda sin comprobar.\n")
+    else:
+        ap("Recuento sobre el **plásmido parental entero** (circular), sobre la "
+           "ventana promotor–polyA y sobre el **inserto**.\n")
     fil = []
     for f in sorted(filas, key=lambda f: (f["veredicto"] != "usable",
                                           not f["enzima"].nevera,
@@ -609,13 +678,16 @@ def informe(donante: Registro, aceptor: Registro, orf: dict, mapa: dict,
            "del documento de diseño (ensamblaje Gibson/HiFi o síntesis).\n")
     else:
         fil = []
-        for d in pares[:12]:
+        for i, d in enumerate(pares[:12]):
             a, b = d["cinco"]["enzima"], d["tres"]["enzima"]
-            fil.append([f"{a.nombre} (5') + {b.nombre} (3')",
+            fil.append([("**" if i == 0 else "") + f"{a.nombre} (5') + {b.nombre} (3')"
+                        + ("**" if i == 0 else ""),
                         f"`{a.saliente_seq() or 'romo'}` / `{b.saliente_seq() or 'romo'}`",
                         "sí" if d["ambas_nevera"] else "no",
-                        f"{d['separacion']} pb"])
-        ap(_tabla(["Pareja", "Salientes", "Ambas en nevera", "Separación en MCS"], fil))
+                        f"{d['separacion']} pb",
+                        "; ".join(d["razones"]) or "—"])
+        ap(_tabla(["Pareja (la 1.ª es la recomendada)", "Salientes",
+                   "Ambas en nevera", "Separación", "Notas"], fil))
         ap("")
 
     # --- Primers
@@ -676,6 +748,9 @@ def informe(donante: Registro, aceptor: Registro, orf: dict, mapa: dict,
             venta = (ventana[1] - ventana[0]) % n if ventana else 0
             fil.append(["Minicírculo estimado",
                         f"~{mapa['region_len'] - venta + inserto_digerido_len} pb"])
+        elif modo == "mcs":
+            fil.append(["Minicírculo estimado",
+                        "no calculable sin el mapa completo del parental"])
         ap(_tabla(["Elemento", "Tamaño"], fil))
         ap("")
 
@@ -692,9 +767,29 @@ def informe(donante: Registro, aceptor: Registro, orf: dict, mapa: dict,
 
         # Digestión diagnóstica
         ap("### Digestión diagnóstica del clon final\n")
+        if modo == "mcs":
+            ap("- No calculable en modo MCS suelto: hace falta el plásmido entero "
+               "para contar las dianas del esqueleto. Con `--aceptor` se calcula.")
+            sitios_restantes = []
+            for f in filas:
+                e = f["enzima"]
+                for pmcs in f["en_ventana"]:
+                    lado = ("5' del inserto" if pmcs < elegido["cinco"]["en_ventana"][0]
+                            else ("3' del inserto"
+                                  if pmcs > elegido["tres"]["en_ventana"][0] else None))
+                    if lado:
+                        sitios_restantes.append((e.nombre, lado))
+            if sitios_restantes:
+                ap("- Dianas del MCS que **sobreviven** en la construcción final "
+                   "(las que quedan entre las dos usadas se pierden): "
+                   + ", ".join(f"`{n}` ({l})" for n, l in sitios_restantes)
+                   + ". Alguna de ellas, si es única en el parental, te sirve de "
+                     "enzima de linearización para el diagnóstico.")
+            ap("")
         contiene = mapa.get("contiene")
         region = mapa.get("region")
-        for e in (POR_NOMBRE["PmeI"], POR_NOMBRE["AsiSI"]):
+        for e in ([] if modo == "mcs" else
+                  (POR_NOMBRE["PmeI"], POR_NOMBRE["AsiSI"])):
             pos_ac = S.busca_ambas(aceptor.seq, e.diana, True)
             dentro = [p for p in pos_ac if region and contiene(region, p)]
             fuera = [p for p in pos_ac if p not in dentro]
@@ -717,10 +812,14 @@ def informe(donante: Registro, aceptor: Registro, orf: dict, mapa: dict,
             else:
                 txt += f"En el minicírculo daría {total_mc} bandas."
             ap(txt)
-        vect_len = len(aceptor) - ((ventana[1] - ventana[0]) % n if ventana else 0)
-        ap(f"- La doble digestión `{a.nombre}` + `{b.nombre}` debe liberar el "
-           f"inserto de ~{inserto_digerido_len} pb y dejar el vector de "
-           f"~{vect_len} pb.")
+        if modo != "mcs":
+            vect_len = len(aceptor) - ((ventana[1] - ventana[0]) % n if ventana else 0)
+            ap(f"- La doble digestión `{a.nombre}` + `{b.nombre}` debe liberar el "
+               f"inserto de ~{inserto_digerido_len} pb y dejar el vector de "
+               f"~{vect_len} pb.")
+        else:
+            ap(f"- La doble digestión `{a.nombre}` + `{b.nombre}` debe liberar el "
+               f"inserto de ~{inserto_digerido_len} pb.")
         hueco = elegido["separacion"]
         if hueco < 50:
             ap(f"- ⚠️ **Las dos dianas distan sólo {hueco} pb.** La doble "
@@ -918,6 +1017,53 @@ def autotest() -> int:
             check("el informe no deja marcadores sin rellenar",
                   "{" not in txt and "None" not in txt)
 
+        # --- Modo MCS suelto, con el MCS real del pMC.EF1a-MCS-SV40polyA ---
+        print("\n  · modo --mcs (MCS real del parental)")
+        mcs_real = S.limpia("tctagagctagcgaattcgaatttaaatcggatccgcggccgcgtcga")
+        ac2 = Registro("MCS", mcs_real, False, [], "(--mcs)")
+        mapa2 = {"attB": [], "attP": [], "isceI": [], "promotor": [],
+                 "polya": [], "avisos": [], "region": None, "contiene": None}
+        vent2 = (0, len(mcs_real))
+        cds_limpio = ("ATG" + "GCTGGTACCTTAGGCACTACC" * 80)
+        cds_limpio = cds_limpio[:len(cds_limpio) // 3 * 3]
+        filas2 = analiza_enzimas(ac2, mapa2, vent2, cds_limpio, TODAS, modo="mcs")
+        pares2 = parejas(filas2, vent2)
+        por2 = {f["enzima"].nombre: f for f in filas2}
+
+        check("XhoI NO está en este MCS",
+              por2["XhoI"]["veredicto"] == "no" and not por2["XhoI"]["en_ventana"])
+        check("AsiSI y PmeI tampoco están",
+              not por2["AsiSI"]["en_ventana"] and not por2["PmeI"]["en_ventana"])
+        for nom in ("XbaI", "NheI-HF", "BamHI-HF"):
+            check(f"{nom} sí está en el MCS", bool(por2[nom]["en_ventana"]))
+        check("NotI y EcoRI localizadas en el MCS",
+              bool(por2["NotI"]["en_ventana"]) and bool(por2["EcoRI"]["en_ventana"]))
+        check("la pareja recomendada es NheI-HF (5') + BamHI-HF (3')",
+              pares2 and pares2[0]["cinco"]["enzima"].nombre == "NheI-HF"
+              and pares2[0]["tres"]["enzima"].nombre == "BamHI-HF",
+              f"{pares2[0]['cinco']['enzima'].nombre}+{pares2[0]['tres']['enzima'].nombre}"
+              if pares2 else "ninguna")
+        check("XbaI+BamHI queda por detrás (riesgo Dam)",
+              any("Dam" in " ".join(d["razones"]) for d in pares2
+                  if d["cinco"]["enzima"].nombre == "XbaI"))
+        check("nunca se empareja NheI con XbaI (mismo saliente CTAG)",
+              not any({d["cinco"]["enzima"].nombre, d["tres"]["enzima"].nombre}
+                      == {"NheI-HF", "XbaI"} for d in pares2))
+        check("sin ATG espurios en el MCS", not S.busca(mcs_real, "ATG"))
+        pr2 = construye_primers(cds_limpio, pares2[0]["cinco"]["enzima"],
+                                pares2[0]["tres"]["enzima"])
+        check("el directo lleva NheI + Kozak + ATG",
+              pr2["fwd"].startswith(PROTECCION_DEF + "GCTAGC" + KOZAK + "ATG"))
+        check("el reverso lleva BamHI + los dos stops",
+              pr2["rev"].startswith(PROTECCION_DEF + "GGATCC" + S.rc(STOPS_DOBLE)))
+        txt2 = informe(don, ac2, orf, mapa2, vent2, filas2, pares2, pares2[0],
+                       pr2, PROTECCION_DEF, modo="mcs")
+        check("el informe avisa de lo que no puede comprobar",
+              "Modo MCS suelto" in txt2 and "attB" in txt2)
+        check("detecta la diana SalI truncada al final",
+              "SalI" in txt2 and "truncada" in txt2.lower()
+              or "cortadas por la mitad" in txt2)
+
     print()
     if fallos:
         print(f"{len(fallos)} FALLO(S): " + ", ".join(fallos))
@@ -939,6 +1085,11 @@ def main() -> int:
         """))
     p.add_argument("--donante", help="FASTA/GenBank del plásmido donante")
     p.add_argument("--aceptor", help="FASTA/GenBank del vector parental")
+    p.add_argument("--mcs", default=None,
+                   help="secuencia del MCS (o ruta a un fichero con ella). "
+                        "Con --aceptor, acota la ventana de clonaje. Sin él, "
+                        "trabaja sólo con el MCS y avisa de lo que no puede "
+                        "comprobar")
     p.add_argument("--gen", default=None, help="filtra el CDS por este nombre")
     p.add_argument("--fin-orf", type=int, default=None, dest="fin_orf",
                    help="posición 1-based del último nt del ORF nativo en el "
@@ -961,16 +1112,61 @@ def main() -> int:
 
     if a.autotest:
         return autotest()
-    if not a.donante or not a.aceptor:
-        p.error("hacen falta --donante y --aceptor (o --autotest)")
+    if not a.donante or not (a.aceptor or a.mcs):
+        p.error("hacen falta --donante y (--aceptor o --mcs), o bien --autotest")
 
-    don, ac = lee(a.donante), lee(a.aceptor)
+    don = lee(a.donante)
     orf = encuentra_orf(don, gen=a.gen, fin_orf=a.fin_orf,
                         inicio_orf=a.inicio_orf,
                         recortar=not a.sin_recorte)
-    mapa = mapea_aceptor(ac)
-    vent = ventana_mcs(ac, mapa)
-    filas = analiza_enzimas(ac, mapa, vent, orf["cds"], TODAS)
+
+    mcs_seq = None
+    if a.mcs:
+        mcs_seq = S.limpia(open(a.mcs, encoding="utf-8").read()
+                           if os.path.exists(a.mcs) else a.mcs)
+        malas = set(mcs_seq) - set("ACGTN")
+        if malas:
+            p.error(f"la secuencia del MCS tiene bases no reconocidas: "
+                    f"{sorted(malas)[:8]}")
+        if len(mcs_seq) < 10:
+            p.error("la secuencia del MCS es demasiado corta")
+
+    if a.aceptor:
+        modo = "vector"
+        ac = lee(a.aceptor)
+        mapa = mapea_aceptor(ac)
+        vent = ventana_mcs(ac, mapa)
+        if mcs_seq:
+            golpes = S.busca(ac.seq, mcs_seq, ac.circular)
+            golpes_rc = S.busca(ac.seq, S.rc(mcs_seq), ac.circular)
+            if len(golpes) == 1:
+                vent = (golpes[0], golpes[0] + len(mcs_seq))
+                mapa["avisos"].append(
+                    "La ventana de clonaje se ha acotado con el MCS que has pasado "
+                    f"(posición {golpes[0]+1}).")
+            elif len(golpes_rc) == 1:
+                vent = (golpes_rc[0], golpes_rc[0] + len(mcs_seq))
+                mapa["avisos"].append(
+                    "El MCS que has pasado aparece en el aceptor en la hebra "
+                    "CONTRARIA. Se ha usado para acotar la ventana, pero "
+                    "**comprueba la orientación**: el sitio 5' del inserto es el "
+                    "que queda más cerca del promotor EF1alfa, que con esta "
+                    "orientación es el del final de tu cadena, no el del principio.")
+            else:
+                mapa["avisos"].append(
+                    f"El MCS que has pasado no aparece exactamente una vez en el "
+                    f"aceptor ({len(golpes)} en directa, {len(golpes_rc)} en "
+                    f"inversa): se ignora y se usa la ventana promotor-polyA.")
+    else:
+        modo = "mcs"
+        ac = Registro("MCS_suelto", mcs_seq, False, [], "(--mcs)")
+        mapa = {"attB": [], "attP": [], "isceI": [], "promotor": [], "polya": [],
+                "avisos": ["Sin GenBank del parental: unicidad en el plásmido "
+                           "entero y contención en attB-attP SIN COMPROBAR."],
+                "region": None, "contiene": None}
+        vent = (0, len(mcs_seq))
+
+    filas = analiza_enzimas(ac, mapa, vent, orf["cds"], TODAS, modo=modo)
     pares = parejas(filas, vent)
 
     elegido = None
@@ -992,7 +1188,7 @@ def main() -> int:
         if elegido else None
 
     txt = informe(don, ac, orf, mapa, vent, filas, pares, elegido, prim,
-                  a.proteccion)
+                  a.proteccion, modo=modo)
     if a.salida:
         os.makedirs(os.path.dirname(os.path.abspath(a.salida)), exist_ok=True)
         open(a.salida, "w", encoding="utf-8").write(txt)

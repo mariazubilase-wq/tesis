@@ -17,11 +17,22 @@ silvestre, entregado como **minicírculos**.
 cd herramientas
 python3 disena_clonaje.py --autotest          # 29 comprobaciones internas
 
+# Sólo con el donante y el MCS (sin el GenBank del parental)
+python3 disena_clonaje.py \
+    --donante ../secuencias/pCMV6-KRT10.gb \
+    --mcs tctagagctagcgaattcgaatttaaatcggatccgcggccgcgtcga \
+    --salida  ../diseno/informe_KRT10.md
+
+# Con el mapa completo del parental (obligatorio antes de digerir)
 python3 disena_clonaje.py \
     --donante ../secuencias/pCMV6-KRT10.gb \
     --aceptor ../secuencias/pMC.EF1a-MCS-SV40polyA.gb \
+    --mcs tctagagctagcgaattcgaatttaaatcggatccgcggccgcgtcga \
     --salida  ../diseno/informe_KRT10.md
 ```
+
+**Pareja elegida: NheI-HF (5') + BamHI-HF (3')**, las dos ya en el congelador.
+Ver §3.6 del diseño.
 
 Python 3.9+. Sin dependencias externas. No accede a internet.
 
