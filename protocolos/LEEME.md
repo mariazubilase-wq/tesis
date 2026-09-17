@@ -13,9 +13,14 @@ Contiene, para cada muestra (1, 2, 4 y 5) y para el control positivo:
   dividiendo entre las 4 réplicas,
 - las abreviaturas y la nomenclatura de las condiciones.
 
+«ME» es la microemulsión. Las muestras 1 y 5 emplean **dos preparaciones
+distintas** (37 µg/µl y 10 µg/µl respectivamente), por lo que sus dosis solo
+son comparables en masa o por el ratio ME:DNA; el documento lo advierte en el
+apartado 2 y en el 7.4. La muestra 3 no existe: no llegó a utilizarse.
+
 El apartado 10 recoge lo que las notas no especifican y conviene completar
-antes de enviarlo (significado de «ME», línea celular, formato de placa,
-lectura del experimento, ausencia de la muestra 3, etc.).
+antes de enviarlo (línea celular, formato de placa, tiempo de exposición,
+lectura del experimento, etc.).
 
 > Los valores marcados como «calculado» son derivaciones aritméticas de las
 > notas, no medidas independientes.

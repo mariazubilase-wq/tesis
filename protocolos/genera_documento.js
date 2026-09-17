@@ -143,7 +143,7 @@ children.push(new Paragraph({
 }));
 children.push(new Paragraph({
   spacing: { after: 100 },
-  children: [new TextRun({ text: "Tratamiento de las muestras: complejos ME/DNA", bold: true, size: 40, color: ACCENT, font: "Calibri" })],
+  children: [new TextRun({ text: "Tratamiento de las muestras: complejos microemulsión/DNA", bold: true, size: 40, color: ACCENT, font: "Calibri" })],
 }));
 children.push(new Paragraph({
   spacing: { after: 240 },
@@ -158,6 +158,7 @@ children.push(table(
     ["Responsable", "María Zubieta Laseca"],
     ["Documento de origen", "MATERIALES_UCM.docx (notas de laboratorio)"],
     ["Contenido", "Muestras 1, 2, 4 y 5 + control positivo"],
+    ["Vehículo ensayado", "Microemulsión (ME), en dos preparaciones de distinta concentración"],
   ],
   [2400, 6620],
   [AlignmentType.LEFT, AlignmentType.LEFT]
@@ -180,7 +181,7 @@ children.push(H1("2. Convenciones y abreviaturas"));
 children.push(table(
   ["Abreviatura", "Significado", "Observación"],
   [
-    ["ME", "Denominación empleada en las notas para el vehículo ensayado", "Las notas no desarrollan la sigla; se menciona su «naturaleza oleosa» (muestra 2). Conviene definirla al enviar el documento."],
+    ["ME", "Microemulsión", "Vehículo ensayado. Se emplean dos preparaciones distintas, de distinta concentración (ver más abajo). Su naturaleza oleosa condiciona el ensayo de la muestra 2."],
     ["DNA", "Plásmido a transfectar", "Stock a 583 ng/µl en todos los ensayos"],
     ["DMEM sin FBS", "Medio de dilución de los complejos", "Sin suero, para no interferir en la formación del complejo"],
     ["T ambiente", "Temperatura ambiente", "—"],
@@ -191,6 +192,20 @@ children.push(table(
 ));
 children.push(SPACER(120));
 children.push(RICH([{ t: "Nomenclatura de las condiciones. ", b: true }, "En las muestras 1 y 5 cada condición se nombra por lo que recibe ", { t: "cada pocillo", i: true }, ", no por lo que se pipetea en el eppendorf. Así, la condición «0,25 µl + 0,3 µg DNA» significa que cada pocillo recibe 0,25 µl de ME y 0,3 µg de DNA, aunque en el eppendorf se pipeteen 1 µl de ME y 2 µl de DNA (cantidad para las 4 réplicas)."]));
+
+children.push(RICH([{ t: "Dos preparaciones distintas de microemulsión. ", b: true }, "Las muestras 1 y 5 no emplean la misma preparación de ME, y por eso cada una nombra sus condiciones de una forma: la muestra 1 por volumen y la muestra 5 por masa. Las concentraciones que se deducen de las cantidades anotadas son:"], { before: 120 }));
+children.push(table(
+  ["Muestra", "Concentración de la ME (calculada)", "Equivalencia que consta en las notas"],
+  [
+    ["Muestra 1", "37 µg/µl", "0,25 µl ≡ 9,25 µg"],
+    ["Muestra 5", "10 µg/µl", "1 µl ≡ 10 µg"],
+    ["Muestras 2 y 4", "No consta", "—"],
+  ],
+  [1800, 3500, 3720],
+  [AlignmentType.LEFT, AlignmentType.CENTER, AlignmentType.CENTER]
+));
+children.push(SPACER(100));
+children.push(P("Por tanto, las dosis de ME de la muestra 1 y las de la muestra 5 no son directamente comparables en volumen: hay que compararlas en masa o mediante el ratio ME:DNA.", { italics: true, size: 19 }));
 
 // 3. Procedimiento común
 children.push(H1("3. Procedimiento común (muestras 1 y 5)"));
@@ -240,7 +255,7 @@ children.push(table(
 
 children.push(SPACER(200));
 children.push(H2("4.4. Dosis recibida por cada pocillo (calculado)"));
-children.push(P("Valores derivados de la tabla anterior dividiendo entre las 4 réplicas. La masa de ME se obtiene de la equivalencia que dan las propias notas (0,25 µl ≡ 9,25 µg, es decir, un stock de 37 µg/µl).", { italics: true, size: 19, after: 100 }));
+children.push(P("Valores derivados de la tabla anterior dividiendo entre las 4 réplicas. La masa de ME se obtiene de la equivalencia que dan las propias notas (0,25 µl ≡ 9,25 µg), que corresponde a la preparación de microemulsión a 37 µg/µl empleada en esta muestra.", { italics: true, size: 19, after: 100 }));
 children.push(table(
   ["Condición", "ME/pocillo (µl)", "ME/pocillo (µg)", "DNA/pocillo (ng)", "Ratio ME:DNA (m/m)"],
   [
@@ -330,7 +345,7 @@ children.push(table(
   [2320, 1700, 1700, 1700, 1600]
 ));
 children.push(SPACER(160));
-children.push(NOTA("Punto a verificar:", "las cantidades de esta muestra implican un stock de ME de 10 µg/µl (1 µl por pocillo ≡ 10 µg), mientras que las de la muestra 1 implican 37 µg/µl (0,25 µl ≡ 9,25 µg). Si ambas muestras usan la misma preparación de ME, una de las dos equivalencias debe revisarse; si son preparaciones distintas, conviene indicarlo expresamente en el documento."));
+children.push(NOTA("Preparación distinta a la de la muestra 1:", "la microemulsión empleada aquí está a 10 µg/µl (1 µl por pocillo ≡ 10 µg), frente a los 37 µg/µl de la muestra 1. De ahí que 2 µl por pocillo supongan aquí 20 µg de ME, mientras que en la muestra 1 ese mismo volumen equivale a 74 µg. Las dos muestras solo son comparables en masa de ME o por el ratio ME:DNA."));
 
 // 8. Control positivo
 children.push(H1("8. Control positivo (ViaFect)"));
@@ -366,16 +381,14 @@ children.push(table(
   [AlignmentType.CENTER, AlignmentType.LEFT, AlignmentType.LEFT, AlignmentType.CENTER, AlignmentType.CENTER]
 ));
 children.push(SPACER(140));
-children.push(RICH([{ t: "Nota sobre la numeración: ", b: true }, "en las notas originales las muestras aparecen en el orden 1, 2, 5 y 4. Aquí se han reordenado de forma ascendente. ", { t: "No existe ninguna anotación correspondiente a la muestra 3", b: true }, "."]));
+children.push(RICH([{ t: "Nota sobre la numeración: ", b: true }, "en las notas originales las muestras aparecen en el orden 1, 2, 5 y 4. Aquí se han reordenado de forma ascendente. ", { t: "La muestra 3 no figura porque no llegó a utilizarse", b: true }, "; la numeración salta de la 2 a la 4."]));
 
 // 10. Pendientes
 children.push(H1("10. Puntos pendientes de confirmar antes de enviar"));
 children.push(P("Las notas originales son de uso interno y dan por supuesta información que un lector externo no tiene. Antes de enviar este documento conviene completar los siguientes puntos:"));
-children.push(BULRICH([{ t: "Significado de «ME»", b: true }, ": la sigla no se desarrolla en ningún punto de las notas."]));
-children.push(BULRICH([{ t: "Concentración del stock de ME", b: true }, ": las muestras 1 y 5 implican concentraciones distintas (37 µg/µl frente a 10 µg/µl). Ver apartado 7.4."]));
+children.push(BULRICH([{ t: "Preparación de ME de las muestras 2 y 4", b: true }, ": al haber dos preparaciones distintas, conviene indicar cuál se usó en cada una de estas dos muestras y a qué concentración."]));
 children.push(BULRICH([{ t: "Identidad del plásmido", b: true }, ": solo consta su concentración (583 ng/µl), no qué construcción es."]));
 children.push(BULRICH([{ t: "Línea celular, formato de placa y densidad de siembra", b: true }, ": no constan. Los 100 µl de medio por pocillo de la muestra 2 y los 10 µl de complejo añadidos sugieren placa de 96 pocillos, pero conviene confirmarlo."]));
-children.push(BULRICH([{ t: "Muestra 3", b: true }, ": no aparece en las notas. Indicar si no existe, si se descartó o si está documentada en otro sitio."]));
 children.push(BULRICH([{ t: "Réplicas de las muestras 2 y 4", b: true }, ": solo se especifican las de las muestras 1 y 5 (4 réplicas)."]));
 children.push(BULRICH([{ t: "Detalles de la muestra 4", b: true }, ": composición de la mezcla ME+DNA de partida, tiempo de incubación y volumen final aplicado."]));
 children.push(BULRICH([{ t: "Tiempo de exposición y cambio de medio", b: true }, ": no consta cuánto tiempo permanecen los complejos sobre las células ni si se retiran."]));
@@ -385,7 +398,7 @@ children.push(BULRICH([{ t: "Control negativo", b: true }, ": solo se documenta 
 // ---------- documento ----------
 const doc = new Document({
   creator: "María Zubieta Laseca",
-  title: "Tratamiento de las muestras: complejos ME/DNA",
+  title: "Tratamiento de las muestras: complejos microemulsión/DNA",
   description: "Protocolo detallado del ensayo del 03/08/2026",
   numbering: {
     config: [
