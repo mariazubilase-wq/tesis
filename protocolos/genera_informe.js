@@ -109,131 +109,134 @@ children.push(new Paragraph({
 children.push(new Paragraph({
   spacing: { after: 180 },
   border: { bottom: { style: BorderStyle.SINGLE, size: 10, color: ACCENT, space: 6 } },
-  children: [new TextRun({ text: "Condiciones ensayadas en transfección · ensayo del 3 de agosto de 2026 · María Zubieta Laseca, Universidad de Salamanca", size: 21, color: "595959", font: "Calibri" })],
+  children: [new TextRun({ text: "Tratamiento detallado de cada muestra · ensayo del 3 de agosto de 2026 · María Zubieta Laseca, Universidad de Salamanca", size: 21, color: "595959", font: "Calibri" })],
 }));
 
-children.push(P("Detalle de cómo se ha diluido y empleado cada muestra: dosis y concentración por pocillo y ratios ME:pDNA, ME:DOTAP y DOTAP:pDNA de cada condición. Las concentraciones de partida son las de vuestro correo del 13 de julio, con la corrección del 15 de julio (DOTAP al 1 % en las muestras 2 y 3)."));
+children.push(P("Este documento desarrolla el apartado de tratamiento del informe que os enviamos el 6 de agosto: dosis y concentración por pocillo y ratios ME:pDNA, ME:DOTAP y DOTAP:pDNA de cada condición ensayada. Los resultados se resumen en una línea al final de cada muestra; el registro fotográfico está en aquel informe."));
+children.push(P("Las concentraciones de partida son las de vuestro correo del 13 de julio, con la corrección del 15 de julio (DOTAP al 1 % en las muestras 2 y 3)."));
 children.push(SPACER(60));
-children.push(NOTA("Verificación:", "las concentraciones deducidas de nuestras propias anotaciones coinciden con las vuestras (37 mg/mL de lípido total en la muestra 1; 10 mg/mL de liposomas en la muestra 5), y el DOTAP al 1 % de la muestra 2 reproduce exactamente vuestro ratio 1000:1."));
+children.push(NOTA("Verificación:", "las concentraciones deducidas de nuestras anotaciones de pipeteo coinciden con las vuestras (37 mg/mL de lípido total en la muestra 1; 10 mg/mL de liposomas en la muestra 5), y el DOTAP al 1 % de la muestra 2 reproduce exactamente vuestro ratio 1000:1."));
 
-// ---- 1. MUESTRAS ----
-children.push(H1("1. Las muestras y el uso que se les ha dado"));
+// ---- 1. CONDICIONES GENERALES ----
+children.push(H1("1. Condiciones generales del ensayo"));
+children.push(BUL([{ t: "Células. ", b: true }, "Queratinocitos inmortalizados KerCT, placa de 96 pocillos, unas 8.000 células por pocillo."]));
+children.push(BUL([{ t: "Volumen del pocillo. ", b: true }, "100 µl finales. Los 10 µl de complejo suponen el 10 % de ese volumen. Todas las concentraciones de este documento se calculan sobre esos 100 µl."]));
+children.push(BUL([{ t: "Plásmido. ", b: true }, "pMAX-GFP, stock propio a 583 ng/µl. La muestra 2 es la excepción: ya incorpora pDNA y no se le añadió ninguno."]));
+children.push(BUL([{ t: "Complejación (muestras 1, 4 y 5). ", b: true }, "Muestra y pDNA diluidos por separado en DMEM sin FBS a volúmenes iguales, mezclados y acomplejados 20 minutos con balanceo suave a temperatura ambiente. Después, 10 µl de complejo por pocillo."]));
+children.push(BUL([{ t: "Réplicas. ", b: true }, "Condiciones por triplicado en las muestras 1 y 5. Cada mezcla de 40 µl se repartió en alícuotas de 10 µl."]));
+children.push(BUL([{ t: "Lectura. ", b: true }, "Fluorescencia de toda la placa cada 12 h durante 48 h."]));
+children.push(SPACER(60));
+children.push(RICH([{ t: "Qué significa «ME» en cada tabla. ", b: true }, "El ratio ME:pDNA se refiere al ", { t: "lípido total", b: true }, " en la muestra 1, a la ", { t: "microemulsión completa", b: true }, " en la muestra 2 y a los ", { t: "liposomas", b: true }, " en las muestras 4 y 5. El ratio ME:DOTAP es constante dentro de cada muestra porque lo fija la formulación."], { size: 19 }));
+
+// ---- 2. LAS MUESTRAS ----
+children.push(H1("2. Las muestras y el uso que se les ha dado"));
 children.push(table(
   ["Muestra", "Formulación", "Datos empleados en los cálculos", "Uso"],
   [
     ["1", "Microemulsión O/A, DOTAP + DOPE", "Lípido total 37 mg/mL · DOTAP 3,4 mg/mL · ζ +38 mV · 32 nm", "12 condiciones"],
-    ["2", "Microemulsión A/O con pDNA encapsulado", "pDNA 10 µg/mL · DOTAP 1 % (10 mg/mL) · ~20 nm", "4 condiciones"],
-    ["3", "Microemulsión A/O sin pDNA", "DOTAP 1 %, igual que la muestra 2", "No utilizada; se conserva íntegra"],
-    ["4", "Liposomas DOTAP + DOPE liofilizados, trehalosa 10 %", "10 µg de DOTAP por liofilizado · ~150 nm", "1 condición"],
+    ["2", "Microemulsión A/O con pDNA encapsulado", "pDNA 10 µg/mL · DOTAP 1 % (10 mg/mL) · ~20 nm", "2 condiciones (ver apartado 4)"],
+    ["3", "Microemulsión A/O sin pDNA", "DOTAP 1 %, igual que la muestra 2", "No ensayada"],
+    ["4", "Liposomas DOTAP + DOPE liofilizados, trehalosa 10 %", "Liofilizado de 10 µl: 100 µg de liposomas y 10 µg de DOTAP · ~150 nm", "1 condición"],
     ["5", "Liposomas DOTAP + DOPE sin liofilizar, trehalosa 10 %", "Liposomas 10 mg/mL · DOTAP 1 mg/mL", "6 condiciones"],
   ],
   [850, 2600, 4090, 2200],
   [AlignmentType.CENTER, AlignmentType.LEFT, AlignmentType.LEFT, AlignmentType.LEFT]
 ));
-children.push(SPACER(100));
-children.push(RICH([{ t: "Qué significa «ME» en cada tabla. ", b: true }, "Nuestras notas internas usaban «ME» para todas las muestras. Aquí el ratio ME:pDNA se refiere al ", { t: "lípido total", b: true }, " en la muestra 1, a la ", { t: "microemulsión completa", b: true }, " en la muestra 2 y a los ", { t: "liposomas", b: true }, " en la muestra 5. El ratio ME:DOTAP es constante en cada muestra porque lo fija la formulación."], { size: 19 }));
-
-// ---- 2. PROCEDIMIENTO ----
-children.push(H1("2. Procedimiento (muestras 1 y 5)"));
-children.push(P("Muestra diluida en DMEM sin FBS hasta 20 µl en un eppendorf; pDNA (stock propio a 583 ng/µl) diluido en DMEM sin FBS hasta 20 µl en otro; se añade el primero sobre el segundo; 15 minutos de balanceo suave a temperatura ambiente; 10 µl del complejo a cada uno de los 4 pocillos. Cada mezcla de 40 µl cubre las 4 réplicas, de modo que cada pocillo recibe la cuarta parte de lo pipeteado."));
-children.push(P("La muestra 2 no requiere complejación —ya lleva el pDNA— y se añadió directamente al medio; se comprobó antes que no quedaba flotando por su carácter oleoso."));
-children.push(SPACER(60));
-children.push(NOTA("Base de cálculo de las concentraciones:", "en las muestras 1 y 5 se toma un volumen final de 110 µl por pocillo (100 µl de medio + 10 µl de complejo). En la muestra 2 los volúmenes finales son exactos y constan en su tabla."));
 
 // ---- 3. MUESTRA 1 ----
 children.push(H1("3. Muestra 1 — Microemulsión O/A · ME:DOTAP 10,9:1"));
 children.push(table(
-  ["Condición (por pocillo)", "Pipeteo ME+DMEM / pDNA+DMEM (µl)", "ME (µg)", "[ME] (µg/mL)", "DOTAP (µg)", "pDNA (ng)", "ME:pDNA", "ME:DOTAP", "DOTAP:pDNA"],
+  ["Condición (por pocillo)", "Pipeteo ME+DMEM / pDNA+DMEM (µl)", "ME (µg)", "[ME] (µg/mL)", "DOTAP (µg)", "pDNA (µg)", "ME:pDNA", "ME:DOTAP", "DOTAP:pDNA"],
   [
-    ["0,25 µl + 0,3 µg", "1+19 / 2+18",  "9,25",  "84",  "0,85", "291,5", "32:1",  "10,9:1", "2,9:1"],
-    ["0,5 µl + 0,3 µg",  "2+18 / 2+18",  "18,5",  "168", "1,70", "291,5", "63:1",  "10,9:1", "5,8:1"],
-    ["0,75 µl + 0,3 µg", "3+17 / 2+18",  "27,75", "252", "2,55", "291,5", "95:1",  "10,9:1", "8,7:1"],
-    ["1,5 µl + 0,3 µg",  "6+14 / 2+18",  "55,5",  "505", "5,10", "291,5", "190:1", "10,9:1", "17,5:1"],
-    ["2 µl + 0,3 µg",    "8+12 / 2+18",  "74",    "673", "6,80", "291,5", "254:1", "10,9:1", "23,3:1"],
-    ["2,5 µl + 0,3 µg",  "10+10 / 2+18", "92,5",  "841", "8,50", "291,5", "317:1", "10,9:1", "29,2:1"],
-    ["0,25 µl + 0,6 µg", "1+19 / 4+16",  "9,25",  "84",  "0,85", "583",   "16:1",  "10,9:1", "1,5:1"],
-    ["0,5 µl + 0,6 µg",  "2+18 / 4+16",  "18,5",  "168", "1,70", "583",   "32:1",  "10,9:1", "2,9:1"],
-    ["0,75 µl + 0,6 µg", "3+17 / 4+16",  "27,75", "252", "2,55", "583",   "48:1",  "10,9:1", "4,4:1"],
-    ["1,5 µl + 0,6 µg",  "6+14 / 4+16",  "55,5",  "505", "5,10", "583",   "95:1",  "10,9:1", "8,7:1"],
-    ["2 µl + 0,6 µg",    "8+12 / 4+16",  "74",    "673", "6,80", "583",   "127:1", "10,9:1", "11,7:1"],
-    ["2,5 µl + 0,6 µg",  "10+10 / 4+16", "92,5",  "841", "8,50", "583",   "159:1", "10,9:1", "14,6:1"],
+    ["9,25 µg ME + 0,3 µg",  "1+19 / 2+18",  "9,25",  "92,5",  "0,85", "0,3", "30,8:1",  "10,9:1", "2,8:1"],
+    ["18,5 µg ME + 0,3 µg",  "2+18 / 2+18",  "18,5",  "185",   "1,70", "0,3", "61,7:1",  "10,9:1", "5,7:1"],
+    ["27,75 µg ME + 0,3 µg", "3+17 / 2+18",  "27,75", "277,5", "2,55", "0,3", "92,5:1",  "10,9:1", "8,5:1"],
+    ["55,5 µg ME + 0,3 µg",  "6+14 / 2+18",  "55,5",  "555",   "5,10", "0,3", "185:1",   "10,9:1", "17:1"],
+    ["74 µg ME + 0,3 µg",    "8+12 / 2+18",  "74",    "740",   "6,80", "0,3", "246,7:1", "10,9:1", "22,7:1"],
+    ["92,5 µg ME + 0,3 µg",  "10+10 / 2+18", "92,5",  "925",   "8,50", "0,3", "308,3:1", "10,9:1", "28,3:1"],
+    ["9,25 µg ME + 0,6 µg",  "1+19 / 4+16",  "9,25",  "92,5",  "0,85", "0,6", "15,4:1",  "10,9:1", "1,4:1"],
+    ["18,5 µg ME + 0,6 µg",  "2+18 / 4+16",  "18,5",  "185",   "1,70", "0,6", "30,8:1",  "10,9:1", "2,8:1"],
+    ["27,75 µg ME + 0,6 µg", "3+17 / 4+16",  "27,75", "277,5", "2,55", "0,6", "46,3:1",  "10,9:1", "4,3:1"],
+    ["55,5 µg ME + 0,6 µg",  "6+14 / 4+16",  "55,5",  "555",   "5,10", "0,6", "92,5:1",  "10,9:1", "8,5:1"],
+    ["74 µg ME + 0,6 µg",    "8+12 / 4+16",  "74",    "740",   "6,80", "0,6", "123,3:1", "10,9:1", "11,3:1"],
+    ["92,5 µg ME + 0,6 µg",  "10+10 / 4+16", "92,5",  "925",   "8,50", "0,6", "154,2:1", "10,9:1", "14,2:1"],
   ],
-  [1250, 1500, 950, 1150, 1000, 950, 1000, 1050, 890], null, 16
+  [1550, 1450, 900, 1100, 950, 850, 1000, 1000, 940], null, 16
 ));
-children.push(SPACER(100));
-children.push(NOTA("Frente a vuestros ratios de referencia:", "la serie de 0,3 µg de pDNA cubre el intervalo que habéis caracterizado en gel — 1,5 µl equivale a 17,5:1 (vuestro 17:1) y 2,5 µl a 29,2:1 (próximo a 27:1); vuestro 7:1 cae entre 0,5 µl (5,8:1) y 0,75 µl (8,7:1). La serie de 0,6 µg explora por debajo, de 1,5:1 a 14,6:1."));
+children.push(SPACER(80));
+children.push(RICH([{ t: "Resultado. ", b: true }, "Muerte celular en las 12 condiciones (36 pocillos) en las primeras 12 h y ausencia de expresión de GFP a 48 h. Tal como se ha probado, la muestra resultó tóxica con independencia del ratio."], { size: 19 }));
+children.push(SPACER(60));
+children.push(NOTA("Frente a vuestros ratios de referencia:", "la serie de 0,3 µg de pDNA cubre el intervalo que habéis caracterizado en gel — 55,5 µg de ME equivale exactamente a vuestro 17:1 y 92,5 µg a 28,3:1, próximo a vuestro 27:1; vuestro 7:1 cae entre 18,5 µg (5,7:1) y 27,75 µg (8,5:1). La serie de 0,6 µg explora por debajo, de 1,4:1 a 14,2:1."));
 
 // ---- 4. MUESTRA 2 ----
 children.push(H1("4. Muestra 2 — Microemulsión A/O con pDNA encapsulado · ME:DOTAP 100:1"));
-children.push(P("Condiciones nombradas «µl de microemulsión + µl de medio». Partiendo de pocillos con 100 µl de medio: en 100+100 no se retira nada, en 50+50 se retiran 50 µl, en 50+150 se añaden 50 µl y en 25+75 se retiran 25 µl. El ratio DOTAP:pDNA lo fija la formulación, de modo que solo varían la dosis absoluta y la dilución: las parejas 100+100 / 50+50 y 50+150 / 25+75 comparten concentración pero no cantidad.", { size: 19 }));
+children.push(RICH([{ t: "Volumen recibido. ", b: true }, "El vial contenía unos 100 µl, no el 1 mL indicado en vuestro correo. Como parte se empleó en comprobar cómo se mezclaba la microemulsión con el medio, solo pudieron ensayarse dos condiciones en lugar de la batería prevista, y no la de 100 µl + 100 µl que habíais probado vosotras."]));
+children.push(P("Procedimiento: se mezclaron en un eppendorf la microemulsión y el medio de cada condición, dando toques para homogeneizar; después se retiró el medio de los pocillos y se sustituyó por la mezcla. Se comprobó antes que la microemulsión no quedaba flotando por su carácter oleoso.", { size: 19 }));
 children.push(table(
-  ["Condición", "ME (µl)", "Vol. final (µl)", "ME (% v/v)", "pDNA (µg)", "DOTAP (µg)", "ME:pDNA", "ME:DOTAP", "DOTAP:pDNA"],
+  ["Condición", "ME (µl)", "Medio (µl)", "Vol. final (µl)", "ME (% v/v)", "pDNA (µg)", "DOTAP (µg)", "ME:pDNA", "ME:DOTAP", "DOTAP:pDNA"],
   [
-    ["100 + 100", "100", "200", "50 %", "1,00", "1.000", "100.000:1", "100:1", "1000:1"],
-    ["50 + 50",   "50",  "100", "50 %", "0,50", "500",   "100.000:1", "100:1", "1000:1"],
-    ["50 + 150",  "50",  "200", "25 %", "0,50", "500",   "100.000:1", "100:1", "1000:1"],
-    ["25 + 75",   "25",  "100", "25 %", "0,25", "250",   "100.000:1", "100:1", "1000:1"],
+    ["50 + 50", "50", "50", "100", "50 %", "0,50", "500", "100.000:1", "100:1", "1000:1"],
+    ["25 + 75", "25", "75", "100", "25 %", "0,25", "250", "100.000:1", "100:1", "1000:1"],
   ],
-  [1300, 950, 1100, 1000, 1000, 1050, 1400, 1050, 890], null, 16
+  [1050, 800, 900, 1050, 950, 900, 950, 1300, 950, 890], null, 16
 ));
-children.push(SPACER(100));
-children.push(NOTA("Dos apuntes:", "el ratio ME:pDNA de esta muestra asume densidad ≈ 1 g/mL para la microemulsión; confirmadnos si preferís otro valor. Y la carga de DOTAP por pocillo (250–1.000 µg) es dos o tres órdenes de magnitud mayor que en la muestra 1 (0,85–8,5 µg), consecuencia del ratio 1000:1 de la formulación; lo señalamos porque condiciona cualquier lectura de viabilidad."));
+children.push(SPACER(80));
+children.push(RICH([{ t: "Resultado. ", b: true }, "Mucha muerte celular a partir de las primeras 12 h y ninguna célula fluorescente en las 48 h evaluadas."], { size: 19 }));
+children.push(SPACER(60));
+children.push(NOTA("Dos apuntes:", "el ratio ME:pDNA asume densidad ≈ 1 g/mL para la microemulsión; decidnos si preferís otro valor. Y la carga de DOTAP por pocillo (250–500 µg) es dos órdenes de magnitud mayor que en la muestra 1 (0,85–8,5 µg), consecuencia del ratio 1000:1 de la formulación."));
 
-// ---- 5. MUESTRA 4 ----
-children.push(H1("5. Muestra 4 — Liposomas liofilizados · ME:DOTAP 10:1"));
-children.push(P("El liofilizado se resuspendió en 20 µl de disolución de pDNA a 50 ng/µl, siguiendo vuestro procedimiento de rehidratar el liofilizado con la propia cantidad objetivo de material genético. De esa resuspensión se tomó 1 µl y se llevó a 10 µl de DMEM sin FBS."));
+// ---- 5. MUESTRA 3 ----
+children.push(H1("5. Muestra 3 — Microemulsión A/O sin pDNA"));
+children.push(P("No ensayada: al ser de composición similar a la muestra 2, se prefirió ver primero cómo se comportaba aquella. Se conserva íntegra."));
+
+// ---- 6. MUESTRA 4 ----
+children.push(H1("6. Muestra 4 — Liposomas liofilizados · ME:DOTAP 10:1"));
+children.push(P("El liofilizado corresponde a 10 µl de liposomas, es decir, 100 µg de liposomas con 10 µg de DOTAP. Se rehidrató directamente con la disolución de pDNA, según vuestro procedimiento."));
 children.push(table(
   ["Concepto", "Valor", "Observación"],
   [
-    ["Resuspensión del liofilizado", "20 µl de pDNA a 50 ng/µl", "Rehidratación directa con el pDNA"],
-    ["DOTAP", "10 µg", "Contenido declarado del liofilizado"],
-    ["pDNA", "1,00 µg", "20 µl × 50 ng/µl"],
-    ["Liposomas (ME)", "100 µg", "Deducido del DOTAP y del ratio 10:1 de la formulación"],
-    ["ME:pDNA", "100:1", "—"],
-    ["ME:DOTAP", "10:1", "Fijado por la formulación"],
-    ["DOTAP:pDNA", "10:1", "Coincide con el ratio que habéis evaluado"],
-    ["Aplicación", "1 µl de la resuspensión en 10 µl de DMEM sin FBS", "Equivale a 0,5 µg de DOTAP y 50 ng de pDNA"],
+    ["Resuspensión del liofilizado", "10 µl de agua + pDNA, 1 µg en total", "Rehidratación directa con el pDNA"],
+    ["Liposomas (ME)", "100 µg", "10 µl × 10 mg/mL"],
+    ["DOTAP", "10 µg", "10 µl × 1 mg/mL"],
+    ["pDNA", "1,00 µg", "—"],
+    ["ME:pDNA / ME:DOTAP / DOTAP:pDNA", "100:1 / 10:1 / 10:1", "El 10:1 coincide con el ratio que habéis evaluado"],
+    ["Aplicación", "1 µl de la resuspensión en 10 µl de DMEM sin FBS", "Equivale a 1 µg de DOTAP y 0,1 µg de pDNA"],
   ],
-  [2900, 3300, 3540],
+  [3100, 3200, 3440],
   [AlignmentType.LEFT, AlignmentType.LEFT, AlignmentType.LEFT]
 ));
-children.push(SPACER(100));
-children.push(NOTA("Dos salvedades:", "la concentración de la disolución de pDNA empleada en la resuspensión está pendiente de contrastar con el registro de laboratorio; el valor de 50 ng/µl es el coherente con el ratio 10:1. Y la masa de liposomas depende de qué cifra del liofilizado sea la correcta (ver consultas): si contuviera 1 µg de DOTAP en lugar de 10 µg, el ratio DOTAP:pDNA sería 1:1 y no 10:1."));
-
-// ---- 6. MUESTRA 5 ----
-children.push(H1("6. Muestra 5 — Liposomas sin liofilizar · ME:DOTAP 10:1"));
-children.push(table(
-  ["Condición (por pocillo)", "Pipeteo lip.+DMEM / pDNA+DMEM (µl)", "Liposomas (µg)", "[ME] (µg/mL)", "DOTAP (µg)", "pDNA (ng)", "ME:pDNA", "ME:DOTAP", "DOTAP:pDNA"],
-  [
-    ["10 µg + 0,1 µg", "4+16 / 0,7+19,3", "10", "91",  "1,0", "102",   "98:1",  "10:1", "9,8:1"],
-    ["10 µg + 0,2 µg", "4+16 / 1,4+18,6", "10", "91",  "1,0", "204",   "49:1",  "10:1", "4,9:1"],
-    ["20 µg + 0,2 µg", "8+12 / 1,4+18,6", "20", "182", "2,0", "204",   "98:1",  "10:1", "9,8:1"],
-    ["20 µg + 0,4 µg", "8+12 / 2,7+17,3", "20", "182", "2,0", "393,5", "51:1",  "10:1", "5,1:1"],
-    ["20 µg + 0,1 µg", "8+12 / 0,7+19,3", "20", "182", "2,0", "102",   "196:1", "10:1", "19,6:1"],
-    ["10 µg + 0,4 µg", "4+16 / 2,7+17,3", "10", "91",  "1,0", "393,5", "25:1",  "10:1", "2,5:1"],
-  ],
-  [1250, 1500, 950, 1150, 1000, 950, 1000, 1050, 890], null, 16
-));
-children.push(SPACER(100));
-children.push(NOTA("Frente a vuestro ratio de referencia:", "las condiciones 10 µg + 0,1 µg y 20 µg + 0,2 µg equivalen a 9,8:1, es decir, a vuestro 10:1. Las demás lo flanquean: 19,6:1 por encima y 5,1:1, 4,9:1 y 2,5:1 por debajo."));
-
-// ---- 7. CONTROL ----
-children.push(H1("7. Control positivo"));
-children.push(P("ViaFect 2,4 µl + 0,7 µl de pDNA (≈ 408 ng) + 37 µl de DMEM sin FBS, 10 minutos, 10 µl por pocillo. Por pocillo: ≈ 0,6 µl de ViaFect y ≈ 102 ng de pDNA, la misma dosis de pDNA que la condición más baja de la muestra 5."));
-
-// ---- 8. DESVIACIONES Y CONSULTAS ----
-children.push(H1("8. Desviaciones y consultas"));
-children.push(P("Desviaciones respecto a vuestro procedimiento:", { bold: true, after: 70 }));
-children.push(BUL([{ t: "Balanceo de 15 minutos en lugar de 20 ", b: true }, "en las muestras 1 y 5. Si creéis que puede afectar a la formación del complejo, repetimos con el tiempo que nos digáis."]));
-children.push(BUL([{ t: "Muestra 4: una sola condición ensayada. ", b: true }, "La concentración exacta del pDNA empleado en la resuspensión está pendiente de contrastar con el registro de laboratorio."]));
-children.push(BUL([{ t: "Muestra 3: no ensayada. ", b: true }, "Se conserva para los ensayos de formación de complejo y como control sin material genético."]));
 children.push(SPACER(80));
-children.push(P("Consultas:", { bold: true, after: 70 }));
-children.push(BUL([{ t: "Muestra 4, contenido del liofilizado. ", b: true }, "La descripción dice que cada liofilizado contiene 10 µg de DOTAP y, más abajo, que la cantidad enviada es «liofilizado equivalente a 10 µg de liposomas liofilizados». Con liposomas a 10 mg/mL y DOTAP a 1 mg/mL, 10 µg de liposomas contendrían 1 µg de DOTAP. ¿Cuál de las dos cifras es la correcta? De ello depende que nuestra condición esté a 10:1 o a 1:1."]));
-children.push(BUL([{ t: "Muestra 4, volumen de resuspensión. ", b: true }, "Resuspendimos el liofilizado en 20 µl. ¿Os parece adecuado o preferís otro volumen?"]));
-children.push(BUL([{ t: "Muestra 2, identidad del pDNA encapsulado, ", b: true }, "para asegurar que la lectura es comparable con la del resto de muestras, donde usamos nuestro stock propio."]));
-children.push(BUL([{ t: "Muestra 1, tiempo de complejación. ", b: true }, "El correo no lo especifica para esta muestra. ¿También 20 minutos?"]));
+children.push(RICH([{ t: "Resultado. ", b: true }, "Sin expresión de GFP, pero las células se vieron en mejor estado que con las microemulsiones. A las 12 h se apreciaban liposomas aparentemente sin internalizar, con diferencia clara a las 48 h."], { size: 19 }));
+children.push(SPACER(60));
+children.push(NOTA("A revisar:", "es posible que 10 µl fuera un volumen de resuspensión demasiado pequeño. Al repetir la condición nos interesa saber qué volumen recomendáis."));
 
+// ---- 7. MUESTRA 5 ----
+children.push(H1("7. Muestra 5 — Liposomas sin liofilizar · ME:DOTAP 10:1"));
+children.push(table(
+  ["Condición (por pocillo)", "Pipeteo lip.+DMEM / pDNA+DMEM (µl)", "Liposomas (µg)", "[ME] (µg/mL)", "DOTAP (µg)", "pDNA (µg)", "ME:pDNA", "ME:DOTAP", "DOTAP:pDNA"],
+  [
+    ["10 µg ME + 0,1 µg", "4+16 / 0,7+19,3", "10", "100", "1,0", "0,1", "100:1", "10:1", "10:1"],
+    ["10 µg ME + 0,2 µg", "4+16 / 1,4+18,6", "10", "100", "1,0", "0,2", "50:1",  "10:1", "5:1"],
+    ["10 µg ME + 0,4 µg", "4+16 / 2,7+17,3", "10", "100", "1,0", "0,4", "25:1",  "10:1", "2,5:1"],
+    ["20 µg ME + 0,1 µg", "8+12 / 0,7+19,3", "20", "200", "2,0", "0,1", "200:1", "10:1", "20:1"],
+    ["20 µg ME + 0,2 µg", "8+12 / 1,4+18,6", "20", "200", "2,0", "0,2", "100:1", "10:1", "10:1"],
+    ["20 µg ME + 0,4 µg", "8+12 / 2,7+17,3", "20", "200", "2,0", "0,4", "50:1",  "10:1", "5:1"],
+  ],
+  [1550, 1450, 900, 1100, 950, 850, 1000, 1000, 940], null, 16
+));
+children.push(SPACER(80));
+children.push(RICH([{ t: "Resultado. ", b: true }, "Sin expresión de GFP en ninguna condición, pero las células se mantuvieron sanas y apenas hubo muerte celular. De nuevo se apreció internalización progresiva de los liposomas. El comportamiento fue consistente en todas las condiciones."], { size: 19 }));
+
+// ---- 8. CONTROL ----
+children.push(H1("8. Control positivo"));
+children.push(P("ViaFect 2,4 µl + 0,7 µl de pDNA (≈ 408 ng) + 37 µl de DMEM sin FBS, 10 minutos, 10 µl por pocillo. Por pocillo: ≈ 0,6 µl de ViaFect y ≈ 0,1 µg de pDNA, la misma dosis de pDNA que las condiciones más bajas de las muestras 4 y 5. Sirvió de referencia visual de la fluorescencia, aunque su eficiencia no fue alta."));
+
+// ---- 9. CONSULTAS ----
+children.push(H1("9. Consultas"));
+children.push(BUL([{ t: "Muestra 2, volumen disponible. ", b: true }, "¿Podríais enviarnos más cantidad? Con los 100 µl recibidos no se pudo reproducir vuestra condición de 100 µl + 100 µl ni ampliar el número de condiciones."]));
+children.push(BUL([{ t: "Muestra 2, pDNA encapsulado. ", b: true }, "Entendemos que es el pMAX-GFP que os enviamos hace unos meses, el mismo que hemos usado en el resto de muestras. ¿Nos lo confirmáis?"]));
+children.push(BUL([{ t: "Muestra 4, volumen de resuspensión. ", b: true }, "Resuspendimos el liofilizado en 10 µl, que quizá sea poco. ¿Qué volumen recomendáis?"]));
+children.push(BUL([{ t: "Toxicidad de las microemulsiones. ", b: true }, "Las muestras 1 y 2 resultaron tóxicas en todas las condiciones ensayadas, mientras que las formulaciones liposomales no lo fueron. Si consideráis que merece la pena seguir con ellas, podemos ensayar dosis por debajo de los 9,25 µg de ME por pocillo o tiempos de exposición más cortos; decidnos qué preferís."]));
 // ================= DOCUMENTO =================
 const doc = new Document({
   creator: "María Zubieta Laseca",
