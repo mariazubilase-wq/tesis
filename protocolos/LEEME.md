@@ -12,10 +12,22 @@ Se construye cruzando dos fuentes:
 - el correo de la UCM del 13/07/2026 con la corrección del 15/07/2026, que da
   la composición y las concentraciones de cada muestra.
 
-Para cada muestra recoge el procedimiento, la tabla de pipeteo, la dosis por
-pocillo y el **ratio DOTAP/pDNA**, que es la magnitud con la que la UCM
-caracteriza sus formulaciones. Los apartados 12 y 13 recogen las desviaciones
-respecto al procedimiento indicado y las consultas pendientes.
+Una tabla por muestra, con el pipeteo, la dosis y la concentración por pocillo
+y los tres ratios: **ME:pDNA**, **ME:DOTAP** y **DOTAP:pDNA**. Este último es
+la magnitud con la que la UCM caracteriza sus formulaciones. El apartado 8
+recoge las desviaciones y las consultas pendientes.
+
+«ME» significa cosas distintas según la muestra: lípido total en la 1,
+microemulsión completa en la 2 y liposomas en la 4 y la 5. El documento lo
+advierte.
+
+Supuestos que conviene revisar antes de enviarlo:
+
+- **Volumen final del pocillo: 110 µl** (100 µl de medio + 10 µl de complejo)
+  en las muestras 1 y 5. De ahí salen las concentraciones en µg/mL.
+- **Muestra 4: pDNA a 50 ng/µl** en la resuspensión. Es el valor coherente con
+  el ratio 10:1 de la UCM; el de 100 ng/µl daría 5:1.
+- **Muestra 2: densidad ≈ 1 g/mL** para calcular el ratio ME:pDNA.
 
 ### Qué muestra es cada cosa
 

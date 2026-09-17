@@ -1,84 +1,57 @@
 const {
   Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType,
   Table, TableRow, TableCell, WidthType, ShadingType, BorderStyle,
-  LevelFormat, convertInchesToTwip, Header, Footer, PageNumber
+  LevelFormat, Footer, PageNumber
 } = require('docx');
 const fs = require('fs');
 
 const ACCENT = "1F4E79";
-const LIGHT  = "DCE6F1";
 const SOFT   = "F2F2F2";
-const W = 9020;
+const W = 9740;             // A4 vertical menos márgenes
 
-// ---------- helpers ----------
 const P = (text, o = {}) => new Paragraph({
-  spacing: { before: o.before ?? 0, after: o.after ?? 120, line: 276 },
+  spacing: { before: o.before ?? 0, after: o.after ?? 100, line: 264 },
   alignment: o.align,
-  indent: o.indent,
-  border: o.border,
-  shading: o.shading,
-  children: [new TextRun({ text, bold: o.bold, italics: o.italics, size: o.size ?? 21, color: o.color, font: "Calibri" })],
+  children: [new TextRun({ text, bold: o.bold, italics: o.italics, size: o.size ?? 20, color: o.color, font: "Calibri" })],
 });
 
 const RICH = (runs, o = {}) => new Paragraph({
-  spacing: { before: o.before ?? 0, after: o.after ?? 120, line: 276 },
-  alignment: o.align,
-  indent: o.indent,
-  shading: o.shading,
-  border: o.border,
+  spacing: { before: o.before ?? 0, after: o.after ?? 100, line: 264 },
   children: runs.map(r => typeof r === 'string'
-    ? new TextRun({ text: r, size: 21, font: "Calibri" })
-    : new TextRun({ text: r.t, bold: r.b, italics: r.i, size: r.size ?? 21, color: r.c, font: "Calibri" })),
+    ? new TextRun({ text: r, size: o.size ?? 20, font: "Calibri" })
+    : new TextRun({ text: r.t, bold: r.b, italics: r.i, size: o.size ?? 20, font: "Calibri" })),
 });
 
 const H1 = (text) => new Paragraph({
   heading: HeadingLevel.HEADING_1,
-  spacing: { before: 360, after: 160 },
-  border: { bottom: { style: BorderStyle.SINGLE, size: 6, color: ACCENT, space: 4 } },
-  children: [new TextRun({ text, bold: true, size: 28, color: ACCENT, font: "Calibri" })],
+  spacing: { before: 280, after: 120 },
+  border: { bottom: { style: BorderStyle.SINGLE, size: 6, color: ACCENT, space: 3 } },
+  children: [new TextRun({ text, bold: true, size: 25, color: ACCENT, font: "Calibri" })],
 });
 
-const H2 = (text) => new Paragraph({
-  heading: HeadingLevel.HEADING_2,
-  spacing: { before: 240, after: 100 },
-  children: [new TextRun({ text, bold: true, size: 23, color: "2E74B5", font: "Calibri" })],
-});
-
-const BUL = (text, o = {}) => new Paragraph({
-  numbering: { reference: "vinetas", level: o.level ?? 0 },
-  spacing: { after: 70, line: 276 },
-  children: [new TextRun({ text, size: 21, font: "Calibri", bold: o.bold })],
-});
-
-const BULRICH = (runs, o = {}) => new Paragraph({
-  numbering: { reference: "vinetas", level: o.level ?? 0 },
-  spacing: { after: 70, line: 276 },
+const BUL = (runs) => new Paragraph({
+  numbering: { reference: "vinetas", level: 0 },
+  spacing: { after: 60, line: 264 },
   children: runs.map(r => typeof r === 'string'
-    ? new TextRun({ text: r, size: 21, font: "Calibri" })
-    : new TextRun({ text: r.t, bold: r.b, italics: r.i, size: 21, font: "Calibri" })),
+    ? new TextRun({ text: r, size: 20, font: "Calibri" })
+    : new TextRun({ text: r.t, bold: r.b, italics: r.i, size: 20, font: "Calibri" })),
 });
 
-const NUM = (text) => new Paragraph({
-  numbering: { reference: "pasos", level: 0 },
-  spacing: { after: 90, line: 276 },
-  children: [new TextRun({ text, size: 21, font: "Calibri" })],
-});
-
-function cell(text, { widths, i, bold, fill, align, italics, size } = {}) {
+function cell(text, { widths, i, bold, fill, align, size } = {}) {
   return new TableCell({
     width: { size: widths[i], type: WidthType.DXA },
     shading: fill ? { type: ShadingType.CLEAR, fill, color: "auto" } : undefined,
-    margins: { top: 60, bottom: 60, left: 90, right: 90 },
+    margins: { top: 40, bottom: 40, left: 70, right: 70 },
     children: [new Paragraph({
       alignment: align ?? AlignmentType.LEFT,
-      spacing: { after: 0, line: 240 },
-      children: [new TextRun({ text: String(text), bold, italics, size: size ?? 19, font: "Calibri",
+      spacing: { after: 0, line: 228 },
+      children: [new TextRun({ text: String(text), bold, size: size ?? 17, font: "Calibri",
                                color: bold && fill === ACCENT ? "FFFFFF" : undefined })],
     })],
   });
 }
 
-function table(headers, rows, widths, aligns) {
+function table(headers, rows, widths, aligns, size) {
   const al = aligns || headers.map((_, i) => i === 0 ? AlignmentType.LEFT : AlignmentType.CENTER);
   return new Table({
     width: { size: W, type: WidthType.DXA },
@@ -94,351 +67,200 @@ function table(headers, rows, widths, aligns) {
     rows: [
       new TableRow({
         tableHeader: true,
-        children: headers.map((h, i) => cell(h, { widths, i, bold: true, fill: ACCENT, align: AlignmentType.CENTER })),
+        children: headers.map((h, i) => cell(h, { widths, i, bold: true, fill: ACCENT, align: AlignmentType.CENTER, size })),
       }),
       ...rows.map((r, ri) => new TableRow({
-        children: r.map((c, i) => cell(c, { widths, i, fill: ri % 2 ? SOFT : undefined, align: al[i] })),
+        children: r.map((c, i) => cell(c, { widths, i, fill: ri % 2 ? SOFT : undefined, align: al[i], size })),
       })),
     ],
   });
 }
 
-const SPACER = (h = 160) => new Paragraph({ spacing: { after: h }, children: [] });
+const SPACER = (h = 120) => new Paragraph({ spacing: { after: h }, children: [] });
 
-// Caja de nota
 const NOTA = (titulo, texto) => new Table({
   width: { size: W, type: WidthType.DXA },
   columnWidths: [W],
   borders: {
-    top:    { style: BorderStyle.SINGLE, size: 2, color: "9CC2E5" },
+    top: { style: BorderStyle.SINGLE, size: 2, color: "9CC2E5" },
     bottom: { style: BorderStyle.SINGLE, size: 2, color: "9CC2E5" },
-    left:   { style: BorderStyle.SINGLE, size: 18, color: "2E74B5" },
-    right:  { style: BorderStyle.SINGLE, size: 2, color: "9CC2E5" },
-    insideHorizontal: { style: BorderStyle.NONE },
-    insideVertical: { style: BorderStyle.NONE },
+    left: { style: BorderStyle.SINGLE, size: 18, color: "2E74B5" },
+    right: { style: BorderStyle.SINGLE, size: 2, color: "9CC2E5" },
+    insideHorizontal: { style: BorderStyle.NONE }, insideVertical: { style: BorderStyle.NONE },
   },
-  rows: [new TableRow({
-    children: [new TableCell({
-      width: { size: W, type: WidthType.DXA },
-      shading: { type: ShadingType.CLEAR, fill: "EAF1F8", color: "auto" },
-      margins: { top: 120, bottom: 120, left: 160, right: 140 },
-      children: [new Paragraph({
-        spacing: { after: 0, line: 264 },
-        children: [
-          new TextRun({ text: titulo + " ", bold: true, size: 20, color: "1F4E79", font: "Calibri" }),
-          new TextRun({ text: texto, size: 20, font: "Calibri" }),
-        ],
-      })],
-    })],
-  })],
+  rows: [new TableRow({ children: [new TableCell({
+    width: { size: W, type: WidthType.DXA },
+    shading: { type: ShadingType.CLEAR, fill: "EAF1F8", color: "auto" },
+    margins: { top: 90, bottom: 90, left: 150, right: 130 },
+    children: [new Paragraph({ spacing: { after: 0, line: 252 }, children: [
+      new TextRun({ text: titulo + " ", bold: true, size: 19, color: "1F4E79", font: "Calibri" }),
+      new TextRun({ text: texto, size: 19, font: "Calibri" }),
+    ]})],
+  })]})],
 });
 
-// ---------- contenido ----------
+// ================= CONTENIDO =================
 const children = [];
 
-// ========== PORTADA ==========
 children.push(new Paragraph({
-  spacing: { after: 60 },
-  children: [new TextRun({ text: "INFORME DE TRATAMIENTO DE MUESTRAS", bold: true, size: 19, color: "808080", font: "Calibri" })],
+  spacing: { after: 40 },
+  children: [new TextRun({ text: "Muestras UCM, tanda de julio de 2026", bold: true, size: 34, color: ACCENT, font: "Calibri" })],
 }));
 children.push(new Paragraph({
-  spacing: { after: 100 },
-  children: [new TextRun({ text: "Muestras UCM, tanda de julio de 2026", bold: true, size: 40, color: ACCENT, font: "Calibri" })],
-}));
-children.push(new Paragraph({
-  spacing: { after: 240 },
-  border: { bottom: { style: BorderStyle.SINGLE, size: 12, color: ACCENT, space: 8 } },
-  children: [new TextRun({ text: "Condiciones ensayadas en transfección · ensayo del 3 de agosto de 2026", size: 24, color: "595959", font: "Calibri" })],
+  spacing: { after: 180 },
+  border: { bottom: { style: BorderStyle.SINGLE, size: 10, color: ACCENT, space: 6 } },
+  children: [new TextRun({ text: "Condiciones ensayadas en transfección · ensayo del 3 de agosto de 2026 · María Zubieta Laseca, Universidad de Salamanca", size: 21, color: "595959", font: "Calibri" })],
 }));
 
-children.push(table(
-  ["Campo", "Dato"],
-  [
-    ["Ensayo realizado el", "3 de agosto de 2026"],
-    ["Responsable", "María Zubieta Laseca — Universidad de Salamanca"],
-    ["Muestras recibidas", "Envío de la UCM de 13 de julio de 2026 (muestras 1 a 5)"],
-    ["Muestras utilizadas", "1, 2, 4 y 5. La muestra 3 no se ha utilizado todavía."],
-    ["Plásmido empleado", "Stock propio a 583 ng/µl (salvo la muestra 2, que ya incorpora pDNA)"],
-    ["Objeto", "Detallar diluciones, concentraciones y dosis efectivamente ensayadas con cada muestra"],
-  ],
-  [2300, 6720],
-  [AlignmentType.LEFT, AlignmentType.LEFT]
-));
+children.push(P("Detalle de cómo se ha diluido y empleado cada muestra: dosis y concentración por pocillo y ratios ME:pDNA, ME:DOTAP y DOTAP:pDNA de cada condición. Las concentraciones de partida son las de vuestro correo del 13 de julio, con la corrección del 15 de julio (DOTAP al 1 % en las muestras 2 y 3)."));
+children.push(SPACER(60));
+children.push(NOTA("Verificación:", "las concentraciones deducidas de nuestras propias anotaciones coinciden con las vuestras (37 mg/mL de lípido total en la muestra 1; 10 mg/mL de liposomas en la muestra 5), y el DOTAP al 1 % de la muestra 2 reproduce exactamente vuestro ratio 1000:1."));
 
-children.push(SPACER(240));
-
-// ========== 1. OBJETO ==========
-children.push(H1("1. Objeto"));
-children.push(P("Este documento recoge, muestra por muestra, el tratamiento que se ha dado en nuestro laboratorio a las formulaciones enviadas por la UCM: cómo se han diluido, qué cantidades se han empleado, qué dosis recibe finalmente cada pocillo y a qué ratio DOTAP/pDNA corresponde cada condición."));
-children.push(P("Las cantidades se expresan de dos formas complementarias: tal como se pipetean en la práctica (lo que permite reproducir el ensayo) y como dosis efectiva por pocillo, que es la magnitud comparable entre muestras. Los ratios DOTAP/pDNA se calculan a partir de las concentraciones facilitadas por la UCM en el correo del 13 de julio, con la corrección del 15 de julio (DOTAP al 1 % en las muestras 2 y 3, no al 4 %)."));
-children.push(SPACER(80));
-children.push(NOTA("Comprobación previa:", "las concentraciones que se dedujeron de nuestras propias anotaciones coinciden con las facilitadas por la UCM — 37 mg/mL de lípido total en la muestra 1 y 10 mg/mL de liposomas en la muestra 5 —, y el DOTAP al 1 % de la muestra 2 reproduce exactamente el ratio 1000:1 indicado en el correo. Los cálculos de este documento parten, por tanto, de datos verificados por partida doble."));
-
-// ========== 2. IDENTIFICACIÓN ==========
-children.push(H1("2. Las muestras y el uso que se les ha dado"));
-children.push(P("Resumen de las cinco formulaciones recibidas, con los datos de la UCM que se han utilizado para los cálculos:"));
+// ---- 1. MUESTRAS ----
+children.push(H1("1. Las muestras y el uso que se les ha dado"));
 children.push(table(
   ["Muestra", "Formulación", "Datos empleados en los cálculos", "Uso"],
   [
-    ["1", "Microemulsión O/A (fase externa acuosa), DOTAP + DOPE", "Lípido total 37 mg/mL; DOTAP 3,4 mg/mL; ζ +38 mV; gotícula 32 nm", "Ensayada: 12 condiciones"],
-    ["2", "Microemulsión A/O (fase externa oleosa) con pDNA encapsulado", "pDNA 10 µg/mL; DOTAP 1 % (10 mg/mL); ratio fijo 1000:1; glóbulo ~20 nm", "Ensayada: 4 condiciones"],
-    ["3", "Microemulsión A/O sin pDNA", "DOTAP 1 %, igual que la muestra 2", "No utilizada"],
-    ["4", "Liposomas catiónicos DOTAP + DOPE, liofilizados, trehalosa 10 %", "10 µg de DOTAP por liofilizado; tamaño ~150 nm", "Ensayada: 1 condición (datos incompletos, ver apartado 8)"],
-    ["5", "Liposomas catiónicos DOTAP + DOPE, sin liofilizar, trehalosa 10 %", "Liposomas 10 mg/mL; DOTAP 1 mg/mL", "Ensayada: 6 condiciones"],
+    ["1", "Microemulsión O/A, DOTAP + DOPE", "Lípido total 37 mg/mL · DOTAP 3,4 mg/mL · ζ +38 mV · 32 nm", "12 condiciones"],
+    ["2", "Microemulsión A/O con pDNA encapsulado", "pDNA 10 µg/mL · DOTAP 1 % (10 mg/mL) · ~20 nm", "4 condiciones"],
+    ["3", "Microemulsión A/O sin pDNA", "DOTAP 1 %, igual que la muestra 2", "No utilizada; se conserva íntegra"],
+    ["4", "Liposomas DOTAP + DOPE liofilizados, trehalosa 10 %", "10 µg de DOTAP por liofilizado · ~150 nm", "1 condición"],
+    ["5", "Liposomas DOTAP + DOPE sin liofilizar, trehalosa 10 %", "Liposomas 10 mg/mL · DOTAP 1 mg/mL", "6 condiciones"],
   ],
-  [900, 2400, 3320, 2400],
+  [850, 2600, 4090, 2200],
   [AlignmentType.CENTER, AlignmentType.LEFT, AlignmentType.LEFT, AlignmentType.LEFT]
 ));
-children.push(SPACER(140));
-children.push(RICH([{ t: "Nota sobre la terminología. ", b: true }, "En nuestras anotaciones internas se empleó «ME» como abreviatura genérica para todas las muestras. En este documento cada una se nombra según su naturaleza real: microemulsión en las muestras 1 a 3 y liposomas catiónicos en las muestras 4 y 5."]));
+children.push(SPACER(100));
+children.push(RICH([{ t: "Qué significa «ME» en cada tabla. ", b: true }, "Nuestras notas internas usaban «ME» para todas las muestras. Aquí el ratio ME:pDNA se refiere al ", { t: "lípido total", b: true }, " en la muestra 1, a la ", { t: "microemulsión completa", b: true }, " en la muestra 2 y a los ", { t: "liposomas", b: true }, " en la muestra 5. El ratio ME:DOTAP es constante en cada muestra porque lo fija la formulación."], { size: 19 }));
 
-// ========== 3. CONVENCIONES ==========
-children.push(H1("3. Datos comunes y forma de leer las tablas"));
-children.push(BULRICH([{ t: "Plásmido. ", b: true }, "Stock propio a 583 ng/µl, el mismo en todas las condiciones. La muestra 2 es la excepción: el pDNA ya viene incorporado en la formulación y no se le añade ninguno."]));
-children.push(BULRICH([{ t: "Medio de dilución. ", b: true }, "DMEM sin FBS en todos los casos en los que se forma complejo (muestras 1, 4 y 5) y en el control positivo."]));
-children.push(BULRICH([{ t: "Réplicas. ", b: true }, "Las mezclas de las muestras 1 y 5 se preparan para 4 réplicas: se hace un volumen único de 40 µl y se reparten 10 µl a cada uno de los 4 pocillos."]));
-children.push(BULRICH([{ t: "Dosis por pocillo. ", b: true }, "Es, por tanto, la cuarta parte de lo pipeteado. Las condiciones se nombran siempre por lo que recibe cada pocillo, no por lo que hay en el eppendorf."]));
-children.push(BULRICH([{ t: "Ratio DOTAP/pDNA. ", b: true }, "Calculado en masa/masa a partir del contenido en DOTAP que indica la UCM para cada formulación, para poder compararlo directamente con los ratios que ellas han caracterizado."]));
-
-// ========== 4. PROCEDIMIENTO ==========
-children.push(H1("4. Procedimiento de formación de complejos (muestras 1 y 5)"));
-children.push(P("Ambas muestras se han tratado con el mismo esquema; solo cambian las cantidades:"));
-children.push(NUM("Eppendorf A: la muestra (microemulsión o liposomas) diluida en DMEM sin FBS hasta 20 µl."));
-children.push(NUM("Eppendorf B: el pDNA diluido en DMEM sin FBS hasta 20 µl."));
-children.push(NUM("Se añade A sobre B. Volumen final del complejo: 40 µl."));
-children.push(NUM("15 minutos en balanceo suave a temperatura ambiente."));
-children.push(NUM("10 µl del complejo a cada uno de los 4 pocillos."));
+// ---- 2. PROCEDIMIENTO ----
+children.push(H1("2. Procedimiento (muestras 1 y 5)"));
+children.push(P("Muestra diluida en DMEM sin FBS hasta 20 µl en un eppendorf; pDNA (stock propio a 583 ng/µl) diluido en DMEM sin FBS hasta 20 µl en otro; se añade el primero sobre el segundo; 15 minutos de balanceo suave a temperatura ambiente; 10 µl del complejo a cada uno de los 4 pocillos. Cada mezcla de 40 µl cubre las 4 réplicas, de modo que cada pocillo recibe la cuarta parte de lo pipeteado."));
+children.push(P("La muestra 2 no requiere complejación —ya lleva el pDNA— y se añadió directamente al medio; se comprobó antes que no quedaba flotando por su carácter oleoso."));
 children.push(SPACER(60));
-children.push(NOTA("Desviación respecto a vuestro protocolo:", "el tiempo de balanceo empleado ha sido de 15 minutos, frente a los 20 minutos que indicáis para las muestras 3, 4 y 5. Se detalla en el apartado 12."));
+children.push(NOTA("Base de cálculo de las concentraciones:", "en las muestras 1 y 5 se toma un volumen final de 110 µl por pocillo (100 µl de medio + 10 µl de complejo). En la muestra 2 los volúmenes finales son exactos y constan en su tabla."));
 
-// ========== 5. MUESTRA 1 ==========
-children.push(H1("5. Muestra 1 — Microemulsión O/A"));
-children.push(P("Se han ensayado 6 volúmenes de microemulsión cruzados con 2 cantidades de pDNA, es decir, 12 condiciones por cuadruplicado."));
-
-children.push(H2("5.1. Pipeteo (volúmenes en µl, para 4 réplicas)"));
+// ---- 3. MUESTRA 1 ----
+children.push(H1("3. Muestra 1 — Microemulsión O/A · ME:DOTAP 10,9:1"));
 children.push(table(
-  ["Condición (por pocillo)", "DMEM para la ME", "ME", "pDNA (583 ng/µl)", "DMEM para el pDNA"],
+  ["Condición (por pocillo)", "Pipeteo ME+DMEM / pDNA+DMEM (µl)", "ME (µg)", "[ME] (µg/mL)", "DOTAP (µg)", "pDNA (ng)", "ME:pDNA", "ME:DOTAP", "DOTAP:pDNA"],
   [
-    ["0,25 µl + 0,3 µg", "19", "1", "2", "18"],
-    ["0,5 µl + 0,3 µg",  "18", "2", "2", "18"],
-    ["0,75 µl + 0,3 µg", "17", "3", "2", "18"],
-    ["1,5 µl + 0,3 µg",  "14", "6", "2", "18"],
-    ["2 µl + 0,3 µg",    "12", "8", "2", "18"],
-    ["2,5 µl + 0,3 µg",  "10", "10", "2", "18"],
-    ["0,25 µl + 0,6 µg", "19", "1", "4", "16"],
-    ["0,5 µl + 0,6 µg",  "18", "2", "4", "16"],
-    ["0,75 µl + 0,6 µg", "17", "3", "4", "16"],
-    ["1,5 µl + 0,6 µg",  "14", "6", "4", "16"],
-    ["2 µl + 0,6 µg",    "12", "8", "4", "16"],
-    ["2,5 µl + 0,6 µg",  "10", "10", "4", "16"],
+    ["0,25 µl + 0,3 µg", "1+19 / 2+18",  "9,25",  "84",  "0,85", "291,5", "32:1",  "10,9:1", "2,9:1"],
+    ["0,5 µl + 0,3 µg",  "2+18 / 2+18",  "18,5",  "168", "1,70", "291,5", "63:1",  "10,9:1", "5,8:1"],
+    ["0,75 µl + 0,3 µg", "3+17 / 2+18",  "27,75", "252", "2,55", "291,5", "95:1",  "10,9:1", "8,7:1"],
+    ["1,5 µl + 0,3 µg",  "6+14 / 2+18",  "55,5",  "505", "5,10", "291,5", "190:1", "10,9:1", "17,5:1"],
+    ["2 µl + 0,3 µg",    "8+12 / 2+18",  "74",    "673", "6,80", "291,5", "254:1", "10,9:1", "23,3:1"],
+    ["2,5 µl + 0,3 µg",  "10+10 / 2+18", "92,5",  "841", "8,50", "291,5", "317:1", "10,9:1", "29,2:1"],
+    ["0,25 µl + 0,6 µg", "1+19 / 4+16",  "9,25",  "84",  "0,85", "583",   "16:1",  "10,9:1", "1,5:1"],
+    ["0,5 µl + 0,6 µg",  "2+18 / 4+16",  "18,5",  "168", "1,70", "583",   "32:1",  "10,9:1", "2,9:1"],
+    ["0,75 µl + 0,6 µg", "3+17 / 4+16",  "27,75", "252", "2,55", "583",   "48:1",  "10,9:1", "4,4:1"],
+    ["1,5 µl + 0,6 µg",  "6+14 / 4+16",  "55,5",  "505", "5,10", "583",   "95:1",  "10,9:1", "8,7:1"],
+    ["2 µl + 0,6 µg",    "8+12 / 4+16",  "74",    "673", "6,80", "583",   "127:1", "10,9:1", "11,7:1"],
+    ["2,5 µl + 0,6 µg",  "10+10 / 4+16", "92,5",  "841", "8,50", "583",   "159:1", "10,9:1", "14,6:1"],
   ],
-  [2620, 1800, 1000, 1900, 1700]
+  [1250, 1500, 950, 1150, 1000, 950, 1000, 1050, 890], null, 16
 ));
+children.push(SPACER(100));
+children.push(NOTA("Frente a vuestros ratios de referencia:", "la serie de 0,3 µg de pDNA cubre el intervalo que habéis caracterizado en gel — 1,5 µl equivale a 17,5:1 (vuestro 17:1) y 2,5 µl a 29,2:1 (próximo a 27:1); vuestro 7:1 cae entre 0,5 µl (5,8:1) y 0,75 µl (8,7:1). La serie de 0,6 µg explora por debajo, de 1,5:1 a 14,6:1."));
 
-children.push(SPACER(200));
-children.push(H2("5.2. Dosis por pocillo y ratio DOTAP/pDNA"));
-children.push(P("Calculado con lípido total 37 µg/µl y DOTAP 3,4 µg/µl de microemulsión.", { italics: true, size: 19, after: 100 }));
+// ---- 4. MUESTRA 2 ----
+children.push(H1("4. Muestra 2 — Microemulsión A/O con pDNA encapsulado · ME:DOTAP 100:1"));
+children.push(P("Condiciones nombradas «µl de microemulsión + µl de medio». Partiendo de pocillos con 100 µl de medio: en 100+100 no se retira nada, en 50+50 se retiran 50 µl, en 50+150 se añaden 50 µl y en 25+75 se retiran 25 µl. El ratio DOTAP:pDNA lo fija la formulación, de modo que solo varían la dosis absoluta y la dilución: las parejas 100+100 / 50+50 y 50+150 / 25+75 comparten concentración pero no cantidad.", { size: 19 }));
 children.push(table(
-  ["Condición", "ME (µl)", "Lípido total (µg)", "DOTAP (µg)", "pDNA (ng)", "DOTAP/pDNA"],
+  ["Condición", "ME (µl)", "Vol. final (µl)", "ME (% v/v)", "pDNA (µg)", "DOTAP (µg)", "ME:pDNA", "ME:DOTAP", "DOTAP:pDNA"],
   [
-    ["0,25 µl + 0,3 µg", "0,25", "9,25",  "0,85", "291,5", "2,9:1"],
-    ["0,5 µl + 0,3 µg",  "0,5",  "18,5",  "1,70", "291,5", "5,8:1"],
-    ["0,75 µl + 0,3 µg", "0,75", "27,75", "2,55", "291,5", "8,7:1"],
-    ["1,5 µl + 0,3 µg",  "1,5",  "55,5",  "5,10", "291,5", "17,5:1"],
-    ["2 µl + 0,3 µg",    "2",    "74",    "6,80", "291,5", "23,3:1"],
-    ["2,5 µl + 0,3 µg",  "2,5",  "92,5",  "8,50", "291,5", "29,2:1"],
-    ["0,25 µl + 0,6 µg", "0,25", "9,25",  "0,85", "583",   "1,5:1"],
-    ["0,5 µl + 0,6 µg",  "0,5",  "18,5",  "1,70", "583",   "2,9:1"],
-    ["0,75 µl + 0,6 µg", "0,75", "27,75", "2,55", "583",   "4,4:1"],
-    ["1,5 µl + 0,6 µg",  "1,5",  "55,5",  "5,10", "583",   "8,7:1"],
-    ["2 µl + 0,6 µg",    "2",    "74",    "6,80", "583",   "11,7:1"],
-    ["2,5 µl + 0,6 µg",  "2,5",  "92,5",  "8,50", "583",   "14,6:1"],
+    ["100 + 100", "100", "200", "50 %", "1,00", "1.000", "100.000:1", "100:1", "1000:1"],
+    ["50 + 50",   "50",  "100", "50 %", "0,50", "500",   "100.000:1", "100:1", "1000:1"],
+    ["50 + 150",  "50",  "200", "25 %", "0,50", "500",   "100.000:1", "100:1", "1000:1"],
+    ["25 + 75",   "25",  "100", "25 %", "0,25", "250",   "100.000:1", "100:1", "1000:1"],
   ],
-  [2020, 1000, 1700, 1500, 1400, 1400]
+  [1300, 950, 1100, 1000, 1000, 1050, 1400, 1050, 890], null, 16
 ));
-children.push(SPACER(160));
-children.push(NOTA("Correspondencia con vuestros ratios de referencia:", "la serie de 0,3 µg de pDNA cubre el intervalo que habéis caracterizado por retardo en gel. La condición de 1,5 µl equivale a 17,5:1 (vuestro 17:1) y la de 2,5 µl a 29,2:1 (próxima a vuestro 27:1); vuestro 7:1 queda entre las condiciones de 0,5 µl (5,8:1) y 0,75 µl (8,7:1). La serie de 0,6 µg de pDNA explora deliberadamente por debajo, entre 1,5:1 y 14,6:1."));
+children.push(SPACER(100));
+children.push(NOTA("Dos apuntes:", "el ratio ME:pDNA de esta muestra asume densidad ≈ 1 g/mL para la microemulsión; confirmadnos si preferís otro valor. Y la carga de DOTAP por pocillo (250–1.000 µg) es dos o tres órdenes de magnitud mayor que en la muestra 1 (0,85–8,5 µg), consecuencia del ratio 1000:1 de la formulación; lo señalamos porque condiciona cualquier lectura de viabilidad."));
 
-// ========== 6. MUESTRA 2 ==========
-children.push(H1("6. Muestra 2 — Microemulsión A/O con pDNA encapsulado"));
-children.push(P("Al llevar el pDNA ya incorporado en la fase acuosa interna, esta muestra no requiere formación previa de complejo: se ha añadido directamente sobre el medio del pocillo. Lo que se ha variado es el volumen de microemulsión y el volumen de medio en el que queda diluida."));
-children.push(RICH([{ t: "Comprobación previa. ", b: true }, "Antes de nada se verificó que, al añadirla al medio, la microemulsión no quedaba flotando en la superficie por su carácter oleoso."]));
-
-children.push(H2("6.1. Preparación de los pocillos"));
-children.push(P("Partiendo de pocillos con 100 µl de medio, se ajustó el volumen antes de incorporar la muestra. Las condiciones se nombran «µl de microemulsión + µl de medio».", { after: 100 }));
+// ---- 5. MUESTRA 4 ----
+children.push(H1("5. Muestra 4 — Liposomas liofilizados · ME:DOTAP 10:1"));
+children.push(P("El liofilizado se resuspendió en 20 µl de disolución de pDNA a 50 ng/µl, siguiendo vuestro procedimiento de rehidratar el liofilizado con la propia cantidad objetivo de material genético. De esa resuspensión se tomó 1 µl y se llevó a 10 µl de DMEM sin FBS."));
 children.push(table(
-  ["Condición", "Ajuste del medio", "ME añadida", "Volumen final"],
+  ["Concepto", "Valor", "Observación"],
   [
-    ["100 + 100", "No se retira nada", "100 µl", "200 µl"],
-    ["50 + 50",   "Retirar 50 µl",     "50 µl",  "100 µl"],
-    ["50 + 150",  "Añadir 50 µl",      "50 µl",  "200 µl"],
-    ["25 + 75",   "Retirar 25 µl",     "25 µl",  "100 µl"],
+    ["Resuspensión del liofilizado", "20 µl de pDNA a 50 ng/µl", "Rehidratación directa con el pDNA"],
+    ["DOTAP", "10 µg", "Contenido declarado del liofilizado"],
+    ["pDNA", "1,00 µg", "20 µl × 50 ng/µl"],
+    ["Liposomas (ME)", "100 µg", "Deducido del DOTAP y del ratio 10:1 de la formulación"],
+    ["ME:pDNA", "100:1", "—"],
+    ["ME:DOTAP", "10:1", "Fijado por la formulación"],
+    ["DOTAP:pDNA", "10:1", "Coincide con el ratio que habéis evaluado"],
+    ["Aplicación", "1 µl de la resuspensión en 10 µl de DMEM sin FBS", "Equivale a 0,5 µg de DOTAP y 50 ng de pDNA"],
   ],
-  [1900, 2700, 2100, 2320]
+  [2900, 3300, 3540],
+  [AlignmentType.LEFT, AlignmentType.LEFT, AlignmentType.LEFT]
 ));
+children.push(SPACER(100));
+children.push(NOTA("Dos salvedades:", "la concentración de la disolución de pDNA empleada en la resuspensión está pendiente de contrastar con el registro de laboratorio; el valor de 50 ng/µl es el coherente con el ratio 10:1. Y la masa de liposomas depende de qué cifra del liofilizado sea la correcta (ver consultas): si contuviera 1 µg de DOTAP en lugar de 10 µg, el ratio DOTAP:pDNA sería 1:1 y no 10:1."));
 
-children.push(SPACER(200));
-children.push(H2("6.2. Dosis por pocillo"));
-children.push(P("Calculado con pDNA 10 µg/mL y DOTAP al 1 % (10 µg/µl).", { italics: true, size: 19, after: 100 }));
+// ---- 6. MUESTRA 5 ----
+children.push(H1("6. Muestra 5 — Liposomas sin liofilizar · ME:DOTAP 10:1"));
 children.push(table(
-  ["Condición", "ME (µl)", "pDNA (µg)", "DOTAP (µg)", "DOTAP/pDNA"],
+  ["Condición (por pocillo)", "Pipeteo lip.+DMEM / pDNA+DMEM (µl)", "Liposomas (µg)", "[ME] (µg/mL)", "DOTAP (µg)", "pDNA (ng)", "ME:pDNA", "ME:DOTAP", "DOTAP:pDNA"],
   [
-    ["100 + 100", "100", "1,00", "1.000", "1000:1"],
-    ["50 + 50",   "50",  "0,50", "500",   "1000:1"],
-    ["50 + 150",  "50",  "0,50", "500",   "1000:1"],
-    ["25 + 75",   "25",  "0,25", "250",   "1000:1"],
+    ["10 µg + 0,1 µg", "4+16 / 0,7+19,3", "10", "91",  "1,0", "102",   "98:1",  "10:1", "9,8:1"],
+    ["10 µg + 0,2 µg", "4+16 / 1,4+18,6", "10", "91",  "1,0", "204",   "49:1",  "10:1", "4,9:1"],
+    ["20 µg + 0,2 µg", "8+12 / 1,4+18,6", "20", "182", "2,0", "204",   "98:1",  "10:1", "9,8:1"],
+    ["20 µg + 0,4 µg", "8+12 / 2,7+17,3", "20", "182", "2,0", "393,5", "51:1",  "10:1", "5,1:1"],
+    ["20 µg + 0,1 µg", "8+12 / 0,7+19,3", "20", "182", "2,0", "102",   "196:1", "10:1", "19,6:1"],
+    ["10 µg + 0,4 µg", "4+16 / 2,7+17,3", "10", "91",  "1,0", "393,5", "25:1",  "10:1", "2,5:1"],
   ],
-  [1900, 1600, 1800, 1800, 1920]
+  [1250, 1500, 950, 1150, 1000, 950, 1000, 1050, 890], null, 16
 ));
-children.push(SPACER(140));
-children.push(P("El ratio es fijo, al venir determinado por la propia formulación; lo que varía entre condiciones es la dosis absoluta y la dilución. Las parejas 100+100 / 50+50 y 50+150 / 25+75 comparten dilución (1:1 y 1:3 respectivamente) pero difieren en cantidad absoluta, lo que permite separar ambos efectos."));
-children.push(SPACER(60));
-children.push(NOTA("Observación:", "la carga de DOTAP por pocillo de esta muestra (250–1.000 µg) es dos o tres órdenes de magnitud superior a la de la muestra 1 (0,85–8,5 µg), consecuencia directa del ratio 1000:1 de la formulación. Lo señalamos porque condiciona la lectura de cualquier resultado de viabilidad."));
+children.push(SPACER(100));
+children.push(NOTA("Frente a vuestro ratio de referencia:", "las condiciones 10 µg + 0,1 µg y 20 µg + 0,2 µg equivalen a 9,8:1, es decir, a vuestro 10:1. Las demás lo flanquean: 19,6:1 por encima y 5,1:1, 4,9:1 y 2,5:1 por debajo."));
 
-// ========== 7. MUESTRA 3 ==========
-children.push(H1("7. Muestra 3 — Microemulsión A/O sin pDNA"));
-children.push(P("No se ha utilizado en este ensayo; se conserva íntegra."));
-children.push(P("Queda pendiente emplearla como control sin material genético y para ensayar la formación de complejos por interacción electrostática siguiendo el procedimiento que describís (volumen determinado de muestra más la cantidad deseada de pDNA, 20 minutos de balanceo suave)."));
+// ---- 7. CONTROL ----
+children.push(H1("7. Control positivo"));
+children.push(P("ViaFect 2,4 µl + 0,7 µl de pDNA (≈ 408 ng) + 37 µl de DMEM sin FBS, 10 minutos, 10 µl por pocillo. Por pocillo: ≈ 0,6 µl de ViaFect y ≈ 102 ng de pDNA, la misma dosis de pDNA que la condición más baja de la muestra 5."));
 
-// ========== 8. MUESTRA 4 ==========
-children.push(H1("8. Muestra 4 — Liposomas liofilizados"));
-children.push(P("De esta muestra se ensayó una única condición. La anotación de laboratorio recoge que se tomó 1 µl de la mezcla liposomas + pDNA y se llevó a 10 µl de DMEM sin FBS."));
-children.push(SPACER(60));
-children.push(NOTA("Información incompleta:", "no quedó registrado el volumen en el que se resuspendió el liofilizado ni la cantidad de pDNA empleada en esa resuspensión, por lo que no podemos calcular con fiabilidad la dosis por pocillo ni el ratio DOTAP/pDNA de esta condición. Preferimos indicarlo antes que dar una cifra que no podemos sostener. La condición se repetirá dejando constancia de ambos datos."));
+// ---- 8. DESVIACIONES Y CONSULTAS ----
+children.push(H1("8. Desviaciones y consultas"));
+children.push(P("Desviaciones respecto a vuestro procedimiento:", { bold: true, after: 70 }));
+children.push(BUL([{ t: "Balanceo de 15 minutos en lugar de 20 ", b: true }, "en las muestras 1 y 5. Si creéis que puede afectar a la formación del complejo, repetimos con el tiempo que nos digáis."]));
+children.push(BUL([{ t: "Muestra 4: una sola condición ensayada. ", b: true }, "La concentración exacta del pDNA empleado en la resuspensión está pendiente de contrastar con el registro de laboratorio."]));
+children.push(BUL([{ t: "Muestra 3: no ensayada. ", b: true }, "Se conserva para los ensayos de formación de complejo y como control sin material genético."]));
+children.push(SPACER(80));
+children.push(P("Consultas:", { bold: true, after: 70 }));
+children.push(BUL([{ t: "Muestra 4, contenido del liofilizado. ", b: true }, "La descripción dice que cada liofilizado contiene 10 µg de DOTAP y, más abajo, que la cantidad enviada es «liofilizado equivalente a 10 µg de liposomas liofilizados». Con liposomas a 10 mg/mL y DOTAP a 1 mg/mL, 10 µg de liposomas contendrían 1 µg de DOTAP. ¿Cuál de las dos cifras es la correcta? De ello depende que nuestra condición esté a 10:1 o a 1:1."]));
+children.push(BUL([{ t: "Muestra 4, volumen de resuspensión. ", b: true }, "Resuspendimos el liofilizado en 20 µl. ¿Os parece adecuado o preferís otro volumen?"]));
+children.push(BUL([{ t: "Muestra 2, identidad del pDNA encapsulado, ", b: true }, "para asegurar que la lectura es comparable con la del resto de muestras, donde usamos nuestro stock propio."]));
+children.push(BUL([{ t: "Muestra 1, tiempo de complejación. ", b: true }, "El correo no lo especifica para esta muestra. ¿También 20 minutos?"]));
 
-// ========== 9. MUESTRA 5 ==========
-children.push(H1("9. Muestra 5 — Liposomas sin liofilizar"));
-children.push(P("Se han ensayado 2 cantidades de liposomas cruzadas con 3 de pDNA, es decir, 6 condiciones por cuadruplicado. El procedimiento es el del apartado 4."));
-
-children.push(H2("9.1. Pipeteo (volúmenes en µl, para 4 réplicas)"));
-children.push(table(
-  ["Condición (por pocillo)", "DMEM para liposomas", "Liposomas", "pDNA (583 ng/µl)", "DMEM para el pDNA"],
-  [
-    ["10 µg + 0,1 µg", "16", "4", "0,7", "19,3"],
-    ["10 µg + 0,2 µg", "16", "4", "1,4", "18,6"],
-    ["20 µg + 0,2 µg", "12", "8", "1,4", "18,6"],
-    ["20 µg + 0,4 µg", "12", "8", "2,7", "17,3"],
-    ["20 µg + 0,1 µg", "12", "8", "0,7", "19,3"],
-    ["10 µg + 0,4 µg", "16", "4", "2,7", "17,3"],
-  ],
-  [2620, 1900, 1300, 1700, 1500]
-));
-
-children.push(SPACER(200));
-children.push(H2("9.2. Dosis por pocillo y ratio DOTAP/pDNA"));
-children.push(P("Calculado con liposomas 10 µg/µl y DOTAP 1 µg/µl.", { italics: true, size: 19, after: 100 }));
-children.push(table(
-  ["Condición", "Liposomas (µl)", "Liposomas (µg)", "DOTAP (µg)", "pDNA (ng)", "DOTAP/pDNA"],
-  [
-    ["10 µg + 0,1 µg", "1", "10", "1,0", "102",   "9,8:1"],
-    ["10 µg + 0,2 µg", "1", "10", "1,0", "204",   "4,9:1"],
-    ["20 µg + 0,2 µg", "2", "20", "2,0", "204",   "9,8:1"],
-    ["20 µg + 0,4 µg", "2", "20", "2,0", "393,5", "5,1:1"],
-    ["20 µg + 0,1 µg", "2", "20", "2,0", "102",   "19,6:1"],
-    ["10 µg + 0,4 µg", "1", "10", "1,0", "393,5", "2,5:1"],
-  ],
-  [2020, 1600, 1600, 1300, 1200, 1300]
-));
-children.push(SPACER(160));
-children.push(NOTA("Correspondencia con vuestro ratio de referencia:", "dos de las seis condiciones (10 µg + 0,1 µg y 20 µg + 0,2 µg) equivalen a 9,8:1, es decir, al 10:1 que habéis evaluado. Las demás lo flanquean: 19,6:1 por encima y 5,1:1, 4,9:1 y 2,5:1 por debajo."));
-
-// ========== 10. CONTROL ==========
-children.push(H1("10. Control positivo"));
-children.push(P("Como referencia de transfección se empleó ViaFect:"));
-children.push(table(
-  ["Componente / paso", "Cantidad"],
-  [
-    ["ViaFect", "2,4 µl"],
-    ["pDNA (583 ng/µl)", "0,7 µl (≈ 408 ng)"],
-    ["DMEM sin FBS", "37 µl"],
-    ["Incubación", "10 minutos"],
-    ["Volumen aplicado", "10 µl por pocillo"],
-    ["Dosis por pocillo", "≈ 0,6 µl de ViaFect y ≈ 102 ng de pDNA"],
-  ],
-  [3400, 5620],
-  [AlignmentType.LEFT, AlignmentType.LEFT]
-));
-children.push(SPACER(140));
-children.push(P("La dosis de pDNA del control (≈ 0,1 µg por pocillo) coincide con la más baja de la muestra 5, de modo que ambas condiciones son directamente comparables."));
-
-// ========== 11. RESUMEN ==========
-children.push(H1("11. Resumen de los ratios DOTAP/pDNA ensayados"));
-children.push(table(
-  ["Muestra", "Condiciones", "DOTAP por pocillo", "pDNA por pocillo", "Ratio DOTAP/pDNA", "Vuestra referencia"],
-  [
-    ["1", "12", "0,85 – 8,5 µg", "0,29 y 0,58 µg", "1,5:1 – 29,2:1", "7:1, 17:1, 27:1"],
-    ["2", "4", "250 – 1.000 µg", "0,25 – 1,0 µg", "1000:1 (fijo)", "1000:1"],
-    ["3", "—", "—", "—", "No utilizada", "—"],
-    ["4", "1", "Sin determinar", "Sin determinar", "Sin determinar", "10:1"],
-    ["5", "6", "1,0 y 2,0 µg", "0,10 – 0,39 µg", "2,5:1 – 19,6:1", "10:1"],
-  ],
-  [900, 1200, 1800, 1700, 1700, 1720],
-  [AlignmentType.CENTER, AlignmentType.CENTER, AlignmentType.CENTER, AlignmentType.CENTER, AlignmentType.CENTER, AlignmentType.CENTER]
-));
-children.push(SPACER(140));
-children.push(P("En las muestras 1 y 5 el diseño se ha construido de modo que los ratios que vosotras habéis caracterizado queden dentro del intervalo ensayado, con condiciones por encima y por debajo que permitan situarlos."));
-
-// ========== 12. DESVIACIONES ==========
-children.push(H1("12. Desviaciones respecto a lo indicado por la UCM"));
-children.push(BULRICH([{ t: "Tiempo de balanceo: 15 minutos en lugar de 20. ", b: true }, "Para las muestras 1 y 5 se emplearon 15 minutos de balanceo suave a temperatura ambiente. Vuestro procedimiento indica 20 minutos para las muestras 3, 4 y 5. Si consideráis que la diferencia puede afectar a la formación del complejo, repetiremos las condiciones con el tiempo que nos indiquéis."]));
-children.push(BULRICH([{ t: "Muestra 4: registro incompleto. ", b: true }, "No se anotó el volumen de resuspensión del liofilizado ni la cantidad de pDNA empleada, por lo que la condición no es interpretable cuantitativamente y se repetirá."]));
-children.push(BULRICH([{ t: "Muestra 3: no ensayada. ", b: true }, "Se conserva íntegra para los ensayos de formación de complejo y como control sin material genético."]));
-children.push(BULRICH([{ t: "Corrección del DOTAP. ", b: true }, "Todos los cálculos de las muestras 2 y 3 se han hecho con el DOTAP al 1 % que nos indicasteis el 15 de julio, no con el 4 % del correo inicial."]));
-
-// ========== 13. CONSULTAS ==========
-children.push(H1("13. Consultas"));
-children.push(BULRICH([{ t: "Muestra 4: contenido real del liofilizado. ", b: true }, "En la descripción figura que cada liofilizado contiene 10 µg de DOTAP y, más abajo, que la cantidad enviada es «liofilizado equivalente a 10 µg de liposomas liofilizados». Con liposomas a 10 mg/mL y DOTAP a 1 mg/mL, 10 µg de liposomas contendrían 1 µg de DOTAP, no 10 µg. ¿Nos confirmáis cuál de las dos cifras es la correcta? De ello depende el ratio al que estemos trabajando, con un factor de 10 de diferencia."]));
-children.push(BULRICH([{ t: "Muestra 4: volumen de resuspensión recomendado. ", b: true }, "Al repetir la condición, ¿hay algún volumen de resuspensión que recomendéis, o es indiferente mientras se respete el ratio?"]));
-children.push(BULRICH([{ t: "Muestra 2: identidad del pDNA encapsulado. ", b: true }, "¿Nos confirmáis qué plásmido se encapsuló, para asegurarnos de que la lectura es comparable con la de las demás muestras, en las que empleamos nuestro stock propio?"]));
-children.push(BULRICH([{ t: "Tiempo de complejación en la muestra 1. ", b: true }, "El correo no especifica tiempo de balanceo para esta muestra. ¿Recomendáis también 20 minutos?"]));
-// ---------- documento ----------
+// ================= DOCUMENTO =================
 const doc = new Document({
   creator: "María Zubieta Laseca",
   title: "Muestras UCM julio 2026 — informe de tratamiento",
   description: "Condiciones ensayadas con las muestras UCM en el ensayo del 03/08/2026",
-  numbering: {
-    config: [
-      {
-        reference: "vinetas",
-        levels: [
-          { level: 0, format: LevelFormat.BULLET, text: "•", alignment: AlignmentType.LEFT,
-            style: { paragraph: { indent: { left: 460, hanging: 240 } } } },
-          { level: 1, format: LevelFormat.BULLET, text: "◦", alignment: AlignmentType.LEFT,
-            style: { paragraph: { indent: { left: 880, hanging: 240 } } } },
-        ],
-      },
-      {
-        reference: "pasos",
-        levels: [
-          { level: 0, format: LevelFormat.DECIMAL, text: "%1.", alignment: AlignmentType.LEFT,
-            style: { paragraph: { indent: { left: 460, hanging: 300 } } } },
-        ],
-      },
-    ],
-  },
-  styles: {
-    default: { document: { run: { font: "Calibri", size: 21 } } },
-  },
+  numbering: { config: [{
+    reference: "vinetas",
+    levels: [{ level: 0, format: LevelFormat.BULLET, text: "•", alignment: AlignmentType.LEFT,
+               style: { paragraph: { indent: { left: 400, hanging: 220 } } } }],
+  }]},
+  styles: { default: { document: { run: { font: "Calibri", size: 20 } } } },
   sections: [{
     properties: {
       page: {
-        margin: { top: 1080, right: 1080, bottom: 1080, left: 1080 },
+        margin: { top: 1000, right: 1080, bottom: 1000, left: 1080 },
       },
     },
-    footers: {
-      default: new Footer({
-        children: [new Paragraph({
-          alignment: AlignmentType.CENTER,
-          border: { top: { style: BorderStyle.SINGLE, size: 2, color: "BFBFBF", space: 6 } },
-          children: [
-            new TextRun({ text: "Muestras UCM julio 2026 · ensayo 03/08/2026 · pág. ", size: 17, color: "808080", font: "Calibri" }),
-            new TextRun({ children: [PageNumber.CURRENT], size: 17, color: "808080", font: "Calibri" }),
-            new TextRun({ text: " de ", size: 17, color: "808080", font: "Calibri" }),
-            new TextRun({ children: [PageNumber.TOTAL_PAGES], size: 17, color: "808080", font: "Calibri" }),
-          ],
-        })],
-      }),
-    },
+    footers: { default: new Footer({ children: [new Paragraph({
+      alignment: AlignmentType.CENTER,
+      border: { top: { style: BorderStyle.SINGLE, size: 2, color: "BFBFBF", space: 5 } },
+      children: [
+        new TextRun({ text: "Muestras UCM julio 2026 · ensayo 03/08/2026 · pág. ", size: 16, color: "808080", font: "Calibri" }),
+        new TextRun({ children: [PageNumber.CURRENT], size: 16, color: "808080", font: "Calibri" }),
+        new TextRun({ text: " de ", size: 16, color: "808080", font: "Calibri" }),
+        new TextRun({ children: [PageNumber.TOTAL_PAGES], size: 16, color: "808080", font: "Calibri" }),
+      ],
+    })]})},
     children,
   }],
 });
