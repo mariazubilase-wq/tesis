@@ -26,6 +26,21 @@ microemulsión completa en la 2 y liposomas en la 4 y la 5.
   volúmenes pipeteados dan valores hasta un 2 % distintos.
 - Muestra 2: densidad ≈ 1 g/mL para el ratio ME:pDNA.
 
+### La contradicción de la muestra 4
+
+El correo del 13/07 dice que cada liofilizado contiene **10 µg de DOTAP** y
+también que lo enviado equivale a **10 µg de liposomas**. Es imposible: con
+liposomas a 10 mg/mL y DOTAP a 1 mg/mL, el DOTAP es el 10 % de los liposomas,
+así que 10 µg de liposomas llevarían 1 µg de DOTAP.
+
+Lo resuelve el informe del 06/08: *«habíais liofilizado 10 µl de estos
+liposomas»*. 10 µl son 100 µg de liposomas y 10 µg de DOTAP, que es la cifra
+buena. En el correo pone µg donde debía poner µl.
+
+Es la única contradicción aritmética del correo. El 4 % de DOTAP de las
+muestras 2 y 3 ya lo corrigieron ellas el 15/07, y el 1 % sí cuadra con el
+ratio 1000:1 que declaran.
+
 ### Discrepancias entre las notas del 03/08 y el informe del 06/08
 
 Se ha seguido el informe, que es lo que la UCM ya tiene:

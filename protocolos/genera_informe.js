@@ -208,7 +208,7 @@ children.push(table(
 children.push(SPACER(80));
 children.push(RICH([{ t: "Resultado. ", b: true }, "Sin expresión de GFP, pero las células se vieron en mejor estado que con las microemulsiones. A las 12 h se apreciaban liposomas aparentemente sin internalizar, con diferencia clara a las 48 h."], { size: 19 }));
 children.push(SPACER(60));
-children.push(NOTA("A revisar:", "es posible que 10 µl fuera un volumen de resuspensión demasiado pequeño. Al repetir la condición nos interesa saber qué volumen recomendáis."));
+children.push(NOTA("Sobre el contenido del liofilizado:", "la descripción dice que cada liofilizado contiene 10 µg de DOTAP y, más abajo, que la cantidad enviada equivale a «10 µg de liposomas liofilizados». Ambas cosas no encajan: siendo el DOTAP el 10 % de los liposomas (1 mg/mL sobre 10 mg/mL), 10 µg de liposomas contendrían 1 µg de DOTAP, y para llegar a 10 µg harían falta 100 µg de liposomas. Hemos partido de que se liofilizaron 10 µl de liposomas —100 µg, con 10 µg de DOTAP—, que es lo que nos indicasteis y lo que hace cuadrar el ratio 10:1. Confirmadnos si no fuera así, porque de ello depende todo el cálculo de esta muestra. Al margen de esto, es posible que 10 µl fuera un volumen de resuspensión demasiado pequeño: al repetir la condición nos interesa saber qué volumen recomendáis."));
 
 // ---- 7. MUESTRA 5 ----
 children.push(H1("7. Muestra 5 — Liposomas sin liofilizar · ME:DOTAP 10:1"));
