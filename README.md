@@ -7,9 +7,12 @@ silvestre, entregado como **minicírculos**.
 
 | Ruta | Qué es |
 |---|---|
-| `diseno/diseno_clonaje_KRT10_minicirculo.md` | **Diseño de clonaje de KRT10 en `pMC.EF1α-MCS-SV40polyA`.** Decisiones, protocolo, controles |
-| `herramientas/disena_clonaje.py` | Calcula cebadores y tamaños a partir de los GenBank reales |
-| `secuencias/` | Aquí van los dos ficheros de secuencia (ver `secuencias/LEEME.md`) |
+| `diseno/diseno_tres_constructos.md` | **Diseño cerrado de los tres constructos.** Mutación, blindaje, cebadores, horquillas, orden de trabajo |
+| `herramientas/disena_tres_constructos.py` | Lo calcula y lo verifica todo desde el GenBank real |
+| `diseno/diseno_clonaje_KRT10_minicirculo.md` | Diseño previo (sólo constructo 1, por restricción). Superado por el anterior |
+| `herramientas/disena_clonaje.py` | Herramienta previa, genérica |
+| `secuencias/pCMV6-KRT10.gb` | Donante real: RC204500 TrueORF, Myc-DDK, 6633 pb |
+| `secuencias/constructos/` | Secuencias literales generadas: inserto, CDS endurecida, horquillas, cebadores |
 
 ## Uso rápido
 
@@ -31,15 +34,26 @@ python3 disena_clonaje.py \
     --salida  ../diseno/informe_KRT10.md
 ```
 
-**Pareja elegida: NheI-HF (5') + BamHI-HF (3')**, las dos ya en el congelador.
-Ver §3.6 del diseño.
+**Estrategia vigente: corte único con BamHI-HF + In-Fusion.** Los dos brazos de
+15 nt caen dentro del MCS conocido, así que el constructo 1 está cerrado sin
+necesitar el GenBank del vector. Ver §3.1 de `diseno/diseno_tres_constructos.md`.
 
 Python 3.9+. Sin dependencias externas. No accede a internet.
 
 ## Los tres constructos previstos
 
-1. **Minicírculo de reemplazo** — cDNA de KRT10 (o KRT1) silvestre ← *este repositorio*
-2. **Minicírculo con shRNA** contra el alelo mutante
-3. **Minicírculo combinado** — ambos en un vector
+1. **Minicírculo de reemplazo** — ORF de KRT10 silvestre, **endurecida** con 5
+   mutaciones silenciosas para que el shRNA no la toque. Proteína idéntica.
+2. **Minicírculo con shRNA** contra p.Arg156Cys — **cuatro horquillas**, no una
+3. **Minicírculo combinado** — In-Fusion de 3 piezas, mismas piezas que 1 y 2
 
 Cada componente se valida por separado antes de construir el combinado.
+
+## La diana
+
+`KRT10 c.466C>T` = **p.Arg156Cys**, en el motivo de iniciación de la hélice 1A.
+El punto caliente de la ictiosis epidermolítica. Dominante negativo.
+
+El siRNA de partida (`13F`/`13R`) tiene el nucleótido discriminante en la
+**posición 13 de la guía**, que es permisiva: ver §1 del diseño y por qué eso
+obliga a construir un panel.
