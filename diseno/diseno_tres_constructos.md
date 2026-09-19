@@ -55,21 +55,31 @@ posición                      19  …  13  …  11 10  …  2 1
 - Frente al **mRNA mutante**: **0 desapareamientos**. Diana perfecta. ✔
 - Frente al **mRNA silvestre endógeno**: **1 desapareamiento, en la posición 13**.
 
-**Éste es el punto débil del diseño y hay que decirlo claro.** La discriminación de
-un solo nucleótido es máxima cuando el desapareamiento cae en el **centro de la
-guía (posiciones 10–11)**, donde corta Ago2, o en la **semilla (2–8)**. La posición
-13 está en la región 3' suplementaria, que es **tolerante** a desapareamientos. Es
-muy probable que esta guía también degrade el alelo sano, al menos parcialmente.
+> **La especificidad de alelo del siRNA 13 está verificada experimentalmente por
+> María.** El diseño la da por buena y no la cuestiona. El siRNA 13 no se modifica.
 
-No es motivo para tirar el diseño: es motivo para **no construir una sola horquilla**.
-Ver §4.
+La posición 13 queda documentada aquí sólo como dato del diseño, no como objeción:
+sirve para saber dónde colocar las mutaciones silenciosas del §2 y para interpretar
+la dosis-dependencia del §4.3.
 
 ---
 
-## 2. Blindaje de la copia de reemplazo (obligatorio)
+## 2. Blindaje de la copia de reemplazo (recomendado, no obligatorio)
 
-Si el shRNA no discrimina bien, tu copia de reemplazo —que es silvestre— también
-se silencia. Hay que hacerla inmune con **mutaciones silenciosas**.
+Con la especificidad de alelo ya verificada, el shRNA respeta el alelo silvestre —
+y por tanto respeta tu copia de reemplazo, que es silvestre. **El blindaje deja de
+ser un requisito y pasa a ser dos cosas útiles:**
+
+1. **Un marcador para distinguir transgén de endógeno.** Con los 5 cambios puedes
+   diseñar cebadores de qPCR y sondas que midan **sólo** tu copia, y cuantificar
+   la proporción transgén/endógeno. Sin ellos, las dos secuencias son idénticas y
+   esa medida es imposible.
+2. **Seguro barato.** La discriminación alélica es dosis-dependiente (§4.3) y el
+   transgén se expresará alto desde EF1α. Cinco cambios silenciosos cuestan cero
+   en un gen sintético y eliminan ese modo de fallo.
+
+Si prefieres la secuencia nativa estricta, se quitan los 5 cambios y todo lo demás
+del diseño sigue igual: dilo y regenero los ficheros.
 
 ```
               c.460 ────────────────────────── c.480
@@ -224,25 +234,27 @@ Minicírculo resultante: **≈ 3,2–3,5 kb**, sin esqueleto bacteriano, sin rep
 
 ## 4. Constructo 2 — minicírculo de shRNA
 
-### 4.1 No construyas una sola horquilla
+### 4.1 La horquilla
 
-Por lo dicho en §1: tu guía tiene el desapareamiento discriminante en la posición
-13, que es permisiva. Construir una sola y esperar que discrimine es apostar la
-tesis a una tirada. Las cuatro horquillas de abajo son **cuatro parejas de oligos,
-unos 60 € en total y una tarde de trabajo**. Es la mejor relación
-información/esfuerzo de todo el proyecto.
+**El diseño es `sh466-A`**: el siRNA 13 verificado, en formato estándar
+pLKO/pSUPER. Más `shSCR` como control negativo. Nada más.
 
-### 4.2 Las cuatro horquillas
+Las otras dos horquillas del script (`sh466-B`, `sh466-P10`) quedan archivadas: se
+generaron antes de saber que la especificidad estaba verificada. **No se piden.**
+Siguen en `horquillas.fa` por si algún día hace falta un rediseño, y en ese caso
+ya están calculadas.
+
+### 4.2 Las horquillas
 
 Formato `sentido – CTCGAG – antisentido – TTTTT`, tallo perfecto de 21 pb
 (verificado por código en las cuatro).
 
-| Nombre | Qué prueba |
+| Nombre | Papel |
 |---|---|
-| **sh466-A** | Tu siRNA exacto, formato estándar pLKO/pSUPER |
-| **sh466-B** | El mismo, orientación invertida: el extremo 5' de la guía lo fija el +1 de Pol III, no el corte de Dicer. Para una guía alelo-específica, un 5' preciso mantiene el registro de la semilla |
-| **sh466-P10** | Rediseño con la mutación en la **posición 10** de la guía, en el sitio de corte de Ago2. **Éste es el que yo esperaría que discrimine mejor** |
-| **shSCR** | Control desordenado, mismo %GC, sin semilla presente en KRT10 ni dianas de restricción |
+| **sh466-A** | **El constructo.** Tu siRNA 13 exacto, formato estándar pLKO/pSUPER |
+| **shSCR** | Control negativo. Mismo %GC, sin semilla presente en KRT10 ni dianas de restricción |
+| ~~sh466-B~~ | Archivada. Variante de orientación |
+| ~~sh466-P10~~ | Archivada. Rediseño con la mutación en posición 10 |
 
 ```
 sh466-A    5'-AATGACTGCCTGGCTTCCTTT CTCGAG AAAGGAAGCCAGGCAGTCATT TTTTT-3'

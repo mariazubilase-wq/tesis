@@ -44,7 +44,7 @@ Python 3.9+. Sin dependencias externas. No accede a internet.
 
 1. **Minicírculo de reemplazo** — ORF de KRT10 silvestre, **endurecida** con 5
    mutaciones silenciosas para que el shRNA no la toque. Proteína idéntica.
-2. **Minicírculo con shRNA** contra p.Arg156Cys — **cuatro horquillas**, no una
+2. **Minicírculo con shRNA** contra p.Arg156Cys — `sh466-A` (siRNA 13) + `shSCR`
 3. **Minicírculo combinado** — In-Fusion de 3 piezas, mismas piezas que 1 y 2
 
 Cada componente se valida por separado antes de construir el combinado.
@@ -54,6 +54,6 @@ Cada componente se valida por separado antes de construir el combinado.
 `KRT10 c.466C>T` = **p.Arg156Cys**, en el motivo de iniciación de la hélice 1A.
 El punto caliente de la ictiosis epidermolítica. Dominante negativo.
 
-El siRNA de partida (`13F`/`13R`) tiene el nucleótido discriminante en la
-**posición 13 de la guía**, que es permisiva: ver §1 del diseño y por qué eso
-obliga a construir un panel.
+El siRNA 13 (`13F`/`13R`) tiene el nucleótido discriminante en la **posición 13
+de la guía**. **Su especificidad de alelo está verificada experimentalmente y el
+siRNA no se modifica.**
