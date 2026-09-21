@@ -40,6 +40,15 @@ necesitar el GenBank del vector. Ver §3.1 de `diseno/diseno_tres_constructos.md
 
 Python 3.9+. Sin dependencias externas. No accede a internet.
 
+## Procedencia de las secuencias
+
+`diseno/diseno_tres_constructos.md` §0 dice, pieza por pieza, qué está verificado
+contra el GenBank real, qué lo aportó María en conversación, qué viene de fichas de
+producto de segunda mano y qué falta directamente. **Léelo antes de encargar nada.**
+
+Lo más importante: **los 48 nt del MCS del vector parental los aportó María, no salen
+de ningún mapa.** Todo el clonaje del constructo 1 depende de ellos.
+
 ## Los tres constructos previstos
 
 1. **Minicírculo de reemplazo** — ORF de KRT10 silvestre, **endurecida** con 5

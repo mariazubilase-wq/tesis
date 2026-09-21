@@ -11,7 +11,82 @@ python3 herramientas/disena_tres_constructos.py
 
 ---
 
-## 0. Lo que el análisis ha confirmado (y lo que ha cambiado)
+## 0. Procedencia de cada secuencia
+
+**Léelo antes que nada.** No todo lo que hay en este documento tiene el mismo respaldo.
+Lo que sigue dice, para cada pieza, de dónde sale y hasta dónde está comprobada.
+
+### A. Verificado contra el fichero real
+
+Fuente: `secuencias/pCMV6-KRT10.gb`, el GenBank del donante, subido por María.
+Leído y comprobado por código en `herramientas/disena_tres_constructos.py`.
+
+| Dato | Comprobación |
+|---|---|
+| ORF de KRT10 = 1029..2780, 1752 nt | Traducida: 584 aa, sin stops internos, acaba en …SKGPRY |
+| El donante es RC204500 (TrueORF) | SgfI en 1020, MluI en 2781, único STOP en 2874 |
+| Los 31 aa del Myc-DDK | `TRTRPLEQKLISEEDLAANDILDYKDDDDKV`, traducidos del fichero |
+| c.466 = posición 1494, codón 156 CGC=Arg | Marco verificado desde el ATG |
+| Las 5 mutaciones silenciosas | Proteína idéntica sobre los 584 aa |
+| Zonas de apareo de todos los cebadores | Buscadas literalmente en la secuencia |
+| Dianas libres/ocupadas en la ORF | Barrido de 15 enzimas sobre la secuencia real |
+
+Esto es lo más sólido del documento. Si algo de aquí está mal, está mal el GenBank.
+
+### B. Dato aportado por María, no verificado de forma independiente
+
+| Dato | Consecuencia si estuviera mal |
+|---|---|
+| **Los 48 nt del MCS de `pMC.EF1α-MCS-SV40polyA`** | **Caen los brazos In-Fusion del constructo 1 y del 3** |
+| Los oligos `13F` / `13R` del siRNA 13 | Cae todo el constructo 2 |
+| Que la especificidad de alelo del siRNA 13 está comprobada experimentalmente | Habría que volver al panel de horquillas archivado |
+
+> Los 48 nt del MCS **no salen de ningún mapa**: los escribió María en la conversación.
+> Todo el diseño de clonaje del constructo 1 descansa sobre ellos. **Cotéjalos contra el
+> GenBank en cuanto lo tengas**, antes de encargar ningún oligo.
+
+### C. De un artículo publicado
+
+Do J. *et al.*, *Protocol for minicircle production for gene therapy without subsequent
+cleanup steps*, STAR Protocols 2025. DOI 10.1016/j.xpro.2025.103982 (PMID 40711875).
+
+- El protocolo de producción de 4 días y su tabla de fallos
+- **Kanamicina 50 µg/mL** como selección — **pero eso es para MN502A-1**, no necesariamente
+  para los demás vectores (ver E)
+- Confirmación independiente del número de catálogo **MN502A-1**
+
+### D. De fichas de producto y distribuidores, leídas por búsqueda web
+
+`systembio.com`, `biocat.com` y `addgene.org` están **bloqueados** por la política de red
+de esta sesión, así que esto es de **segunda mano** y hay que confirmarlo al pedir:
+
+- Números de catálogo MN100A-1 (MCS1), MN100B-1 (MCS2), MN900A-1 (cepa), MN850A-1 (arabinosa)
+- Que los cuatro vectores de shRNA de SBI llevan GFP y/o PuroR
+- Que los parentales y la cepa sólo se venden a investigadores sin ánimo de lucro
+- Que en MCS1 se subclona «via NheI or SpeI and Bsp120I» — **nombres de enzimas, nada más**
+
+### E. Lo que NO sé y no me he inventado
+
+| Falta | Bloquea |
+|---|---|
+| **Secuencia del MCS de `pMC.BESPX-MCS1`** | Los brazos In-Fusion del constructo 2, y también la ruta de restricción, porque no sé qué diana va en 5' y cuál en 3' |
+| **Secuencia del promotor H1** | El fragmento sintético del constructo 2 |
+| Base 49 del `pMC.EF1α` | Saber si el MCS acaba en una diana SalI |
+| **Antibiótico de `pMC.BESPX-MCS1`** | La producción de minicírculo del constructo 2. Una fuente sugiere ampicilina frente a la kanamicina de MN502A-1: **no asumas que son iguales** |
+| Región aguas abajo del SV40 polyA | La versión «limpia» del constructo 3 (§5.3) |
+
+Todo esto se resuelve con **un correo a soporte técnico de SBI** pidiendo los GenBank de
+MN502A-1 y MN100A-1, y el promotor H1 de un GenBank de pSUPER o pLKO.1.
+
+### F. Calculado por mí a partir de A y B
+
+Los cebadores, el CDS endurecido, las horquillas, los tamaños y las uniones finales.
+Son deducciones, no medidas: valen exactamente lo que valgan A y B. El código que los
+genera vuelve a comprobarlos cada vez que lo ejecutas.
+
+---
+
+## 0 bis. Lo que el análisis ha confirmado (y lo que ha cambiado)
 
 | Hecho | Estado |
 |---|---|
@@ -302,11 +377,25 @@ flancos SpeI/MluI + los brazos In-Fusion) como fragmento sintético de ~300 pb, 
 Una In-Fusion en `pMC.BESPX-MCS1` y tienes tu **fábrica de shRNA**, reutilizable
 para toda la tesis. Cada horquilla posterior son dos oligos y una ligación.
 
-> **Lo único que falta aquí:** los dos brazos de 15 nt para BESPX-MCS1, porque SBI
-> sólo ha publicado los nombres de las enzimas (NheI/SpeI y Bsp120I), no la
-> secuencia. Pide el GenBank a soporte técnico — es un correo. Alternativa sin
-> mapa: pide el casete con flancos **NheI** y **Bsp120I** y clona por restricción
-> clásica, que es lo que SBI documenta.
+> **Lo único que falta aquí:** los dos brazos de 15 nt para BESPX-MCS1 (ver §0.E).
+>
+> ```
+> [brazo 5'  15 nt] ← PENDIENTE
+> [promotor H1   ~231 pb] ← de pSUPER/pLKO.1, pendiente de copiar
+> [horquilla      53 nt] ← calculado, verificado
+> [TTTTT              ] ← incluido en la horquilla
+> [brazo 3'  15 nt] ← PENDIENTE
+> ────────────────────────
+> conocido hoy: ~284 pb      con brazos: ~314 pb
+> ```
+>
+> **No encargues los 314 pb todavía**: 30 de ellos son los brazos que no tengo.
+> Dos salidas: (a) pedir el GenBank a SBI, un correo; o (b) encargar hoy sólo los
+> ~284 pb sin brazos y añadírselos luego con una PCR corta, para no perder la
+> semana de entrega.
+>
+> La ruta de restricción **tampoco** salva esto: necesita saber cuál de las dianas
+> va en 5' y cuál en 3', y eso también está en el mapa.
 
 ---
 
