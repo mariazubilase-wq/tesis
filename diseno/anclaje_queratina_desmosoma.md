@@ -718,4 +718,171 @@ sólo en células de expresión baja o media, y declara el criterio antes de mir
 
 ---
 
+---
+
+## 10. El experimento de Vasioukhin, explicado despacio
+
+Merece una sección propia porque es **la base conceptual de todo lo demás**.
+
+### 10.1 Qué hicieron y qué salió
+
+KO de desmoplaquina **restringido a la epidermis** (el KO completo es letal embrionario).
+Resultado, en la piel del animal:
+
+- **El número de desmosomas era igual que en el silvestre.** Contados por microscopía
+  electrónica, ahí estaban.
+- **Pero no tenían filamentos de queratina anclados.**
+- Bastaba con eso: el estrés mecánico separaba las células.
+- Reintroducir un transgén de DSP revertía el defecto.
+
+Vasioukhin *et al.*, Nat Cell Biol 2001 —
+[10.1038/ncb1201-1076](https://doi.org/10.1038/ncb1201-1076)
+
+### 10.2 Por qué importa tanto
+
+**Disocia dos cosas que casi todo el mundo confunde: que el desmosoma *se ensamble* y
+que el desmosoma *funcione*.** Las cadherinas se agrupan, la placa se forma, la unión
+existe y se puede contar — y no sirve para nada.
+
+De ahí sale la regla que condiciona tus medidas:
+
+> **Lo que hace fuerte a un desmosoma no es existir, es tener el filamento enganchado.**
+> Por eso en §4.2 te propongo medir *fracción de puntos de DSP con filamento asociado* y
+> no *número de desmosomas*. Contar desmosomas puede darte un resultado normal en un
+> tejido que se está despegando.
+
+### 10.3 Cómo se traduce a la IE: es la imagen especular
+
+| | Qué falta | Qué queda | Resultado |
+|---|---|---|---|
+| **KO de DSP** | El conector | El filamento (sano) y la unión | Desmosoma presente, sin anclar |
+| **IE (KRT1/KRT10)** | El filamento competente | El conector (DSP normal) y la unión | Desmosoma presente, sin anclar |
+
+Las dos lesiones atacan extremos opuestos del mismo enlace y **convergen en el mismo
+estado final**. Por eso el KO de DSP es tu mejor control positivo conceptual, y por eso
+el *readout* correcto es el mismo en los dos casos.
+
+### 10.4 Tres matices que conviene no saltarse
+
+1. **In vivo el número era normal; en cultivo, no.** Los queratinocitos DP-null *en
+   cultivo* tenían **pocos** desmosomas. El fenotipo depende del contexto: tejido ≠
+   monocapa. Consecuencia para ti: **no generalices de tu 2D al organotípico** sin
+   comprobarlo en los dos.
+2. **La pérdida de queratina y la de DSP no son idénticas.** Sin DSP, la unión queda
+   estructuralmente presente. Sin queratinas, los desmosomas además se hacen **más
+   pequeños** y las proteínas desmosómicas se acumulan en citoplasma (Bär 2014,
+   [10.1038/jid.2013.416](https://doi.org/10.1038/jid.2013.416); Wallace 2012,
+   [10.1242/jcs.097139](https://doi.org/10.1242/jcs.097139)) — porque hay además una
+   retroalimentación por PKC-α y endocitosis (§1.2). O sea: en la IE esperas *ambas*
+   cosas, desanclaje **y** cambio de tamaño.
+3. **DSP no es sólo del desmosoma, funcionalmente.** En el KO también bajaron las uniones
+   adherentes y se bloqueó la reorganización de actina y el sellado de membrana durante
+   la formación de la lámina epitelial. Hay diálogo con el sistema actina/AJ; no asumas
+   una separación limpia entre compartimentos.
+
+---
+
+## 11. Ideas para la parte 2: qué es interesante de verdad en los desmosomas
+
+Ordenadas por **relación interés/coste**, no por vistosidad. Las tres primeras se hacen
+con lo que ya necesitas para la parte 1.
+
+### 11.1 ⭐ Hiperadhesión: ¿puede la IE alcanzar el estado adhesivo maduro?
+
+**Esta es mi recomendación principal.**
+
+Los desmosomas tienen **dos estados**: uno "débil" dependiente de calcio y uno maduro
+**hiperadhesivo, independiente de calcio**, que es el que sostiene la epidermis real.
+El interruptor entre ambos es **PKC**.
+
+| Pieza | Referencia |
+|---|---|
+| Los desmosomas independientes de calcio son **hiperadhesivos**; el cambio entre estados **no implica cambio en la composición proteica**, sino activación/inhibición de **PKC** | Kimura, Merritt & Garrod, J Invest Dermatol 2007 — [10.1038/sj.jid.5700643](https://doi.org/10.1038/sj.jid.5700643) |
+| La hiperadhesión **es un estado de intercambio proteico reducido** (FRAP de cadherinas, PG y DSP), y **el mutante DP S2849G** — el hipofosforilado, de alta afinidad por queratina — **reproduce ese bloqueo** | Bartle *et al.*, J Cell Biol 2020 — [10.1083/jcb.201906153](https://doi.org/10.1083/jcb.201906153) |
+| **Sobreexpresar PKP1 fuerza el estado hiperadhesivo** y protege a los queratinocitos de la IgG de pénfigo | Tucker, Stahley & Kowalczyk, J Invest Dermatol 2014 — [10.1038/jid.2013.401](https://doi.org/10.1038/jid.2013.401) |
+| Inducir hiperadhesión farmacológicamente con **Gö6976** (inhibidor de PKC) atenúa la acantólisis | Cirillo *et al.*, Exp Cell Res 2010 — [10.1016/j.yexcr.2009.10.005](https://doi.org/10.1016/j.yexcr.2009.10.005) |
+
+**La hipótesis, que hasta donde alcanzan estas búsquedas nadie ha probado en ictiosis
+queratinopáticas:**
+
+> En la IE los queratinocitos **no consiguen adquirir el estado hiperadhesivo**, porque
+> la hiperadhesión depende de la asociación DSP–queratina (Bartle 2020) y del tono de
+> PKC-α (Kimura 2007), y ambos están alterados cuando la queratina agrega (Kröger 2013).
+
+**Por qué me gusta tanto para tu tesis:**
+
+- **Es barato.** Quelación con EGTA + el mismo ensayo de fragmentación que ya montas
+  (§4.2/§5). No necesitas equipo nuevo.
+- **Tiene brazo de rescate con dos herramientas publicadas**: Gö6976 y sobreexpresión de
+  PKP1. Es decir, **te abre un ángulo de co-terapia** — algo que aportar además del
+  minicírculo, que es justo lo que suele faltar en una tesis de terapia génica.
+- **Da un desenlace funcional de verdad** para tu constructo: no "hay K10 silvestre",
+  sino "la célula recupera la capacidad de hacer adhesión independiente de calcio".
+
+Diseño mínimo: mutante vs corregido vs control → confluencia + Ca²⁺ alto varios días →
+EGTA → fragmentación. Y luego el brazo farmacológico.
+
+### 11.2 ⭐ El eje PKC-α → p-S2849-DSP, pero en fondo **mutante**, no nulo
+
+Kröger 2013 lo estableció en células **sin ninguna queratina**. La IE es otra cosa: la
+queratina **está, pero agregada**. Que Rack1 quede libre, que PKC-α se active y que DSP
+se hiperfosforile en ese contexto **es una predicción razonable y no comprobada**.
+
+Es prácticamente gratis si ya vas a montar el Panel C de §4.3. Y si sale, conecta tu
+enfermedad con un mecanismo y con una diana.
+
+### 11.3 Recambio proteico: FRAP de DSP-GFP
+
+La consecuencia directa de Bartle 2020: los desmosomas maduros "encierran" a sus
+proteínas. **¿Está acelerado el recambio de DSP en la IE?** Encaja además con el hallazgo
+de Kröger de endocitosis acelerada. Coste medio: necesitas imagen en vivo.
+
+### 11.4 Isoformas: ¿se retrasa el cambio a Dsg1/Dsc1?
+
+Wallace 2012 vio que en Krt1⁻/⁻;Krt10⁻/⁻ **cambia la expresión de DSP, Dsc1 y Dsg1**
+mientras la placoglobina no se toca. Pregunta barata: ¿está **retrasado o incompleto el
+cambio de isoformas de diferenciación** (Dsg3→Dsg1, Dsc3→Dsc1) en tu modelo? Sólo
+necesitas IF y qPCR a lo largo de una curva de diferenciación. Descriptivo, pero sólido
+y publicable como parte de una caracterización.
+
+### 11.5 La ambiciosa: ¿cuánta carga mecánica soporta la DSP en la IE?
+
+Existen **sensores de tensión FRET sobre desmoplaquina**. El hallazgo de partida ya es
+llamativo: **la DSP no está bajo tensión significativa en reposo, y sólo se carga
+mecánicamente cuando la célula recibe estrés externo**, de forma transitoria y sensible a
+la magnitud y orientación de la deformación.
+
+Price *et al.*, Nat Commun 2018 — [10.1038/s41467-018-07523-0](https://doi.org/10.1038/s41467-018-07523-0)
+
+Y hay evidencia reciente (preprint) de que las fuerzas de actomiosina inducen un **cambio
+conformacional en el dominio plakina N-terminal de DSP**, de plegado a extendido:
+Dong *et al.*, bioRxiv 2024 — [10.1101/2024.11.19.624364](https://doi.org/10.1101/2024.11.19.624364)
+(preprint: cítalo como tal).
+
+**La pregunta**: si la IE es una enfermedad de fallo bajo estrés mecánico, ¿**cambia el
+reparto de carga sobre la DSP** cuando la queratina no ancla? Es la más interesante
+científicamente y la más cara: necesitas el sensor, un sistema de estiramiento y
+probablemente una colaboración. Si encuentras el laboratorio, es una tesis entera.
+
+### 11.6 Paralelo farmacológico que ya funcionó en una enfermedad hermana
+
+En la enfermedad de Darier, un modelo organotípico CRISPR mostró que la pérdida de SERCA2
+desmonta proteínas desmosómicas y del citoesqueleto **vía exceso de señalización
+MAPK/ERK**, y que **inhibir MEK rescata la integridad de la lámina de queratinocitos**.
+Zaver *et al.*, JCI Insight 2023 — [10.1172/jci.insight.170739](https://doi.org/10.1172/jci.insight.170739)
+
+Es el molde exacto de lo que podrías hacer en IE: modelo organotípico + multiómica +
+diana quinasa. Y plantea la pregunta directa: **¿está ERK hiperactivo en la IE?** Un
+Western de p-ERK cuesta un día.
+
+### 11.7 Qué NO perseguiría
+
+- **Contar desmosomas** como desenlace principal (§10.2).
+- **Coeficientes de colocalización** en bordes celulares (§4.1).
+- Reabrir el mapeo bioquímico DSP–queratina: está hecho, y hecho bien, entre 1993 y 2016.
+  Tu valor añadido está en el **fondo genético de enfermedad y en el rescate**, no en
+  redescubrir el enlace.
+
+---
+
 *Bibliografía recuperada de **PubMed**. Cada referencia enlaza a su DOI.*
