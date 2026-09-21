@@ -980,7 +980,7 @@ membrana?"*). Con Favre 2018 se convierte en una predicción falsable:
 > | Línea | Filamento | Predicción para el anclaje desmosómico |
 > |---|---|---|
 > | Parental dif. | K1/K10 canónico, ensamblado | normal |
-> | **KRT10-KO** | K1/K14 **no canónico pero ensamblado** | **normal o casi** |
+> | **KRT10-KO** | K1/K14 **no canónico pero ensamblado** | **normal o casi** ⚠️ ver §12.2bis |
 > | **R156C / 189del** | canónico pero **agregado** | **fallo** |
 
 Esto separa *"qué queratina"* de *"hay filamento o no"* **con las líneas que ya tienes**, y
@@ -997,6 +997,109 @@ KO vs mutante que ya planteas en A5 como *"el experimento más discriminante"*.
 **Cómo medirlo** (§4.2): retracción, perfil de línea perpendicular, fracción de puntos de
 DSP con filamento asociado, tamaño y número de puntos de DSP. **No** coeficientes de
 colocalización, **no** número de desmosomas a secas.
+
+### 12.2bis ⚠️ Dato nuevo: el KRT10-KO **se rompe en dispasa**. Qué cambia y qué no
+
+**No falsifica la predicción de §12.2, porque la dispasa no mide eso.** Pero obliga a
+reordenar el argumento, y el resultado es mejor historia.
+
+#### La dispasa y el anclaje no son el mismo eje
+
+La fragmentación de monocapa integra **cuatro** cosas:
+
+1. adhesión extracelular (compromiso Dsg/Dsc),
+2. anclaje desmosoma–filamento,
+3. **competencia mecánica del filamento en sí**,
+4. uniones adherentes / actina.
+
+La predicción de §12.2 era sobre **(2)**. Que se rompa dice que falla **alguna**, no cuál.
+Es exactamente la distinción que hacen Hatzfeld, Keil & Magin: los desmosomas dan cohesión
+intercelular, mientras que **las queratinas determinan la mecánica celular pero no generan
+tensión** — dos contribuciones separables
+([10.1101/cshperspect.a029157](https://doi.org/10.1101/cshperspect.a029157)).
+
+#### La lectura más probable, y por qué es mejor resultado
+
+> **La red K1/K14 se ancla bien, pero es mecánicamente inferior.**
+
+Anclaje y mecánica quedan **disociados**. Una disociación vale más que un resultado
+normal: convierte "la red no canónica funciona / no funciona" en "la red no canónica
+**engancha pero no aguanta**", que es una afirmación mucho más específica y más difícil de
+haber hecho antes.
+
+Candidatos moleculares para esa inferioridad, todos comprobables con lo que ya tienes:
+
+- **Empaquetamiento (*bundling*)**: la cola V2 de K10 y sus bucles de glicina están
+  implicados en el empaquetamiento lateral; la cola de K14 es otra cosa. Precedente: el
+  frameshift de la V2 de K1 causa **fallo de empaquetamiento** (Sprecher 2001,
+  [10.1046/j.1523-1747.2001.01292.x](https://doi.org/10.1046/j.1523-1747.2001.01292.x)).
+  Ya tienes en bibliografía el trabajo de bucles de glicina de la cola de K10.
+- **Química de disulfuros**: meter K14 en una red suprabasal cambia el mapa de cisteínas.
+  Feng & Coulombe mostraron que los disulfuros importan para la organización de redes
+  K5/K14. **Tu tarea pendiente del "mapa comparativo de cisteínas" (§11 de tu documento)
+  gana un segundo uso**, y el **WB no reductor de la fracción insoluble** que guardabas
+  como control de R156C sirve para las dos preguntas en el mismo gel.
+- **Cantidad**: Reichelt 2001 describe *"una cantidad **menor** de filamentos novedosos
+  K1/K14/K15"*. Menos filamento es menos resistencia, sin necesidad de que sea peor
+  filamento.
+
+#### Y el titular que probablemente tienes delante: **ratón ≠ humano**
+
+| | Fenotipo |
+|---|---|
+| ***Krt10*−/− ratón** | *"Hyperproliferation... **but no cell fragility**"*; la epidermis adulta **no mostró citólisis** — Reichelt & Magin, J Cell Sci 2002 — [10.1242/jcs.115.13.2639](https://doi.org/10.1242/jcs.115.13.2639) |
+| **K10-null humano** (p.Q434X) | **Fenotipo grave**, clínicamente parecido a la EHK dominante; K6/K16/K17 inducidas pero **incapaces de compensar** — Müller *et al.*, Hum Mol Genet 2006 — [10.1093/hmg/ddl028](https://doi.org/10.1093/hmg/ddl028) |
+
+**Tu KO humano se rompe. El ratón no se rompe. El humano con K10-null sí se rompe.**
+
+Es decir: **tu línea está reproduciendo el fenotipo humano y no el murino**, que es
+justamente el hueco que declara tu §3.3 (*"nunca se han demostrado filamentos K1/K14 en
+epidermis o queratinocitos humanos"*). La pregunta deja de ser "¿compensa la red no
+canónica?" y pasa a ser:
+
+> **«¿Por qué la sustitución de queratinas rescata al ratón y no al humano?»**
+
+Eso es mejor pregunta, tiene respuesta mecanística alcanzable (empaquetamiento, cantidad,
+disulfuros, anclaje) y explica de paso una discrepancia que lleva veinte años en la
+literatura sin abordarse.
+
+#### El discriminador barato: **cómo** se rompe, no cuánto
+
+Mira los **bordes de los fragmentos** de dispasa al microscopio:
+
+| Modo de rotura | Qué implica |
+|---|---|
+| Separación **intercelular** limpia | fallo de **adhesión** (eje 1–2) |
+| **Citólisis**: células rotas por el citoplasma | fallo del **filamento** (eje 3) |
+
+La lesión humana de la IE es **citólisis suprabasal**, no despegue en la unión. Si tus
+fragmentos muestran células rotas y no bordes limpios, tienes el eje 3 y la lectura de
+arriba queda respaldada casi gratis.
+
+#### Antes de construir sobre este resultado, fija tres cosas
+
+1. **¿En qué estado de diferenciación?** Si fue en el 2D que según tu §4.4 **no induce
+   K10**, la parental tampoco tenía K10 y la comparación era "sin K10" contra "casi sin
+   K10". Que aun así se rompa significa que la diferencia viene de **otra cosa** (los
+   clumps de K5/K14 de la parental, efecto clonal), no de K10. **Es el dato que más
+   cambia la interpretación.**
+2. **Curva, no punto.** Tu A2 ya lo pide. Un punto único puede estar saturado y entonces
+   no puedes ordenar las líneas.
+3. **Clones independientes.** Tu §0.2 ya lo pide. Un solo clon CRISPR no distingue "el
+   KO se rompe" de "este clon se rompe".
+
+#### Qué le hace esto al plan
+
+**No cae §12.2: se vuelve más informativa**, porque ahora las dos salidas dicen algo.
+
+| Resultado del anclaje (IF/TEM) | Lectura |
+|---|---|
+| **Anclaje conservado** + dispasa rota | Disociación limpia: el defecto es la **mecánica del filamento**. Es el buen resultado |
+| **Anclaje perdido** + dispasa rota | La afinidad in vitro de Favre no se traduce, **o** los filamentos K1/K14 no están tan ensamblados como parecen — que enlaza de vuelta con "DSP prefiere filamento ensamblado" |
+
+Y la **hiperadhesión** (§12.5) deja de ser un añadido y pasa a ser **el discriminador**:
+si el KO no alcanza el estado independiente de calcio, el defecto incluye la unión; si lo
+alcanza y aun así se rompe, el defecto es el filamento.
 
 ### 12.3 Desbloqueo de anticuerpos (tu Bloque 0.3, "el desbloqueo número uno")
 
