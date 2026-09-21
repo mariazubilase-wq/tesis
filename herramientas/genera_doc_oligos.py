@@ -48,12 +48,18 @@ Todo lo de aquí lo genera `herramientas/genera_doc_oligos.py` leyendo
 Para regenerarlo: `python3 herramientas/genera_doc_oligos.py`
 
 **Condiciones de cálculo.** Vecino más próximo, parámetros unificados de
-SantaLucia (1998). Oligo 500 nM. Se dan dos Tm: «sin Mg» = 50 mM Na⁺ solo, que es
-lo que devuelven la mayoría de calculadoras web; «con Mg» = 50 mM Na⁺ + 2 mM Mg²⁺
-+ 0,2 mM dNTP, convertido a Na⁺ equivalente por Owczarzy (≈211 mM), que se parece
-más a un tubo de PCR real. **Las dos son estimaciones**: las herramientas del
-mercado discrepan entre sí varios grados. Para fijar la Ta definitiva usa la
-calculadora del fabricante de tu polimerasa.
+SantaLucia (1998). Oligo 500 nM. Se dan dos Tm y **la que hay que mirar es la primera**:
+
+- **50 mM Na⁺** — la escala convencional. Cuando un protocolo dice «Tm de 60–65 °C»
+  o «Ta = Tm − 5», se refiere a ésta. **Es la comparable con las reglas de bolsillo.**
+- **+2 mM Mg²⁺, 0,2 mM dNTP** — Na⁺ equivalente ≈211 mM por Owczarzy. Se parece más
+  a un tubo de PCR real, pero **sube la Tm unos 7 °C** y no es comparable con las
+  reglas de arriba. Sirve para comparar estructuras entre sí (cebador frente a
+  dímero), no para elegir una Ta de memoria.
+
+**Las dos son estimaciones** y las herramientas del mercado discrepan varios grados.
+Para fijar la Ta definitiva usa la calculadora del fabricante de tu polimerasa: la
+relación Tm→Ta es distinta en cada enzima (Q5 trabaja bastante más caliente que Taq).
 
 ---
 
@@ -154,8 +160,9 @@ KRT10-MC-R   5'-{rc(ARM3)} {rc("TGATAA")} {annR}-3'
 | Único en el plásmido | sí ✔ | sí ✔ |
 | **GC de la zona que aparea** | **{fF['gca']:.1f} %** | **{fR['gca']:.1f} %** |
 | GC del cebador entero | {fF['gct']:.1f} % | {fR['gct']:.1f} % |
-| **Tm de la zona que aparea** | **{fF['tma0']:.1f} / {fF['tma']:.1f} °C** | **{fR['tma0']:.1f} / {fR['tma']:.1f} °C** |
-| Tm del cebador entero | {fF['tmt0']:.1f} / {fF['tmt']:.1f} °C | {fR['tmt0']:.1f} / {fR['tmt']:.1f} °C |
+| **Tm de la zona que aparea (50 mM Na⁺)** | **{fF['tma0']:.1f} °C** | **{fR['tma0']:.1f} °C** |
+| Tm de la zona que aparea (con Mg) | {fF['tma']:.1f} °C | {fR['tma']:.1f} °C |
+| Tm del cebador entero (50 mM Na⁺) | {fF['tmt0']:.1f} °C | {fR['tmt0']:.1f} °C |
 | Extremo 3' | …{fF['tres']} | …{fR['tres']} |
 | Horquilla propia, ΔG37 | {fF['hp']:+.1f} kcal/mol | {fR['hp']:+.1f} kcal/mol |
 | Autodímero, ΔG37 | {fF['dg']:+.1f} kcal/mol | {fR['dg']:+.1f} kcal/mol |
@@ -197,20 +204,22 @@ Dos razones por las que no arruina la PCR, y una precaución:
 
 ### Temperaturas de ciclado
 
-Con cebadores de cola larga pasa una cosa que conviene entender: **en los primeros
-ciclos sólo aparea la zona específica** ({TA:.0f} °C de Tm); a partir del tercero el
-cebador entero ya forma parte del producto y su Tm sube a
-{min(fF['tmt'],fR['tmt']):.0f} °C. Por eso la Ta que manda es la de la **zona que aparea**.
+**Tm de las dos zonas que aparean: {tm(annF,500,50,0,0):.1f} y {tm(annR,500,50,0,0):.1f} °C**
+en la escala convencional. Son cebadores normales; los ~70 °C de la columna con Mg
+no son el número que hay que comparar con las reglas de bolsillo.
+
+Con colas largas pasa esto: **en los 2 primeros ciclos sólo aparea la zona
+específica**; a partir del tercero el cebador entero ya forma parte del producto y
+su Tm sube a {min(fF['tmt0'],fR['tmt0']):.0f} °C. La Ta que manda es la de la zona que aparea.
 
 **Opción recomendada — 2 pasos.** Es lo que indica Takara para PrimeSTAR GXL cuando
-la Tm de los cebadores es ≥ 55 °C, y de paso los 68 °C mantienen fundido el
-autodímero del brazo NotI (que funde a {DIM_TM:.0f} °C):
+la Tm es ≥ 55 °C, y de paso los 68 °C mantienen fundido el autodímero del brazo NotI:
 
 ```
 98 °C   30 s
 ── 30 ciclos ──
 98 °C   10 s
-68 °C   2 min          anillamiento y extensión juntos (~1 min/kb, producto 1794 pb)
+68 °C   2 min          anillamiento y extensión juntos (~1 min/kb, producto 1791 pb)
 ───────────────
 68 °C   5 min
 ```
@@ -219,24 +228,21 @@ autodímero del brazo NotI (que funde a {DIM_TM:.0f} °C):
 
 ```
 98 °C   30 s
-── 5 ciclos ──
+── 30 ciclos ──
 98 °C   10 s
-66 °C   15 s           Ta sobre la zona que aparea (Tm {TA:.1f} °C)
+62 °C   15 s           a la altura de la Tm, no 5 °C por debajo
 68 °C   2 min
-── 25 ciclos ──
-98 °C   10 s
-68 °C   15 s           el cebador entero ya está incorporado
-68 °C   2 min
-──────────────
+───────────────
 68 °C   5 min
 ```
 
-> **No bajes de 66 °C.** Con esta pareja, bajar la Ta favorece al autodímero del
-> reverso ({DIM_TM:.0f} °C) más que al producto. Si la PCR no sale, **sube** antes
-> de bajar, o haz un gradiente de {TA-4:.0f}–{TA+4:.0f} °C.
+> **El suelo son ~60 °C.** El autodímero del brazo NotI funde a
+> {tm("ACGCGGCCGCGG",500,50,0,0):.0f} °C en esta misma escala, así que por debajo de
+> ahí empieza a competir con el molde. Si la PCR no sale, **gradiente de 60 a 68 °C**;
+> no bajes más «por si acaso», que con esta pareja es contraproducente.
 
-**Confirma los tiempos en el manual de tu lote de polimerasa.** Cada enzima tiene
-su propia relación Tm→Ta; Q5 por ejemplo trabaja bastante más caliente que Taq.
+> La regla «Ta = Tm − 5» es para Taq. Las polimerasas de alta fidelidad trabajan
+> **a la Tm o por encima**. Con Q5, usa la calculadora de NEB.
 
 ### Producto
 
@@ -270,8 +276,7 @@ merece la pena si la síntesis sale mal. Los cuatro juntos no deberían pasar de
 1. **Si hay off-targets.** No tengo acceso a BLAST desde aquí. Pasa las dos guías
    y los dos cebadores por BLAST contra el genoma/transcriptoma humano antes de pedir.
 2. **La Ta real de tu termociclador.** Los cálculos son estimaciones; los bloques
-   calibran distinto. Si la primera PCR no sale limpia, haz un gradiente de
-   {TA-4:.0f}–{TA+4:.0f} °C.
+   calibran distinto. Si la primera PCR no sale limpia, haz un gradiente de 60 a 68 °C.
 3. **Si tu MCS es correcto.** Los brazos de In-Fusion salen de los 48 nt que
    aportaste tú, no de un mapa (ver §0.B del diseño). Cotéjalos con el GenBank.
 """
