@@ -16,12 +16,15 @@ NUC = SENT+LAZO+ANTI+TERM
 TOP, BOT = "GATC"+NUC, "AATT"+rc(NUC)
 # ---------- B. cebadores de PCR
 ARM5, ARM3 = "TTCGAATTTAAATCG", "GATCCGCGGCCGCGT"
-annF, annR = CDS[:28], rc(P[2750:2780])
-colaF, colaR = ARM5+"GCCACC", rc(ARM3)+rc("TGATAA")
+# El directo arranca en 1026, tres nt antes del ATG, para llevarse el Kozak NATIVO
+# (-3 = G) en vez de anadir GCCACC: mas nt apareando y menos cola.
+annF, annR = P[1025:1052], rc(P[2750:2780])
+colaF, colaR = ARM5, rc(ARM3)+rc("TGATAA")
 F, Rv = colaF+annF, colaR+annR
+assert F.endswith(P[1025:1052]) and len(colaF)==15
 
 assert rc(SENT)==ANTI and rc(NUC)==BOT[4:]
-assert annF in P and rc(annR) in P
+assert annF in P and rc(annR) in P and annF.startswith("GCCATG")
 assert P.count(annF)==1 and P.count(rc(annR))==1
 assert "GGATCC" not in NUC and "GAATTC" not in NUC
 assert "GAATTC" in NUC[-8:]+"AATTC"     # EcoRI se regenera al ligar
@@ -132,8 +135,9 @@ sobre el vector cortado con BamHI.
 | **KRT10-MC-R** | `{Rv}` | {len(Rv)} |
 
 ```
-KRT10-MC-F   5'-{ARM5} {"GCCACC"} {annF}-3'
-                └ brazo In-Fusion ┘ └Kozak┘ └──── aparea, {len(annF)} nt ────┘
+KRT10-MC-F   5'-{ARM5} {annF}-3'
+                └ brazo In-Fusion ┘ └──── aparea, {len(annF)} nt ────┘
+                                     └GCC┘ = Kozak NATIVO (−3 = G), copiado del plásmido
 
 KRT10-MC-R   5'-{rc(ARM3)} {rc("TGATAA")} {annR}-3'
                 └ brazo In-Fusion ┘ └stops┘ └───── aparea, {len(annR)} nt ─────┘
@@ -236,7 +240,12 @@ su propia relación Tm→Ta; Q5 por ejemplo trabaja bastante más caliente que T
 
 ### Producto
 
-**1794 pb** = 15 (brazo) + 6 (Kozak) + 1752 (ORF) + 6 (stops) + 15 (brazo).
+**1791 pb** = 15 (brazo) + 3 (GCC nativo) + 1752 (ORF) + 6 (stops) + 15 (brazo).
+
+El Kozak no se añade: se **copia** del plásmido. El cebador directo empieza a aparear
+en la posición 1026, tres nucleótidos antes del ATG, y se trae el `GCC` nativo cuya
+**G en −3** es la purina que manda. Así la cola no apareante baja de 21 a 15 nt y el
+oligo pasa de 49 a 42 nt, con un 64 % de su longitud apareando en vez de un 57 %.
 
 Traduce 584 aa acabando en `…SSKGPRY*`, **sin Myc-DDK**.
 
