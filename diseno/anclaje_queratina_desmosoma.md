@@ -1314,4 +1314,146 @@ significado del paper y está bien identificado.
 
 ---
 
+---
+
+## 13. Cómo convertir esto en un paper Q1
+
+### 13.0 Calibración, para no hablar de cosas distintas
+
+**JID ya es Q1 en Dermatología** (primer cuartil de su categoría). Si el objetivo es
+literalmente Q1, tu Paper 1 tal y como está planteado probablemente llegue. Así que la
+pregunta útil es otra:
+
+| Techo | Qué hace falta |
+|---|---|
+| **JID / J Cell Sci** (Q1) | Una caracterización sólida, bien controlada, con una novedad real. **Lo tienes casi.** |
+| **JCI Insight / EMBO Mol Med** | Lo anterior **+ mecanismo + intervención que lo pone a prueba + relevancia humana** |
+| **Nat Commun / JCB** | Lo anterior **+ un principio general**, no un fenómeno de una enfermedad |
+
+Lo que sigue va dirigido al segundo escalón, que es el realista y ambicioso a la vez.
+
+### 13.1 El diagnóstico: tu Paper 1 son tres papers con una gabardina
+
+El título propuesto —*"emparejamiento no canónico, acoplamiento desmosomal y activación de
+ERK reversible"*— son **tres afirmaciones unidas por una conjunción**. Un revisor de
+segundo escalón lo lee como *"a collection of observations"* y lo baja de revista. No por
+falta de datos: por falta de **una** pregunta.
+
+**Los papers suben de categoría cortando, no añadiendo.** Todo lo que tienes cabe; lo que
+hay que decidir es cuál es la afirmación y cuáles son las columnas que la sostienen.
+
+### 13.2 La afirmación: úsala como título
+
+> **«La sustitución de queratinas rescata al ratón pero no al humano: la red no canónica
+> K1/K14 se ensambla y se ancla al desmosoma, pero es mecánicamente incompetente.»**
+
+Por qué ésta y no otra:
+
+1. **Resuelve una discrepancia de veinte años** que nadie ha abordado: el *Krt10*⁻/⁻ de
+   ratón **no tiene fragilidad celular** ([J Cell Sci 2002](https://doi.org/10.1242/jcs.115.13.2639))
+   y el K10-null humano da **fenotipo grave tipo EHK** ([Hum Mol Genet 2006](https://doi.org/10.1093/hmg/ddl028)).
+   Un paper que explica por qué dos modelos del mismo gen dan resultados opuestos vale más
+   que uno que caracteriza uno de los dos.
+2. **Es mecanística y jerárquica**: separa **ensamblaje**, **anclaje** y **mecánica** en
+   tres niveles independientes. Las disociaciones venden; las descripciones no.
+3. **Sólo tú puedes hacerla.** Tienes líneas humanas isogénicas **y** ratones knock-in con
+   **las mismas** mutaciones. Esa combinación es rara y es tu ventaja competitiva real.
+4. **Engancha con la Parte 1**: si la sustitución endógena no funciona, el reemplazo
+   génico no es una opción entre varias, es **la** opción. Convierte tus dos partes en una
+   tesis y no en dos trabajos pegados.
+
+### 13.3 Las tres palancas que deciden el techo
+
+**Palanca 1 — Resolver la diferenciación, o irse a 3D sin discutirlo.**
+Es la vía crítica y ya lo tienes bien identificado. Ningún revisor acepta conclusiones
+sobre biología suprabasal en un sistema que no expresa K10. **Nota realista:** tu
+cronograma le da mes 0–1; puede comerse tres. Planifica el 3D como sistema primario desde
+ya, en paralelo, no como plan B.
+
+**Palanca 2 — Meter el ratón DENTRO del Paper 1.** ⭐ La más importante.
+Ahora mismo el ratón vive en la Parte 1. Si Paper 1 se queda en cultivo, **su techo es
+JID**. La comparación ratón–humano **con la misma lectura y la misma mutación** es lo que
+lo sube de escalón. Y el experimento concreto es barato: **dispasa en queratinocitos
+primarios de tu *Krt10* KO, mismo protocolo que la línea humana** (§12.8b).
+
+**Palanca 3 — UNA intervención que pone a prueba el mecanismo.**
+No un cribado de fármacos: **una** predicción, **un** compuesto, **un** resultado. El
+contraste que ya identificaste —el fármaco sobre el **KO** (sin agregados) frente al
+**mutante** (con agregados)— es exactamente eso. Si el inhibidor normaliza uno y no el
+otro, has separado el eje proliferativo del mecánico **con una sola intervención**. Eso es
+una figura final de revista alta.
+
+### 13.4 Esqueleto de figuras
+
+Seis figuras, un arco: **se construye → se ancla → falla → el ratón no falla → por qué →
+se puede corregir.**
+
+| Fig. | Afirmación | Qué la sostiene |
+|---|---|---|
+| **1** | El KO humano construye una red suprabasal **no canónica** | Co-IF K1+K14/K15/K5 con el panel multiespecie (§12.3); PLA **formulado como "mismo filamento"** (§12.4); jerarquía de preferencia por **NanoBiT en competición** (§12.8c); doble inmunogold. **Con la parental diferenciada como control obligatorio** |
+| **2** | Esa red **se ancla al desmosoma con normalidad** | Retracción, perfil de línea, fracción de puntos de DSP con filamento, tamaño/nº de puntos (§4.2); TEM de inserción de filamentos; hiperadhesión (§12.5) |
+| **3** | **Pero es mecánicamente incompetente** ← el pivote | Dispasa **en curva**; **modo de rotura** (citólisis vs separación intercelular, §12.2bis); solubilidad Tritón; barrera funcional en 3D |
+| **4** | **El ratón tolera lo que el humano no** | Mismos ensayos en queratinocitos primarios de tu *Krt10* KO; histología ± desafío mecánico; neonato y adulto |
+| **5** | **Por qué**: empaquetamiento, cantidad, química de la red | TEM de *bundling*; cuantificación de filamento; WB **no reductor** de la fracción insoluble; mapa de cisteínas (§12.2bis) |
+| **6** | **Se puede corregir**, y el nivel al que actúa | EGFR/MEK sobre 2D y 3D; **contraste KO vs mutante**; lecturas de las figs. 2–3 repetidas bajo fármaco |
+
+Fíjate en que **no hay figura de proliferación ni de Rb**. Eso es deliberado: es otra
+historia, y tu línea celular no puede sostenerla (§4.3 de tu documento). Va a discusión, o
+a otro paper.
+
+### 13.5 Qué cortar del Paper 1
+
+- **El eje proliferación/Rb.** Fuera. Línea inmortalizada con el eje anulado.
+- **La comparación K1 vs K10 mutante.** Ya la cortaste bien (confusor de clase de lesión).
+- **El KRT1-KO y el Paper 3.** Que sigan siendo paper aparte / capítulo. **No los bolteés
+  al Paper 1**: añaden una segunda pregunta y bajan el techo.
+- **Todo lo que empiece por "además observamos".** Si no sostiene una de las seis figuras,
+  va a suplementario.
+
+### 13.6 La lista de rechazo: lo que lo tumba por muy buena que sea la historia
+
+Esto no sube el techo; **evita que te tiren el paper**. Es innegociable.
+
+1. **Clones independientes** (2–3 por genotipo) o pools policlonales. Sin esto, "réplica
+   biológica" = "réplica del mismo clon" y es pseudorreplicación. Ya está en tu §0.2.
+2. **Confusor de dosis.** ddPCR en todas las líneas de sobreexpresión + normalizar.
+   **Consejo estratégico: lidera con el KO**, que no tiene problema de dosis, y usa las
+   líneas de sobreexpresión como apoyo, no como figura principal.
+3. **Control de "compensación vs estado por defecto"**: hacer la Fig. 1 **también en la
+   parental diferenciada**. Ya lo tienes identificado como el control que decide el
+   significado. Es el primer sitio donde va a mirar un revisor.
+4. **Validación de diferenciación por tanda**, con criterios de aceptación fijados **a
+   priori**, y tandas descartadas antes de analizarlas. Ya lo tienes.
+5. **Cuantificación en ciego**, con macro, y bloqueo por tanda.
+6. **¿Nulo o truncado?** (§12.8a). Si tu KO expresa un K10 truncado y sale en revisión,
+   cae el paper entero. Resuélvelo ahora.
+
+### 13.7 Los dos añadidos de mayor rendimiento
+
+**(a) Tejido humano de paciente.** Si consigues piel de un paciente con EI recesiva
+(K10-null), aunque sea archivo, y muestras **el mismo emparejamiento no canónico en
+epidermis humana real**, subes un escalón entero. Es la casilla de "relevancia humana" que
+separa J Cell Sci de JCI Insight, y tu grupo está conectado clínicamente. **Es lo primero
+que pediría.**
+
+**(b) El dato de tu compañera, bien enmarcado.** La jerarquía de preferencia por NanoBiT
+en competición (§12.8c) es una figura cuantitativa que casi nadie tiene para queratinas.
+Acordad autoría y diseño **ahora**, no cuando estén los datos.
+
+### 13.8 Evaluación honesta del techo
+
+- **Con las figuras 1–3 bien hechas y controladas**: JID o J Cell Sci. Sólido, Q1,
+  publicable. **Es el suelo, y es un buen suelo.**
+- **Añadiendo la figura 4 (ratón)**: entras en territorio de JCI Insight / EMBO Mol Med,
+  porque dejas de describir un modelo y pasas a resolver una contradicción del campo.
+- **Añadiendo 5 y 6 (mecanismo + rescate)**: consolidas ese escalón.
+- **Con tejido humano de paciente encima**: es cuando la conversación con un editor de
+  revista general deja de ser ridícula.
+
+Lo que **no** te va a llevar arriba, por mucho que lo hagas bien: más caracterización de
+las líneas, más marcadores, más condiciones. El techo lo fija **la pregunta**, no el
+número de paneles.
+
+---
+
 *Bibliografía recuperada de **PubMed**. Cada referencia enlaza a su DOI.*
