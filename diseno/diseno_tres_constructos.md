@@ -204,6 +204,22 @@ MCS hacia el extremo 3' del promotor EF1α, que no tenemos. Con BamHI los dos
 brazos están dentro de lo conocido. Es la única pareja que permite cerrar el
 diseño hoy.
 
+**Los brazos se derivan DESPUÉS del corte, no antes.** BamHI corta `G^GATCC`, o sea
+que parte su propia diana: la primera `G` se queda en un fragmento y `GATCC` se va
+al otro. Por eso los brazos son exactamente éstos y no otros:
+
+```
+…GCGAATTCGAATTTAAATCG  │  GATCCGCGGCCGCGTCGA…
+                     ↑ G se queda   ↑ GATCC se va
+  └─ brazo 5' (15) ─┘     └─ brazo 3' (15) ─┘
+   TTCGAATTTAAATCG         GATCCGCGGCCGCGT
+```
+
+Meter `GGATCC` entero en un brazo **sí** habría sido un error. El `GATC` inicial del
+brazo 3' es el voladizo de cadena sencilla; a In-Fusion no le estorba, porque su
+exonucleasa deja cadena sencilla en los 5' de todas formas y lo único que hace es
+alargar ese voladizo hasta cubrir los 15 nt.
+
 **Contrapartida:** un corte único puede recircular. Se resuelve con tres cosas, no
 negociables:
 1. **Purificar en gel** el vector linearizado (elimina el superenrollado sin cortar).
@@ -224,8 +240,27 @@ el vector religado **sí**. Y BamHI está **libre** dentro de la ORF de KRT10.
 Secuencia completa en `secuencias/constructos/inserto_C1_KRT10_endurecido.fa`.
 Con los brazos ya puestos, en `inserto_C1_con_brazos_InFusion.fa`.
 
-Kozak `GCCACC`: la posición −3 es A (purina, que es la que manda). La +4 es T y no
-se puede cambiar sin tocar Met-Ser. Es un Kozak fuerte estándar.
+**Kozak `GCCACC` — por qué hace falta, si tu plásmido ya tiene uno bueno.**
+
+El pCMV6 tiene delante del ATG el contexto `…GCGATCGCC|ATG|T`, con **−3 = G**, que
+es purina: un Kozak perfectamente funcional. Pero **ese contexto no viaja con el
+inserto**: `KRT10-MC-F` empieza a aparear en la posición 1029, que es la A del
+propio ATG, así que todo lo que hay antes se queda en el plásmido donante.
+
+Sin `GCCACC`, lo que quedaría delante del ATG en el minicírculo es el final del
+brazo de In-Fusion:
+
+| | −3 | +4 | Fuerza |
+|---|---|---|---|
+| Nativo en el pCMV6 `…ATCGCC` | **G** purina | T | adecuado |
+| Minicírculo **sin** `GCCACC` → `…AAATCG` | **T** pirimidina | T | **débil** ✗ |
+| Minicírculo **con** `GCCACC` | **A** purina | T | adecuado ✔ |
+
+Es decir: el `GCCACC` **no duplica** el Kozak nativo, lo **reconstruye**. Si se
+quita, el transgén arranca con un Kozak débil.
+
+La +4 es T en los tres casos y no se toca: es la primera base del segundo codón,
+y cambiarla alteraría la proteína.
 
 Dos stops `TGATAA`: TGA seguido de TAA, sin ningún ATG críptico.
 
