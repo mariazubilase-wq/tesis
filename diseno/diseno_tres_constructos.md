@@ -215,10 +215,28 @@ al otro. Por eso los brazos son exactamente éstos y no otros:
    TTCGAATTTAAATCG         GATCCGCGGCCGCGT
 ```
 
-Meter `GGATCC` entero en un brazo **sí** habría sido un error. El `GATC` inicial del
-brazo 3' es el voladizo de cadena sencilla; a In-Fusion no le estorba, porque su
-exonucleasa deja cadena sencilla en los 5' de todas formas y lo único que hace es
-alargar ese voladizo hasta cubrir los 15 nt.
+Meter `GGATCC` entero en un brazo **sí** habría sido un error.
+
+**Y hay una asimetría que conviene tener clara**, porque a simple vista parece que
+el brazo 3' no cuadra. BamHI corta la hebra de arriba entre 30 y 31, pero la de
+abajo entre 34 y 35, así que en el fragmento derecho **la hebra de abajo no lleva
+las posiciones 31–34**: se fueron con el fragmento izquierdo.
+
+```
+  5'-GATCCGCGGCCGCGTCGA-3'   31..48 ARRIBA  ← completa, los 15 nt del brazo
+         ||||||||||||||
+  3'-    GCGCCGGCGCAGCT-5'   35..48 ABAJO   ← le faltan 31-34
+     ^^^^ voladizo GATC
+```
+
+No importa, porque **la homología de In-Fusion va cruzada entre hebras**: la hebra
+de ARRIBA del vector (intacta en 31–45) aparea con la hebra de ABAJO del inserto,
+que es justo lo que lleva el cebador reverso en su cola. Y el voladizo de cadena
+sencilla no estorba: la exonucleasa de In-Fusion expone hebra sencilla de todas
+formas, así que ese `GATC` viene premascado.
+
+Detalle completo, con la contabilidad de cuántos nucleótidos del brazo vienen de
+doble cadena y la alternativa de brazo de 18 nt, en `oligos_y_analisis.md`.
 
 **Contrapartida:** un corte único puede recircular. Se resuelve con tres cosas, no
 negociables:

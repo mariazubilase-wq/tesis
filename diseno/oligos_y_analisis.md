@@ -106,6 +106,61 @@ KRT10-MC-R   5'-ACGCGGCCGCGGATC TTATCA GTATCTTGGTCCCTTAGATGAAGACTCGCC-3'
                 └ brazo In-Fusion ┘ └stops┘ └───── aparea, 30 nt ─────┘
 ```
 
+### Los brazos de In-Fusion: la homología va CRUZADA entre hebras
+
+Esto merece explicarse porque a simple vista parece que el diseño no cuadra.
+
+**BamHI corta las dos hebras en posiciones distintas** — es lo que genera el voladizo:
+
+```
+hebra de arriba : G^GATCC  → corta entre 30 y 31
+hebra de abajo  : G^GATCC  → corta entre 34 y 35   (en coordenadas de arriba)
+```
+
+Así que el fragmento derecho del vector queda **asimétrico**:
+
+```
+  5'-GATCCGCGGCCGCGTCGA-3'    posiciones 31..48, ARRIBA  ← completa
+         ||||||||||||||
+  3'-    GCGCCGGCGCAGCT-5'    posiciones 35..48, ABAJO   ← le faltan 31-34
+     ^^^^
+     GATC en cadena sencilla: su pareja (CTAG) se fue con el fragmento IZQUIERDO
+```
+
+Es decir: **parte de la hebra de abajo del brazo 3' no está en este fragmento.**
+Si uno espera que la homología sea «hebra de abajo contra hebra de abajo», aquí
+faltarían 4 nucleótidos y el diseño parecería roto.
+
+**No lo está, porque la homología es cruzada:**
+
+```
+vector,  hebra de ARRIBA 31..45 : 5'-GATCCGCGGCCGCGT-3'   ← intacta, los 15 nt
+inserto, hebra de ABAJO (= el cebador R) : 5'-ACGCGGCCGCGGATC-3'
+                                               complementarias ✔
+```
+
+La hebra de **arriba** del fragmento derecho sí tiene los 15 nt completos (31–45),
+y ésa es la que aparea con el brazo del cebador reverso, que es hebra de abajo.
+
+Y hay una segunda razón por la que el voladizo no estorba: **In-Fusion necesita
+cadena sencilla de todas formas.** Su enzima masca los extremos precisamente para
+exponer hebra sencilla que pueda aparear. Ese `GATC` ya viene premascado — si el
+corte fuera romo, la enzima tendría que masticarlo ella para llegar al mismo sitio.
+
+> **Contabilidad honesta:** de los 15 nt del brazo, **11 vienen de región en doble
+> cadena** y 4 son el voladizo. Si prefieres margen, el brazo puede alargarse a los
+> **18 nt** que abarca todo el MCS conocido (31–48), `TCGACGCGGCCGCGGATC`, y entonces
+> son 14 los que vienen de doble cadena. Cuesta 3 nucleótidos de oligo y **no
+> empeora nada**: mismo autodímero (−17,1), misma Tm de apareo (62,2 °C). El diseño
+> se queda en 15 porque es la especificación de Takara y es lo que devuelve su
+> herramienta para un vector linearizado por digestión.
+
+**Cómo comprobarlo sin fiarte de este documento:** mete el vector en la
+[In-Fusion Cloning Primer Design Tool](https://www.takarabio.com/learning-centers/cloning/primer-design-and-other-tools),
+elige linearización **por digestión con BamHI**, y mira el brazo que devuelve para
+el reverso. La herramienta tiene esa opción justamente porque contempla los
+voladizos. Si devuelve `ACGCGGCCGCGGATC`, asunto cerrado.
+
 ### Análisis
 
 | | KRT10-MC-F | KRT10-MC-R |
