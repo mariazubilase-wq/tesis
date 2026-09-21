@@ -1,6 +1,6 @@
 # Protocolos
 
-## `Informe_muestras_UCM_ensayo_03-08-2026.docx`
+## `Tratamiento_muestras_UCM.docx`
 
 Desarrollo del apartado de tratamiento del informe enviado a la UCM el
 06/08/2026, para las muestras de la tanda de julio de 2026.
@@ -14,7 +14,11 @@ Se construye cruzando tres fuentes:
 | `MATERIALES_UCM.docx` (notas del 03/08) | Volúmenes pipeteados |
 
 Una tabla por muestra, con el pipeteo, la dosis y la concentración por pocillo
-y los tres ratios: **ME:pDNA**, **ME:DOTAP** y **DOTAP:pDNA**.
+y los ratios **ME:pDNA** y **DOTAP:pDNA**. El ME:DOTAP no va en tabla porque es
+constante dentro de cada muestra.
+
+Escrito en primera persona y sin formato de plantilla, para que case con el
+informe del 06/08, que es lo que la UCM ya ha leído de esta misma autora.
 
 «ME» significa cosas distintas según la muestra: lípido total en la 1,
 microemulsión completa en la 2 y liposomas en la 4 y la 5.
@@ -43,14 +47,18 @@ ratio 1000:1 que declaran.
 
 ### Discrepancias entre las notas del 03/08 y el informe del 06/08
 
-Se ha seguido el informe, que es lo que la UCM ya tiene:
+Se ha seguido el informe, que es lo que la UCM ya tiene, salvo en la muestra 4,
+donde María confirmó después lo que hizo realmente: resuspendió en **20 µl** y
+tomó **2 µl** por pocillo, en triplicado. Como 2/20 es la misma fracción que
+1/10, la dosis por pocillo no cambia respecto a lo que decía el informe; lo que
+estaba mal descrito era el método.
 
 | | Notas 03/08 | Informe 06/08 |
 |---|---|---|
 | Balanceo | 15 min | **20 min** |
 | Réplicas | «para 4 réplicas» | **triplicado** |
 | Muestra 2 | 4 condiciones | **2** (el vial traía 100 µl, no 1 mL) |
-| Muestra 4 | — | **10 µl de resuspensión, 1 µg de pDNA** |
+| Muestra 4 | — | 10 µl de resuspensión, 1 µg de pDNA |
 
 ## `genera_informe.js`
 
