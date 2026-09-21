@@ -29,6 +29,22 @@ Toda la bibliografía procede de **PubMed**; cada referencia lleva su DOI.
    **se hace más pequeño**, **se endocita más rápido** y **las cadherinas desmosómicas
    pierden fuerza de unión** — tres mecanismos distintos, no uno.
 
+> ### ⚠️ CORRECCIÓN (importante, leer antes que nada)
+>
+> **Los puntos 1 y 2 de arriba, tal y como se escribieron en la primera versión de este
+> documento, estaban basados en literatura superada.** La versión corregida está en
+> **§1.7bis**, y afecta también a §1.1, §1.8, §8 y §9.
+>
+> **Resumen de la corrección:** la cola C-terminal de DSP **no** une la cabeza N-terminal
+> de las queratinas de tipo II con especificidad de tipo. Une el **coil 1 del dominio rod
+> central**, con **especificidad amplia** (K5/K14, K1/K10, desmina, vimentina) y **alta
+> afinidad (nM) por filamentos YA ENSAMBLADOS**; las cabezas y colas son **prescindibles**
+> para esa unión.
+> Favre *et al.*, PLoS One 2018 — [10.1371/journal.pone.0205038](https://doi.org/10.1371/journal.pone.0205038)
+>
+> La preferencia por la **cabeza de tipo II** sigue siendo real, pero pertenece a **PKP1
+> y placoglobina**, no a DSP.
+
 ---
 
 ## 1. La cadena de anclaje, eslabón por eslabón
@@ -52,7 +68,7 @@ Toda la bibliografía procede de **PubMed**; cada referencia lleva su DOI.
 
 | Hallazgo | Referencia |
 |---|---|
-| La cola C-terminal de DPI se asocia **directamente** con la cabeza N-terminal de las queratinas de **tipo II epidérmicas (K1, K2, K5, K6)**. No lo hace con queratinas de tipo I, ni con las de tipo II de epitelio simple, ni con vimentina. Identifican un tramo de **18 aminoácidos en la cabeza de K5**, conservado sólo entre tipo II epidérmicas, implicado en la unión | Kouklis *et al.*, J Cell Biol 1994 — [10.1083/jcb.127.4.1049](https://doi.org/10.1083/jcb.127.4.1049) |
+| ⚠️ **SUPERADO — ver §1.7bis.** La cola C-terminal de DPI se asocia con la cabeza N-terminal de las queratinas de **tipo II epidérmicas**, y no con las de tipo I ni con vimentina. Ensayos de solución y *ligand blot* con **queratina recombinante no ensamblada** | Kouklis *et al.*, J Cell Biol 1994 — [10.1083/jcb.127.4.1049](https://doi.org/10.1083/jcb.127.4.1049) |
 | El dominio C-terminal de DPI especifica si se une a redes de queratina o de vimentina | Stappenbeck & Green, J Cell Biol 1993 — [10.1083/jcb.123.3.691](https://doi.org/10.1083/jcb.123.3.691) |
 | Desplazar la DSP de la membrana (expresando su N-terminal) **desengancha los haces de filamentos intermedios** y altera el ensamblaje de la unión. Prueba funcional de que DSP es necesaria | Bornslaeger *et al.*, J Cell Biol 1996 — [10.1083/jcb.134.4.985](https://doi.org/10.1083/jcb.134.4.985) |
 | Doble híbrido: diferencias fundamentales en la unión directa DSP–filamento según el tipo de filamento intermedio | Meng *et al.*, J Biol Chem 1997 — [10.1074/jbc.272.34.21495](https://doi.org/10.1074/jbc.272.34.21495) |
@@ -189,12 +205,62 @@ exactamente el argumento que necesitas:
 Ambos, revisados en Smith & Fuchs 1998, bajo el epígrafe *"An Increased Importance of
 the Type II Keratin Head Domain"*.
 
+### 1.7bis ⚠️ CORREGIDO — qué une DSP realmente
+
+**Lo que dice la evidencia más reciente y más directa**, por triple híbrido en levadura y
+ensayos de unión por fluorescencia:
+
+> El **coil 1 del dominio rod central** de K5/K14 **es necesario** para la interacción con
+> el C-terminal de desmoplaquina, mientras que **sus dominios cabeza y cola son
+> prescindibles**. Lo mismo con **K1/K10**, y con **desmina y vimentina**. La afinidad del
+> C-terminal de DSP por filamentos **ya ensamblados** de K5/K14 y desmina está en el
+> **rango nM**.
+>
+> Favre *et al.*, PLoS One 2018 — [10.1371/journal.pone.0205038](https://doi.org/10.1371/journal.pone.0205038)
+
+```
+   DESMOPLAQUINA         ───rod───[ C-TERMINAL: PRD-A / PRD-B / PRD-C ]
+                                            ▲
+                                            │  afinidad nM, especificidad AMPLIA
+                                            ▼
+   QUERATINA  [ cabeza V1 ]──[ COIL 1 ]──[ coil 2 ]──[ cola V2 ]
+                                 ▲
+                    aquí, y en tipo I igual que en tipo II
+```
+
+**Cómo se reconcilia con Kouklis 1994 y Meng 1997.** Los datos de "cabeza de tipo II"
+salen de ensayos de solución y *overlay* con **queratina recombinante sin ensamblar**.
+Los de coil 1 usan **filamentos ensamblados**, que es el sustrato fisiológico. Es
+plausible que existan los dos contactos y que el que manda sobre un filamento real sea el
+del rod. Para tus experimentos, **asume el modelo de Favre**.
+
+**Qué SÍ conserva la preferencia por la cabeza de tipo II:** **PKP1** (fuerte) y
+**placoglobina** (débil), según los ensayos de *overlay* con mutantes de K5 de Smith &
+Fuchs 1998 ([10.1083/jcb.141.5.1229](https://doi.org/10.1083/jcb.141.5.1229)); y el
+entrecruzamiento por transglutaminasa de la Lys del V1 (Candi 1998). Esa parte del §1.7
+sigue en pie. **Lo que cambia es que ese sesgo de tipo II es de PKP1/PG, no de DSP.**
+
+### 1.7ter Las tres consecuencias que esto tiene para la Parte 2
+
+1. **No busques especificidad DSP–K1 frente a DSP–K10.** No la hay, y ya está publicado
+   que no la hay. Tu documento de la Parte 2 (§3.4) tiene razón y esta versión del
+   documento se corrige en ese sentido.
+2. **Lo que DSP discrimina no es la identidad del compañero, es el ESTADO DE ENSAMBLAJE.**
+   Alta afinidad por *filamentos ensamblados*. Ésa es la variable, y es justo la que
+   separa tus dos clases de línea celular.
+3. **Predicción directa**: un filamento **no canónico pero bien ensamblado** (K1/K14 en el
+   KRT10-KO) debería anclarse al desmosoma **igual de bien** que K1/K10. Un filamento
+   **canónico pero agregado** (R156C, 189del) **no**. Es exactamente lo que vio Reichelt
+   2001 por inmunogold en ratón: filamentos K1/K14/K15 **unidos a desmosomas**.
+
 ### 1.8 ¿Y K10? Se une, pero de otra manera
 
 K10 es de **tipo I**. Dos consecuencias:
 
-1. **No une la cola de DSP.** Kouklis 1994 es explícito: la asociación *no* se observa
-   con queratinas de tipo I. Ese contacto no existe para K10.
+1. ⚠️ **CORREGIDO (§1.7bis): K10 SÍ une la cola de DSP.** Favre 2018 lo muestra por
+   coil 1, igual que K5/K14 y que desmina o vimentina. La afirmación anterior —que las
+   queratinas de tipo I no unen DSP— procede de Kouklis 1994 con proteína no ensamblada y
+   **no debe usarse**.
 2. **Sí puede unir PKP1, de forma secundaria.** En los ensayos de *overlay*, PKP1 se une
    con fuerza a las de tipo II pero muestra *"appreciable association with the type I
    keratins"* (Smith & Fuchs 1998); coherente con que las queratinas purificadas se unan
@@ -625,7 +691,8 @@ un capítulo. El orden importa: el paso 1 es el que hunde el experimento si se s
 Dos observaciones que salen directamente de la bibliografía de arriba y que afectan al
 diseño de los tres constructos:
 
-- **El minicírculo repone K10 (tipo I), pero el enlace con DSP lo hace K1 (tipo II).**
+- **El minicírculo repone K10, pero lo que DSP reconoce es un FILAMENTO ENSAMBLADO**
+  (§1.7bis), no una queratina concreta.
   El criterio de éxito no puede ser "hay K10". Tiene que ser: *K1 vuelve a filamentar,
   vuelve a llegar al desmosoma y vuelve a co-precipitar DSP*. Kouklis 1994.
 - **El umbral no es el 100 %.** Con ~60 % de células competentes en queratina, la lámina
@@ -644,10 +711,12 @@ inocuo, y el problema mayor no es la etiqueta sino la sobreexpresión.**
 
 ### 9.1 La buena noticia: el C-terminal NO es el sitio de unión a DSP
 
-El sitio de DSP es la **cabeza N-terminal** (§1.7). Una etiqueta C-terminal **no se
-sienta encima de él**. Una etiqueta N-terminal, en cambio, sería el desastre: taparía a
-la vez (a) el sitio de DSP, (b) el sitio de PKP1/placoglobina y (c) la Lys del V1 que
-entrecruza la transglutaminasa a la envuelta córnea.
+El sitio de DSP es el **coil 1 del rod** (§1.7bis), y **ni la cabeza ni la cola hacen
+falta** para esa unión — lo que refuerza la conclusión: una etiqueta terminal no toca el
+sitio de DSP. Pero una etiqueta **N-terminal** seguiría siendo el desastre, porque taparía
+(a) el sitio de **PKP1/placoglobina** y (b) la Lys del V1 que entrecruza la
+transglutaminasa a la envuelta córnea, además de la superposición cabeza-cola del
+ensamblaje.
 
 Precedente directo y del mismo sistema: Smith & Fuchs etiquetaron desmoplaquina con FLAG
 en C-terminal y **localizó perfectamente a los desmosomas**; la DSP completa con el FLAG
@@ -882,6 +951,168 @@ Western de p-ERK cuesta un día.
 - Reabrir el mapeo bioquímico DSP–queratina: está hecho, y hecho bien, entre 1993 y 2016.
   Tu valor añadido está en el **fondo genético de enfermedad y en el rescate**, no en
   redescubrir el enlace.
+
+---
+
+---
+
+## 12. Aplicado al plan real de la Parte 2
+
+Escrito después de leer `resumen_tesis_parte2.md`. Esta sección **sustituye a la §11**
+como recomendación operativa: la §11 se escribió sin conocer el plan y proponía cosas que
+ahora sé que no encajan.
+
+### 12.1 Lo primero: tu §3.4 tenía razón y yo estaba equivocado
+
+Tu documento dice *"no esperar que DSP prefiera K1 sobre K10 — la pregunta buena es de
+arquitectura, no de afinidad"*, citando Favre 2018. **Correcto.** Este documento arrastraba
+el modelo de 1994 y está corregido en §1.7bis. Consecuencia práctica: **retira de tu
+planificación cualquier experimento de especificidad de unión DSP–K1 vs DSP–K10** — tu
+Bloque A3 ya lo advertía, y hace bien.
+
+### 12.2 El Bloque A3 tiene una hipótesis binaria disponible, y no la está usando
+
+Tal como está escrito, A3 es descriptivo (*"¿los filamentos K1/K14 alcanzan la
+membrana?"*). Con Favre 2018 se convierte en una predicción falsable:
+
+> **Lo que DSP discrimina no es el compañero, es el estado de ensamblaje.**
+>
+> | Línea | Filamento | Predicción para el anclaje desmosómico |
+> |---|---|---|
+> | Parental dif. | K1/K10 canónico, ensamblado | normal |
+> | **KRT10-KO** | K1/K14 **no canónico pero ensamblado** | **normal o casi** |
+> | **R156C / 189del** | canónico pero **agregado** | **fallo** |
+
+Esto separa *"qué queratina"* de *"hay filamento o no"* **con las líneas que ya tienes**, y
+convierte A3 en un resultado en vez de una comprobación. Además da el titular que le falta
+a tu Paper 1:
+
+> **«La red suprabasal no canónica es competente para el anclaje desmosomal; lo que rompe
+> el anclaje es el fallo de ensamblaje, no el cambio de pareja.»**
+
+Encaja con el inmunogold de Reichelt 2001 (filamentos K1/K14/K15 **unidos a desmosomas**)
+y lo extiende a humano, que es tu hueco declarado. Y da una lectura limpia del contraste
+KO vs mutante que ya planteas en A5 como *"el experimento más discriminante"*.
+
+**Cómo medirlo** (§4.2): retracción, perfil de línea perpendicular, fracción de puntos de
+DSP con filamento asociado, tamaño y número de puntos de DSP. **No** coeficientes de
+colocalización, **no** número de desmosomas a secas.
+
+### 12.3 Desbloqueo de anticuerpos (tu Bloque 0.3, "el desbloqueo número uno")
+
+Existe la serie de sueros policlonales de **cobaya** de Progen, que resuelve tu problema
+de "los cuatro son de conejo":
+
+| Diana | Referencia | Nota |
+|---|---|---|
+| **K14** | **GP-CK14** (cobaya) — [Progen](https://us.progen.com/anti-Keratin-K14-guinea-pig-polyclonal-serum/GP-CK14) | IHC y WB. **Éste es tu desbloqueo** |
+| K15 | GP-CK15 / GP-K15 (cobaya) — [Progen](https://www.progen.com/anti-Keratin-K15-guinea-pig-polyclonal-serum/GP-K15) | |
+| K5 | GP-K5 (cobaya) — Progen | |
+| K1 | GP-K1 (cobaya) — Progen | ⚠️ **No lo compres si vas a usar GP-CK14**: mismo animal |
+| K10 | GP-K10 (cobaya) o **DE-K10** (ratón) | Para pares con K1 usa el **de ratón** |
+
+**Ojo con la combinatoria.** K1 aparece en todos tus pares de A1, así que K1 debe ser la
+especie "ancla" y todos los compañeros deben diferir de ella:
+
+```
+K1 = CONEJO (el que ya tienes)
+   + K14  → GP-CK14 (cobaya)   ó  LL002 (ratón)
+   + K15  → GP-K15  (cobaya)   ó  clon de ratón
+   + K5   → GP-K5   (cobaya)
+   + K10  → DE-K10  (RATÓN)  ← control positivo en la parental
+```
+
+Para un **triple** marcaje hacen falta tres especies distintas: conejo (K1) + ratón (K14,
+LL002) + cobaya (K15 o K5).
+
+**Aviso práctico para el PLA:** las sondas Duolink de catálogo son **anti-conejo y
+anti-ratón**. No he podido confirmar que exista sonda anti-cobaya lista para usar; si no
+la hay, habría que conjugar con **Probemaker**. **Por eso, para PLA monta el par como
+conejo + ratón**: K1 (conejo) + **K14 clon LL002** (ratón), que es monoclonal de ratón, muy
+citado y validado en ICC/IF —
+[Abcam ab7800](https://www.abcam.com/en-us/products/primary-antibodies/cytokeratin-14-antibody-ll002-ab7800),
+[CST 48020](https://www.cellsignal.com/products/primary-antibodies/keratin-14-ll002-mouse-mab/48020).
+Deja los de cobaya para co-IF y para el multiplexado del Odyssey.
+
+Para el resto del panel de A3: DSP → **DP2.15** (ratón) o el policlonal de cobaya de
+Progen; Dsg1 → **Dsg1-P124** (ratón, validado sobre preparaciones citoesqueléticas de piel
+humana); placoglobina → **GP57** (cobaya). Detalles en §6.
+
+### 12.4 ⚠️ El PLA NO demuestra heterodimerización
+
+Tu Bloque A1 usa PLA para K1+K14 con recuento de puntos. **El PLA no puede sostener la
+afirmación "K1 y K10 heterodimerizan con K14".**
+
+El PLA da señal a **< 40 nm**. Dos queratinas en **filamentos adyacentes dentro de un haz**
+están a esa distancia sin heterodimerizar. Un haz de filamentos dará PLA positivo
+independientemente del emparejamiento. **El control de un solo primario no cubre esto**, y
+tampoco lo cubre K1+K10 en la parental como positivo: los dos controles saldrían como
+esperas y la conclusión seguiría sin estar demostrada.
+
+Lo que el PLA sí demuestra, y que vale: **K1 y K14 están en la misma estructura
+filamentosa y no en redes separadas**. Formúlalo así y es inatacable.
+
+Para el **dímero** hacen falta lecturas bioquímicas:
+
+- **Co-IP desde extracto desensamblado**: solubilizar la fracción insoluble en urea a
+  concentración que disuelva el filamento pero preserve el dímero/tetrámero, y **diluir**
+  por debajo del umbral antes de añadir el anticuerpo. Sin esto, cualquier co-IP de
+  queratinas co-precipita el haz entero y no dice nada de emparejamiento.
+- **Entrecruzamiento** seguido de análisis del tamaño de las especies entrecruzadas.
+- **Control de mezcla obligatorio**: lisar parental y KO por separado y mezclar. Con
+  proteínas de filamento, la asociación post-lisis es la regla, no la excepción.
+- **Doble inmunogold** (tu A1 ya lo contempla): es lo que usó Reichelt 2001 y es el
+  estándar que te pedirán para comparar con ese trabajo.
+
+### 12.5 Regalo: hiperadhesión, gratis dentro de lo que ya vas a montar
+
+Tu A3 dice *"correlato funcional: dispasa ± inhibidor de PKCα"*. El inhibidor de PKCα
+canónico en este campo es **Gö6976** — y resulta que **Gö6976 es la herramienta publicada
+para inducir el estado hiperadhesivo** (§11.1).
+
+Es decir: **añadiendo un brazo de quelación con EGTA a un experimento que ya tienes
+planificado**, conviertes "dispasa ± inhibidor de PKCα" en un ensayo de **hiperadhesión**,
+que mide si tus líneas alcanzan el estado adhesivo maduro independiente de calcio. Coste
+marginal: un reactivo que ya está en cualquier laboratorio.
+
+**Y hay un motivo de fondo para que te importe**, porque conecta tus bloques A3 y A5:
+
+- Los dos estados adhesivos son reversibles por señalización de **PKC y EGFR**
+  (Kitajima, Kaohsiung J Med Sci 2013 — [10.1016/j.kjms.2012.08.001](https://doi.org/10.1016/j.kjms.2012.08.001)).
+- La hiperadhesión es un estado de **intercambio proteico reducido**, y **el mutante DP
+  S2849G** —el hipofosforilado, de alta afinidad por filamento— lo reproduce
+  (Bartle, J Cell Biol 2020 — [10.1083/jcb.201906153](https://doi.org/10.1083/jcb.201906153)).
+- Tu propia bibliografía ya incluye que **la inhibición de EGFR rescata la ultraestructura
+  desmosomal y el anclaje de queratinas** en pénfigo (JID 2024).
+
+> **La hiperadhesión es el puente mecanístico entre tu A5 (afatinib / erlotinib /
+> trametinib) y tu A3 (desmosomas).** Si tu rescate farmacológico funciona, la pregunta
+> "¿por qué?" tiene una respuesta medible: porque devuelve los desmosomas al estado
+> hiperadhesivo. Eso convierte A3 de bloque descriptivo en **el mecanismo del rescate**, y
+> es lo que sube el paper de *JID* a *JCI Insight* / *EMBO Mol Med*.
+
+### 12.6 Dos apuntes menores sobre tu §3.4
+
+- Sobre el JCS 2012 (*Deletion of K1/K10...*), los detalles concretos que te sirven como
+  predicción para A3: **DSP, Dsc1 y Dsg1 alterados; placoglobina SIN cambios; desmosomas
+  suprabasales más pequeños**. Que PG no se mueva y Dsg1/Dsc1 sí es un patrón específico
+  que puedes buscar en tus líneas.
+- Sobre el eje PKCα (JCB 2013): el sitio concreto es **S2849** del motivo GSR de DSP, y la
+  fosfatasa que lo revierte es **PP2A-B55α**
+  ([10.1038/s41598-023-37874-8](https://doi.org/10.1038/s41598-023-37874-8)). Para tu
+  "DSP fosforilada" de A3, pide el anticuerpo **anti-p-S2849** y mide **ratio p/total en
+  membrana**, no intensidad absoluta.
+- Y un recordatorio de §11.2: Kröger 2013 trabajó con células **sin ninguna queratina**.
+  Tu KRT10-KO **sí forma filamentos** (K1/K14, según tus datos preliminares). **No asumas
+  que el eje PKCα se active igual**; en tu KO podría estar normal precisamente porque hay
+  filamento. Eso sería un resultado, no un fracaso, y refuerza la tesis de §12.2.
+
+### 12.7 Qué NO mover de tu plan
+
+Tu §7 y §8 están bien construidos. No toques: el orden de bloques, el criterio de parada
+de "si la parental sigue sin expresar K10 → todo a 3D", ni el control obligatorio de
+"hacer A1 también en la parental diferenciada". Ese último control es el que decide el
+significado del paper y está bien identificado.
 
 ---
 
