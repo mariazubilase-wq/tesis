@@ -1210,6 +1210,101 @@ marginal: un reactivo que ya está en cualquier laboratorio.
   que el eje PKCα se active igual**; en tu KO podría estar normal precisamente porque hay
   filamento. Eso sería un resultado, no un fracaso, y refuerza la tesis de §12.2.
 
+### 12.8 Tres puntos abiertos: K10 residual, fragilidad del ratón, y NanoBiT en HEK293T
+
+#### (a) "Algo tiene que expresar K10, si no el KO daría igual"
+
+El argumento es bueno y corta por los dos lados. Formalmente: **el resultado de dispasa y
+la frase "no se detecta K10" no pueden ser los dos ciertos tal cual.** O hay K10 por
+debajo del límite de detección, o la diferencia viene de otra cosa. Las dos salidas son
+informativas y baratas de distinguir.
+
+**Candidato número uno a "otra cosa", y con precedente en tu propio campo: que el KO no
+sea un nulo.** El *Krt10*⁻/⁻ clásico **no era un nulo**: hetero y homocigotos **expresaban
+un péptido de K10 truncado (K10T), identificado por microsecuenciación**, y ese K10T
+**seguía formando complejos con K1** (Reichelt 1997,
+[10.1242/jcs.110.18.2175](https://doi.org/10.1242/jcs.110.18.2175)).
+
+Un indel de CRISPR puede producir proteína truncada en vez de nada. Si tu línea fabrica
+un K10 truncado, **no es "sin K10"**: puede ser dominante negativo o agregante, y eso
+rompe la dispasa con independencia del estado de diferenciación.
+
+Orden de comprobación, de más barato a menos:
+
+1. **`KRT10` por qPCR en la parental 2D, al tiempo exacto de la dispasa.** Si el mRNA está
+   y la proteína no se detecta, es sensibilidad o traducción, y la ventana existe. Si no
+   está el mRNA, la parental no tiene programa de K10 y el fenotipo es otra cosa.
+2. **¿Nulo o truncado?** Secuenciar el alelo editado, predecir el producto y buscarlo por
+   WB **con un anticuerpo cuyo epítopo esté aguas arriba de la lesión** (si el epítopo cae
+   detrás, un truncado se te escapa). Comprobar NMD por qPCR.
+3. **Segundo clon independiente.** Sin esto, "el KO se rompe" y "este clon se rompe" no se
+   distinguen. Ya está en tu §0.2.
+
+#### (b) Cómo se midió "no hay fragilidad" en el ratón — y por qué es tu oportunidad
+
+Lo que reporta Reichelt & Magin 2002 es que **la epidermis de ratones K10⁻/⁻ ADULTOS no
+mostró citólisis** ([10.1242/jcs.115.13.2639](https://doi.org/10.1242/jcs.115.13.2639)).
+Es decir: **histología de piel adulta no desafiada**. No es un ensayo de desafío mecánico.
+
+"No hay fragilidad" es por tanto una afirmación más estrecha de lo que suena. **No** cubre:
+
+- piel **neonatal** (los modelos de queratina suelen dar fenotipo perinatal y compensar
+  después; el trabajo de 1997 sobre esa misma línea era en neonatos),
+- **desafío mecánico** (prueba de fricción/frotado, el clásico en modelos de EBS),
+- mecánica cuantitativa (tracción de explantes, ampolla por succión),
+- **dispasa en queratinocitos primarios del ratón** ← el análogo directo de tu experimento.
+
+> **Tienes el ratón y tienes el ensayo.** Dispasa sobre queratinocitos primarios de tu
+> *Krt10* KO, **con el mismo protocolo** que la línea humana, es una comparación
+> ratón-humano con **la misma lectura**, en vez de inferirla de dos papers con dos métodos
+> distintos. Es probablemente el experimento más rentable que tienes ahora mismo.
+
+⚠️ Dos controles de identidad antes: **¿cuál es tu línea de ratón?** Si es la de
+Magin/Reichelt, expresa K10T truncado y **no es un nulo** — la misma pregunta de (a), en
+el otro sistema. Y el fondo mixto negro/agutí de tu §2.2 importa: los fenotipos cutáneos
+de estas redes son sensibles al fondo genético.
+
+#### (c) NanoBiT en HEK293T: fortaleza y límite, según la pregunta
+
+**Es el sistema correcto para una pregunta y el incorrecto para la otra.**
+
+| Pregunta | ¿Sirve HEK293T? |
+|---|---|
+| ¿**Puede** K1 emparejarse con K14? (capacidad intrínseca) | **Sí, y es el sistema ideal**: sin K1/K10/K5/K14 endógenas compitiendo, lo único que hay es lo que transfectas |
+| ¿**Elige** K1 a K14 en un queratinocito? (preferencia real) | **No.** Sin competencia de K5/K15/K6/K16/K17, sin las PTM ni las quinasas del queratinocito, sin desmosomas, sin diferenciación |
+
+La segunda es la pregunta de tu Parte 2. Pero **la ausencia de fondo endógeno, que es la
+limitación, se convierte en la mayor ventaja si se diseña como competición**:
+
+```
+   LgBiT-K1 + SmBiT-K10   (fijo, expresión baja)
+      + K14 sin etiquetar, dosis creciente   → ¿cae la señal?
+      + K5 / K15 / K6 sin etiquetar, dosis creciente
+   y el recíproco:
+   LgBiT-K1 + SmBiT-K14 + K10 sin etiquetar creciente
+```
+
+Eso convierte un "¿interaccionan sí o no?" en un **ranking cuantitativo de preferencia**,
+que es justo lo que quieres — y que **no se puede hacer en un queratinocito** porque el
+*pool* endógeno lo confunde. Si K10 desplaza a K14 con facilidad y K14 apenas desplaza a
+K10, tienes una jerarquía, y esa jerarquía **predice** lo que pasa en el KO.
+
+Extensión directa para las mutantes: **¿compite R156C-K10 por K1 tan bien como la WT?**
+Es una medida del dominante negativo **a nivel de unión**, limpia de agregación si se hace
+a expresión baja.
+
+Notas específicas de HEK293T:
+
+- **La trampa de los agregados es PEOR aquí, no mejor**: sobreexpresar queratinas en una
+  célula no epitelial produce agregados por simple desequilibrio de pareja. Titular a la
+  baja y verificar por IF que hay filamento y no grumo.
+- **Comprobad el fondo de filamentos intermedios de la línea** (vimentina). Si queréis un
+  fondo realmente vacío, el clásico del campo es **SW13/cl.2**, negativa para vimentina.
+- El control **tipo I + tipo I** (§12.7 del plan) importa aún más aquí.
+- **Los positivos hay que confirmarlos en fondo queratinocito**, idealmente en tu
+  KRT10-KO: K1 presente, K10 ausente, y toda la competencia endógena puesta. Ése es el
+  escenario real.
+
 ### 12.7 Qué NO mover de tu plan
 
 Tu §7 y §8 están bien construidos. No toques: el orden de bloques, el criterio de parada
