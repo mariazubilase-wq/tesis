@@ -16,7 +16,9 @@ Toda la bibliografía procede de **PubMed**; cada referencia lleva su DOI.
    plaquina, PRD-A/B/C) une el **dominio cabeza N-terminal de las queratinas de tipo II**.
 2. En epidermis suprabasal eso significa **K1**, no K10: la unión es específica de
    queratinas de tipo II epidérmicas (K1, K2, K5, K6) y **no ocurre con las de tipo I**
-   (K10, K14) ni con vimentina.
+   (K10, K14) ni con vimentina. Ojo a la orientación: es la **cola C-terminal de DSP**
+   contra la **cabeza N-terminal de la queratina** (§1.7). K10 ancla de forma indirecta,
+   como pareja obligada del heterodímero (§1.8).
 3. Refuerzan ese enlace, sin sustituirlo, la **plakofilina 1 (PKP1)** —cuya cabeza une a
    la vez Dsg1, DSP y queratinas— y, estructuralmente, la **placoglobina (JUP)** y las
    colas citoplásmicas de **Dsc1a**.
@@ -147,6 +149,69 @@ equivale literalmente a "menos anclajes".
   envuelta córnea. Es decir, **el mismo dominio cabeza de K1 sirve para dos anclajes
   distintos**; una mutación ahí golpea a los dos.
   Candi *et al.*, PNAS 1998 — [10.1073/pnas.95.5.2067](https://doi.org/10.1073/pnas.95.5.2067)
+
+### 1.7 Orientación: qué extremo se une a qué (el error fácil de cometer)
+
+Hay **dos C-terminales** en juego y se confunden con facilidad. La unión es
+**antiparalela**:
+
+```
+   DESMOPLAQUINA          ─── rod ───[ C-TERMINAL: PRD-A / PRD-B / PRD-C ]
+                                              ▲
+                                              │  surco básico
+                                              ▼
+   QUERATINA TIPO II  [ N-TERMINAL: cabeza, subdominio V1 ]─── rod ───[ V2 cola ]
+```
+
+> **Es la COLA C-terminal de la DESMOPLAQUINA contra la CABEZA N-terminal de la
+> QUERATINA.** Textual en Kouklis *et al.* 1994: *"the carboxy terminal 'tail' of DPI
+> associates directly with the amino terminal 'head' of type II epidermal keratins"* —
+> [10.1083/jcb.127.4.1049](https://doi.org/10.1083/jcb.127.4.1049).
+
+La cabeza N-terminal de las queratinas de tipo II no es sólo el sitio de DSP: es un
+**punto caliente funcional** compartido.
+
+| Qué se une ahí | Referencia |
+|---|---|
+| Cola C-terminal de DSP | Kouklis 1994 [10.1083/jcb.127.4.1049](https://doi.org/10.1083/jcb.127.4.1049) |
+| PKP1 (fuerte) y placoglobina (débil). Con K5 mutada: las dos se unen a versiones con **cabeza intacta**; PG pierde la unión al quitar los 157 residuos N-terminales | Smith & Fuchs 1998 [10.1083/jcb.141.5.1229](https://doi.org/10.1083/jcb.141.5.1229) |
+| Entrecruzamiento por transglutaminasa a la envuelta córnea, por una **Lys conservada del subdominio V1** | Candi 1998 [10.1073/pnas.95.5.2067](https://doi.org/10.1073/pnas.95.5.2067) |
+
+Y hay **precedente humano** de que romper esa cabeza rompe el anclaje, que es
+exactamente el argumento que necesitas:
+
+- Mutaciones en la cabeza de **K5** → EBS con pigmentación moteada, donde *"los
+  filamentos de queratina parecen deficientes en su capacidad de anclarse a los
+  desmosomas"*.
+- Una mutación en esa misma región de **K1** → queratodermia palmoplantar no
+  epidermolítica con **fragilidad de células suprabasales**.
+
+Ambos, revisados en Smith & Fuchs 1998, bajo el epígrafe *"An Increased Importance of
+the Type II Keratin Head Domain"*.
+
+### 1.8 ¿Y K10? Se une, pero de otra manera
+
+K10 es de **tipo I**. Dos consecuencias:
+
+1. **No une la cola de DSP.** Kouklis 1994 es explícito: la asociación *no* se observa
+   con queratinas de tipo I. Ese contacto no existe para K10.
+2. **Sí puede unir PKP1, de forma secundaria.** En los ensayos de *overlay*, PKP1 se une
+   con fuerza a las de tipo II pero muestra *"appreciable association with the type I
+   keratins"* (Smith & Fuchs 1998); coherente con que las queratinas purificadas se unan
+   a la proteína banda 6 (Hatzfeld 1994, [10.1242/jcs.107.8.2259](https://doi.org/10.1242/jcs.107.8.2259))
+   y con que la cabeza de PKP1 una queratinas en doble híbrido (Hatzfeld 2000,
+   [10.1083/jcb.149.1.209](https://doi.org/10.1083/jcb.149.1.209)).
+
+**Pero su papel dominante es otro, y es absoluto: K10 es el compañero obligado del
+heterodímero.** Los filamentos de queratina son heteropolímeros estrictos de un tipo I +
+un tipo II. Sin K10 funcional, K1 no hace filamento; y una K1 que no filamenta es una K1
+que no tiene nada que entregar a la placa.
+
+Por eso una mutación en *KRT10* produce **la misma enfermedad** que una en *KRT1*, aunque
+K10 nunca toque la desmoplaquina: el anclaje que pierde es **100 % indirecto y 100 %
+efectivo**. En el modelo Krt10⁻/⁻, K1 se empareja de forma compensatoria con K5/K14, pero
+el resultado no sustituye a K1/K10 (Reichelt 1997,
+[10.1242/jcs.110.18.2175](https://doi.org/10.1242/jcs.110.18.2175)).
 
 ---
 
@@ -566,6 +631,90 @@ diseño de los tres constructos:
 - **El umbral no es el 100 %.** Con ~60 % de células competentes en queratina, la lámina
   epitelial aguanta el estrés (Bär 2014). Es un objetivo de eficiencia realista y
   defendible para el constructo, y conviene declararlo antes de medir.
+
+---
+
+---
+
+## 9. Etiquetas en queratinas: dónde sí, dónde no, y qué validar
+
+Pregunta concreta: *si sobreexpreso K1 con una etiqueta en el C-terminal, ¿estropeo el
+desmosoma?* Respuesta corta: **el C-terminal es el extremo menos malo, pero no es
+inocuo, y el problema mayor no es la etiqueta sino la sobreexpresión.**
+
+### 9.1 La buena noticia: el C-terminal NO es el sitio de unión a DSP
+
+El sitio de DSP es la **cabeza N-terminal** (§1.7). Una etiqueta C-terminal **no se
+sienta encima de él**. Una etiqueta N-terminal, en cambio, sería el desastre: taparía a
+la vez (a) el sitio de DSP, (b) el sitio de PKP1/placoglobina y (c) la Lys del V1 que
+entrecruza la transglutaminasa a la envuelta córnea.
+
+Precedente directo y del mismo sistema: Smith & Fuchs etiquetaron desmoplaquina con FLAG
+en C-terminal y **localizó perfectamente a los desmosomas**; la DSP completa con el FLAG
+**en lugar de los primeros 29 residuos** fue **incapaz de asociarse a desmosomas**
+(aunque seguía colocalizando con filamentos) —
+[10.1083/jcb.141.5.1229](https://doi.org/10.1083/jcb.141.5.1229).
+Misma lección, aplicada a queratina: **si hay que etiquetar, al C-terminal**.
+
+### 9.2 La mala: la cola V2 de K1 no es inerte, y llega hasta la placa
+
+Alterar la cola V2 de K1 causa **enfermedad humana**, y con un fenotipo que toca
+precisamente al desmosoma:
+
+| Lesión | Fenotipo | Referencia |
+|---|---|---|
+| Primera mutación descrita en una cola de queratina: frameshift en **V2 de KRT1** | Ictiosis hystrix Curth-Macklin. El análisis estructural mostró **fallo en el empaquetamiento de los filamentos**, **retracción del citoesqueleto del núcleo** y **fallo en la translocación de loricrina a las placas desmosómicas** | Sprecher *et al.*, J Invest Dermatol 2001 — [10.1046/j.1523-1747.2001.01292.x](https://doi.org/10.1046/j.1523-1747.2001.01292.x) |
+| Frameshift que altera la cola de **KRT1** (1752insG) | Forma **atípica de hiperqueratosis epidermolítica**. El equivalente en KRT5 da una EBS leve | Sprecher *et al.*, J Invest Dermatol 2003 — [10.1046/j.1523-1747.2003.12084.x](https://doi.org/10.1046/j.1523-1747.2003.12084.x) |
+| Mutación que altera por completo la cola de K1 | PPK difusa grave tipo IHCM; *"subraya la importancia funcional del dominio de cola no helicoidal"* | Richardson *et al.*, J Invest Dermatol 2006 — [10.1038/sj.jid.5700025](https://doi.org/10.1038/sj.jid.5700025) |
+| Frameshift en V2 de KRT1 que sustituye la cola rica en Gly-Ser por 75 aa ricos en Ala | IHCM leve | Yang *et al.*, Clin Exp Dermatol 2020 — [10.1111/ced.14193](https://doi.org/10.1111/ced.14193) |
+
+**Matiz que importa y que no hay que sobreleer:** todas esas lesiones son *frameshifts
+que sustituyen o destruyen* la cola V2. **No** son una etiqueta pequeña añadida *después*
+de una cola V2 intacta. No son el mismo daño. Pero establecen que **la cola de K1 tiene
+función, y que esa función llega a la placa desmosómica** — así que una etiqueta ahí
+**se valida, no se asume**.
+
+El tamaño manda: Myc-DDK o HA (~1–3 kDa) no es lo mismo que GFP (~27 kDa) colgando de
+una cola cuya función depende de bucles de glicina y del empaquetamiento lateral.
+
+### 9.3 El riesgo mayor: la estequiometría, no la etiqueta
+
+Las queratinas son **heterodímeros obligados**. Si sobreexpresas K1 por encima de la K10
+disponible, la K1 sobrante **no tiene pareja** y agrega. Y un agregado de K1 sin pareja
+**se parece a tu fenotipo de enfermedad**: es un falso positivo con muy buena pinta.
+
+Smith & Fuchs documentaron esta clase exacta de artefacto con DSP: en las células más
+brillantes, la relación citoplasma/desmosoma subía, *"consecuencia de la sobreexpresión
+del transgén, que satura todos los sitios de unión desmosómicos y acumula el exceso de
+proteína en el citoplasma"*. **En una co-IF esto se traduce en una regla dura: cuantifica
+sólo en células de expresión baja o media, y declara el criterio antes de mirar.**
+
+### 9.4 Qué hacer, en la práctica
+
+- **Minicírculo terapéutico: sin etiqueta.** Tu propio diseño ya lo decidió —
+  `diseno_clonaje_KRT10_minicirculo.md` §3.4 ("Sin etiquetas") y §11
+  ("❌ Conservar la etiqueta Myc-DDK → cola C-terminal comprometida"). **Esa decisión era
+  correcta, y ahora tiene bibliografía detrás.** Mantenla.
+- **Si necesitas distinguir transgén de endógeno**, por orden de preferencia:
+  1. **Marcar la célula, no la proteína**: reportero fluorescente en cassette aparte
+     (P2A/IRES). Identificas la célula transfectada por el reportero y tiñes K1 con
+     GP-K1. Para una co-IF que pregunta *dónde está el filamento*, suele ser la mejor
+     respuesta: no tocas la proteína.
+  2. **Etiqueta pequeña (HA/FLAG) en C-terminal, en un constructo APARTE y declarado no
+     terapéutico**, sólo para localización.
+  3. GFP en C-terminal: última opción, y sólo si (1) y (2) no sirven.
+  - **Nunca en N-terminal.**
+- **Checklist de validación de cualquier K1 etiquetada** — las tres, antes de creerte una
+  sola imagen:
+  1. ¿Se incorpora a filamentos indistinguibles de los endógenos **a expresión baja**?
+     (doble marcaje anti-etiqueta + GP-K1)
+  2. ¿Llega a bordes DSP-positivos igual que la no etiquetada? (medida de retracción,
+     §4.2, etiquetada vs sin etiquetar en paralelo)
+  3. ¿Rescata **igual de bien** que la versión sin etiqueta en el ensayo funcional
+     (dispasa)?
+
+  Si falla cualquiera de las tres, lo que tienes es un artefacto del reportero, no
+  biología.
 
 ---
 
