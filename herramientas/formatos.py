@@ -146,9 +146,78 @@ def lee_fasta(texto: str, procedencia: str = "") -> Registro:
     return Registro(nombre, "".join(partes), True, [], procedencia)
 
 
+# ---------------------------------------------------------------------------
+# SnapGene (.dna) — formato binario por bloques
+# ---------------------------------------------------------------------------
+# Cada bloque: 1 byte de tipo, 4 bytes de longitud (big-endian), N bytes de
+# datos. Tipo 0 = secuencia (el primer byte son banderas, bit 0 = circular),
+# tipo 10 = XML de rasgos, tipo 5 = XML de cebadores, tipo 6 = XML de notas.
+_SG_SEQ, _SG_NOTAS, _SG_RASGOS = 0, 6, 10
+
+
+def _bloques_snapgene(datos: bytes):
+    i, n = 0, len(datos)
+    while i + 5 <= n:
+        tipo = datos[i]
+        largo = int.from_bytes(datos[i + 1:i + 5], "big")
+        cuerpo = datos[i + 5:i + 5 + largo]
+        if len(cuerpo) < largo:
+            break
+        yield tipo, cuerpo
+        i += 5 + largo
+
+
+def lee_snapgene(datos: bytes, procedencia: str = "") -> Registro:
+    """Lee un .dna de SnapGene. Devuelve secuencia, circularidad y rasgos."""
+    seq, circular, rasgos, nombre = "", True, [], "sin_nombre"
+    for tipo, cuerpo in _bloques_snapgene(datos):
+        if tipo == _SG_SEQ and not seq:
+            circular = bool(cuerpo[0] & 1)
+            seq = limpia(cuerpo[1:].decode("latin-1"))
+        elif tipo == _SG_RASGOS:
+            rasgos = _rasgos_snapgene(cuerpo.decode("utf-8", "replace"))
+        elif tipo == _SG_NOTAS:
+            m = re.search(r"<Comments>(.*?)</Comments>", cuerpo.decode("utf-8", "replace"), re.S)
+            if m:
+                nombre = " ".join(m.group(1).split())[:60] or nombre
+    if not seq:
+        raise ValueError(f"{procedencia}: no hay bloque de secuencia SnapGene")
+    return Registro(nombre, seq, circular, rasgos, procedencia)
+
+
+_SG_FEAT = re.compile(r"<Feature\b(?P<attrs>[^>]*)>(?P<cuerpo>.*?)</Feature>", re.S)
+_SG_SEG = re.compile(r'<Segment\b[^>]*range="(\d+)-(\d+)"')
+
+
+def _rasgos_snapgene(xml: str) -> list:
+    fuera = []
+    for m in _SG_FEAT.finditer(xml):
+        attrs = dict(re.findall(r'(\w+)="([^"]*)"', m.group("attrs")))
+        tramos = [(int(a), int(b)) for a, b in _SG_SEG.findall(m.group("cuerpo"))]
+        if not tramos:
+            continue
+        hebra = -1 if attrs.get("directionality") == "2" else 1
+        fuera.append(Rasgo(
+            clave=attrs.get("type", "misc_feature"),
+            inicio=min(a for a, _ in tramos) - 1,     # SnapGene es 1-based inclusivo
+            fin=max(b for _, b in tramos),
+            hebra=hebra,
+            etiqueta=attrs.get("name", ""),
+            cualificadores={"label": attrs.get("name", "")},
+            compuesto=len(tramos) > 1,
+        ))
+    return sorted(fuera, key=lambda r: r.inicio)
+
+
 def lee(ruta: str) -> Registro:
-    with open(ruta, "r", encoding="utf-8", errors="replace") as fh:
-        texto = fh.read()
+    with open(ruta, "rb") as fh:
+        crudo = fh.read()
+    if crudo[:1] == b"\x09" or ruta.lower().endswith(".dna"):
+        r = lee_snapgene(crudo, ruta)
+        if not r.seq:
+            raise ValueError(f"No se ha podido extraer secuencia de {ruta}")
+        return r
+    texto = crudo.decode("utf-8", errors="replace")
     if re.search(r"^LOCUS", texto, re.M):
         r = lee_genbank(texto, ruta)
     elif texto.lstrip().startswith(">"):
