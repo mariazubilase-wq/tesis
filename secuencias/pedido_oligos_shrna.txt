@@ -1,0 +1,124 @@
+PEDIDO DE OLIGOS — shRNA en pMC.CMV-GFP-H1-MCS
+===============================================
+
+Vector    : pMC.CMV-GFP-H1-MCS Parental Minicircle shRNA Cloning Vector (SBI)
+Promotor  : H1 (RNA Pol III)
+MCS       : GGATCC TCT GAATTC   (BamHI y EcoRI separados por 3 nt)
+Plantilla : la del fabricante — GATCC [sentido] CTTCCTGTCAGA [antisentido] TTTTTG
+
+Pedir los 4 oligos con PURIFICACIÓN PAGE (son 65-meros; el desalado estándar
+arrastra truncados n-1 que meten deleciones de un nucleótido en la horquilla).
+Escala 25 nmol sobra.
+
+
+sh13  —  horquilla 13 del proyecto
+------------------------------------------------------------------------
+  sh13_TOP   5'-GATCCAATGACTGCCTGGCTTCCTTTCTTCCTGTCAGAAAAGGAAGCCAGGCAGTCATTTTTTTG-3'   (65 nt)
+  sh13_BOT   5'-AATTCAAAAAAATGACTGCCTGGCTTCCTTTTCTGACAGGAAGAAAGGAAGCCAGGCAGTCATTG-3'   (65 nt)
+
+  desglose del TOP:
+    GATC              saliente BamHI
+    C                 relleno, completa GGATCC al ligar
+    AATGACTGCCTGGCTTCCTTT   hebra sentido (21 nt)
+    CTTCCTGTCAGA      lazo del fabricante
+    AAAGGAAGCCAGGCAGTCATT   hebra antisentido (21 nt)
+    TTTTT + G         terminador Pol III + G que completa GAATTC
+
+  MCS tras la ligación:  GGATCCAATGACTGCCTGGCTTCCTTTCTTCCTGTCAGAAAAGGAAGCCAGGCAGTCATTTTTTTGAATTC
+  inserción neta:        +56 pb
+
+  comprobaciones:
+    [ok] diana de 21 nt (son 21)
+    [ok] diana sin bases ambiguas
+    [ok] BOT es el complementario inverso exacto del TOP
+    [ok] TOP y BOT igual longitud (65 nt)
+    [ok] saliente BamHI GATC en el TOP
+    [ok] saliente EcoRI AATT en el BOT
+    [ok] BamHI se regenera al ligar
+    [ok] EcoRI se regenera al ligar (1 copia)
+    [ok] sin BamHI interno
+    [ok] sin EcoRI interno
+    [ok] sin tiradas de >=4 T antes del terminador (no termina antes de tiempo)
+    [ok] terminador Pol III de 5 T
+    [ok] antisentido = complementario inverso
+    [ok] lazo del fabricante presente
+    [ok] lazo no solapa con la diana
+    [ok] GC de la diana en rango 30-65 % (es 48 %)
+    [ok] longitud del transcrito coherente
+
+shSCR  —  control no diana (scramble, Addgene 1864)
+------------------------------------------------------------------------
+  shSCR_TOP   5'-GATCCCCTAAGGTTAAGTCGCCCTCGCTTCCTGTCAGACGAGGGCGACTTAACCTTAGGTTTTTG-3'   (65 nt)
+  shSCR_BOT   5'-AATTCAAAAACCTAAGGTTAAGTCGCCCTCGTCTGACAGGAAGCGAGGGCGACTTAACCTTAGGG-3'   (65 nt)
+
+  desglose del TOP:
+    GATC              saliente BamHI
+    C                 relleno, completa GGATCC al ligar
+    CCTAAGGTTAAGTCGCCCTCG   hebra sentido (21 nt)
+    CTTCCTGTCAGA      lazo del fabricante
+    CGAGGGCGACTTAACCTTAGG   hebra antisentido (21 nt)
+    TTTTT + G         terminador Pol III + G que completa GAATTC
+
+  MCS tras la ligación:  GGATCCCCTAAGGTTAAGTCGCCCTCGCTTCCTGTCAGACGAGGGCGACTTAACCTTAGGTTTTTGAATTC
+  inserción neta:        +56 pb
+
+  comprobaciones:
+    [ok] diana de 21 nt (son 21)
+    [ok] diana sin bases ambiguas
+    [ok] BOT es el complementario inverso exacto del TOP
+    [ok] TOP y BOT igual longitud (65 nt)
+    [ok] saliente BamHI GATC en el TOP
+    [ok] saliente EcoRI AATT en el BOT
+    [ok] BamHI se regenera al ligar
+    [ok] EcoRI se regenera al ligar (1 copia)
+    [ok] sin BamHI interno
+    [ok] sin EcoRI interno
+    [ok] sin tiradas de >=4 T antes del terminador (no termina antes de tiempo)
+    [ok] terminador Pol III de 5 T
+    [ok] antisentido = complementario inverso
+    [ok] lazo del fabricante presente
+    [ok] lazo no solapa con la diana
+    [ok] GC de la diana en rango 30-65 % (es 57 %)
+    [ok] longitud del transcrito coherente
+
+PROTOCOLO (resumido)
+--------------------
+1. Anillar cada pareja: 10 uM de cada oligo en tampón de anillado, 95 C 5 min,
+   enfriar hasta 25 C a ~1 C/min.
+2. Fosforilar con T4 PNK (los oligos sintéticos llegan con 5'-OH).
+3. Vector: digerir PRIMERO con BamHI-HF, DESPUÉS añadir EcoRI-HF (ambas en
+   rCutSmart). Ese orden deja 8 nt de flanco a la segunda enzima en vez de 4.
+4. Desfosforilar el vector con rSAP — rSAP y no CIP, porque la rSAP se
+   inactiva del todo a 65 C/5 min y la CIP residual comería los fosfatos
+   del inserto.
+5. Gel-purificar el vector lineal.
+6. Ligar, SIEMPRE con un control de vector solo sin inserto.
+
+Por qué los pasos 2+4: entre BamHI y EcoRI sólo hay 3 nt, así que el doble
+digerido libera un relleno de 9 nt. Eso significa que en un gel NO puedes
+distinguir vector cortado una vez de cortado dos veces, y el cortado una vez
+religa. Con el vector desfosforilado no puede religar pase lo que pase; el
+inserto aporta sus fosfatos y el círculo queda con dos mellas, que E. coli
+repara sin problema. El control sin inserto te mide el fondo.
+
+CRIBADO
+-------
+La inserción es de +56 pb sobre un plásmido de varias kb: NO se ve por tamaño
+de miniprep. Usar:
+  * PCR de colonia con un cebador en H1 y otro aguas abajo (vacío vs +56 pb,
+    resoluble en agarosa al 2-3 % si el amplicón es corto), y
+  * confirmación por Sanger desde H1 en los dos clones. Obligatoria.
+El lazo del fabricante no aporta ninguna diana de restricción útil, así que
+no hay atajo por digestión.
+
+PENDIENTE — pedir a soporte técnico de SBI el GenBank completo del vector
+-------------------------------------------------------------------------
+Sin el mapa no se puede comprobar:
+  1. cuántos nt hay entre el +1 de H1 y el BamHI (longitud del líder 5' que
+     queda pegado a la horquilla),
+  2. que BamHI y EcoRI sean de corte único en todo el plásmido,
+  3. que el casete H1-shRNA caiga DENTRO de la región attB-attP — si queda
+     fuera no acaba en el minicírculo y lo demás da igual.
+
+Comprobar además en el manual si el fabricante especifica brazos de 19 o de
+21 nt. Aquí se han usado 21, que es lo que se cuenta en su figura.
