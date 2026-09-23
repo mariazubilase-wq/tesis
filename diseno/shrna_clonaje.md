@@ -49,19 +49,49 @@ antisentido  AAAGGAAGCCAGGCAGTCATT    ← tu 13R, LA GUÍA
 terminador   TTTTTG
 ```
 
-### shSCR — control desordenado
+### shSCR1864 — control no dirigido, de la bibliografía
 
 ```
-sentido      AACGTTGCCGTTGTTTCCACT
+sentido      CCTAAGGTTAAGTCGCCCTCG
 lazo         CTCGAG
-antisentido  AGTGGAAACAACGGCAACGTT
+antisentido  CGAGGGCGACTTAACCTTAGG
 terminador   TTTTTG
 ```
 
-El control **no es una secuencia cualquiera**: es la guía de sh13 **barajada**, así
-que conserva su composición de bases y su GC (47.6 % frente a
-47.6 %). Comprobado además que su semilla (`TGGAAAC`)
-**no aparece en la ORF de KRT10**, ni directa ni en complemento inverso.
+Es el **scramble de `pLKO.1`, Addgene #1864**, depositado por el laboratorio de
+David Sabatini: el control no dirigido genérico más usado del campo, con miles de
+citas. Su horquilla publicada ya viene en formato `sentido–CTCGAG–antisentido`, el
+mismo que sh13, así que se adapta sin tocar una base.
+
+Verificado: su semilla (`AGGGCGA`) **no aparece en la ORF de
+KRT10**, ni directa ni en complemento inverso. GC del tallo
+57.1 % frente al 47.6 % de sh13.
+
+> **Por qué no vale un scramble inventado.** Una versión barajada de tu propia guía
+> conserva la composición de bases, que está bien, pero **no la ha validado nadie**.
+> Un control no dirigido tiene que venir con historial: es justamente lo que le
+> faltó a SHC016 (§1.1).
+
+### 1.1 Aviso: NO uses SHC016
+
+Según PubMed, Bereta y colaboradores demostraron que **SHC016**, uno de los dos
+controles no dirigidos de la librería MISSION (TRC) de Sigma, **es citotóxico**:
+silencia **SNRPD3**, una proteína central del espliceosoma, y provoca apoptosis en
+células murinas y senescencia o catástrofe mitótica en células tumorales humanas
+según el estado de p53. El efecto es tan fuerte que el casete de shRNA se acaba
+eliminando del genoma de las células en cultivo. Los autores lo declaran
+**descalificado como control**.
+
+[Bereta et al., *Mol Ther Nucleic Acids* 2021 · DOI 10.1016/j.omtn.2021.09.004](https://doi.org/10.1016/j.omtn.2021.09.004) · [PMID 34703654](https://pubmed.ncbi.nlm.nih.gov/34703654/)
+
+**El otro control de MISSION, SHC002, sí se comporta bien** en ese trabajo (lo usan
+como comparador limpio). Pero tiene una pega concreta para ti: **SHC002 sí silencia
+el transcrito de turboGFP**, y el vector de shRNA de SBI expresa GFP. Si esa GFP es
+copGFP o turboGFP —las dos son de copépodo y emparentadas entre sí— SHC002 te
+silenciaría el reportero del propio vector. **Compruébalo antes de usarlo ahí.**
+
+**Moraleja del episodio SHC016:** ningún control no dirigido está garantizado. Por
+eso el §5 pide además un control de vector vacío.
 
 ### Los cuatro oligos a pedir
 
@@ -69,8 +99,8 @@ que conserva su composición de bases y su GC (47.6 % frente a
 |---|---|---|
 | **sh13-BamEco-TOP** | `GATCAATGACTGCCTGGCTTCCTTTCTCGAGAAAGGAAGCCAGGCAGTCATTTTTTTG` | 58 |
 | **sh13-BamEco-BOT** | `AATTCAAAAAAATGACTGCCTGGCTTCCTTTCTCGAGAAAGGAAGCCAGGCAGTCATT` | 58 |
-| **shSCR-BamEco-TOP** | `GATCAACGTTGCCGTTGTTTCCACTCTCGAGAGTGGAAACAACGGCAACGTTTTTTTG` | 58 |
-| **shSCR-BamEco-BOT** | `AATTCAAAAAAACGTTGCCGTTGTTTCCACTCTCGAGAGTGGAAACAACGGCAACGTT` | 58 |
+| **shSCR1864-BamEco-TOP** | `GATCCCTAAGGTTAAGTCGCCCTCGCTCGAGCGAGGGCGACTTAACCTTAGGTTTTTG` | 58 |
+| **shSCR1864-BamEco-BOT** | `AATTCAAAAACCTAAGGTTAAGTCGCCCTCGCTCGAGCGAGGGCGACTTAACCTTAGG` | 58 |
 
 Ninguno contiene BamHI, EcoRI, SpeI, ApaI, BglII, EcoRV, XbaI, SalI, NcoI, HindIII,
 NheI, NotI, PstI, KpnI ni SacI (barrido hecho sobre las dos hebras). Ninguno tiene
@@ -93,8 +123,25 @@ El vector ya trae H1. Sólo hay que meter la horquilla.
 3'  …TTTTTG + AATTC…              →  TTTTTGAATTC  →  EcoRI REGENERADO
 ```
 
-**Cribado sin secuenciar:** el clon correcto **corta con EcoRI y no con BamHI**;
-el vector vacío o religado corta con los dos.
+**Cribado.** Cuidado, porque **no es el mismo para las dos horquillas**: depende de
+con qué base empiece el tallo sentido.
+
+| Plásmido | BamHI | EcoRI | PCR de colonia |
+|---|---|---|---|
+| vector vacío | corta | corta | — |
+| **sh13** (tallo empieza en `AA`) | **NO corta** | corta | +49 pb |
+| **shSCR1864** (tallo empieza en `CC`) | corta | corta | +49 pb |
+
+```
+sh13       G + GATC + AA  =  GGATCAA   →  BamHI destruido
+shSCR1864  G + GATC + CC  =  GGATCCC   →  BamHI CONSERVADO
+```
+
+No es un fallo: la horquilla se transcribe igual y EcoRI se regenera en los dos
+casos. Pero **BamHI sólo distingue sh13 del vector vacío, no shSCR1864**.
+
+**Lo que vale para los dos: PCR de colonia** con cebadores del vector. El clon
+correcto da un producto **49 pb mayor** que el vacío.
 
 **Lo que arrastra:** CMV-GFP. Sirve para el piloto —de hecho la GFP te da la
 eficiencia de transfección gratis— pero no para el constructo terapéutico.
@@ -175,7 +222,23 @@ competir con el del casete. **Por eso recomiendo SpeI + ApaI.**
 
 ---
 
-## 5. Lo que queda por verificar (no me lo invento)
+## 5. Los controles que hacen falta, no sólo el desordenado
+
+El trabajo de Bereta lo dice explícitamente y conviene tenerlo en el diseño desde
+el principio: un control no dirigido **no sustituye** al de vector vacío.
+
+| Control | Qué aísla |
+|---|---|
+| **Vector vacío** (sin horquilla) | El efecto de la transfección y del vector en sí |
+| **shSCR1864** | El efecto de *expresar una horquilla cualquiera*: carga de RISC, competencia con el miRNA endógeno, respuesta a interferón |
+| **Reportero WT frente a mutante, con la MISMA sh13** | **La especificidad de alelo.** Éste es el control que de verdad sostiene tu conclusión, y ya lo tienes montado en las construcciones psiCHECK |
+
+El tercero es el importante: la especificidad no la demuestra el scramble, la
+demuestra que sh13 baje el reportero mutante y no el silvestre.
+
+---
+
+## 6. Lo que queda por verificar (no me lo invento)
 
 1. **Que BamHI, EcoRI, SpeI y ApaI sean únicos en todo `pMC.BESPX-MCS1`**, no sólo
    en su MCS. Necesita el GenBank completo.
