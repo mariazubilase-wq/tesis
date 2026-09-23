@@ -1456,4 +1456,482 @@ número de paneles.
 
 ---
 
+---
+
+## 14. Plan paso a paso
+
+> **Corrección de partida.** En §13.2 escribí que tienes "ratones knock-in con las mismas
+> mutaciones que las líneas celulares". Es cierto **para R156C y para 189del**, y **falso
+> para el KO**: tu *Krt10* KO de ratón es un alelo publicado distinto del indel CRISPR de
+> tu KerCT. Eso cambia el diseño de la Figura 4 y obliga a reordenar el plan. Esta sección
+> lo rehace.
+
+### 14.1 Por qué tu objeción es más grave de lo que parece
+
+No es un problema de pulcritud. Es que **puede invertir la conclusión**.
+
+El *Krt10*⁻/⁻ clásico **no es un nulo**: hetero y homocigotos expresan un **K10 truncado
+(K10T)** que **sigue formando complejos con K1**
+([Reichelt 1997](https://doi.org/10.1242/jcs.110.18.2175)). Si tu ratón es esa línea:
+
+| | K1 tiene pareja de tipo I | Situación biológica |
+|---|---|---|
+| **Ratón K10T** | **Sí** (truncada, pero se empareja) | K1 conserva su compañero canónico mutilado |
+| **KerCT KO (si es nulo)** | **No** | K1 tiene que reclutar K14/K15 |
+
+Son **dos experimentos distintos**. Y entonces la diferencia "ratón no se rompe / humano
+sí se rompe" **no sería de especie: sería de alelo**. El titular de §13.2 se cae.
+
+**Pero no te quedas sin paper. Te quedas con otro, y posiblemente mejor.** Ver §14.5.
+
+Conclusión operativa: **no puedes planificar el paper hasta saber qué alelo tienes en cada
+sistema.** Eso se averigua en 2–3 semanas y es la primera tarea.
+
+---
+
+## FASE 0 — Auditoría de alelos (semanas 1–3). Bloquea todo lo demás
+
+Es el experimento que sostiene la carga. Si sale en revisión y no lo has hecho, cae el
+trabajo entero.
+
+### Paso 0.1 · Secuenciar el alelo editado de la KerCT
+
+⚠️ **Aviso que casi todo el mundo se salta:** las líneas inmortalizadas suelen ser
+**aneuploides**. KerCT puede tener **más de dos alelos** de *KRT10*. Un Sanger sobre el
+producto de PCR te da una mezcla ilegible o, peor, una lectura falsamente limpia.
+
+1. PCR sobre el sitio diana, con cebadores **≥ 200 pb a cada lado** (los indeles grandes
+   se escapan si amplificas corto).
+2. **Amplicón por NGS** (o clonaje TOPO y ≥ 20 colonias secuenciadas). Necesitas
+   **todos** los alelos y su proporción, no "el" alelo.
+3. Comprueba también **deleciones grandes** y **integración del donante** si hubo:
+   PCR de largo alcance flanqueando toda la región.
+
+**Salida:** la lista completa de alelos, con su indel exacto y su frecuencia.
+
+### Paso 0.2 · Predecir el producto y si hay NMD
+
+Para cada alelo, traduce y localiza el codón de parada prematuro (PTC).
+
+**Regla de los 50–55 nt:** un PTC dispara degradación por NMD si está **más de ~50–55
+nucleótidos aguas arriba de la última unión exón-exón**. Si cae en el **último exón** o
+muy cerca de esa unión, **escapa a NMD** → habrá mRNA y probablemente **proteína
+truncada**.
+
+*KRT10* tiene 8 exones. Un indel en exón 1 casi seguro dispara NMD; uno en exón 6–8,
+probablemente no. **Mira dónde cortó tu guía.**
+
+### Paso 0.3 · Comprobar NMD experimentalmente
+
+qPCR de *KRT10* **± inhibición de NMD** (cicloheximida a corto plazo, o un inhibidor de
+SMG1, o *knockdown* de UPF1).
+
+- mRNA **sube** al inhibir NMD → hay NMD, el alelo probablemente es nulo funcional.
+- mRNA **no cambia y está presente** → escapa a NMD → **busca la proteína truncada**.
+
+### Paso 0.4 · Buscar la proteína truncada con el anticuerpo correcto
+
+⚠️ **El error que invalida el resultado:** casi todos los anti-K10 comerciales están
+levantados contra regiones **centrales o C-terminales**. El inmunógeno de **DE-K10** es una
+preparación citoesquelética; el de muchos policlonales, un fragmento C-terminal.
+**Si tu truncado pierde el epítopo, ves "no hay proteína" y concluyes nulo cuando no lo
+es.**
+
+**Qué hacer:**
+
+1. Localiza el **epítopo** de cada anticuerpo que uses (pídelo al fabricante si no está en
+   la ficha; es un dato que dan).
+2. Usa **al menos uno cuyo epítopo esté aguas arriba del PTC**.
+3. Carga la **fracción insoluble**, no sólo el lisado total: un truncado agregante se va
+   al sedimento y desaparece del gel si sólo corres el sobrenadante.
+4. Sobreexpón el blot. Un truncado poco abundante pero dominante negativo es
+   biológicamente relevante aunque sea tenue.
+
+### Paso 0.5 · Si sigue ambiguo: espectrometría de masas dirigida
+
+**PRM/SRM** sobre péptidos **N-terminales al PTC**. Es la respuesta definitiva y no
+depende de ningún anticuerpo. Un servicio de proteómica lo hace en semanas. **Si el
+presupuesto llega, hazlo igualmente: es la frase "no detectable protein by targeted mass
+spectrometry" la que cierra la discusión con un revisor.**
+
+### Paso 0.6 · La misma auditoría, en el ratón
+
+1. **Identifica la línea exactamente**: nombre de cepa, **ID de MGI**, y la **publicación
+   original**. "El KO de K10" no es una identificación.
+2. Lee el diseño de la construcción: ¿se eliminó el gen entero, o se interrumpió dejando
+   pauta de lectura que produce péptido?
+3. **Si es la línea de Magin/Reichelt, expresa K10T y NO es un nulo.** Confírmalo tú
+   mismo: WB de epidermis con anticuerpo de epítopo N-terminal, fracción insoluble
+   incluida.
+4. Si es otra línea, haz la misma comprobación de todos modos.
+
+### Paso 0.7 · Fijar la nomenclatura y la homología
+
+Ya está en tus pendientes; hazlo aquí porque lo necesitas para todo lo demás.
+
+- HGVS exacto de `189del` y transcrito de referencia.
+- Alineamientos `P13645`/`P02535` (K1 humano/ratón) y `P04264`/`P04104` (K10).
+- **Número de residuo equivalente en ratón**: las cabezas tienen longitudes distintas, así
+  que **puede no ser 156**. Anótalo antes de escribir ningún método.
+- Mapa comparativo de **cisteínas** (lo necesitas en la Fase 3).
+
+> ### 🚦 PUNTO DE DECISIÓN 1
+>
+> | Mundo | KerCT KO | Ratón KO | Qué significa |
+> |---|---|---|---|
+> | **A** | nulo real | K10T truncado | **La diferencia es de alelo, no de especie.** Reencuadre → §14.5. **Es el mundo más probable y el más interesante** |
+> | **B** | nulo real | nulo real | La comparación de especie se sostiene. Sigue §13.2 |
+> | **C** | truncado | cualquiera | **Tu "KO" no es un KO.** Hay que rehacer la línea y reinterpretar la dispasa |
+>
+> **No escribas la introducción del paper hasta tener esta tabla rellena.**
+
+---
+
+## FASE 1 — Sanear el sistema (semanas 1–8, en paralelo con la Fase 0)
+
+### Paso 1.1 · Diferenciación: ejecuta tu propio piloto, y asume el 3D
+
+Tu §5.4 está bien diseñado. Ejecútalo tal cual: brazos A/B/C/D × 6 tiempos, criterios de
+aceptación a priori, control ortogonal en metilcelulosa.
+
+**Pero planifica ya como si fuera a salir mal**, porque el 2D sumergido es intrínsecamente
+malo induciendo K1/K10. **Monta el 3D como sistema primario en paralelo desde la semana 1**,
+no como plan B en el mes 6. Si el 2D funciona, tendrás dos sistemas y un paper más fuerte.
+Si no funciona, no habrás perdido cinco meses.
+
+### Paso 1.2 · Matar el artefacto clonal: haz un *pool* policlonal
+
+En vez de picar 3 clones y esperar (lento, y cada clon trae su propia historia), **genera
+un pool policlonal de KRT10-KO**: transduce/nucleofecta la población entera, selecciona sin
+clonar, y verifica la eficiencia de edición por NGS de amplicón (paso 0.1).
+
+**Ventajas:** promedia los efectos clonales, es más rápido, y a un revisor le gusta más que
+tres clones. **Desventaja:** edición incompleta → hay que cuantificarla y declararla.
+
+**Lo ideal es tener los dos**: el pool como figura principal y 2–3 clones como confirmación.
+
+### Paso 1.3 · Encargar el panel de anticuerpos
+
+Pídelo **esta semana**; los plazos de entrega son la causa más tonta de retraso.
+
+| Diana | Referencia | Para qué |
+|---|---|---|
+| **K14** | **GP-CK14** (cobaya, Progen) | co-IF y WB multiplexado |
+| **K14** | **LL002** (ratón) | **PLA** (sondas Duolink son anti-conejo/anti-ratón) |
+| K15 | GP-K15 (cobaya, Progen) | co-IF |
+| K5 | GP-K5 (cobaya, Progen) | co-IF |
+| K10 | **DE-K10** (ratón) | pares con K1-conejo |
+| K10 | uno con **epítopo N-terminal** | **paso 0.4** — pregúntale el epítopo al fabricante |
+| DSP | DP2.15 (ratón) + policlonal cobaya Progen | Figura 2 |
+| Dsg1 | Dsg1-P124 (ratón, Progen) | validado en preparaciones citoesqueléticas |
+| Placoglobina | GP57 (cobaya, Progen) | Figura 2 |
+| p-S2849-DSP | encargar péptido / pedir al grupo de Green | Figura 5 |
+
+⚠️ K1 es tu especie **ancla** (conejo, el que ya tienes). **No compres GP-K1** si vas a
+usar GP-CK14: mismo animal, no se pueden co-marcar.
+
+### Paso 1.4 · Cerrar los confusores de las líneas de sobreexpresión
+
+- **ddPCR de dosis de transgén** en las cuatro líneas OE.
+- **Promotor**: identifícalo. Si es CMV, se silencia al diferenciar y explica la caída de
+  K10 que observáis. Decisión que también afecta a los minicírculos de la Parte 1.
+- **¿Conservan los alelos endógenos WT?** Secuenciación o ddPCR alelo-específica.
+- **Estrategia**: **lidera el paper con el KO y el pool**, que no tienen problema de dosis.
+  Las líneas OE van de apoyo.
+
+---
+
+## FASE 2 — Rediseñar la comparación entre especies
+
+### Paso 2.1 · Acepta que tu par emparejado es R156C, no el KO
+
+| Eje | ¿Emparejado ratón/humano? |
+|---|---|
+| **KO** | ❌ alelos distintos (tu objeción) |
+| **R156C** | ✅ **misma mutación en los dos sistemas** |
+| **189del** | ✅ misma mutación, pero sólo en K1 |
+
+**Construye la figura de especie sobre R156C.** El KO pasa a ser brazo de referencia, no
+el eje.
+
+### Paso 2.2 · Pero reconoce la asimetría que queda, porque un revisor la verá
+
+| | Ratón R156C | KerCT R156C |
+|---|---|---|
+| Origen | **knock-in endógeno** | **sobreexpresión lentiviral** |
+| Dosis | fisiológica | elevada y variable |
+| Alelos WT | het = 1:1, como el paciente | endógenos intactos **+** transgén |
+
+Eso no es "ratón vs humano": es **"knock-in vs sobreexpresión"**. Es el confusor más
+importante que te queda.
+
+### Paso 2.3 · ⭐ Prioriza la línea de *prime editing*
+
+Tu tabla la da como "en desarrollo, no disponible". **Ponla en la vía crítica.** Es la
+única forma de tener R156C **endógeno y en dosis correcta** en humano, y con ella la
+comparación con el ratón knock-in se vuelve limpia. Es la diferencia entre un paper con un
+asterisco y uno sin él.
+
+Mientras llega: usa las líneas OE **declarando la limitación** y normalizando por dosis.
+
+### Paso 2.4 · El puente real: queratinocitos primarios de ratón
+
+Es lo que iguala los dos sistemas de verdad, porque son **endógenos en los dos lados**.
+
+1. Aísla queratinocitos primarios de neonato de tus tres genotipos (R156C, 189del,
+   *Krt10* KO) y de camada WT.
+2. Diferéncialos con calcio — **los primarios de ratón sí responden**, a diferencia de tu
+   línea inmortalizada. Esto te quita de golpe el cuello de botella de la Fase 1 para el
+   brazo murino.
+3. Monta **3D/organotípico de ratón** para igualar tu 3D humano.
+4. Aplica **exactamente el mismo panel de ensayos**: dispasa en curva, solubilidad Tritón,
+   co-IF, anclaje de DSP.
+
+**Esto es lo que convierte "dos papers distintos" en "una comparación".**
+
+### Paso 2.5 · Lo que NO harías: generar un ratón con el indel exacto
+
+Caro, lento, y **conceptualmente imposible de todas formas**: las secuencias divergen
+(tu propio §11 apunta que el residuo equivalente puede no ser el 156). **La comparación
+correcta no es "mismo indel", es "mismo estado funcional verificado"** — y eso lo da la
+Fase 0. Decláralo en métodos y sigue.
+
+---
+
+## FASE 3 — Los experimentos, en orden de ejecución
+
+### Figura 1 · ¿Con quién se empareja K1 cuando no hay K10?
+
+**1.1 Co-IF** en KO diferenciado (3D y, si funciona, 2D): K1(conejo) + K14(GP-CK14) /
+K15 / K5. Confocal, un plano z, bordes verticales, ajustes idénticos, **análisis ciego**.
+
+**1.2 PLA** con K1(conejo) + K14(**LL002**, ratón). Controles: primario único; K1+K10 en
+la parental como positivo; **y el control que decide**: un par **tipo I + tipo I**
+(K10+K14) o **tipo II + tipo II** (K1+K5) — misma estructura, **imposible que
+heterodimericen**. Si ése da señal comparable, el PLA lee **haz de filamentos**, no
+dímero.
+
+> **Formula la conclusión así**: *"K1 y K14 residen en la misma estructura filamentosa"*.
+> Es inatacable. *"K1 y K14 heterodimerizan"* no lo sostiene un PLA (§12.4).
+
+**1.3 NanoBiT en competición** (dato de tu compañera, §12.8c): jerarquía cuantitativa de
+preferencia de K1 por K10 / K14 / K15 / K5. **Confirmar los positivos en fondo
+queratinocito.**
+
+**1.4 Fraccionamiento Tritón**: ¿está K14 en la fracción filamentosa del KO?
+
+**1.5 Doble inmunogold** si hay acceso a TEM. Es el estándar con el que te van a comparar
+(Reichelt 2001).
+
+> 🚦 **CONTROL QUE DECIDE EL PAPER:** haz **todo esto también en la parental diferenciada**.
+> Si la parental da el mismo K1–K14, no es compensación: es el estado por defecto del
+> queratinocito humano. Sigue siendo publicable, pero **es otro paper** y hay que
+> reescribir la pregunta. Tú ya lo tenías identificado; no lo dejes para el final.
+
+### Figura 2 · ¿Esa red se ancla al desmosoma?
+
+Predicción (§12.2): **sí**, porque DSP une **coil 1** con especificidad amplia y prefiere
+**filamento ensamblado** (Favre 2018).
+
+- Co-IF DSP + K1: **retracción**, **perfil de línea perpendicular**, **fracción de puntos
+  de DSP con filamento asociado**, **tamaño y nº de puntos por µm de borde** (§4.2).
+  **Nunca coeficientes de colocalización.**
+- **TEM**: nº de desmosomas, longitud, densidad de placa, **inserción de filamentos**.
+- **Hiperadhesión**: dispasa **+ EGTA**, ± **Gö6976** (§12.5). Añade un brazo a un
+  experimento que ya tienes.
+- Fijación: metanol frío 3 min; validar cada epítopo por separado **antes** (§4.4).
+
+### Figura 3 · El pivote: se ancla pero no aguanta
+
+- **Dispasa en curva** (nº de inversiones o tiempo de agitación), no un punto.
+- **Modo de rotura**: fotografía los bordes de los fragmentos. Separación intercelular
+  limpia = fallo de adhesión. Células rotas = **citólisis** = fallo del filamento, que es
+  la lesión humana de la IE. **Cuantifícalo en ciego.**
+- Solubilidad Tritón cuantificada.
+- 3D: barrera funcional (Lucifer yellow o biotina *outside-in*), espesor por capa,
+  IVL/LOR/FLG/TGM1.
+
+### Figura 4 · Ratón vs humano (reconstruida sobre R156C)
+
+Mismos ensayos de las Figuras 1–3, en primarios de ratón y en 3D de ratón. Más:
+
+- Histología y TEM de piel **neonatal y adulta** (el trabajo de 2002 sólo miró adulto).
+- **Desafío mecánico**: prueba de fricción/frotado en neonato. Es lo que nadie hizo
+  (§12.8b).
+- Brazos: WT, R156C het, R156C homo, *Krt10* KO.
+
+### Figura 5 · ⭐ Por qué falla: las quimeras de cola
+
+**Ésta es la figura que yo pondría como el experimento estrella**, y la explico aparte en
+§14.4.
+
+### Figura 6 · Intervención
+
+- **Un** eje (EGFR o MEK), dosis-respuesta, toxicidad controlada.
+- **El contraste discriminante**: fármaco sobre el **KO** (sin agregados) vs el **mutante**
+  (con agregados).
+- Lecturas: repetir las medidas de las Figuras 2 y 3 bajo fármaco. Si el rescate funciona,
+  **mide si devuelve los desmosomas al estado hiperadhesivo** — ése es el mecanismo.
+- ⚠️ Los inhibidores de MEK inducen respuesta de interferón tipo I en queratinocitos:
+  contrólalo.
+
+---
+
+## 14.4 ⭐ El experimento que yo pondría en el centro: quimeras de cola
+
+Me preguntas qué me parece interesante. **Esto.**
+
+### El razonamiento
+
+Si las Figuras 2 y 3 salen como predigo —la red K1/K14 **se ancla** pero **no aguanta**—
+la pregunta inmediata es *¿qué le falta a K14 que K10 sí tiene?*. Y hay un candidato
+concreto y acotado:
+
+- K10 tiene una **cola V2 larga, rica en bucles de glicina**. K14 tiene otra cosa.
+- La cola V2 está implicada en el **empaquetamiento lateral** de los filamentos.
+- Precedente humano directo: el frameshift de la V2 de **K1** causa ictiosis hystrix
+  Curth-Macklin con **fallo de empaquetamiento de filamentos** y fallo de translocación de
+  loricrina a las placas desmosómicas
+  ([Sprecher 2001](https://doi.org/10.1046/j.1523-1747.2001.01292.x)).
+- Tú ya citas el trabajo de bucles de glicina de la cola de K10 y fragilidad cutánea.
+
+**Hipótesis:** *la incompetencia mecánica de la red no canónica se debe a que K14 no aporta
+la función de empaquetamiento que aporta la cola V2 de K10.*
+
+### El experimento
+
+Transduce en tu **KRT10-KO** tres construcciones y mide **dispasa + solubilidad + TEM de
+empaquetamiento**:
+
+| Construcción | Predicción si la hipótesis es correcta |
+|---|---|
+| **K14-V2(K10)** — K14 con la cola de K10 | **Rescata** la mecánica |
+| **K10-V2(K14)** — K10 con la cola de K14 | **Pierde** la mecánica (a pesar de ser K10) |
+| K14-V2(control) — cola irrelevante de la misma longitud | No rescata (control de tamaño) |
+| K14 silvestre / K10 silvestre | Los dos extremos de referencia |
+
+### Por qué es tan buena figura
+
+1. **Es una ganancia de función.** Pasas de "esta red es peor" a "**le falta este
+   elemento, y si se lo pongo, funciona**". Los revisores premian un rescate por quimera
+   como ninguna otra cosa.
+2. **Convierte un hecho de enfermedad en un principio.** La afirmación deja de ser *"la
+   IE humana es así"* y pasa a ser *"**la compensación entre queratinas está limitada por
+   el dominio de cola, no por la capacidad de emparejamiento**"* — que aplica a cualquier
+   queratinopatía donde se invoque compensación. **Ése es el salto que te pone a hablar
+   con una revista general.**
+3. **Es barato**: síntesis génica de dos construcciones + transducción + los ensayos que ya
+   tendrás montados.
+4. **Cierra el círculo con la Parte 1**: si el elemento crítico es la cola, el minicírculo
+   de reemplazo tiene que llevarla obligatoriamente — y eso valida a posteriori tu decisión
+   de §3.4 de clonar sin etiquetas y sin comprometer la cola C-terminal.
+
+### Controles que hacen falta
+
+- **Incorporación a filamento** de cada quimera por IF **antes** de medir mecánica. Una
+  quimera que no filamenta no dice nada.
+- **Dosis igualada** entre construcciones (ddPCR + WB), porque si no estás midiendo
+  expresión.
+- Hacerlo **también en la parental** para comprobar que no es un efecto de sobreexpresión
+  genérico.
+
+### Hipótesis alternativas, por si la cola no es la respuesta
+
+Si las quimeras no rescatan, hay dos candidatos más, y los dos son baratos:
+
+- **Cantidad**: Reichelt 2001 describe *"una cantidad **menor** de filamentos novedosos"*.
+  Menos filamento = menos resistencia, sin que el filamento sea peor. Se mide cuantificando
+  filamento por unidad de célula (WB de fracción insoluble + TEM).
+- **Química de disulfuros**: meter K14 en una red suprabasal cambia el mapa de cisteínas
+  (Feng & Coulombe). **Un WB NO REDUCTOR de la fracción insoluble** responde a esto **y** a
+  tu pregunta pendiente sobre la cisteína de R156C **en el mismo gel**. Es el experimento
+  con mejor relación información/coste de toda la lista.
+
+---
+
+## 14.5 Qué paper sale según el mundo del Punto de Decisión 1
+
+### Mundo B (ambos nulos reales) — el que asumía §13.2
+
+> **«La sustitución de queratinas rescata al ratón pero no al humano.»**
+
+Figura 4 tal cual. Sigue §13.
+
+### Mundo A (ratón = K10T truncado; humano = nulo) — el más probable
+
+**No pierdes el paper: cambias de pregunta, y la nueva es mejor y más traducible.**
+
+> **«Basta con un K10 truncado que conserve la unión a K1: lo que la red no tolera es la
+> ausencia de compañero, no la pérdida de la proteína completa.»**
+
+Por qué es mejor:
+
+- **Es cuantitativa y terapéutica.** Responde *"¿cuánto K10 hace falta, y qué parte?"*, que
+  es **exactamente la pregunta que tu Parte 1 necesita responder** para justificar el
+  diseño del minicírculo. Une tus dos partes por el mecanismo, no por la temática.
+- **Es comprobable en tu propio sistema**: expresa en tu KO una serie de K10 truncadas
+  (incluida la K10T equivalente del ratón) y mira cuál rescata la dispasa. Serie de
+  deleciones, lectura funcional, gradiente. Eso es una figura preciosa.
+- **Explica de paso la discrepancia de la literatura**, que sigue siendo un gancho de
+  introducción excelente — sólo que la explicación es "alelo" y no "especie", que es un
+  resultado más limpio y más defendible.
+- Y encaja con la quimera de cola (§14.4): las dos preguntas son *"¿qué parte de K10 es
+  imprescindible?"*.
+
+### Mundo C (tu KO es un truncado)
+
+Malo pero recuperable, **y mucho mejor descubrirlo ahora que en revisión**. Rehaces la
+línea (el pool policlonal del paso 1.2 lo acelera), reinterpretas la dispasa como fenotipo
+de un truncado —que **es información, no basura**: un truncado dominante negativo es un
+modelo de enfermedad— y te quedas con las dos líneas: la truncada como modelo y la nula
+como referencia.
+
+---
+
+## 14.6 Cronograma realista
+
+Más conservador que el tuyo, sobre todo en la diferenciación.
+
+| Meses | Qué |
+|---|---|
+| **0–1** | **Fase 0 completa** (auditoría de alelos, los dos sistemas). Pedir anticuerpos. Empezar pool policlonal. Arrancar 3D como sistema primario. Encargar quimeras de cola y KRT1-KO |
+| **1–3** | Piloto de diferenciación. Figura 1 en 3D. NanoBiT en competición. Primarios de ratón en marcha. **Punto de Decisión 1 → fijar el título** |
+| **3–5** | Figuras 2 y 3. TEM. Hiperadhesión. Llegan las quimeras |
+| **5–7** | **Figura 5 (quimeras)** y Figura 4 (ratón). Punto de decisión sobre el techo de revista |
+| **7–9** | Figura 6 (intervención). Redacción |
+| **9–10** | **Someter Paper 1** |
+| **10–12** | Paper 3 / capítulo. Apoyo al brazo in vivo de la Parte 1. Colchón para revisión |
+
+**Riesgo principal:** que la diferenciación 2D no se resuelva. **Mitigación:** el 3D va en
+paralelo desde el mes 0, no desde el 6.
+
+**Segundo riesgo:** acceso a TEM. Condiciona las Figuras 2, 4 y 5. **Resuélvelo en el mes
+0**: si no hay acceso, busca colaboración ya, porque sin TEM el techo baja un escalón.
+
+---
+
+## 14.7 Resumen ejecutivo: las diez cosas, por orden
+
+1. **Secuenciar el alelo de la KerCT** por NGS de amplicón, contando **todos** los alelos.
+2. **Identificar la línea de ratón** (MGI + publicación) y comprobar si expresa K10T.
+3. **WB con anticuerpo de epítopo N-terminal**, fracción insoluble incluida, en ambos
+   sistemas. → **Rellenar el Punto de Decisión 1 y fijar el título.**
+4. **Pedir los anticuerpos** (GP-CK14, LL002, DE-K10, uno N-terminal, DP2.15, Dsg1-P124,
+   GP57, p-S2849) **esta semana**.
+5. **Arrancar el 3D como sistema primario** y ejecutar el piloto de diferenciación 2D en
+   paralelo.
+6. **Pool policlonal de KRT10-KO**, para matar el artefacto clonal.
+7. **Figura 1 con el control tipo I + tipo I** en el PLA y **la parental diferenciada**
+   como control obligatorio.
+8. **Encargar las quimeras de cola** (K14-V2(K10) y K10-V2(K14)) ya, para tenerlas en el
+   mes 5.
+9. **Queratinocitos primarios de ratón + 3D de ratón**, mismo panel de ensayos.
+10. **Priorizar la línea de *prime editing***: es lo que quita el asterisco al paper.
+
+Y una que no es un experimento: **no escribas la introducción hasta el paso 3.** El título
+depende de en qué mundo estés, y escribir la introducción antes es la forma más eficaz de
+enamorarse de una hipótesis que los datos no van a sostener.
+
+---
+
 *Bibliografía recuperada de **PubMed**. Cada referencia enlaza a su DOI.*
