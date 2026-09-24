@@ -126,6 +126,7 @@ hr.sep{border:none;border-top:1px solid var(--rule);margin:30px 0}
 <a href="#escenarios">Escenarios</a>
 <a href="#crono">Cronograma</a>
 <a href="#compra">Compras</a>
+<a href="#k1basal">Queratina 1 basal</a>
 <a href="#glosario">Glosario</a>
 <a href="#biblio">Bibliografía</a>
 </div></nav>
@@ -692,6 +693,152 @@ y el recíproco: LgBiT-queratina1 + SmBiT-queratina14 + queratina 10 creciente
 <p class="box-label">Y una que no es un experimento</p>
 <p><strong>No escribas la introducción hasta el paso 3.</strong> El título depende de en qué escenario estés, y escribir la introducción antes es la forma más eficaz que existe de enamorarse de una hipótesis que los datos no van a sostener.</p>
 </div>
+</section>
+
+<section id="k1basal">
+<h2><span class="num">Sección 14</span>El proyecto de la queratina 1 etiquetada</h2>
+<p class="lead">Observación: la queratina 1 con etiqueta no se detecta por western en célula basal, pero sí se ve por inmunofluorescencia formando una red normal; y la queratina 10 con la misma etiqueta, en la misma membrana, sí se detecta. Al diferenciar, aparece. Esto es, con diferencia, lo más interesante de todo el material — y creo que es tu primer paper, antes que la Parte 2.</p>
+
+<div class="box warn">
+<p class="box-label">Pero primero: lo que podría tumbarlo entero</p>
+<p><strong>Tu tabla de hipótesis descartadas elimina el problema de extracción con un control que no lo prueba.</strong> Dice: «el protocolo de lisis falla en general → extrae la queratina 10 etiquetada sin problema».</p>
+<p>Ese control demuestra que el protocolo extrae <strong>una proteína soluble</strong>. No demuestra que extraiga <strong>una proteína polimerizada</strong>. Y son dos cosas muy distintas:</p>
+<ul>
+<li>La queratina 10 sobreexpresada <strong>sin exceso de pareja de tipo II</strong> está en buena parte <strong>sin polimerizar</strong>: es soluble y se extrae sola.</li>
+<li>La queratina 1 etiquetada, según tu propia inmunofluorescencia, <strong>está en filamentos</strong>. Los filamentos van al sedimento. Si el tampón de lisis es del tipo NP-40 o RIPA y clarificas por centrifugación, <strong>la estás tirando</strong>.</li>
+</ul>
+<p><strong>Y hay algo que no encaja en la hipótesis de degradación:</strong> una proteína que se está destruyendo no forma una red filamentosa normal en el 100 % de las células. «Inmunofluorescencia positiva con red normal + western negativo» es <em>la firma de manual</em> de un problema de extracción, no de degradación.</p>
+</div>
+
+<h3>14.1 · El experimento de una tarde que decide si hay paper</h3>
+<div class="step"><div class="step-n">1</div><div class="step-b">
+<h4>Raspado directo a tampón de carga caliente</h4>
+<p>Lava la placa, <strong>raspa directamente en tampón LDS 2× con agente reductor a 95 °C</strong>, sin tampón de lisis, <strong>sin centrifugación clarificadora</strong>. Pasa por aguja o sonica para romper la viscosidad del ADN. Carga todo.</p>
+<p>Si aparece la banda, <strong>la hipótesis de degradación se cae</strong> y lo que tienes es un artefacto de extracción. Si no aparece, la hipótesis sobrevive y has cerrado el agujero más grande.</p>
+</div></div>
+<div class="step"><div class="step-n">2</div><div class="step-b">
+<h4>Fraccionamiento soluble / insoluble, revelando las DOS fracciones</h4>
+<p>Tritón soluble frente a Tritón insoluble, en las dos líneas. Lo tienes en tu lista de diagnóstico como paso 3 de un plan de rescate; <strong>debería ser el paso 1 del proyecto.</strong> Y la pregunta no es sólo dónde está la queratina 1 etiquetada, sino <strong>dónde está la queratina 10 etiquetada</strong>: si ésta aparece sobre todo en la fracción soluble, confirmas que la comparación entre las dos nunca fue simétrica.</p>
+</div></div>
+
+<h3>14.2 · Otros dos agujeros, más pequeños pero que hay que tapar</h3>
+<div class="box">
+<p class="box-label">Observación 7: «al diferenciar sí aparece queratina 1»</p>
+<p>Tú misma anotas «pendiente confirmar con qué anticuerpo», y es la pregunta que decide el significado.</p>
+<ul>
+<li>Si se vio con el <strong>anticuerpo anti-queratina 1 de extremo carboxilo</strong> (BioLegend Poly19052 o el clon LHK1), estás viendo <strong>queratina 1 endógena inducida por la diferenciación</strong>, y no dice absolutamente nada sobre el transgén.</li>
+<li>Sólo cuenta si se vio con <strong>anti-etiqueta (4C5)</strong>.</li>
+</ul>
+<p><strong>Y hay un detalle que lo hace aún más importante:</strong> el transgén va por promotor del citomegalovirus, que <em>se silencia</em> al diferenciar. O sea que el transgén debería <strong>bajar</strong>. Si con anti-etiqueta la señal <strong>sube</strong> al diferenciar, eso es un resultado fuerte, porque ocurre <em>en contra</em> del comportamiento esperado del promotor. Si sólo sube con el anti-queratina 1, es endógena y no hay nada.</p>
+</div>
+<div class="box">
+<p class="box-label">Observación 3: «menos señal de queratina 1 en la sobreexpresada que en la silvestre»</p>
+<p>La lees como «el anticuerpo mide sólo endógena», y es correcto. Pero cuidado con el paso siguiente: <strong>en célula basal, la queratina 1 endógena es casi nula en las dos líneas</strong>, así que estás comparando dos señales muy pequeñas y la diferencia puede ser ruido o normalización.</p>
+<p>Si la diferencia es real y reproducible, <strong>es un resultado por derecho propio</strong>: significaría que la queratina 1 ectópica <em>suprime</em> a la endógena, es decir, autorregulación. Merece medirse bien, no quedarse como nota técnica.</p>
+</div>
+
+<h3>14.3 · El anticuerpo de dominio cabeza es la pieza que te falta</h3>
+<p>Tu razonamiento sobre <strong>HPA017917</strong> (Atlas Antibodies) es correcto y es la compra más importante de todo el proyecto: al reconocer el extremo amino, a 587 residuos de la etiqueta, detecta <strong>la endógena (~67 kDa) y la transgénica (~70 kDa) en el mismo carril, separadas por peso</strong>. Eso convierte un «no veo nada» en una medida cuantitativa de las dos formas a la vez.</p>
+<p>Dos comprobaciones antes de comprar, que ya anotaste: que la validación de western tenga <strong>imagen real</strong> (los anticuerpos del Human Protein Atlas están orientados sobre todo a inmunohistoquímica), y que el fragmento inmunizante empiece de verdad en el aminoácido 1.</p>
+
+<h3>14.4 · ⭐ La convergencia: un solo juego de construcciones, dos papers</h3>
+<p>Tu prioridad número 3 dice, y con razón, que repetir sin etiqueta «no es negociable», porque un revisor dirá que la asimetría es la etiqueta. Es exactamente el mismo argumento que sostiene el experimento de quimeras de cola de la <a href="#quimeras">sección 7</a>.</p>
+<div class="box key">
+<p class="box-label">Las mismas dos construcciones responden a las dos preguntas</p>
+<div class="tw"><table>
+<thead><tr><th>Construcción</th><th>Pregunta del proyecto de queratina 1</th><th>Pregunta de la Parte 2</th></tr></thead>
+<tbody>
+<tr><td><strong>Queratina 1 con la cola de la queratina 10</strong></td><td>¿La degradación sigue a la cola o al resto de la proteína?</td><td>—</td></tr>
+<tr><td><strong>Queratina 10 con la cola de la queratina 1</strong></td><td>Si <em>ésta</em> se degrada, la etiqueta no era el problema: es la cola de la queratina 1</td><td>—</td></tr>
+<tr><td><strong>Queratina 14 con la cola de la queratina 10</strong></td><td>—</td><td>¿Confiere competencia mecánica a la red no canónica?</td></tr>
+</tbody></table></div>
+<p>Es el mismo diseño experimental respondiendo a dos preguntas distintas. <strong>Encárgalas una sola vez.</strong></p>
+</div>
+<p><strong>Y hay precedente <em>in vivo</em> de que esto funciona:</strong> Chen y colaboradores hicieron un <em>knock-in</em> de una queratina quimérica formada por <strong>la varilla de la queratina 14 fusionada a la cabeza y la cola de la queratina 10</strong>, y se expresó en la capa basal de la epidermis del ratón. J Cell Sci 2006 — <a href="https://doi.org/10.1242/jcs.03298">10.1242/jcs.03298</a>.</p>
+<p>Eso te dice dos cosas: que la estrategia de quimeras es viable y que <strong>los dominios terminales de la queratina 10 no desestabilizan en la capa basal</strong> — lo cual, si la queratina 1 sí se desestabiliza ahí, refuerza que la asimetría es real y específica.</p>
+
+<h3>14.5 · La maquinaria que buscas existe y está publicada</h3>
+<p>Si la degradación se confirma, no tienes que postular un mecanismo desde cero. Hay tres piezas que puedes citar y probar:</p>
+<div class="tw"><table>
+<thead><tr><th>Pieza</th><th>Qué aporta</th><th>Referencia</th></tr></thead>
+<tbody>
+<tr><td><strong>KLHL24</strong></td><td>Una <strong>ubiquitina ligasa que marca queratinas para degradación por el proteasoma</strong>, con la queratina 14 entre sus sustratos. Sus mutaciones de ganancia de función causan epidermólisis ampollosa simple con miocardiopatía. Es la prueba de que existe una vía fisiológica y específica de degradación de queratinas</td><td>Logli <em>et al.</em>, Hum Mol Genet 2022 — <a href="https://doi.org/10.1093/hmg/ddab318">10.1093/hmg/ddab318</a></td></tr>
+<tr><td><strong>Hsp40</strong></td><td>Lo más cercano a tu hipótesis que hay publicado: silenciar Hsp40 en queratinocitos <strong>sube la cantidad de queratinas 5, 14 y 10 y baja su ubiquitinación, sin tocar la expresión génica</strong>. Y los autores lo vinculan explícitamente al <strong>recambio de parejas de queratina durante la diferenciación</strong></td><td>Yamazaki <em>et al.</em>, Int J Mol Med 2012 — <a href="https://doi.org/10.3892/ijmm.2011.826">10.3892/ijmm.2011.826</a></td></tr>
+<tr><td>Ubiquitinación de queratinas</td><td>Precedente de que las queratinas se ubiquitinan y se dirigen al proteasoma, y de que su acumulación puede llegar a saturarlo</td><td>McIntosh <em>et al.</em>, J Cell Sci 2010 — <a href="https://doi.org/10.1242/jcs.061978">10.1242/jcs.061978</a>; Yoneda <em>et al.</em>, J Biol Chem 2004 — <a href="https://doi.org/10.1074/jbc.M307242200">10.1074/jbc.M307242200</a></td></tr>
+</tbody></table></div>
+<p><strong>Posición ideal:</strong> la maquinaria está descrita, la pregunta concreta no está hecha. Eso es exactamente donde conviene estar.</p>
+
+<h3>14.6 · El hueco de literatura, confirmado</h3>
+<p>He comprobado tu afirmación y se sostiene. El ratón transgénico que expresa <strong>queratina 10 en la capa basal</strong> está publicado <strong>dos veces</strong> por el mismo grupo:</p>
+<ul>
+<li>Santos <em>et al.</em>, J Biol Chem 2002 — <a href="https://doi.org/10.1074/jbc.M201001200">10.1074/jbc.M201001200</a>: la expresión de queratina 10 en la capa basal inhibe la proliferación y previene la tumorigénesis.</li>
+<li>Santos <em>et al.</em>, J Biol Chem 2003 — <a href="https://doi.org/10.1074/jbc.M208170200">10.1074/jbc.M208170200</a>: activación deficiente de NF-κB y más factor de necrosis tumoral alfa en esos mismos ratones.</li>
+</ul>
+<p>Una búsqueda equivalente de «queratina 1 en capa basal, ratón transgénico» <strong>no devuelve nada</strong>. El transgénico recíproco no existe en la literatura.</p>
+<div class="box key">
+<p class="box-label">El párrafo de introducción se escribe solo</p>
+<p>«La queratina 10 puede expresarse ectópicamente en la capa basal de la epidermis del ratón, donde es estable y produce un fenotipo descrito en detalle. El experimento recíproco con queratina 1 nunca se ha publicado. Aquí mostramos por qué.»</p>
+<p>Ese vacío en la literatura no es casualidad, y tu dato sugiere la razón. <strong>Escribe al grupo del CIEMAT</strong> — ya tienes identificada la tesis de 1996 — y pregunta qué pasó exactamente. Si la respuesta es «había ARN mensajero pero no proteína», tienes un precedente no publicado que <em>confirma</em> tu observación en otro sistema y en otra especie. Eso vale mucho en una discusión.</p>
+</div>
+
+<h3>14.7 · ¿Un paper o dos?</h3>
+<p><strong>Dos, y éste va primero.</strong></p>
+<div class="tw"><table>
+<thead><tr><th>Motivo</th><th></th></tr></thead>
+<tbody>
+<tr><td>Está casi terminado</td><td>Tienes nivel genómico, ARN mensajero, la discrepancia western/inmunofluorescencia, el control de la queratina 10, el rescate por diferenciación y la cinética de dispasa. Falta cerrar controles, no generar datos nuevos</td></tr>
+<tr><td>No depende de tu vía crítica</td><td>El resultado central ocurre en <strong>estado basal</strong>. El cuello de botella de diferenciación, que bloquea la Parte 2, aquí casi no aplica</td></tr>
+<tr><td>Tiene un hueco de literatura limpio y verificado</td><td>Sección 14.6</td></tr>
+<tr><td>Es una restricción de diseño para terapia génica</td><td>Conecta con tu Parte 1 por el mecanismo. <em>El techo no lo pone el promotor, lo pone el estrato</em></td></tr>
+</tbody></table></div>
+
+<h3>14.8 · El marco que une los dos papers</h3>
+<p>Los dos trabajos dicen lo mismo desde extremos opuestos, y el libro de texto dice lo contrario:</p>
+<div class="tw"><table>
+<thead><tr><th>Situación</th><th>¿Hay pareja de tipo I disponible?</th><th>¿Qué le pasa a la queratina 1?</th></tr></thead>
+<tbody>
+<tr><td><strong>Célula basal</strong> con queratina 1 ectópica</td><td><strong>Sí</strong>, la queratina 14 es abundantísima</td><td><strong>No se acumula</strong></td></tr>
+<tr><td><strong>Célula diferenciada</strong> sin queratina 10</td><td><strong>Sí</strong>, la misma queratina 14</td><td><strong>Forma filamentos</strong></td></tr>
+</tbody></table></div>
+<div class="box key">
+<p class="box-label">El marco</p>
+<p><strong>La misma pareja potencial, resultado opuesto, según el estrato.</strong> La explicación de libro — «heterodímero obligado, necesita pareja» — no distingue estos dos casos. Lo que los distingue es el <strong>estado de diferenciación</strong>.</p>
+<p style="font-family:var(--serif);font-size:19px;margin-top:12px"><strong>«El estrato, no la pareja.»</strong></p>
+<p>Es el marco de los dos papers, y hace que tu tesis cuente una historia en vez de dos.</p>
+</div>
+<p><strong>Cautela honesta:</strong> los dos lados de esa tabla todavía no son comparables — uno es proteína etiquetada y sobreexpresada, el otro es endógena. Por eso la construcción sin etiqueta no es un control cosmético: <strong>es lo que hace que exista la comparación.</strong></p>
+
+<h3>14.9 · Plan de figuras del paper de la queratina 1</h3>
+<div class="tw"><table>
+<thead><tr><th>Fig.</th><th>Afirmación</th><th>Qué la sostiene</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Dos líneas isogénicas, mismo esqueleto, misma etiqueta: una se detecta y la otra no</td><td>Número de copias por PCR digital y ARN mensajero equiparados en las dos; inmunofluorescencia con red normal en las dos; western con banda sólo en la queratina 10</td></tr>
+<tr><td><strong>2</strong></td><td>No es extracción, ni agregación, ni mosaicismo</td><td><strong>Raspado directo en tampón de carga</strong>; fraccionamiento soluble/insoluble revelando las dos fracciones; 100 % de células positivas por inmunofluorescencia</td></tr>
+<tr><td><strong>3</strong></td><td>Es post-traduccional y pasa por el proteasoma</td><td>Caza con cicloheximida (vida media); MG132 frente a bafilomicina o cloroquina; detección de ubiquitinación</td></tr>
+<tr><td><strong>4</strong></td><td>La restricción se levanta al diferenciar</td><td>Curva temporal <strong>con anticuerpo anti-etiqueta</strong>, con panel de diferenciación en paralelo, y controlando el silenciamiento del promotor por PCR cuantitativa del transgén</td></tr>
+<tr><td><strong>5</strong></td><td><strong>No es la etiqueta</strong></td><td>Construcciones sin etiqueta detectadas con el anticuerpo de dominio cabeza; y las quimeras de cola recíprocas</td></tr>
+<tr><td><strong>6</strong></td><td>Qué determina la restricción</td><td>Tres brazos en curva de dosis (vacío / queratina 10 / queratina 14); quimeras de dominio para mapear el determinante; candidatos KLHL24 y Hsp40</td></tr>
+<tr><td><strong>7</strong></td><td>El alelo mutante escapa al control</td><td><strong>Silvestre frente a mutante en el mismo ensayo.</strong> Ya tienes los dos constructos</td></tr>
+</tbody></table></div>
+<div class="box">
+<p class="box-label">La figura 7 es la que más te conviene</p>
+<p>Tú la tienes apuntada como «cuesta casi nada», y estás infravalorándola. Si la queratina 1 <strong>mutante escapa al control que degrada a la silvestre</strong>, eso es un <strong>mecanismo de dominancia</strong>: el alelo mutante persiste donde el silvestre no. Es directamente relevante a por qué la enfermedad es dominante, y es directamente relevante a tu terapia — porque significa que la copia silvestre que entregues compite en desventaja.</p>
+<p>Súbela de prioridad. Puede ser la figura que decide el techo de revista.</p>
+</div>
+
+<h3>14.10 · Orden de ejecución</h3>
+<ol>
+<li><strong>Raspado directo en tampón de carga caliente.</strong> Una tarde. Decide si hay proyecto.</li>
+<li><strong>Fraccionamiento soluble/insoluble</strong> de las dos líneas, revelando las dos fracciones.</li>
+<li><strong>Confirmar con qué anticuerpo</strong> se vio la queratina 1 al diferenciar (observación 7).</li>
+<li><strong>Pedir HPA017917</strong> y validarlo con un carril de células HEK293T transfectadas como positivo.</li>
+<li><strong>Número de copias y ARN mensajero</strong> en las dos líneas, para descartar que la asimetría sea trivial.</li>
+<li><strong>Caza con cicloheximida</strong> y <strong>MG132 frente a bafilomicina</strong>. Es lo que convierte «no se detecta» en «se degrada, por esta vía».</li>
+<li><strong>Quitar la etiqueta</strong> por mutagénesis, y <strong>encargar las quimeras de cola</strong> (las mismas de la sección 7).</li>
+<li><strong>Silvestre frente a mutante.</strong></li>
+<li>Escribir al CIEMAT.</li>
+</ol>
+<p>Los pasos 1 a 3 cuestan una semana entre los tres y <strong>deciden si el proyecto existe</strong>. No avances a los demás sin cerrarlos.</p>
 </section>
 
 <section id="glosario">
