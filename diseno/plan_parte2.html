@@ -1,0 +1,805 @@
+<title>Anclaje Queratina–Desmosoma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#FAF9F7; --surface:#F1EDE7; --surface-2:#E9E4DC;
+  --ink:#1A1C20; --stone:#6B655F; --rule:#DED9D1;
+  --eosin:#A23B4E; --eosin-soft:#F3E2E4;
+  --slate:#2F5D62; --slate-soft:#DFEAEA;
+  --amber:#8D5F17; --amber-soft:#F5E9D4;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Source Sans 3",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --paper:#16171A; --surface:#1E2024; --surface-2:#262A2F;
+  --ink:#E7E4DF; --stone:#9D968D; --rule:#32363B;
+  --eosin:#E2899A; --eosin-soft:#3A2429;
+  --slate:#7FB3B6; --slate-soft:#1C2E30;
+  --amber:#D9A648; --amber-soft:#332715;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#16171A; --surface:#1E2024; --surface-2:#262A2F;
+  --ink:#E7E4DF; --stone:#9D968D; --rule:#32363B;
+  --eosin:#E2899A; --eosin-soft:#3A2429;
+  --slate:#7FB3B6; --slate-soft:#1C2E30;
+  --amber:#D9A648; --amber-soft:#332715;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.62;margin:0}
+.wrap{max-width:820px;margin:0 auto;padding-inline:20px;padding-block:0 96px}
+
+/* nav */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--paper) 92%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.topbar-in{max-width:820px;margin:0 auto;padding-inline:20px;padding-block:9px;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.topbar-in::-webkit-scrollbar{display:none}
+.topbar a{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--stone);
+  text-decoration:none;padding:5px 9px;border-radius:3px;white-space:nowrap;flex:none}
+.topbar a:hover,.topbar a:focus-visible{color:var(--eosin);background:var(--eosin-soft)}
+
+/* header */
+header.hero{padding-block:52px 34px;border-bottom:3px double var(--rule)}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--eosin);margin:0 0 14px}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(34px,7vw,52px);line-height:1.08;letter-spacing:-.018em;
+  margin:0 0 16px;text-wrap:balance}
+.standfirst{font-family:var(--serif);font-size:clamp(18px,3.3vw,21px);line-height:1.5;color:var(--stone);margin:0;max-width:60ch}
+.meta{font-family:var(--mono);font-size:12px;color:var(--stone);margin-top:22px;line-height:1.8}
+
+/* sections */
+section{padding-block:40px;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:none}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(25px,4.6vw,33px);line-height:1.16;letter-spacing:-.012em;
+  margin:0 0 6px;text-wrap:balance}
+h2 .num{font-family:var(--mono);font-size:.47em;color:var(--eosin);letter-spacing:.08em;display:block;
+  margin-bottom:9px;font-weight:500;text-transform:uppercase}
+h3{font-family:var(--serif);font-weight:600;font-size:clamp(19px,3.4vw,23px);line-height:1.25;margin:34px 0 8px;text-wrap:balance}
+h4{font-family:var(--sans);font-weight:700;font-size:15px;letter-spacing:.01em;margin:24px 0 6px}
+p{margin:0 0 15px;max-width:68ch}
+ul,ol{margin:0 0 15px;padding-left:22px;max-width:66ch}
+li{margin-bottom:7px}
+li::marker{color:var(--eosin)}
+a{color:var(--eosin);text-underline-offset:2px}
+strong{font-weight:700}
+em.gene{font-style:italic;font-family:var(--mono);font-size:.93em}
+code{font-family:var(--mono);font-size:.87em;background:var(--surface);padding:1.5px 5px;border-radius:3px}
+abbr{text-decoration:underline dotted var(--stone);text-underline-offset:3px;cursor:help}
+
+/* callouts */
+.box{border-left:3px solid var(--slate);background:var(--slate-soft);padding:17px 19px;margin:22px 0;border-radius:0 5px 5px 0}
+.box.warn{border-color:var(--amber);background:var(--amber-soft)}
+.box.key{border-color:var(--eosin);background:var(--eosin-soft)}
+.box p:last-child,.box ul:last-child,.box ol:last-child,.box table:last-child{margin-bottom:0}
+.box-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:500;
+  margin:0 0 8px;color:var(--slate)}
+.box.warn .box-label{color:var(--amber)}
+.box.key .box-label{color:var(--eosin)}
+
+/* tables */
+.tw{overflow-x:auto;margin:20px 0;border:1px solid var(--rule);border-radius:5px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:460px}
+th{background:var(--surface);text-align:left;font-weight:700;padding:10px 13px;border-bottom:2px solid var(--rule);
+  font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;font-family:var(--mono);font-weight:500;vertical-align:bottom}
+td{padding:10px 13px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.5}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:color-mix(in srgb,var(--surface) 45%,transparent)}
+
+/* steps */
+.step{display:grid;grid-template-columns:auto 1fr;gap:16px;margin:26px 0;align-items:start}
+.step-n{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--paper);background:var(--slate);
+  width:32px;height:32px;border-radius:50%;display:grid;place-items:center;flex:none;margin-top:2px}
+.step-b h4{margin-top:0}
+.step-b > :last-child{margin-bottom:0}
+
+/* glossary */
+dl.gloss{margin:0;display:grid;gap:0}
+dl.gloss > div{padding:13px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:200px 1fr;gap:18px}
+dl.gloss dt{font-family:var(--mono);font-size:13.5px;font-weight:500;color:var(--eosin);margin:0}
+dl.gloss dd{margin:0;font-size:15.5px;line-height:1.55}
+@media (max-width:620px){dl.gloss > div{grid-template-columns:1fr;gap:4px}}
+
+/* refs */
+ol.refs{font-size:14.5px;line-height:1.5;padding-left:20px}
+ol.refs li{margin-bottom:11px}
+
+.tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:2.5px 8px;border-radius:3px;background:var(--surface-2);color:var(--stone);vertical-align:1px}
+.tag.hot{background:var(--eosin);color:var(--paper)}
+.tag.new{background:var(--slate);color:var(--paper)}
+hr.sep{border:none;border-top:1px solid var(--rule);margin:30px 0}
+.lead{font-family:var(--serif);font-size:19px;line-height:1.5;color:var(--stone);margin-bottom:22px;max-width:62ch}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<nav class="topbar"><div class="topbar-in">
+<a href="#nuevo">Nuevo hoy</a>
+<a href="#biologia">Biología</a>
+<a href="#fase0">Fase 0</a>
+<a href="#fase1">Fase 1</a>
+<a href="#fase2">Fase 2</a>
+<a href="#fase3">Figuras</a>
+<a href="#quimeras">Quimeras</a>
+<a href="#escenarios">Escenarios</a>
+<a href="#crono">Cronograma</a>
+<a href="#compra">Compras</a>
+<a href="#glosario">Glosario</a>
+<a href="#biblio">Bibliografía</a>
+</div></nav>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="eyebrow">Tesis · Parte 2 · Plan de trabajo</p>
+  <h1>Queratinas y desmosomas en ictiosis epidermolítica</h1>
+  <p class="standfirst">Qué ancla los filamentos de queratina al desmosoma, por qué ese anclaje falla, y un plan paso a paso para convertirlo en un trabajo publicable.</p>
+  <p class="meta">Versión del 23 de septiembre de 2026 · Bibliografía recuperada de PubMed, con enlace a cada artículo<br>
+  Convención de escritura: los <strong>nombres de gen</strong> van en cursiva y monoespaciado (<em class="gene">KRT10</em>); los <strong>nombres de proteína</strong>, en redonda (queratina 10).<br>
+  Todas las abreviaturas se explican al usarse y están recogidas en el <a href="#glosario">glosario final</a>.</p>
+</header>
+
+<section id="nuevo">
+<h2><span class="num">Sección 1</span>Lo que se ha resuelto hoy</h2>
+<p class="lead">Tres búsquedas nuevas que cambian cosas concretas de tu planificación. Una resuelve un bloqueante que tenías abierto.</p>
+
+<h3>1.1 · Tu línea celular es hTERT + CDK4, no SV40 <span class="tag hot">bloqueante resuelto</span></h3>
+<p>En tu documento figuraba como decisión pendiente si la línea <strong>Ker-CT</strong> está inmortalizada con <strong>hTERT</strong> (la subunidad catalítica de la telomerasa humana, que alarga los telómeros y evita la senescencia replicativa) más <strong>CDK4</strong> (quinasa dependiente de ciclina 4, que empuja el ciclo celular), o con el <strong>antígeno T grande de SV40</strong> (una proteína viral que inactiva directamente las proteínas supresoras pRb y p53).</p>
+<p><strong>Es lo primero.</strong> La ficha del banco de células estadounidense ATCC describe Ker-CT (referencia CRL-4048) como inmortalizada con <em>telomerasa humana y CDK4 de ratón</em>, introducidas por vectores retrovirales (pBABE-puro hTERT y pSRalphaMSU con CDK4 murino).</p>
+<div class="box key">
+  <p class="box-label">Por qué importa</p>
+  <p><strong>Tu conclusión sobre el eje Rb se mantiene, pero por un camino distinto y con una consecuencia que te favorece.</strong> La sobreexpresión de CDK4 puentea al inhibidor p16INK4a y deja a pRb hiperfosforilada, así que el freno del ciclo que describe la literatura no puede medirse en esta línea. Correcto.</p>
+  <p><strong>Pero con CDK4 la proteína p53 NO queda directamente inactivada</strong>, a diferencia de lo que ocurriría con el antígeno T grande de SV40. Las lecturas que dependen de p53 siguen siendo parcialmente válidas. Con SV40 no lo serían. Corrige esto en tu documento.</p>
+</div>
+
+<h3>1.2 · Alguien ya validó tu línea exacta para tus ensayos exactos <span class="tag new">cita que necesitas</span></h3>
+<p>Beckert y colaboradores publicaron en 2019 una validación de hTert/KER-CT como sistema modelo <strong>específicamente para adhesión desmosómica</strong>. Los puntos que te sirven directamente:</p>
+<ul>
+  <li>La línea muestra <strong>expresión de cadherinas desmosómicas dependiente de calcio</strong>. Es decir, el calcio sí dispara el programa desmosómico en estas células.</li>
+  <li>Es <strong>apta para el ensayo de disociación con dispasa</strong> (el tuyo) y para la <strong>extracción secuencial con detergente</strong> (el fraccionamiento Tritón soluble / insoluble que te recomendé).</li>
+  <li>La comparan favorablemente con HaCaT, que arrastra aberraciones cromosómicas y p53 mutada, y con queratinocitos primarios, que son heterogéneos y de vida corta.</li>
+</ul>
+<div class="box">
+  <p class="box-label">Consecuencia para tu cuello de botella</p>
+  <p>Si el calcio sí induce cadherinas desmosómicas en esta línea, <strong>tu problema de diferenciación es de protocolo y de medio, no de línea celular</strong>. Eso refuerza el diagnóstico que ya tenías: el medio de mantenimiento es de bajo calcio y nunca se les ha dado la señal. Cítalo en métodos: te avala la elección de sistema frente a un revisor.</p>
+</div>
+
+<h3>1.3 · La cola de la queratina 10 acaba de demostrarse crítica para el ensamblaje <span class="tag new">2026</span></h3>
+<p>Mi y colaboradores publican en <em>British Journal of Dermatology</em> un caso con mutación compuesta en <em class="gene">KRT10</em> que <strong>inserta bucles de glicina adicionales en el dominio de cola</strong> de la queratina 10. Resultados:</p>
+<ul>
+  <li>Insertar 1 o 2 repeticiones es <strong>frecuente y benigno</strong> en población sana (16,5 % y 14,3 %).</li>
+  <li>Insertar 4 no se detecta en controles y <strong>es patogénico</strong>.</li>
+  <li>El exceso de bucles de glicina <strong>impide el ensamblaje correcto de los filamentos intermedios</strong>, demostrado en ensayos <em>in vitro</em>, en ratón y en modelos tridimensionales de piel humana.</li>
+  <li>Los autores lo proponen como <strong>paradigma para otras queratinas con colas ricas en glicina</strong>.</li>
+</ul>
+<div class="box key">
+  <p class="box-label">Por qué esto es oro para ti</p>
+  <p>Es la evidencia experimental más reciente y más directa de que <strong>el dominio de cola de la queratina 10 es un elemento mecánico y de ensamblaje, no un apéndice</strong>. Sostiene el experimento que te propongo como estrella (<a href="#quimeras">sección 7, quimeras de cola</a>) y lo hace además oportuno: el campo acaba de establecer que esto importa.</p>
+  <p><strong>Detalle de diseño que te ahorra un error:</strong> el efecto depende del <em>número</em> de bucles, no sólo de su presencia. Si construyes una quimera con la cola de la queratina 10, respeta el número de bucles de la versión silvestre de referencia.</p>
+</div>
+</section>
+
+<section id="biologia">
+<h2><span class="num">Sección 2</span>La biología del anclaje, corregida</h2>
+<p class="lead">Esta sección contiene una corrección importante respecto a lo que te dije al principio de nuestra conversación. La versión de aquí es la buena.</p>
+
+<h3>2.1 · Las piezas, con sus nombres completos</h3>
+<p>Un <strong>desmosoma</strong> es una unión intercelular que pega dos células y ancla en ellas el citoesqueleto de filamentos intermedios. Sus componentes, de fuera hacia dentro:</p>
+<div class="tw"><table>
+<thead><tr><th>Pieza</th><th>Nombre completo</th><th>Qué hace</th></tr></thead>
+<tbody>
+<tr><td><strong>Dsg1–4</strong></td><td>Desmogleínas 1 a 4</td><td>Cadherinas transmembrana. Pegan una célula a la otra por el espacio extracelular</td></tr>
+<tr><td><strong>Dsc1–3</strong></td><td>Desmocolinas 1 a 3</td><td>Las otras cadherinas transmembrana. Trabajan con las desmogleínas</td></tr>
+<tr><td><strong>JUP / PG</strong></td><td>Placoglobina (también llamada gamma-catenina)</td><td>Proteína de placa. Une las colas de las cadherinas y sostiene la estructura</td></tr>
+<tr><td><strong>PKP1–3</strong></td><td>Plakofilinas 1 a 3</td><td>Proteínas de placa de la familia armadillo. PKP1 es la de epidermis suprabasal</td></tr>
+<tr><td><strong>DSP</strong></td><td>Desmoplaquina</td><td><strong>El conector.</strong> Es la que agarra el filamento de queratina</td></tr>
+</tbody></table></div>
+
+<h3>2.2 · Qué extremo se une a qué <span class="tag hot">corrección</span></h3>
+<div class="box warn">
+  <p class="box-label">Corrección respecto a lo que te dije primero</p>
+  <p>Al principio te dije que la cola carboxilo-terminal de la desmoplaquina une el <strong>dominio cabeza</strong> (extremo amino-terminal) de las queratinas de tipo II, y que las de tipo I no unen desmoplaquina. <strong>Eso procede de trabajos de 1994–1998 y está superado.</strong> Tu propio documento de la Parte 2 tenía la referencia correcta y yo no.</p>
+</div>
+<p>La evidencia más directa y más reciente, de Favre y colaboradores (2018), obtenida por triple híbrido en levadura y por ensayos de unión con fluorescencia:</p>
+<ul>
+  <li>Lo necesario para la unión es el <strong>coil 1</strong> — la primera hélice enrollada del dominio central en varilla (<em>rod</em>) de la queratina.</li>
+  <li><strong>Los dominios cabeza y cola son prescindibles</strong> para esa unión.</li>
+  <li>La especificidad es <strong>amplia</strong>: funciona con el par queratina 5 / queratina 14, con el par queratina 1 / queratina 10, y también con desmina y con vimentina, que son filamentos intermedios de tipo III.</li>
+  <li>La afinidad por <strong>filamentos ya ensamblados</strong> está en el rango nanomolar, es decir, alta.</li>
+</ul>
+<div class="box key">
+  <p class="box-label">La consecuencia que vertebra todo tu proyecto</p>
+  <p><strong>Lo que la desmoplaquina discrimina no es la identidad del compañero: es el estado de ensamblaje.</strong></p>
+  <p>Eso separa limpiamente tus dos clases de línea celular. Un filamento <strong>no canónico pero bien ensamblado</strong> (queratina 1 con queratina 14, en tu línea sin queratina 10) debería anclarse bien. Un filamento <strong>canónico pero agregado</strong> (las líneas con mutación puntual) no.</p>
+</div>
+<p>Qué sí conserva preferencia por la cabeza de las queratinas de tipo II: la <strong>plakofilina 1</strong> (fuerte) y la <strong>placoglobina</strong> (débil), según los ensayos de superposición de Smith y Fuchs (1998); y el entrecruzamiento covalente por transglutaminasa de una lisina conservada del subdominio V1 de la cabeza (Candi, 1998). Ese sesgo de tipo II existe, pero pertenece a la plakofilina y a la placoglobina, no a la desmoplaquina.</p>
+
+<h3>2.3 · Qué hace la queratina 10, entonces</h3>
+<p>La queratina 10 es de <strong>tipo I</strong> (ácida). Los filamentos de queratina son <strong>heterodímeros obligados</strong>: hace falta una queratina de tipo I y una de tipo II para formar el dímero que luego polimeriza.</p>
+<ul>
+  <li><strong>Sí une desmoplaquina</strong>, por su coil 1, igual que cualquier otro filamento intermedio. Lo que te dije antes sobre que no lo hacía era incorrecto.</li>
+  <li><strong>Puede unir plakofilina 1</strong> de forma secundaria: en los ensayos de superposición, la plakofilina 1 se une con fuerza a las de tipo II pero muestra asociación apreciable con las de tipo I.</li>
+  <li><strong>Su papel dominante es ser la pareja obligada de la queratina 1.</strong> Sin queratina 10 funcional, la queratina 1 no forma filamento, y una queratina 1 que no filamenta no tiene nada que entregar a la placa del desmosoma.</li>
+</ul>
+<p>Por eso una mutación en <em class="gene">KRT10</em> produce la misma enfermedad que una en <em class="gene">KRT1</em>, aunque la queratina 10 nunca fuera el contacto principal: el anclaje que se pierde es indirecto y, aun así, completo.</p>
+
+<h3>2.4 · Por qué el desmosoma se debilita: tres mecanismos, no uno</h3>
+<div class="tw"><table>
+<thead><tr><th>Mecanismo</th><th>Qué ocurre</th><th>Evidencia</th></tr></thead>
+<tbody>
+<tr><td><strong>Mecánico</strong></td><td>Menos puntos de anclaje; los desmosomas suprabasales se hacen más pequeños y las proteínas desmosómicas se acumulan en el citoplasma</td><td>Ratones sin queratinas 1 y 10 (Wallace 2012); ratones sin ninguna queratina de tipo II (Bär 2014)</td></tr>
+<tr><td><strong>Señalización, vía 1</strong></td><td>La proteína Rack1 queda libre, se activa la proteína quinasa C alfa, que hiperfosforila la desmoplaquina en la serina 2849, y el desmosoma se endocita más rápido</td><td>Kröger 2013</td></tr>
+<tr><td><strong>Señalización, vía 2</strong></td><td>La quinasa p38 activada reduce la fuerza de unión de la desmogleína 3, medida molécula a molécula por microscopía de fuerza atómica</td><td>Vielmuth 2018</td></tr>
+</tbody></table></div>
+<p>El interruptor de afinidad entre desmoplaquina y filamento es un motivo repetido de <strong>glicina-serina-arginina</strong> en el extremo carboxilo de la desmoplaquina, justo por debajo del sitio de unión al filamento. Desfosforilado, agarra más fuerte. La fosfatasa que lo revierte es PP2A-B55α (Perl 2023). El mutante S2849G, que imita el estado desfosforilado permanente, da <strong>más adhesión y láminas epiteliales más rígidas</strong>.</p>
+
+<h3>2.5 · El experimento que fija el criterio de medida</h3>
+<p>En el ratón sin desmoplaquina restringida a epidermis (Vasioukhin 2001), <strong>el número de desmosomas era igual que en el silvestre, pero no tenían filamentos anclados</strong> — y con eso bastaba para que el estrés mecánico separase las células.</p>
+<div class="box key">
+  <p class="box-label">Regla que condiciona todas tus cuantificaciones</p>
+  <p><strong>Lo que hace fuerte a un desmosoma no es existir, es tener el filamento enganchado.</strong> Por eso el desenlace que debes medir es <em>fracción de puntos de desmoplaquina con filamento asociado</em>, y no <em>número de desmosomas</em>. Contar desmosomas puede darte un valor normal en un tejido que se está despegando.</p>
+</div>
+</section>
+
+<section id="fase0">
+<h2><span class="num">Sección 3 · Fase 0</span>Auditoría de alelos</h2>
+<p class="lead">Semanas 1 a 3. Bloquea todo lo demás. Es el experimento que sostiene la carga del trabajo: si sale en revisión y no lo has hecho, cae el paper entero.</p>
+
+<h3>3.1 · Por qué es lo primero</h3>
+<p>Tú misma señalaste que el ratón sin queratina 10 y tu línea celular sin queratina 10 <strong>no llevan la misma lesión</strong>. Eso no es un detalle de pulcritud: puede invertir la conclusión.</p>
+<p>El ratón <em class="gene">Krt10</em> nulo clásico <strong>no es un nulo verdadero</strong>. Tanto heterocigotos como homocigotos expresan un <strong>péptido de queratina 10 truncado</strong>, identificado directamente por microsecuenciación, y ese péptido truncado <strong>sigue formando complejos con la queratina 1</strong> (Reichelt 1997).</p>
+<div class="tw"><table>
+<thead><tr><th>Sistema</th><th>¿Tiene la queratina 1 pareja de tipo I?</th><th>Situación biológica</th></tr></thead>
+<tbody>
+<tr><td>Ratón con queratina 10 truncada</td><td><strong>Sí</strong>, truncada pero se empareja</td><td>La queratina 1 conserva su compañero canónico, mutilado</td></tr>
+<tr><td>Tu línea celular, si es nula de verdad</td><td><strong>No</strong></td><td>La queratina 1 tiene que reclutar queratina 14 o 15</td></tr>
+</tbody></table></div>
+<p>Son dos experimentos distintos. Si es así, la diferencia «el ratón no se rompe, el humano sí» <strong>no sería de especie: sería de alelo</strong>.</p>
+
+<h3>3.2 · Los pasos, uno a uno</h3>
+
+<div class="step"><div class="step-n">0.1</div><div class="step-b">
+<h4>Secuenciar el alelo editado de tu línea celular</h4>
+<p><strong>Aviso que casi todo el mundo se salta:</strong> las líneas inmortalizadas suelen ser <strong>aneuploides</strong>, es decir, tienen un número anómalo de cromosomas. Tu línea puede tener <strong>más de dos alelos</strong> de <em class="gene">KRT10</em>. Una secuenciación Sanger sobre el producto de amplificación te dará una mezcla ilegible o, peor, una lectura falsamente limpia que te engañe.</p>
+<ol>
+<li>Amplifica por PCR sobre el sitio diana, con cebadores a <strong>200 pares de bases o más a cada lado</strong>: las inserciones o deleciones grandes se escapan si amplificas corto.</li>
+<li>Secuencia el amplicón por <strong>secuenciación masiva</strong> (NGS, del inglés <em>next-generation sequencing</em>), o clona en un vector tipo TOPO y secuencia <strong>20 colonias o más</strong>. Necesitas <em>todos</em> los alelos y su proporción, no «el» alelo.</li>
+<li>Comprueba también deleciones grandes y, si usaste molde donante, su integración: PCR de largo alcance flanqueando toda la región.</li>
+</ol>
+<p><strong>Salida:</strong> la lista completa de alelos, cada uno con su lesión exacta y su frecuencia.</p>
+</div></div>
+
+<div class="step"><div class="step-n">0.2</div><div class="step-b">
+<h4>Predecir el producto y si se degrada el mensajero</h4>
+<p>Para cada alelo, traduce la secuencia y localiza el <strong>codón de parada prematuro</strong>.</p>
+<p>Hay un mecanismo celular llamado <strong>degradación del mensajero mediada por codón sin sentido</strong> (en inglés <em>nonsense-mediated decay</em>) que destruye los ARN mensajeros con paradas prematuras. La regla práctica: se dispara si la parada está <strong>más de unos 50 a 55 nucleótidos aguas arriba de la última unión entre exones</strong>. Si la parada cae en el <strong>último exón</strong>, o muy cerca de esa unión, <strong>escapa a la degradación</strong>: habrá mensajero y probablemente proteína truncada.</p>
+<p><em class="gene">KRT10</em> tiene ocho exones. Una lesión en el exón 1 casi con seguridad dispara la degradación; una en los exones 6 a 8, probablemente no. <strong>Mira dónde cortó tu guía.</strong></p>
+</div></div>
+
+<div class="step"><div class="step-n">0.3</div><div class="step-b">
+<h4>Comprobar la degradación experimentalmente</h4>
+<p>Cuantifica <em class="gene">KRT10</em> por PCR cuantitativa <strong>con y sin inhibir la degradación</strong>: cicloheximida a corto plazo, o un inhibidor de la quinasa SMG1, o silenciamiento de la proteína UPF1.</p>
+<ul>
+<li>El mensajero <strong>sube</strong> al inhibir → hay degradación → el alelo es probablemente nulo funcional.</li>
+<li>El mensajero <strong>no cambia y está presente</strong> → escapa → <strong>busca la proteína truncada</strong>.</li>
+</ul>
+</div></div>
+
+<div class="step"><div class="step-n">0.4</div><div class="step-b">
+<h4>Buscar la proteína truncada con el anticuerpo correcto</h4>
+<div class="box warn">
+<p class="box-label">El error que invalida el resultado</p>
+<p>Casi todos los anticuerpos anti-queratina 10 comerciales están levantados contra regiones <strong>centrales o del extremo carboxilo</strong>. <strong>Si tu proteína truncada ha perdido el epítopo, verás «no hay proteína» y concluirás que es nula cuando no lo es.</strong></p>
+</div>
+<ol>
+<li><strong>Localiza el epítopo</strong> de cada anticuerpo que uses. Si no viene en la ficha técnica, pídeselo al fabricante: es un dato que dan.</li>
+<li>Usa al menos uno cuyo epítopo esté <strong>aguas arriba de la lesión</strong>.</li>
+<li>Carga la <strong>fracción insoluble</strong>, no sólo el lisado total. Una proteína truncada que agrega se va al sedimento y desaparece del gel si sólo corres el sobrenadante.</li>
+<li>Sobreexpón la membrana. Un truncado poco abundante pero con efecto dominante negativo sigue siendo biológicamente relevante aunque salga tenue.</li>
+</ol>
+</div></div>
+
+<div class="step"><div class="step-n">0.5</div><div class="step-b">
+<h4>Si sigue siendo ambiguo: espectrometría de masas dirigida</h4>
+<p>Pide un análisis por <strong>monitorización de reacciones paralelas</strong> (PRM) o <strong>monitorización de reacciones seleccionadas</strong> (SRM) sobre péptidos situados <strong>antes</strong> de la parada prematura. Es la respuesta definitiva y no depende de ningún anticuerpo. Un servicio de proteómica lo hace en semanas.</p>
+<p>Si el presupuesto llega, hazlo igualmente. La frase «proteína no detectable por espectrometría de masas dirigida» en métodos cierra la discusión con un revisor de una forma que ningún Western blot consigue.</p>
+</div></div>
+
+<div class="step"><div class="step-n">0.6</div><div class="step-b">
+<h4>La misma auditoría, en el ratón</h4>
+<ol>
+<li><strong>Identifica la línea exactamente</strong>: nombre oficial de cepa, identificador en la base de datos MGI (<em>Mouse Genome Informatics</em>) y la publicación original. «El KO de queratina 10» no es una identificación.</li>
+<li>Lee el diseño de la construcción: ¿se eliminó el gen entero, o se interrumpió de forma que produce un péptido?</li>
+<li><strong>Si es la línea de Magin y Reichelt, expresa queratina 10 truncada y no es un nulo.</strong> Confírmalo tú: Western blot de epidermis con anticuerpo de epítopo amino-terminal, incluyendo la fracción insoluble.</li>
+<li>Si es otra línea, haz la misma comprobación de todos modos.</li>
+</ol>
+</div></div>
+
+<div class="step"><div class="step-n">0.7</div><div class="step-b">
+<h4>Cerrar nomenclatura y homología</h4>
+<ul>
+<li>Nomenclatura <strong>HGVS</strong> exacta (el estándar internacional de la <em>Human Genome Variation Society</em> para nombrar variantes) de la deleción <code>189del</code>, y el transcrito de referencia sobre el que se numera.</li>
+<li>Alineamientos entre las proteínas humana y murina: <code>P13645</code> frente a <code>P02535</code> para queratina 1, y <code>P04264</code> frente a <code>P04104</code> para queratina 10. Son identificadores de la base de datos UniProt.</li>
+<li><strong>Número de residuo equivalente en el ratón.</strong> Los dominios cabeza tienen longitudes distintas entre especies, así que <strong>puede no ser el 156</strong>. Anótalo antes de escribir ningún método.</li>
+<li>Mapa comparativo de <strong>cisteínas</strong>, que necesitarás en la sección de quimeras.</li>
+</ul>
+</div></div>
+
+<div class="box">
+<p class="box-label">Punto de decisión 1</p>
+<div class="tw"><table>
+<thead><tr><th>Escenario</th><th>Línea celular</th><th>Ratón</th><th>Qué significa</th></tr></thead>
+<tbody>
+<tr><td><strong>A</strong></td><td>nulo real</td><td>truncado</td><td><strong>La diferencia es de alelo, no de especie.</strong> Es el más probable y el más interesante</td></tr>
+<tr><td><strong>B</strong></td><td>nulo real</td><td>nulo real</td><td>La comparación entre especies se sostiene tal cual</td></tr>
+<tr><td><strong>C</strong></td><td>truncado</td><td>cualquiera</td><td><strong>Tu línea «sin queratina 10» no lo es.</strong> Hay que rehacerla y reinterpretar la dispasa</td></tr>
+</tbody></table></div>
+<p><strong>No escribas la introducción del paper hasta tener esta tabla rellena.</strong> El título depende de en qué escenario estés.</p>
+</div>
+</section>
+
+<section id="fase1">
+<h2><span class="num">Sección 4 · Fase 1</span>Sanear el sistema</h2>
+<p class="lead">Semanas 1 a 8, en paralelo con la Fase 0.</p>
+
+<h3>4.1 · Diferenciación: ejecuta tu piloto, pero asume el sistema tridimensional</h3>
+<p>El piloto que ya diseñaste está bien planteado: cuatro brazos de medio por seis tiempos, con criterios de aceptación fijados antes de mirar los datos y un control ortogonal en metilcelulosa (la pérdida de anclaje al sustrato dispara diferenciación terminal en 24 a 48 horas casi con independencia del medio).</p>
+<p><strong>Pero planifica ya como si fuera a salir mal.</strong> El cultivo bidimensional sumergido es intrínsecamente malo induciendo queratinas 1 y 10. <strong>Monta el sistema tridimensional como sistema primario desde la semana 1</strong>, no como plan B en el mes 6. Si el bidimensional funciona, tendrás dos sistemas y un trabajo más fuerte. Si no funciona, no habrás perdido cinco meses.</p>
+<p>El hallazgo de la sección 1.2 te ayuda: la línea sí responde al calcio para cadherinas desmosómicas, así que el problema está en el medio y el protocolo, que ya sabes cómo cambiar.</p>
+
+<h3>4.2 · Matar el artefacto clonal con una población policlonal</h3>
+<p>En vez de aislar tres clones y esperar (lento, y cada clon arrastra su propia historia), genera una <strong>población policlonal</strong> sin queratina 10: edita la población entera, selecciona sin aislar clones, y verifica la eficiencia de edición por secuenciación masiva del amplicón (paso 0.1).</p>
+<ul>
+<li><strong>Ventaja:</strong> promedia los efectos de cada clon, es más rápido, y a un revisor le convence más que tres clones.</li>
+<li><strong>Desventaja:</strong> la edición no será del 100 %, así que hay que cuantificarla y declararla.</li>
+<li><strong>Lo ideal:</strong> tener las dos cosas. La población policlonal como figura principal y dos o tres clones como confirmación.</li>
+</ul>
+
+<h3>4.3 · Cerrar los confusores de las líneas de sobreexpresión</h3>
+<ul>
+<li><strong>Dosis de transgén</strong> por PCR digital de gotas (<em>droplet digital PCR</em>) en las cuatro líneas.</li>
+<li><strong>Identificar el promotor.</strong> Si es el del citomegalovirus, se silencia al diferenciar, y eso explicaría la caída de queratina 10 que observáis. Es una decisión que también afecta a los minicírculos de tu Parte 1.</li>
+<li><strong>¿Conservan los alelos endógenos silvestres?</strong> Secuenciación o PCR digital alelo-específica.</li>
+<li><strong>Estrategia de escritura:</strong> lidera el paper con la línea sin queratina 10 y con la población policlonal, que <em>no tienen</em> problema de dosis. Las líneas de sobreexpresión van como apoyo, no como figura principal.</li>
+</ul>
+</section>
+
+<section id="fase2">
+<h2><span class="num">Sección 5 · Fase 2</span>Rediseñar la comparación entre especies</h2>
+
+<h3>5.1 · Tu par emparejado es R156C, no el nulo</h3>
+<div class="tw"><table>
+<thead><tr><th>Eje</th><th>¿Misma mutación en ratón y en célula?</th></tr></thead>
+<tbody>
+<tr><td>Ausencia de queratina 10</td><td><strong>No</strong> — alelos distintos. Es tu objeción, y es correcta</td></tr>
+<tr><td>Queratina 10 R156C</td><td><strong>Sí</strong>, la misma mutación en los dos sistemas</td></tr>
+<tr><td>Queratina 1, deleción 189</td><td><strong>Sí</strong>, la misma, pero sólo para queratina 1</td></tr>
+</tbody></table></div>
+<p>Construye la figura de comparación entre especies sobre <strong>R156C</strong>. La línea sin queratina 10 pasa a ser brazo de referencia, no el eje del argumento.</p>
+
+<h3>5.2 · Pero queda una asimetría, y un revisor la verá</h3>
+<div class="tw"><table>
+<thead><tr><th></th><th>Ratón R156C</th><th>Línea celular R156C</th></tr></thead>
+<tbody>
+<tr><td>Origen</td><td><strong>Knock-in endógeno</strong>, es decir, la mutación está en su sitio del genoma</td><td><strong>Sobreexpresión</strong> desde un vector lentiviral integrado al azar</td></tr>
+<tr><td>Dosis</td><td>fisiológica</td><td>elevada y variable</td></tr>
+<tr><td>Alelos silvestres</td><td>heterocigoto 1:1, como el paciente</td><td>los dos endógenos intactos, <em>más</em> el transgén</td></tr>
+</tbody></table></div>
+<p>Eso no es «ratón frente a humano»: es <strong>«knock-in frente a sobreexpresión»</strong>. Es el confusor más importante que te queda.</p>
+
+<h3>5.3 · Prioriza la línea de edición de precisión <span class="tag hot">vía crítica</span></h3>
+<p>En tu tabla de recursos, la línea generada por <em>prime editing</em> (edición de precisión que introduce la mutación en su locus endógeno sin romper la doble hebra) figura como «en desarrollo, no disponible». <strong>Ponla en la vía crítica.</strong> Es la única forma de tener R156C endógeno y en dosis correcta en humano, y con ella la comparación con el ratón knock-in se vuelve limpia. Es literalmente la diferencia entre un paper con un asterisco y uno sin él.</p>
+<p>Mientras llega, usa las líneas de sobreexpresión declarando la limitación y normalizando por dosis.</p>
+
+<h3>5.4 · El puente real: queratinocitos primarios de ratón</h3>
+<p>Es lo que iguala de verdad los dos sistemas, porque en los dos lados la proteína es endógena.</p>
+<ol>
+<li>Aísla queratinocitos primarios de neonato de tus tres genotipos y de camada silvestre.</li>
+<li>Diferéncialos con calcio. <strong>Los primarios de ratón sí responden</strong>, a diferencia de una línea inmortalizada. Esto te quita de golpe el cuello de botella de la diferenciación para el brazo murino.</li>
+<li>Monta <strong>equivalentes epidérmicos tridimensionales de ratón</strong> para igualar tus tridimensionales humanos.</li>
+<li>Aplica <strong>exactamente el mismo panel de ensayos</strong>: dispasa en curva, solubilidad en Tritón, inmunofluorescencia doble, medidas de anclaje de desmoplaquina.</li>
+</ol>
+<p>Esto es lo que convierte «dos trabajos distintos» en «una comparación».</p>
+
+<h3>5.5 · Lo que no haría: generar un ratón con tu lesión exacta</h3>
+<p>Caro, lento y <strong>conceptualmente imposible de todas formas</strong>, porque las secuencias divergen entre especies y el residuo equivalente puede no ser el mismo número. <strong>La comparación correcta no es «misma lesión», es «mismo estado funcional verificado»</strong> — y eso te lo da la Fase 0. Decláralo en métodos y sigue adelante.</p>
+</section>
+
+<section id="fase3">
+<h2><span class="num">Sección 6 · Fase 3</span>Las figuras, en orden de ejecución</h2>
+
+<h3>Figura 1 · ¿Con quién se empareja la queratina 1 cuando no hay queratina 10?</h3>
+<p><strong>1.1 Inmunofluorescencia doble</strong> en la línea sin queratina 10, diferenciada. Pares: queratina 1 (anticuerpo de conejo) con queratina 14, queratina 15 o queratina 5 (anticuerpos de cobaya o ratón). Microscopio confocal, un solo plano en z, bordes celulares verticales, ajustes de adquisición idénticos entre condiciones, <strong>cuantificación en ciego</strong>.</p>
+<p><strong>1.2 Ensayo de ligación por proximidad</strong> (en inglés <em>proximity ligation assay</em>, PLA): dos anticuerpos llevan sondas de ADN que, si las proteínas están a menos de unos 40 nanómetros, se ligan y se amplifican dando un punto fluorescente.</p>
+<div class="box warn">
+<p class="box-label">Aviso crítico: el ensayo de proximidad no demuestra heterodimerización</p>
+<p>Dos queratinas en <strong>filamentos adyacentes dentro de un mismo haz</strong> ya están a menos de 40 nanómetros sin ser pareja. Un haz de filamentos dará señal positiva pase lo que pase.</p>
+<p><strong>El control que decide:</strong> monta un par de <strong>dos queratinas del mismo tipo</strong> — por ejemplo queratina 10 con queratina 14 (las dos de tipo I), o queratina 1 con queratina 5 (las dos de tipo II). Están en la misma estructura pero <strong>es imposible que formen heterodímero</strong>. Si ese par da señal comparable, el ensayo está leyendo <em>haz de filamentos</em>, no <em>dímero</em>.</p>
+<p><strong>Formula la conclusión así:</strong> «la queratina 1 y la queratina 14 residen en la misma estructura filamentosa». Eso es inatacable. «La queratina 1 y la queratina 14 heterodimerizan» no lo sostiene este ensayo.</p>
+</div>
+<p><strong>1.3 Complementación de luciferasa en competición</strong> (el ensayo de tu compañera). Ver <a href="#nanobit">sección 6.1</a>.</p>
+<p><strong>1.4 Fraccionamiento con Tritón:</strong> ¿está la queratina 14 en la fracción filamentosa, insoluble, de la línea sin queratina 10?</p>
+<p><strong>1.5 Doble inmunomarcaje con oro coloidal</strong> y microscopía electrónica de transmisión, si tienes acceso. Es el estándar con el que te van a comparar, porque es lo que usó Reichelt en 2001.</p>
+<div class="box key">
+<p class="box-label">El control que decide el significado del paper</p>
+<p>Haz <strong>todo esto también en la línea parental diferenciada</strong>. Si la parental da el mismo emparejamiento queratina 1 con queratina 14, entonces no es compensación por la deleción: <strong>es el estado por defecto del queratinocito humano</strong>. Sigue siendo publicable, pero es otro paper y hay que reescribir la pregunta. Tú ya lo tenías identificado; no lo dejes para el final.</p>
+</div>
+
+<h3 id="nanobit">6.1 · Sobre el ensayo de complementación de luciferasa</h3>
+<p>El sistema que usa tu compañera parte la enzima luciferasa NanoLuc en dos trozos: uno grande de 17,6 kilodalton (<strong>LgBiT</strong>) y un péptido pequeño de 11 aminoácidos (<strong>SmBiT</strong>), diseñado <em>a propósito</em> con afinidad baja entre ellos. Si las dos proteínas a las que están fusionados interaccionan, los trozos se juntan, reconstituyen la enzima y emiten luz.</p>
+<h4>Cuatro avisos</h4>
+<ol>
+<li><strong>El control decisivo es el mismo que en el ensayo de proximidad:</strong> un par de dos queratinas del mismo tipo. Si da señal comparable, el ensayo lee filamento, no dímero. Y hay una razón geométrica: en una hélice enrollada paralela y en registro, los dos extremos amino quedan juntos y los dos carboxilo también — perfecto para el dímero. Pero la superposición cabeza-cola del filamento junta también los extremos de dímeros <em>distintos</em>. <strong>La geometría que hace que funcione es la que crea el fondo.</strong></li>
+<li><strong>Los dos trozos no son equivalentes.</strong> El pequeño (11 aminoácidos) es prácticamente gratis; el grande (17,6 kilodalton) es una etiqueta de verdad sobre una queratina. Pon el pequeño en la queratina cuyo comportamiento importa. Y valida por inmunofluorescencia que <em>las dos</em> fusiones se incorporan a filamentos antes de creerte ningún número.</li>
+<li><strong>La dosis os va a morder aquí más que en ningún sitio.</strong> La señal depende de cuánto hay de los dos compañeros. Para normalizar existe un péptido hermano, <strong>HiBiT</strong>, también de 11 aminoácidos pero de alta afinidad, que sirve para <em>cuantificar</em> cuánta proteína etiquetada hay. Úsalo, o pon las dos fusiones en un solo vector bicistrónico para fijar la proporción.</li>
+<li><strong>La trampa de los agregados.</strong> Un mutante que agrega <em>concentra localmente</em> las dos proteínas etiquetadas, y eso sube la señal con independencia de que interaccionen. «R156C da más señal» puede significar sólo «R156C agrega». Controla con una proteína inerte que co-agregue.</li>
+</ol>
+<h4>Que lo estén haciendo en células HEK293T: fortaleza y límite</h4>
+<p>Las HEK293T son células embrionarias de riñón humano. No tienen red de queratinas epidérmicas.</p>
+<div class="tw"><table>
+<thead><tr><th>Pregunta</th><th>¿Sirven las HEK293T?</th></tr></thead>
+<tbody>
+<tr><td>¿<strong>Puede</strong> la queratina 1 emparejarse con la 14? (capacidad intrínseca)</td><td><strong>Sí, es el sistema ideal.</strong> Sin queratinas epidérmicas endógenas compitiendo, lo único presente es lo que transfectáis</td></tr>
+<tr><td>¿<strong>Elige</strong> la queratina 1 a la 14 en un queratinocito? (preferencia real)</td><td><strong>No.</strong> Sin competencia de las queratinas 5, 6, 15, 16 y 17, sin las modificaciones postraduccionales ni las quinasas del queratinocito, sin desmosomas, sin diferenciación</td></tr>
+</tbody></table></div>
+<div class="box key">
+<p class="box-label">Cómo convertir la limitación en la mayor ventaja</p>
+<p>Precisamente porque no hay fondo endógeno, las HEK293T son el sistema <strong>ideal para un ensayo de competición por titulación</strong>, que no se puede hacer en un queratinocito:</p>
+<p style="font-family:var(--mono);font-size:14px;line-height:1.7;background:var(--surface);padding:12px 14px;border-radius:4px">
+LgBiT-queratina1 + SmBiT-queratina10 &nbsp;(fijo, expresión baja)<br>
+&nbsp;&nbsp;+ queratina 14 sin etiquetar, dosis creciente → ¿cae la señal?<br>
+&nbsp;&nbsp;+ queratina 5 / 15 / 6 sin etiquetar, dosis creciente<br>
+y el recíproco: LgBiT-queratina1 + SmBiT-queratina14 + queratina 10 creciente
+</p>
+<p>Eso convierte un «¿interaccionan, sí o no?» en un <strong>ranking cuantitativo de preferencia</strong>. Si la queratina 10 desplaza a la 14 con facilidad y la 14 apenas desplaza a la 10, tienes una jerarquía — y esa jerarquía <strong>predice</strong> lo que pasa en tu línea sin queratina 10.</p>
+<p><strong>Extensión para las mutantes:</strong> ¿compite la queratina 10 R156C por la queratina 1 tan bien como la silvestre? Es medir el efecto dominante negativo <em>a nivel de unión</em>, limpio de agregación si se hace a expresión baja.</p>
+</div>
+<p>Dos notas más: la trampa de los agregados es <strong>peor</strong> en una célula no epitelial, porque sobreexpresar queratinas sin la pareja adecuada produce grumos por simple desequilibrio — titular a la baja y verificar por inmunofluorescencia. Y comprobad el fondo de filamentos intermedios de la línea (vimentina); si queréis un fondo realmente vacío, el clásico del campo es la línea SW13/cl.2, negativa para vimentina. Los positivos hay que confirmarlos después en fondo queratinocito.</p>
+
+<h3>Figura 2 · ¿Esa red se ancla al desmosoma?</h3>
+<p><strong>Predicción:</strong> sí, porque la desmoplaquina une el coil 1 con especificidad amplia y prefiere filamento ensamblado.</p>
+<ul>
+<li>Inmunofluorescencia doble de desmoplaquina con queratina 1. Medidas: <strong>retracción</strong> (distancia del frente de filamentos al borde celular), <strong>perfil de intensidad en una línea perpendicular al borde</strong>, <strong>fracción de puntos de desmoplaquina con filamento asociado</strong>, y <strong>tamaño y número de puntos por micra de borde</strong>. <strong>Nunca coeficientes de colocalización</strong> — ver el aviso de abajo.</li>
+<li><strong>Microscopía electrónica de transmisión:</strong> número de desmosomas, longitud, densidad de la placa, e inserción de filamentos.</li>
+<li><strong>Hiperadhesión:</strong> ver sección 6.2.</li>
+<li><strong>Fijación:</strong> metanol anhidro a menos 20 grados, 3 minutos en hielo. Es lo que usan los grupos de referencia para desmoplaquina y queratinas. Valida cada epítopo por separado <em>antes</em> de montar el panel completo.</li>
+</ul>
+<div class="box warn">
+<p class="box-label">Por qué no se cuantifica colocalización en un borde celular</p>
+<p>El desmosoma entero, de membrana a membrana, mide entre 100 y 200 nanómetros: está <strong>por debajo del límite de difracción de la luz</strong>. La desmoplaquina, la placoglobina, la plakofilina, la desmogleína y los extremos del filamento caen todos dentro del mismo punto difractado. Un coeficiente de Pearson de desmoplaquina contra queratina 1 te dará alrededor de 0,8 — y daría lo mismo contra cualquier otra proteína de la unión. No es un resultado.</p>
+<p>Para resolver de verdad la arquitectura de la placa hace falta superresolución: con microscopía de reconstrucción óptica estocástica (dSTORM) se separan los pares de placa y se miden distancias de decenas de nanómetros.</p>
+</div>
+
+<h3 id="hiper">6.2 · Hiperadhesión: te sale gratis dentro de lo que ya vas a montar</h3>
+<p>Los desmosomas tienen <strong>dos estados adhesivos</strong>: uno «débil», dependiente de calcio, y uno maduro <strong>hiperadhesivo e independiente de calcio</strong>, que es el que sostiene la epidermis real. El interruptor es la proteína quinasa C.</p>
+<p>Tu plan ya incluye «dispasa con y sin inhibidor de la proteína quinasa C alfa». El inhibidor canónico en este campo es <strong>Gö6976</strong> — que resulta ser la herramienta publicada para <em>inducir</em> el estado hiperadhesivo.</p>
+<div class="box key">
+<p class="box-label">Un reactivo más y tienes un ensayo nuevo</p>
+<p><strong>Añadiendo un brazo de quelación con EGTA</strong> (ácido etilenglicol-bis-tetraacético, un quelante que secuestra el calcio) a un experimento que ya tienes planificado, conviertes «dispasa con y sin inhibidor» en un <strong>ensayo de hiperadhesión</strong>: mide si tus líneas alcanzan el estado adhesivo maduro.</p>
+</div>
+<p>Y hay un motivo de fondo para que te importe, porque <strong>conecta tu bloque de desmosomas con tu bloque de rescate farmacológico</strong>:</p>
+<ul>
+<li>Los dos estados son reversibles por señalización de proteína quinasa C <strong>y del receptor del factor de crecimiento epidérmico</strong> (Kitajima 2013).</li>
+<li>La hiperadhesión es un estado de <strong>intercambio proteico reducido</strong>, medido por recuperación de fluorescencia tras fotoblanqueo — y <strong>el mutante S2849G de desmoplaquina, el que imita el estado desfosforilado de alta afinidad por filamento, lo reproduce</strong> (Bartle 2020). Es decir, la hiperadhesión depende del enlace desmoplaquina-queratina.</li>
+<li>Sobreexpresar plakofilina 1 fuerza el estado hiperadhesivo (Tucker 2014).</li>
+<li>Tu propia bibliografía ya incluye que inhibir el receptor del factor de crecimiento epidérmico <strong>rescata la ultraestructura desmosómica y el anclaje de queratinas</strong> en pénfigo.</li>
+</ul>
+<p><strong>La hiperadhesión es el puente mecanístico entre tu figura 6 y tu figura 2.</strong> Si tu rescate farmacológico funciona, la pregunta «¿por qué?» tiene respuesta medible: porque devuelve los desmosomas al estado hiperadhesivo.</p>
+
+<h3>Figura 3 · El pivote: se ancla pero no aguanta</h3>
+<p>Aquí entra tu dato de que la línea sin queratina 10 <strong>se rompe en dispasa</strong>.</p>
+<div class="box">
+<p class="box-label">Ese resultado no contradice la predicción de la figura 2</p>
+<p>La fragmentación de la monocapa integra <strong>cuatro</strong> cosas: adhesión extracelular, anclaje del filamento al desmosoma, <strong>competencia mecánica del filamento en sí</strong>, y uniones adherentes con actina. La predicción de la figura 2 era sobre la segunda. Que se rompa dice que falla <em>alguna</em>, no cuál.</p>
+<p>Es la distinción que hacen Hatzfeld, Keil y Magin en su revisión: <strong>los desmosomas dan cohesión intercelular; las queratinas determinan la mecánica celular pero no generan tensión.</strong> Dos contribuciones separables.</p>
+<p><strong>La lectura más probable, y es mejor historia:</strong> la red queratina 1 con queratina 14 <em>se ancla bien pero es mecánicamente inferior</em>. Eso disocia anclaje de mecánica, y una disociación vale más que un resultado normal.</p>
+</div>
+<h4>Qué medir</h4>
+<ul>
+<li><strong>Dispasa en curva</strong> (número de inversiones o tiempo de agitación), no un punto único. Un punto único puede estar saturado y entonces no puedes ordenar las líneas.</li>
+<li><strong>Modo de rotura.</strong> Fotografía los bordes de los fragmentos. Separación intercelular limpia significa fallo de <em>adhesión</em>. Células rotas por el citoplasma significa <strong>citólisis</strong>, es decir, fallo del <em>filamento</em> — y la citólisis suprabasal es precisamente la lesión humana de la ictiosis epidermolítica. Cuantifícalo en ciego. Es barato y muy informativo.</li>
+<li>Solubilidad en Tritón, cuantificada.</li>
+<li>En tridimensional: barrera funcional (penetración de amarillo Lucifer o de biotina desde fuera), espesor por capa, y marcadores de diferenciación terminal (involucrina, loricrina, filagrina, transglutaminasa 1).</li>
+</ul>
+<h4>Antes de construir sobre el resultado de dispasa, fija tres cosas</h4>
+<ol>
+<li><strong>¿En qué estado de diferenciación?</strong> Si fue en el bidimensional que no induce queratina 10, la parental tampoco la tenía, y la comparación era «sin queratina 10» contra «casi sin queratina 10». Que aun así se rompa significaría que la diferencia viene de <em>otra cosa</em>. Es el dato que más cambia la interpretación. Y la comprobación es barata: <strong>cuantifica <em class="gene">KRT10</em> por PCR cuantitativa en la parental, al tiempo exacto de la dispasa.</strong> Si el mensajero está y la proteína no se detecta, es cuestión de sensibilidad y la ventana existe. Si no está el mensajero, el fenotipo es otra cosa.</li>
+<li><strong>Curva, no punto.</strong></li>
+<li><strong>Clones independientes o población policlonal.</strong> Sin eso, «la línea sin queratina 10 se rompe» y «este clon se rompe» son indistinguibles.</li>
+</ol>
+
+<h3>Figura 4 · Ratón frente a humano</h3>
+<p>Los mismos ensayos de las figuras 1 a 3, en queratinocitos primarios de ratón y en equivalentes tridimensionales de ratón. Brazos: silvestre, R156C heterocigoto, R156C homocigoto, y el nulo.</p>
+<div class="box key">
+<p class="box-label">Cómo se midió «no hay fragilidad» en el ratón, y por qué es tu oportunidad</p>
+<p>Lo que reporta el trabajo de Reichelt y Magin de 2002 es que la epidermis de ratones sin queratina 10 <strong>adultos</strong> no mostró <strong>citólisis</strong>. Es decir: <strong>histología de piel adulta no desafiada</strong>. No es un ensayo de desafío mecánico.</p>
+<p>«No hay fragilidad» es entonces mucho más estrecho de lo que suena. <strong>No</strong> cubre piel <strong>neonatal</strong> (estos modelos suelen dar fenotipo perinatal y compensar después; el trabajo de 1997 sobre esa misma línea era en neonatos), ni <strong>prueba de fricción o frotado</strong>, ni mecánica cuantitativa, ni <strong>dispasa sobre queratinocitos primarios</strong>.</p>
+<p><strong>Tienes el ratón y tienes el ensayo.</strong> Dispasa sobre primarios de tu línea murina, con el mismo protocolo que la humana, es una comparación con <em>la misma lectura</em> en vez de inferirla de dos publicaciones con dos métodos distintos. Es probablemente el experimento más rentable que tienes ahora mismo.</p>
+</div>
+<p>Añade además histología y microscopía electrónica de piel <strong>neonatal y adulta</strong>, y una prueba de desafío mecánico por fricción en neonato. Y ten en cuenta que el fondo genético mixto negro/agutí importa: los fenotipos cutáneos de estas redes son sensibles al fondo.</p>
+
+<h3>Figura 5 · Por qué falla</h3>
+<p>Es el experimento de las quimeras de cola. Tiene <a href="#quimeras">sección propia</a>.</p>
+
+<h3>Figura 6 · Intervención farmacológica</h3>
+<ul>
+<li><strong>Un</strong> eje, no un cribado: inhibición del receptor del factor de crecimiento epidérmico (afatinib, erlotinib) <em>o</em> inhibición de la quinasa MEK (trametinib, selumetinib). Con curva de dosis-respuesta y control de toxicidad.</li>
+<li><strong>El contraste discriminante:</strong> el fármaco sobre la línea <strong>sin queratina 10</strong> (sin agregados, fenotipo proliferativo) frente a la línea <strong>mutante</strong> (con agregados). Si normaliza una y no la otra, has separado el eje proliferativo del mecánico con una sola intervención.</li>
+<li><strong>Lecturas:</strong> repetir las medidas de las figuras 2 y 3 bajo fármaco. Y si el rescate funciona, mide si devuelve los desmosomas al estado hiperadhesivo: ése es el mecanismo.</li>
+<li><strong>Aviso:</strong> los inhibidores de MEK inducen respuesta de interferón de tipo I en queratinocitos. Hay que controlarlo.</li>
+</ul>
+</section>
+
+<section id="quimeras">
+<h2><span class="num">Sección 7</span>El experimento que yo pondría en el centro</h2>
+<p class="lead">Me preguntas qué me parece interesante de verdad. Esto.</p>
+
+<h3>7.1 · El razonamiento</h3>
+<p>Si las figuras 2 y 3 salen como predigo — la red no canónica <strong>se ancla</strong> pero <strong>no aguanta</strong> — la pregunta inmediata es <em>¿qué le falta a la queratina 14 que la queratina 10 sí tiene?</em> Y hay un candidato concreto y acotado:</p>
+<ul>
+<li>La queratina 10 tiene una <strong>cola carboxilo-terminal larga y rica en bucles de glicina</strong>. La queratina 14 tiene otra cosa.</li>
+<li>Esa cola está implicada en el <strong>empaquetamiento lateral</strong> de los filamentos, es decir, en agruparlos en haces.</li>
+<li><strong>Precedente humano directo 1:</strong> el desplazamiento de pauta de lectura en la cola de la queratina 1 causa ictiosis hystrix de Curth-Macklin, con <strong>fallo de empaquetamiento de filamentos</strong> y fallo de translocación de loricrina a las placas desmosómicas (Sprecher 2001).</li>
+<li><strong>Precedente humano directo 2, de 2026:</strong> añadir bucles de glicina de más a la cola de la queratina 10 <strong>impide el ensamblaje correcto de los filamentos</strong> y produce un fenotipo tipo epidermólisis ampollosa en ratón y en piel humana tridimensional (Mi 2026).</li>
+</ul>
+<div class="box key">
+<p class="box-label">Hipótesis</p>
+<p>La incompetencia mecánica de la red no canónica se debe a que la queratina 14 no aporta la función de empaquetamiento que aporta la cola de la queratina 10.</p>
+</div>
+
+<h3>7.2 · El experimento</h3>
+<p>Transduce en tu línea sin queratina 10 estas construcciones y mide dispasa, solubilidad en Tritón y empaquetamiento por microscopía electrónica:</p>
+<div class="tw"><table>
+<thead><tr><th>Construcción</th><th>Qué es</th><th>Predicción si la hipótesis es correcta</th></tr></thead>
+<tbody>
+<tr><td><strong>K14–cola(K10)</strong></td><td>Queratina 14 con la cola de la queratina 10</td><td><strong>Rescata</strong> la mecánica</td></tr>
+<tr><td><strong>K10–cola(K14)</strong></td><td>Queratina 10 con la cola de la queratina 14</td><td><strong>Pierde</strong> la mecánica, a pesar de ser queratina 10</td></tr>
+<tr><td>K14–cola control</td><td>Cola irrelevante de la misma longitud</td><td>No rescata. Es el control de tamaño</td></tr>
+<tr><td>K14 y K10 silvestres</td><td>—</td><td>Los dos extremos de referencia</td></tr>
+</tbody></table></div>
+<p><strong>Detalle de diseño, del trabajo de 2026:</strong> el efecto depende del <em>número</em> de bucles de glicina, no sólo de su presencia. Respeta el número de la versión silvestre de referencia y no lo dejes al azar de la síntesis.</p>
+
+<h3>7.3 · Por qué es tan buena figura</h3>
+<ol>
+<li><strong>Es una ganancia de función.</strong> Pasas de «esta red es peor» a «<em>le falta este elemento, y si se lo pongo, funciona</em>». Los revisores premian un rescate por quimera como ninguna otra cosa.</li>
+<li><strong>Convierte un hecho de enfermedad en un principio.</strong> La afirmación deja de ser «la ictiosis epidermolítica humana es así» y pasa a ser «<strong>la compensación entre queratinas está limitada por el dominio de cola, no por la capacidad de emparejamiento</strong>» — aplicable a cualquier queratinopatía donde se invoque compensación. Ése es el salto que te permite hablar con una revista generalista. Y los propios autores de 2026 proponen su hallazgo como paradigma para otras queratinas de cola rica en glicina, así que el campo ya está mirando ahí.</li>
+<li><strong>Es barato:</strong> síntesis génica de dos construcciones más transducción, y los ensayos que ya tendrás montados.</li>
+<li><strong>Cierra el círculo con tu Parte 1:</strong> si el elemento crítico es la cola, tu minicírculo de reemplazo tiene que llevarla obligatoriamente — y eso valida a posteriori tu decisión de clonar sin etiquetas y sin comprometer el extremo carboxilo.</li>
+</ol>
+
+<h3>7.4 · Controles imprescindibles</h3>
+<ul>
+<li><strong>Incorporación a filamento</strong> de cada quimera, verificada por inmunofluorescencia, <em>antes</em> de medir mecánica. Una quimera que no filamenta no dice nada.</li>
+<li><strong>Dosis igualada</strong> entre construcciones (PCR digital y Western blot), porque si no, estás midiendo expresión.</li>
+<li>Hacerlo <strong>también en la parental</strong>, para comprobar que no es un efecto genérico de sobreexpresión.</li>
+</ul>
+
+<h3>7.5 · Si la cola no es la respuesta</h3>
+<p>Dos hipótesis alternativas, las dos baratas:</p>
+<ul>
+<li><strong>Cantidad.</strong> Reichelt describe en 2001 «una cantidad <em>menor</em> de filamentos novedosos». Menos filamento es menos resistencia, sin que el filamento sea peor. Se mide cuantificando filamento por célula: Western blot de la fracción insoluble más microscopía electrónica.</li>
+<li><strong>Química de puentes disulfuro.</strong> Meter queratina 14 en una red suprabasal cambia el mapa de cisteínas, y los puentes disulfuro importan para la organización de las redes de queratina 5 y 14 (Feng y Coulombe, 2015). <strong>Un Western blot en condiciones NO reductoras de la fracción insoluble</strong> responde a esto <em>y</em> a tu pregunta pendiente sobre la cisteína que introduce la mutación R156C, <strong>en el mismo gel</strong>. Es el experimento con mejor relación información/coste de toda la lista.</li>
+</ul>
+</section>
+
+<section id="escenarios">
+<h2><span class="num">Sección 8</span>Qué paper sale en cada escenario</h2>
+
+<h3>Escenario B · los dos son nulos reales</h3>
+<p>El título es el que te propuse originalmente:</p>
+<div class="box"><p style="font-family:var(--serif);font-size:19px;margin:0">«La sustitución de queratinas rescata al ratón pero no al humano: la red no canónica se ensambla y se ancla al desmosoma, pero es mecánicamente incompetente.»</p></div>
+<p>Resuelve una discrepancia de veinte años entre el ratón sin queratina 10, que no tiene fragilidad celular, y el humano sin queratina 10, que tiene fenotipo grave. La figura 4 va tal cual.</p>
+
+<h3>Escenario A · el ratón es truncado y tu línea es nula <span class="tag hot">el más probable</span></h3>
+<p><strong>No pierdes el paper: cambias de pregunta, y la nueva es mejor y más traducible.</strong></p>
+<div class="box key"><p style="font-family:var(--serif);font-size:19px;margin:0">«Basta con una queratina 10 truncada que conserve la unión a la queratina 1: lo que la red no tolera es la ausencia de compañero, no la pérdida de la proteína completa.»</p></div>
+<p>Por qué es mejor:</p>
+<ul>
+<li><strong>Es cuantitativa y terapéutica.</strong> Responde «¿cuánta queratina 10 hace falta, y qué parte?», que es <strong>exactamente la pregunta que tu Parte 1 necesita responder</strong> para justificar el diseño del minicírculo. Une tus dos partes por el mecanismo y no por la temática.</li>
+<li><strong>Es comprobable en tu propio sistema:</strong> expresa en tu línea nula una <strong>serie de queratinas 10 truncadas</strong>, incluida la equivalente a la del ratón, y mira cuál rescata la dispasa. Serie de deleciones, lectura funcional, gradiente. Es una figura preciosa.</li>
+<li><strong>Sigue explicando la discrepancia de la literatura</strong>, que es un gancho de introducción excelente — sólo que la explicación es «alelo» y no «especie», lo cual es más limpio y más defendible.</li>
+<li>Encaja de forma natural con las quimeras de cola: las dos preguntas son «¿qué parte de la queratina 10 es imprescindible?».</li>
+</ul>
+
+<h3>Escenario C · tu línea es un truncado</h3>
+<p>Malo, pero recuperable, y <strong>mucho mejor descubrirlo ahora que en revisión</strong>. Rehaces la línea (la población policlonal lo acelera), y reinterpretas la dispasa como el fenotipo de un truncado — que <strong>es información, no basura</strong>: un truncado con efecto dominante negativo es un modelo de enfermedad. Te quedas con las dos líneas: la truncada como modelo y la nula como referencia.</p>
+
+<h3>Calibración de revista</h3>
+<div class="tw"><table>
+<thead><tr><th>Techo</th><th>Qué hace falta</th></tr></thead>
+<tbody>
+<tr><td><strong>Journal of Investigative Dermatology</strong> o <strong>Journal of Cell Science</strong></td><td>Figuras 1 a 3 bien controladas. Ya es primer cuartil en Dermatología. <strong>Es el suelo, y es un buen suelo</strong></td></tr>
+<tr><td><strong>JCI Insight</strong> o <strong>EMBO Molecular Medicine</strong></td><td>Lo anterior más la figura 4 (ratón), más mecanismo, más intervención. Dejas de describir un modelo y pasas a resolver una contradicción del campo</td></tr>
+<tr><td>Revista generalista</td><td>Lo anterior más tejido humano de paciente, y el principio general de la figura 5</td></tr>
+</tbody></table></div>
+<div class="box">
+<p class="box-label">Los dos añadidos de mayor rendimiento</p>
+<p><strong>(a) Tejido humano de paciente.</strong> Si consigues piel de un paciente con ictiosis epidermolítica recesiva, aunque sea de archivo, y muestras el mismo emparejamiento no canónico en epidermis humana real, subes un escalón entero. Es la casilla de relevancia humana, y tu grupo está conectado clínicamente. <strong>Es lo primero que yo pediría.</strong></p>
+<p><strong>(b) El dato de tu compañera, bien enmarcado.</strong> Una jerarquía cuantitativa de preferencia de emparejamiento entre queratinas es algo que casi nadie tiene. Acordad autoría y diseño <em>ahora</em>, no cuando estén los datos.</p>
+</div>
+<h4>Y el diagnóstico estructural, que es lo que más te va a costar aceptar</h4>
+<p>Tu Paper 1 tal y como está titulado — «emparejamiento no canónico, acoplamiento desmosomal y activación de ERK reversible» — son <strong>tres afirmaciones unidas por conjunciones</strong>. Un revisor lo lee como una colección de observaciones y lo baja de revista. <strong>Los papers suben de categoría cortando, no añadiendo.</strong></p>
+<p>Fuera del Paper 1: el eje de proliferación y Rb (tu línea no puede sostenerlo), la comparación entre queratina 1 y queratina 10 mutantes (ya la cortaste bien, por el confusor de clase de lesión), la línea sin queratina 1 y su paper asociado (que sigan siendo trabajo aparte), y todo lo que empiece por «además observamos».</p>
+</section>
+
+<section id="crono">
+<h2><span class="num">Sección 9</span>Cronograma realista</h2>
+<p class="lead">Más conservador que el tuyo, sobre todo en la diferenciación.</p>
+<div class="tw"><table>
+<thead><tr><th>Meses</th><th>Qué</th></tr></thead>
+<tbody>
+<tr><td><strong>0–1</strong></td><td>Fase 0 completa, en los dos sistemas. Pedir anticuerpos. Empezar la población policlonal. Arrancar el tridimensional como sistema primario. Encargar las quimeras de cola y la línea sin queratina 1</td></tr>
+<tr><td><strong>1–3</strong></td><td>Piloto de diferenciación. Figura 1 en tridimensional. Competición por complementación de luciferasa. Primarios de ratón en marcha. <strong>Punto de decisión 1 → fijar el título</strong></td></tr>
+<tr><td><strong>3–5</strong></td><td>Figuras 2 y 3. Microscopía electrónica. Hiperadhesión. Llegan las quimeras</td></tr>
+<tr><td><strong>5–7</strong></td><td>Figura 5 (quimeras) y figura 4 (ratón). Decisión sobre el techo de revista</td></tr>
+<tr><td><strong>7–9</strong></td><td>Figura 6 (intervención). Redacción</td></tr>
+<tr><td><strong>9–10</strong></td><td><strong>Someter el Paper 1</strong></td></tr>
+<tr><td><strong>10–12</strong></td><td>Paper 3 o capítulo de tesis. Apoyo al brazo animal de la Parte 1. Colchón para la revisión</td></tr>
+</tbody></table></div>
+<p><strong>Riesgo principal:</strong> que la diferenciación bidimensional no se resuelva. <strong>Mitigación:</strong> el tridimensional va en paralelo desde el mes 0, no desde el 6.</p>
+<p><strong>Segundo riesgo:</strong> acceso a microscopía electrónica de transmisión. Condiciona las figuras 2, 4 y 5. <strong>Resuélvelo en el mes 0:</strong> si no hay acceso en tu centro, busca colaboración ya, porque sin ella el techo baja un escalón.</p>
+</section>
+
+<section id="compra">
+<h2><span class="num">Sección 10</span>Lista de compra: anticuerpos</h2>
+<p class="lead">Pídelos esta semana. Los plazos de entrega son la causa más tonta de retraso en un proyecto.</p>
+
+<h3>10.1 · El problema que resuelve esta lista</h3>
+<p>En el trabajo previo, los anticuerpos anti-queratina 1, 5, 10 y 14 <strong>eran los cuatro de conejo</strong>, con un único anticuerpo secundario anti-conejo. Con eso <strong>no se puede hacer doble marcaje</strong>: las figuras son tinciones en preparaciones distintas, no colocalizaciones. Tú ya lo identificaste como el desbloqueo número uno.</p>
+<p>La solución son los sueros policlonales de <strong>cobaya</strong> de la casa Progen, que cubren casi todo este panel, más algún monoclonal de ratón.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Diana</th><th>Referencia</th><th>Especie</th><th>Para qué</th></tr></thead>
+<tbody>
+<tr><td><strong>Queratina 14</strong></td><td><strong>GP-CK14</strong> (Progen)</td><td>Cobaya</td><td><strong>Tu desbloqueo.</strong> Inmunofluorescencia doble y Western blot multiplexado</td></tr>
+<tr><td><strong>Queratina 14</strong></td><td><strong>LL002</strong> (Abcam ab7800, Cell Signaling 48020, y otros)</td><td>Ratón</td><td><strong>Para el ensayo de proximidad</strong>, porque las sondas comerciales son anti-conejo y anti-ratón</td></tr>
+<tr><td>Queratina 15</td><td>GP-K15 / GP-CK15 (Progen)</td><td>Cobaya</td><td>Inmunofluorescencia doble</td></tr>
+<tr><td>Queratina 5</td><td>GP-K5 (Progen)</td><td>Cobaya</td><td>Inmunofluorescencia doble</td></tr>
+<tr><td>Queratina 10</td><td>DE-K10</td><td>Ratón</td><td>Pares con queratina 1 de conejo</td></tr>
+<tr><td><strong>Queratina 10</strong></td><td>uno con <strong>epítopo amino-terminal</strong></td><td>cualquiera</td><td><strong>Paso 0.4.</strong> Pregunta el epítopo al fabricante antes de comprar</td></tr>
+<tr><td>Desmoplaquina</td><td>DP2.15 (Millipore CBL173, Progen 61003) y el policlonal de cobaya de Progen</td><td>Ratón y cobaya</td><td>Figura 2</td></tr>
+<tr><td>Desmogleína 1</td><td>Dsg1-P124 (Progen 651111)</td><td>Ratón</td><td>Validado sobre preparaciones citoesqueléticas de piel humana, que es tu fracción</td></tr>
+<tr><td>Placoglobina</td><td>GP57 (Progen, extremo amino)</td><td>Cobaya</td><td>Figura 2</td></tr>
+<tr><td>Desmoplaquina fosforilada en S2849</td><td>encargar péptido, o pedirlo al grupo de Kathleen Green</td><td>Conejo</td><td>El interruptor de afinidad</td></tr>
+</tbody></table></div>
+
+<div class="box warn">
+<p class="box-label">La trampa de la combinatoria</p>
+<p>La queratina 1 aparece en <strong>todos</strong> tus pares, así que tiene que ser la especie ancla (conejo, el que ya tienes) y todos los compañeros deben ser de una especie distinta de ella <em>y</em> distinta entre sí si haces triple marcaje.</p>
+<p><strong>No compres el anti-queratina 1 de cobaya (GP-K1) si vas a usar el anti-queratina 14 de cobaya (GP-CK14):</strong> mismo animal, no se pueden co-marcar.</p>
+<p>Esquema que funciona: queratina 1 en <strong>conejo</strong> + queratina 14 en <strong>ratón</strong> (LL002) + queratina 15 o 5 en <strong>cobaya</strong>.</p>
+</div>
+<p><strong>Otras compras que no son anticuerpos:</strong> Gö6976 (inhibidor de proteína quinasa C alfa), EGTA, síntesis de las dos quimeras de cola, y reactivos de cuantificación HiBiT si el ensayo de luciferasa va a comparar mutante contra silvestre.</p>
+</section>
+
+<section id="diez">
+<h2><span class="num">Sección 11</span>Las diez cosas, por orden</h2>
+<ol style="font-size:17px">
+<li><strong>Secuenciar el alelo de tu línea celular</strong> por secuenciación masiva del amplicón, contando <em>todos</em> los alelos, porque la línea es probablemente aneuploide.</li>
+<li><strong>Identificar la línea de ratón</strong> con nombre de cepa, identificador MGI y publicación original, y comprobar si expresa queratina 10 truncada.</li>
+<li><strong>Western blot con anticuerpo de epítopo amino-terminal</strong>, con la fracción insoluble incluida, en los dos sistemas. → <strong>Rellenar el punto de decisión 1 y fijar el título.</strong></li>
+<li><strong>Pedir los anticuerpos esta semana.</strong></li>
+<li><strong>Arrancar el sistema tridimensional</strong> como primario, y ejecutar el piloto de diferenciación bidimensional en paralelo.</li>
+<li><strong>Generar la población policlonal</strong> sin queratina 10, para matar el artefacto clonal.</li>
+<li><strong>Figura 1 con el control de dos queratinas del mismo tipo</strong> en el ensayo de proximidad, y con <strong>la parental diferenciada</strong> como control obligatorio.</li>
+<li><strong>Encargar ya las quimeras de cola</strong>, para tenerlas en el mes 5.</li>
+<li><strong>Queratinocitos primarios de ratón y tridimensional de ratón</strong>, con el mismo panel de ensayos.</li>
+<li><strong>Priorizar la línea de edición de precisión</strong>: es lo que le quita el asterisco al paper.</li>
+</ol>
+<div class="box key">
+<p class="box-label">Y una que no es un experimento</p>
+<p><strong>No escribas la introducción hasta el paso 3.</strong> El título depende de en qué escenario estés, y escribir la introducción antes es la forma más eficaz que existe de enamorarse de una hipótesis que los datos no van a sostener.</p>
+</div>
+</section>
+
+<section id="glosario">
+<h2><span class="num">Sección 12</span>Glosario</h2>
+<p class="lead">Todas las abreviaturas y términos técnicos usados en este documento.</p>
+<dl class="gloss">
+<div><dt>Aneuploide</dt><dd>Célula con un número anómalo de cromosomas. Frecuente en líneas inmortalizadas, y la razón de que pueda haber más de dos alelos de un gen.</dd></div>
+<div><dt>ATCC</dt><dd><em>American Type Culture Collection</em>. Banco estadounidense de líneas celulares; la fuente de la línea Ker-CT.</dd></div>
+<div><dt>CDK4</dt><dd>Quinasa dependiente de ciclina 4. Empuja el ciclo celular. Su sobreexpresión puentea al inhibidor p16INK4a.</dd></div>
+<div><dt>Coil 1</dt><dd>La primera de las hélices enrolladas del dominio central en varilla de un filamento intermedio. <strong>Es el sitio real de unión a desmoplaquina.</strong></dd></div>
+<div><dt>Citólisis</dt><dd>Rotura de la célula por su citoplasma. Es la lesión histológica característica de la ictiosis epidermolítica, distinta del simple despegue entre células.</dd></div>
+<div><dt>ddPCR</dt><dd>PCR digital de gotas (<em>droplet digital PCR</em>). Cuantifica número de copias con precisión absoluta; sirve para medir dosis de transgén.</dd></div>
+<div><dt>Dispasa</dt><dd>Enzima que despega la monocapa celular del plástico sin romper las uniones entre células. El ensayo mide cuántos fragmentos aparecen al agitar la lámina despegada: más fragmentos, menos cohesión.</dd></div>
+<div><dt>Dsc1–3</dt><dd>Desmocolinas 1 a 3. Cadherinas transmembrana del desmosoma.</dd></div>
+<div><dt>Dsg1–4</dt><dd>Desmogleínas 1 a 4. Las otras cadherinas transmembrana del desmosoma. La desmogleína 1 es la suprabasal.</dd></div>
+<div><dt>DSP</dt><dd>Desmoplaquina. La proteína de la placa desmosómica que agarra el filamento de queratina.</dd></div>
+<div><dt>dSTORM</dt><dd>Microscopía de reconstrucción óptica estocástica directa. Técnica de superresolución que permite resolver distancias de decenas de nanómetros, por debajo del límite de difracción.</dd></div>
+<div><dt>EGTA</dt><dd>Ácido etilenglicol-bis-tetraacético. Quelante que secuestra el calcio. Se usa para distinguir el estado desmosómico dependiente de calcio del hiperadhesivo.</dd></div>
+<div><dt>Epítopo</dt><dd>El trozo concreto de proteína que reconoce un anticuerpo. Crítico en el paso 0.4: si tu proteína truncada ha perdido el epítopo, el anticuerpo no la ve.</dd></div>
+<div><dt>ERK 1/2</dt><dd>Quinasas reguladas por señal extracelular. Parte de la vía de las MAP quinasas; su activación excesiva aparece en formas graves de epidermólisis ampollosa simple.</dd></div>
+<div><dt>FRAP</dt><dd>Recuperación de fluorescencia tras fotoblanqueo. Mide con qué rapidez una proteína se recambia en una estructura: se blanquea una zona y se cronometra cuánto tarda en volver la señal.</dd></div>
+<div><dt>Gö6976</dt><dd>Inhibidor de la proteína quinasa C alfa. En este campo se usa además para <em>inducir</em> el estado desmosómico hiperadhesivo.</dd></div>
+<div><dt>HGVS</dt><dd><em>Human Genome Variation Society</em>. El estándar internacional para nombrar variantes genéticas de forma inequívoca.</dd></div>
+<div><dt>HiBiT</dt><dd>Péptido de 11 aminoácidos de <em>alta</em> afinidad por LgBiT. Sirve para cuantificar cuánta proteína etiquetada hay, no para medir interacciones.</dd></div>
+<div><dt>Hiperadhesión</dt><dd>Estado maduro del desmosoma, independiente de calcio y de intercambio proteico reducido. Es el que sostiene la epidermis real.</dd></div>
+<div><dt>HIM</dt><dd>Motivo de iniciación de hélice (<em>helix initiation motif</em>). La región más conservada de toda la familia de filamentos intermedios; donde caen R156 de queratina 10 y la deleción 189 de queratina 1.</dd></div>
+<div><dt>hTERT</dt><dd>Subunidad catalítica de la telomerasa humana. Alarga los telómeros y evita la senescencia replicativa. Es uno de los dos elementos que inmortalizan tu línea.</dd></div>
+<div><dt>IHCM</dt><dd>Ictiosis hystrix de Curth-Macklin. Enfermedad causada por desplazamientos de pauta en la cola de la queratina 1, con fallo de empaquetamiento de filamentos.</dd></div>
+<div><dt>Ker-CT</dt><dd>La línea de queratinocitos humanos inmortalizados de tu laboratorio. Referencia ATCC CRL-4048. Inmortalizada con hTERT y CDK4 de ratón.</dd></div>
+<div><dt>LgBiT</dt><dd>Fragmento grande (17,6 kilodalton) de la luciferasa NanoLuc partida.</dd></div>
+<div><dt>MEK</dt><dd>Quinasa que activa a ERK. Sus inhibidores (trametinib, selumetinib) son candidatos de rescate farmacológico.</dd></div>
+<div><dt>MGI</dt><dd><em>Mouse Genome Informatics</em>. La base de datos que asigna identificadores oficiales a las cepas de ratón. Es como se identifica una línea sin ambigüedad.</dd></div>
+<div><dt>NanoBiT</dt><dd>Sistema de complementación de luciferasa partida. Dos proteínas fusionadas a LgBiT y SmBiT reconstituyen la enzima y emiten luz si interaccionan.</dd></div>
+<div><dt>NGS</dt><dd>Secuenciación masiva (<em>next-generation sequencing</em>). Permite leer todos los alelos de un amplicón y su proporción, cosa que una secuenciación Sanger no hace.</dd></div>
+<div><dt>NMD</dt><dd>Degradación del mensajero mediada por codón sin sentido (<em>nonsense-mediated decay</em>). Destruye ARN mensajeros con parada prematura. Regla práctica: se dispara si la parada está a más de unos 50–55 nucleótidos de la última unión entre exones.</dd></div>
+<div><dt>PKP1–3</dt><dd>Plakofilinas 1 a 3. Proteínas de la placa desmosómica. La 1 es la de epidermis suprabasal y su pérdida en humanos da desmosomas pequeños con conexiones reducidas a queratina.</dd></div>
+<div><dt>PLA</dt><dd>Ensayo de ligación por proximidad. Da señal si dos proteínas están a menos de unos 40 nanómetros. <strong>Proximidad no es dimerización.</strong></dd></div>
+<div><dt>Placoglobina (JUP)</dt><dd>También llamada gamma-catenina. Proteína de placa común a desmosomas y uniones adherentes.</dd></div>
+<div><dt>PP2A-B55α</dt><dd>La holoenzima fosfatasa que desfosforila el extremo carboxilo de la desmoplaquina, devolviéndole afinidad por el filamento.</dd></div>
+<div><dt>Prime editing</dt><dd>Edición genómica de precisión que introduce un cambio puntual en su locus endógeno sin cortar las dos hebras del ADN. Es la vía a un modelo celular con dosis fisiológica.</dd></div>
+<div><dt>PRM / SRM</dt><dd>Monitorización de reacciones paralelas / seleccionadas. Espectrometría de masas dirigida a péptidos concretos. La respuesta definitiva a «¿existe esta proteína?», sin depender de anticuerpos.</dd></div>
+<div><dt>PTC</dt><dd>Codón de parada prematuro. Su posición determina si el mensajero se degrada o si se produce proteína truncada.</dd></div>
+<div><dt>Rack1</dt><dd>Proteína andamio que une queratinas y regula a la proteína quinasa C alfa. Es el eslabón del mecanismo de Kröger 2013.</dd></div>
+<div><dt>Rod</dt><dd>El dominio central en varilla de un filamento intermedio, formado por hélices enrolladas. Contiene el coil 1.</dd></div>
+<div><dt>S2849</dt><dd>La serina del motivo glicina-serina-arginina del extremo carboxilo de la desmoplaquina cuyo estado de fosforilación regula la afinidad por el filamento.</dd></div>
+<div><dt>SmBiT</dt><dd>Péptido de 11 aminoácidos de <em>baja</em> afinidad por LgBiT. Es el que se usa para medir interacciones, precisamente porque su afinidad intrínseca es baja.</dd></div>
+<div><dt>SV40, antígeno T grande</dt><dd>Proteína viral que inactiva directamente pRb y p53. <strong>No</strong> es lo que inmortaliza tu línea.</dd></div>
+<div><dt>TEM</dt><dd>Microscopía electrónica de transmisión. El patrón oro para ver si hay filamentos insertados en la placa del desmosoma.</dd></div>
+<div><dt>TEWL</dt><dd>Pérdida transepidérmica de agua. Medida funcional de la barrera cutánea.</dd></div>
+<div><dt>V1 / V2</dt><dd>Subdominios variables del extremo amino (V1, en la cabeza) y del extremo carboxilo (V2, en la cola) de una queratina. La cola V2 de la queratina 10 es rica en bucles de glicina.</dd></div>
+</dl>
+</section>
+
+<section id="biblio">
+<h2><span class="num">Sección 13</span>Bibliografía</h2>
+<p class="lead">Recuperada de PubMed. Cada entrada enlaza a su identificador digital de objeto (DOI).</p>
+
+<h3>El anclaje queratina–desmosoma</h3>
+<ol class="refs">
+<li>Favre B, Begré N, Bouameur JE, <em>et al.</em> Desmoplakin interacts with the coil 1 of different types of intermediate filament proteins and displays high affinity for assembled intermediate filaments. <em>PLoS One</em> 2018;13:e0205038. <a href="https://doi.org/10.1371/journal.pone.0205038">10.1371/journal.pone.0205038</a> — <strong>la referencia que corrige el modelo antiguo</strong></li>
+<li>Kouklis PD, Hutton E, Fuchs E. Making a connection: direct binding between keratin intermediate filaments and desmosomal proteins. <em>J Cell Biol</em> 1994;127:1049. <a href="https://doi.org/10.1083/jcb.127.4.1049">10.1083/jcb.127.4.1049</a> — el modelo antiguo, con proteína sin ensamblar</li>
+<li>Smith EA, Fuchs E. Defining the interactions between intermediate filaments and desmosomes. <em>J Cell Biol</em> 1998;141:1229. <a href="https://doi.org/10.1083/jcb.141.5.1229">10.1083/jcb.141.5.1229</a> — plakofilina 1 y placoglobina prefieren la cabeza de tipo II</li>
+<li>Choi HJ, Park-Snyder S, Pascoe LT, <em>et al.</em> Structures of two intermediate filament-binding fragments of desmoplakin reveal a unique repeat motif structure. <em>Nat Struct Biol</em> 2002;9:612. <a href="https://doi.org/10.1038/nsb818">10.1038/nsb818</a></li>
+<li>Vasioukhin V, Bowers E, Bauer C, <em>et al.</em> Desmoplakin is essential in epidermal sheet formation. <em>Nat Cell Biol</em> 2001;3:1076. <a href="https://doi.org/10.1038/ncb1201-1076">10.1038/ncb1201-1076</a> — mismo número de desmosomas, sin filamentos anclados</li>
+<li>Hatzfeld M, Keil R, Magin TM. Desmosomes and intermediate filaments: their consequences for tissue mechanics. <em>Cold Spring Harb Perspect Biol</em> 2017;9:a029157. <a href="https://doi.org/10.1101/cshperspect.a029157">10.1101/cshperspect.a029157</a> — <strong>la revisión de cabecera</strong></li>
+<li>Hatzfeld M, Haffner C, Schulze K, Vinzens U. The function of plakophilin 1 in desmosome assembly and actin filament organization. <em>J Cell Biol</em> 2000;149:209. <a href="https://doi.org/10.1083/jcb.149.1.209">10.1083/jcb.149.1.209</a></li>
+<li>McGrath JA, McMillan JR, Shemanko CS, <em>et al.</em> Mutations in the plakophilin 1 gene result in ectodermal dysplasia/skin fragility syndrome. <em>Nat Genet</em> 1997;17:240. <a href="https://doi.org/10.1038/ng1097-240">10.1038/ng1097-240</a></li>
+<li>Candi E, Tarcsa E, Digiovanna JJ, <em>et al.</em> A highly conserved lysine residue on the head domain of type II keratins is essential for the attachment of keratin intermediate filaments to the cornified cell envelope. <em>PNAS</em> 1998;95:2067. <a href="https://doi.org/10.1073/pnas.95.5.2067">10.1073/pnas.95.5.2067</a></li>
+</ol>
+
+<h3>Regulación del enlace y adhesión</h3>
+<ol class="refs" start="10">
+<li>Kröger C, Loschke F, Schwarz N, <em>et al.</em> Keratins control intercellular adhesion involving PKC-α-mediated desmoplakin phosphorylation. <em>J Cell Biol</em> 2013;201:681. <a href="https://doi.org/10.1083/jcb.201208162">10.1083/jcb.201208162</a></li>
+<li>Perl AL, Koetsier JL, Green KJ. PP2A-B55alpha controls keratinocyte adhesion through dephosphorylation of the desmoplakin C-terminus. <em>Sci Rep</em> 2023;13:12720. <a href="https://doi.org/10.1038/s41598-023-37874-8">10.1038/s41598-023-37874-8</a> — protocolos de co-inmunoprecipitación, fijación y dispasa</li>
+<li>Bartle EI, Rao TC, Beggs RR, <em>et al.</em> Protein exchange is reduced in calcium-independent epithelial junctions. <em>J Cell Biol</em> 2020;219:e201906153. <a href="https://doi.org/10.1083/jcb.201906153">10.1083/jcb.201906153</a> — hiperadhesión y el mutante S2849G</li>
+<li>Kimura TE, Merritt AJ, Garrod DR. Calcium-independent desmosomes of keratinocytes are hyper-adhesive. <em>J Invest Dermatol</em> 2007;127:775. <a href="https://doi.org/10.1038/sj.jid.5700643">10.1038/sj.jid.5700643</a></li>
+<li>Tucker DK, Stahley SN, Kowalczyk AP. Plakophilin-1 protects keratinocytes from pemphigus vulgaris IgG by forming calcium-independent desmosomes. <em>J Invest Dermatol</em> 2014;134:1033. <a href="https://doi.org/10.1038/jid.2013.401">10.1038/jid.2013.401</a></li>
+<li>Kitajima Y. New insights into desmosome regulation and pemphigus blistering as a desmosome-remodeling disease. <em>Kaohsiung J Med Sci</em> 2013;29:1. <a href="https://doi.org/10.1016/j.kjms.2012.08.001">10.1016/j.kjms.2012.08.001</a></li>
+<li>Vielmuth F, Wanuske MT, Radeva MY, <em>et al.</em> Keratins regulate the adhesive properties of desmosomal cadherins through signaling. <em>J Invest Dermatol</em> 2018;138:121. <a href="https://doi.org/10.1016/j.jid.2017.08.033">10.1016/j.jid.2017.08.033</a></li>
+<li>Stahley SN, Bartle EI, Atkinson CE, <em>et al.</em> Molecular organization of the desmosome as revealed by direct stochastic optical reconstruction microscopy. <em>J Cell Sci</em> 2016;129:2897. <a href="https://doi.org/10.1242/jcs.185785">10.1242/jcs.185785</a></li>
+<li>Price AJ, Cost AL, Ungewiß H, <em>et al.</em> Mechanical loading of desmosomes depends on the magnitude and orientation of external stress. <em>Nat Commun</em> 2018;9:5284. <a href="https://doi.org/10.1038/s41467-018-07523-0">10.1038/s41467-018-07523-0</a></li>
+</ol>
+
+<h3>Queratinas, sustitución y modelos</h3>
+<ol class="refs" start="19">
+<li>Reichelt J, Bauer C, Porter R, Lane E, Magin V. Out of balance: consequences of a partial keratin 10 knockout. <em>J Cell Sci</em> 1997;110:2175. <a href="https://doi.org/10.1242/jcs.110.18.2175">10.1242/jcs.110.18.2175</a> — <strong>la queratina 10 truncada que sigue uniéndose a la queratina 1</strong></li>
+<li>Reichelt J, Magin TM. Hyperproliferation, induction of c-Myc and 14-3-3σ, but no cell fragility in keratin-10-null mice. <em>J Cell Sci</em> 2002;115:2639. <a href="https://doi.org/10.1242/jcs.115.13.2639">10.1242/jcs.115.13.2639</a> — «sin fragilidad» significa sin citólisis en piel adulta no desafiada</li>
+<li>Müller FB, Huber M, Kinaciyan T, <em>et al.</em> A human keratin 10 knockout causes recessive epidermolytic hyperkeratosis. <em>Hum Mol Genet</em> 2006;15:1133. <a href="https://doi.org/10.1093/hmg/ddl028">10.1093/hmg/ddl028</a> — en humano sí hay fenotipo grave</li>
+<li>Wallace L, Roberts-Thompson L, Reichelt J. Deletion of K1/K10 does not impair epidermal stratification but affects desmosomal structure and nuclear integrity. <em>J Cell Sci</em> 2012;125:1750. <a href="https://doi.org/10.1242/jcs.097139">10.1242/jcs.097139</a></li>
+<li>Bär J, Kumar V, Roth W, <em>et al.</em> Skin fragility and impaired desmosomal adhesion in mice lacking all keratins. <em>J Invest Dermatol</em> 2014;134:1012. <a href="https://doi.org/10.1038/jid.2013.416">10.1038/jid.2013.416</a> — el umbral del 60 % de células competentes</li>
+<li>Roth W, Kumar V, Beer HD, <em>et al.</em> Keratin 1 maintains skin integrity and participates in an inflammatory network in skin through interleukin-18. <em>J Cell Sci</em> 2012;125:5269. <a href="https://doi.org/10.1242/jcs.116574">10.1242/jcs.116574</a></li>
+</ol>
+
+<h3>La cola de la queratina</h3>
+<ol class="refs" start="25">
+<li>Mi Z, Yu Y, Wang Z, <em>et al.</em> Excessive glycine loop variations in the keratin 10 tail domain and implications for skin fragility. <em>Br J Dermatol</em> 2026;194:520. <a href="https://doi.org/10.1093/bjd/ljaf436">10.1093/bjd/ljaf436</a> — <strong>el exceso de bucles impide el ensamblaje</strong></li>
+<li>Sprecher E, Ishida-Yamamoto A, Becker OM, <em>et al.</em> Evidence for novel functions of the keratin tail emerging from a mutation causing ichthyosis hystrix. <em>J Invest Dermatol</em> 2001;116:511. <a href="https://doi.org/10.1046/j.1523-1747.2001.01292.x">10.1046/j.1523-1747.2001.01292.x</a> — fallo de empaquetamiento y de translocación de loricrina a las placas</li>
+<li>Sprecher E, Yosipovitch G, Bergman R, <em>et al.</em> Epidermolytic hyperkeratosis and epidermolysis bullosa simplex caused by frameshift mutations altering the V2 tail domains of keratin 1 and keratin 5. <em>J Invest Dermatol</em> 2003;120:623. <a href="https://doi.org/10.1046/j.1523-1747.2003.12084.x">10.1046/j.1523-1747.2003.12084.x</a></li>
+<li>Richardson ES, Lee JB, Hyde PH, Richard G. A novel mutation and large size polymorphism affecting the V2 domain of keratin 1... <em>J Invest Dermatol</em> 2006;126:79. <a href="https://doi.org/10.1038/sj.jid.5700025">10.1038/sj.jid.5700025</a></li>
+</ol>
+
+<h3>Sistema modelo</h3>
+<ol class="refs" start="29">
+<li>Beckert B, Panico F, Pollmann R, <em>et al.</em> Immortalized human hTert/KER-CT keratinocytes a model system for research on desmosomal adhesion and pathogenesis of pemphigus vulgaris. <em>Int J Mol Sci</em> 2019;20:3113. <a href="https://doi.org/10.3390/ijms20133113">10.3390/ijms20133113</a> — <strong>valida tu línea exacta para tus ensayos exactos</strong></li>
+<li>Ficha de producto Ker-CT, ATCC CRL-4048. <a href="https://www.atcc.org/products/crl-4048">atcc.org/products/crl-4048</a> — hTERT más CDK4 de ratón</li>
+<li>Badu-Nkansah KA, Lechler T. Proteomic analysis of desmosomes reveals novel components required for epidermal integrity. <em>Mol Biol Cell</em> 2020;31:1140. <a href="https://doi.org/10.1091/mbc.E19-09-0542">10.1091/mbc.E19-09-0542</a></li>
+<li>Zaver SA, Sarkar MK, Egolf S, <em>et al.</em> Targeting SERCA2 in organotypic epidermis reveals MEK inhibition as a therapeutic strategy for Darier disease. <em>JCI Insight</em> 2023;8:e170739. <a href="https://doi.org/10.1172/jci.insight.170739">10.1172/jci.insight.170739</a> — el molde de lo que podrías hacer</li>
+</ol>
+</section>
+
+</div>
