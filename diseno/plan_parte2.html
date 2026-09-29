@@ -465,8 +465,26 @@ y el recíproco: LgBiT-queratina1 + SmBiT-queratina14 + queratina 10 creciente
 <li>Inmunofluorescencia doble de desmoplaquina con queratina 1. Medidas: <strong>retracción</strong> (distancia del frente de filamentos al borde celular), <strong>perfil de intensidad en una línea perpendicular al borde</strong>, <strong>fracción de puntos de desmoplaquina con filamento asociado</strong>, y <strong>tamaño y número de puntos por micra de borde</strong>. <strong>Nunca coeficientes de colocalización</strong> — ver el aviso de abajo.</li>
 <li><strong>Microscopía electrónica de transmisión:</strong> número de desmosomas, longitud, densidad de la placa, e inserción de filamentos.</li>
 <li><strong>Hiperadhesión:</strong> ver sección 6.2.</li>
-<li><strong>Fijación:</strong> metanol anhidro a menos 20 grados, 3 minutos en hielo. Es lo que usan los grupos de referencia para desmoplaquina y queratinas. Valida cada epítopo por separado <em>antes</em> de montar el panel completo.</li>
+<li><strong>Fijación:</strong> metanol anhidro a menos 20 grados, 3 minutos en hielo. Es lo que usan los grupos de referencia para desmoplaquina y queratinas, y es la fijación en la que está validado el anticuerpo recomendado. Valida cada epítopo por separado <em>antes</em> de montar el panel completo.</li>
 </ul>
+
+<div class="box warn">
+<p class="box-label">Metanol o formaldehído: no son intercambiables, y el metanol te puede sesgar la medida de citoplasma</p>
+<div class="tw"><table>
+<thead><tr><th></th><th>Metanol a −20 °C</th><th>Formaldehído 4 %</th></tr></thead>
+<tbody>
+<tr><td>Mecanismo</td><td><strong>Precipita</strong> las proteínas donde están</td><td><strong>Entrecruza</strong> proteínas vecinas por sus lisinas</td></tr>
+<tr><td>¿Permeabiliza?</td><td><strong>Sí</strong>, fija y permeabiliza a la vez</td><td><strong>No.</strong> Hace falta Tritón o saponina después, o los anticuerpos no entran</td></tr>
+<tr><td>Fracción soluble</td><td><strong>La lava</strong></td><td><strong>La retiene</strong></td></tr>
+<tr><td>Epítopos</td><td>No los tapa, porque no entrecruza</td><td>Puede enmascarar los que dependen de lisinas o de conformación</td></tr>
+<tr><td>Filamentos</td><td><strong>Nítidos</strong>, sobre fondo limpio</td><td>Buenos, con más velo citoplásmico</td></tr>
+</tbody></table></div>
+<p><strong>La consecuencia concreta para ti:</strong> si mides <em>desmoplaquina en membrana frente a citoplasma</em>, el metanol <strong>te lava parte del pool citoplásmico</strong> y subestimarás el efecto que buscas. Para esa medida el formaldehído es mejor.</p>
+<p><strong>Qué hacer:</strong> metanol como fijación por defecto del panel (arquitectura de filamentos, retracción, puntos juncionales), y <strong>una condición en paralelo con formaldehído más permeabilización</strong> sólo para la pregunta del pool citoplásmico. Es un pocillo más en el mismo experimento.</p>
+<p>Si necesitas las dos cosas en el mismo porta: <strong>formaldehído 4 % 20 min a temperatura ambiente, seguido de metanol frío 3 min</strong> — entrecruzas primero para retener lo soluble y permeabilizas después. Es lo que usa el grupo de Green.</p>
+<p><strong>Detalle:</strong> el formaldehído a 4 °C reacciona más despacio y fija peor. Si vas por esa vía, temperatura ambiente.</p>
+</div>
+
 <div class="box warn">
 <p class="box-label">Por qué no se cuantifica colocalización en un borde celular</p>
 <p>El desmosoma entero, de membrana a membrana, mide entre 100 y 200 nanómetros: está <strong>por debajo del límite de difracción de la luz</strong>. La desmoplaquina, la placoglobina, la plakofilina, la desmogleína y los extremos del filamento caen todos dentro del mismo punto difractado. Un coeficiente de Pearson de desmoplaquina contra queratina 1 te dará alrededor de 0,8 — y daría lo mismo contra cualquier otra proteína de la unión. No es un resultado.</p>
@@ -654,7 +672,7 @@ y el recíproco: LgBiT-queratina1 + SmBiT-queratina14 + queratina 10 creciente
 <tbody>
 <tr><td>Queratina 1</td><td>clon LHK1 (Thermo MA5-16032)</td><td><strong>Ratón</strong> <span class="tag">ya la tienes</span></td></tr>
 <tr><td>Etiqueta DDK</td><td>clon 4C5 (OriGene TA150014)</td><td><strong>Ratón</strong> <span class="tag">ya la tienes</span></td></tr>
-<tr><td><strong>Desmoplaquina 1 y 2</strong></td><td><strong>Proteintech 25318-1-AP</strong></td><td><strong>Conejo</strong> <span class="tag hot">comprar</span></td></tr>
+<tr><td><strong>Desmoplaquina 1 y 2</strong></td><td><strong>Proteintech 25318-1-AP</strong><br><span style="font-size:13.5px;color:var(--stone)">Pedir el vial de <strong>150 µL</strong>, no el de 20 µL, y alicuotarlo. A 1:1500 da para miles de portas, así que nunca cambiarás de lote en toda la tesis y el problema de variación entre lotes del policlonal desaparece.<br>Validado con <strong>metanol a −20 °C</strong> (tu fijación) sobre A431, con <strong>patrón punteado</strong> a 1:1500.<br>Alternativa si falla en tus células: Cell Signaling 73403 (monoclonal, con control negativo excelente en SK-MEL-2).</span></td><td><strong>Conejo</strong> <span class="tag hot">comprar</span></td></tr>
 <tr><td><strong>Queratina 14</strong></td><td><strong>Progen GP-CK14</strong></td><td><strong>Cobaya</strong> <span class="tag hot">comprar</span></td></tr>
 </tbody></table></div>
 <p><strong>Tres especies, todas las combinaciones funcionan:</strong> queratina 1 con desmoplaquina, queratina 1 con queratina 14, etiqueta con desmoplaquina, y el triple.</p>
