@@ -127,6 +127,7 @@ hr.sep{border:none;border-top:1px solid var(--rule);margin:30px 0}
 <a href="#crono">Cronograma</a>
 <a href="#compra">Compras</a>
 <a href="#k1basal">Queratina 1 basal</a>
+<a href="#protocolo">Protocolo</a>
 <a href="#glosario">Glosario</a>
 <a href="#biblio">Bibliografía</a>
 </div></nav>
@@ -931,6 +932,105 @@ y el recíproco: LgBiT-queratina1 + SmBiT-queratina14 + queratina 10 creciente
 <li>Escribir al CIEMAT sobre el transgénico de queratina 1 que nunca se publicó.</li>
 </ol>
 <p>Los pasos 1 a 3 cuestan poco más de una semana entre los tres y <strong>deciden la forma del paper</strong>.</p>
+</section>
+
+<section id="protocolo">
+<h2><span class="num">Sección 15</span>Protocolo de inmunofluorescencia, revisado</h2>
+<p class="lead">Revisión del protocolo de KerCT del 25-02-2025. Lo que está bien se queda; abajo van los cambios, ordenados por lo que más afecta a los resultados que quieres medir.</p>
+
+<div class="box key">
+<p class="box-label">Lo primero: formaldehído es buena elección para ti</p>
+<p>Dijiste que te resulta más fácil. No es un apaño: <strong>para medir desmoplaquina en citoplasma es incluso mejor que el metanol</strong>, porque retiene la fracción soluble que el metanol se lleva.</p>
+<p>El precio a pagar: el anticuerpo de desmoplaquina recomendado está validado en metanol, así que <strong>tendrás que validarlo tú en formaldehído</strong>. Un porta de prueba, no un drama.</p>
+</div>
+
+<h3>15.1 · Los cuatro cambios que más importan</h3>
+
+<div class="step"><div class="step-n">1</div><div class="step-b">
+<h4>La fijación en hielo te está subfijando</h4>
+<p>Actualmente: formaldehído 4 %, <strong>10 minutos sobre hielo</strong>.</p>
+<p>El entrecruzamiento por formaldehído es una reacción química y <strong>a 4 °C va mucho más despacio</strong>. No es que el frío esté prohibido —se usa a propósito cuando se quiere evitar que un antígeno lábil se redistribuya— pero 10 minutos en hielo fija poco.</p>
+<p><strong>Y aquí está el problema de verdad:</strong> si la fijación es incompleta, <strong>el Tritón del paso siguiente te extrae las proteínas solubles</strong>. Es decir, te llevas por el desagüe justo el pool citoplásmico de desmoplaquina que quieres medir. El protocolo «más fácil» te destruiría el resultado sin que lo notaras.</p>
+<p><strong>Cambio:</strong> formaldehído 4 %, <strong>10–15 minutos a temperatura ambiente</strong>. Si prefieres mantener el frío por algún motivo, sube a 20–30 minutos.</p>
+</div></div>
+
+<div class="step"><div class="step-n">2</div><div class="step-b">
+<h4>Falta apagar los aldehídos libres</h4>
+<p>Después de fijar con formaldehído quedan <strong>grupos aldehído libres</strong> que hacen dos cosas malas: generan <strong>autofluorescencia, sobre todo en el canal verde</strong>, y unen anticuerpo de forma inespecífica.</p>
+<p>Es una causa clásica de «verde difuso por el citoplasma» — justo lo que te llamó la atención en la ficha de Proteintech. Con formaldehído te lo puedes fabricar tú misma.</p>
+<p><strong>Añadir, justo después de fijar y antes de permeabilizar:</strong> <strong>glicina 0,1 M en PBS</strong> (o cloruro amónico 50 mM), <strong>10 minutos a temperatura ambiente</strong>. Luego lavar. Es un paso de diez minutos y quita mucho fondo.</p>
+</div></div>
+
+<div class="step"><div class="step-n">3</div><div class="step-b">
+<h4>El Tritón está al doble o al quíntuple de lo necesario</h4>
+<p>250 µL en 50 mL son <strong>Tritón X-100 al 0,5 %</strong>, 10 minutos. Para permeabilizar una célula fijada eso es fuerte, y combinado con el punto 1 es lo que te vacía el citoplasma.</p>
+<p><strong>Cambio:</strong> <strong>0,1–0,2 %</strong> (50–100 µL en 50 mL), <strong>5–10 minutos a temperatura ambiente</strong>.</p>
+<p>Si en algún momento quieres a propósito quedarte sólo con lo anclado al citoesqueleto, ahí sí sube el Tritón — pero entonces es una condición declarada, no el protocolo por defecto.</p>
+</div></div>
+
+<div class="step"><div class="step-n">4</div><div class="step-b">
+<h4>No hay control de sólo secundario</h4>
+<p>No aparece en el protocolo y tiene que ir <strong>en cada tanda</strong>, no una vez al principio: un cristal que recibe todo menos el anticuerpo primario.</p>
+<p>Y con el panel nuevo de tres especies hacen falta además los <strong>controles cruzados</strong>: teñir con un solo primario y revelar con el secundario de otra especie. No debe salir señal.</p>
+</div></div>
+
+<h3>15.2 · Lo que te falta comprar para el panel nuevo</h3>
+<div class="box warn">
+<p class="box-label">Tienes dos secundarios y los dos son verdes</p>
+<p>En el protocolo figuran Alexa 488 anti-conejo y Alexa 488 anti-ratón. <strong>Los dos emiten en el mismo canal</strong>, así que ahora mismo no puedes hacer ni un doble marcaje.</p>
+<p>Para el panel de tres colores más núcleos necesitas <strong>cuatro canales separables</strong>:</p>
+<div class="tw"><table>
+<thead><tr><th>Canal</th><th>Qué</th><th>Estado</th></tr></thead>
+<tbody>
+<tr><td>405 (azul)</td><td>DAPI</td><td>lo tienes</td></tr>
+<tr><td>488 (verde)</td><td>Alexa 488 anti-una especie</td><td>lo tienes</td></tr>
+<tr><td>568 o 594 (rojo)</td><td>anti-otra especie</td><td><strong>comprar</strong></td></tr>
+<tr><td>647 (lejano rojo)</td><td>anti-la tercera especie</td><td><strong>comprar</strong></td></tr>
+</tbody></table></div>
+<p>Y en particular: <strong>secundario anti-cobaya, altamente pre-adsorbido</strong>. El protocolo dice que el grupo ni siquiera tiene anti-ratón propio, así que conviene pedir los tres de golpe y de la misma marca y especie hospedadora (cabra), para que el bloqueo valga para todos.</p>
+</div>
+
+<h3>15.3 · Mejoras menores que salen gratis</h3>
+<ul>
+<li><strong>Añade suero normal de cabra al bloqueo.</strong> Como todos tus secundarios son de cabra, bloquear con <strong>5–10 % de suero normal de cabra</strong> además de la albúmina baja bastante el fondo. Es el cambio más barato de la lista.</li>
+<li><strong>Especifica la duración de los lavados tras el primario.</strong> Pone «lavar 3 veces con PBS» sin tiempo; en el resto del protocolo sí lo especificas. Que sean <strong>3 × 5 minutos</strong>.</li>
+<li><strong>Comprueba si vuestro Mowiol lleva antidesvanecimiento</strong> (DABCO o galato de n-propilo). El Mowiol solo no lo lleva, y tú vas a <strong>cuantificar intensidades</strong>: si las muestras se apagan a ritmos distintos, la comparación entre líneas se va al traste.</li>
+<li><strong>Cristales tratados.</strong> Para tiempos largos y para diferenciación, los queratinocitos se sujetan mucho mejor sobre <strong>colágeno I</strong>. Con 12 horas no hace falta; con días, sí.</li>
+<li><strong>Arregla la numeración de días</strong> («Día 10 (Día 5 si… y día 4 si…)»). No afecta al resultado pero confunde a quien herede el protocolo.</li>
+</ul>
+
+<h3>15.4 · Dos cosas que hay que decidir, no corregir</h3>
+<div class="box">
+<p class="box-label">El choque térmico</p>
+<p>El protocolo empieza con <strong>43 °C durante 30 minutos</strong>. Eso es un <strong>ensayo de estrés</strong> — es el método clásico para inducir agregación de queratinas en modelos de epidermólisis ampollosa, y de hecho la red de queratina se reorganiza con el calor.</p>
+<p><strong>Si está en el protocolo por defecto, lo estás aplicando siempre.</strong> Para las preguntas de emparejamiento de queratinas y de anclaje al desmosoma <strong>no lo quieres</strong>: estarías mirando células estresadas y no en reposo.</p>
+<p>Decide y déjalo escrito: protocolo base <strong>sin</strong> choque térmico, y una versión aparte <strong>con</strong> choque térmico para cuando la pregunta sea la resistencia al estrés.</p>
+</div>
+<div class="box">
+<p class="box-label">Este protocolo es de célula basal, no de diferenciada</p>
+<p>Siembras 80.000 células y fijas <strong>12–13 horas después</strong>. Eso es subconfluente y sin diferenciar.</p>
+<p>Para todo lo desmosómico necesitas otra línea temporal: <strong>confluencia del 100 %, switch de calcio, y días</strong>. No reutilices esta cronología para las preguntas de la Parte 2 — el protocolo de tinción sirve igual, pero el calendario de cultivo es otro.</p>
+</div>
+
+<h3>15.5 · Protocolo corregido, para copiar</h3>
+<ol>
+<li><strong>Siembra</strong> sobre cristal (colágeno I si van a ser días). Para desmosomas: crecer hasta confluencia y aplicar el switch de calcio.</li>
+<li><strong>Lavar</strong> 2 × PBS.</li>
+<li><strong>Fijar:</strong> formaldehído 4 %, <strong>10–15 min a temperatura ambiente</strong>.</li>
+<li><strong>Lavar</strong> 3 × PBS, 5 min cada uno.</li>
+<li><strong>Apagar aldehídos:</strong> glicina 0,1 M en PBS, <strong>10 min a temperatura ambiente</strong>. ← paso nuevo</li>
+<li><strong>Lavar</strong> 2 × PBS.</li>
+<li><strong>Permeabilizar:</strong> Tritón X-100 <strong>0,1–0,2 %</strong>, <strong>5–10 min a temperatura ambiente</strong>.</li>
+<li><strong>Lavar</strong> 3 × PBS (1 rápido + 2 × 5 min).</li>
+<li><strong>Bloquear:</strong> albúmina 5 % <strong>+ suero normal de cabra 5–10 %</strong> en PBS, 30–60 min.</li>
+<li><strong>Primario</strong> en el mismo tampón de bloqueo diluido, 30 µL por cristal. 1 h 30 min a temperatura ambiente, o toda la noche a 4 °C.</li>
+<li><strong>Lavar</strong> 3 × PBS, <strong>5 min cada uno</strong>.</li>
+<li><strong>Secundario</strong> en tampón de bloqueo, en oscuridad, 1 h.</li>
+<li><strong>Lavar</strong> 3 × PBS, 5 min.</li>
+<li><strong>DAPI</strong> 1:2000, 5 min. Lavar 3 × 5 min.</li>
+<li><strong>Montar</strong> con Mowiol <strong>con antidesvanecimiento</strong>. Secar en oscuridad, guardar a 4 °C.</li>
+</ol>
+<p><strong>Controles en cada tanda:</strong> sólo secundario; un primario revelado con el secundario de otra especie; y todas las condiciones a comparar procesadas <strong>el mismo día, en la misma cámara, con la misma mezcla de anticuerpo</strong>.</p>
 </section>
 
 <section id="glosario">
