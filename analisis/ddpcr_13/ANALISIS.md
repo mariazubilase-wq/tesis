@@ -68,6 +68,21 @@ Efecto de corregir: WT2 queda más cerca de 1 (1NM: 0,87 → 0,97) y las réplic
 Las unidades son copias/µL de reacción por µL de RNA; no se conoce el volumen de reacción, así que no
 se convierte a copias absolutas por ng de RNA.
 
+### Comparación con y sin A06 (veces vs c-)
+
+A06 solo pertenece a MUT1 #13 1NM, así que **solo cambia esa fila**; el resto es idéntico.
+
+| Condición | Sin corregir, con A06 | Sin corregir, sin A06 | Por RNA, con A06 | Por RNA, sin A06 |
+|---|---:|---:|---:|---:|
+| WT2 0,5NM | 1,14 | 1,14 | 1,15 | 1,15 |
+| WT2 1NM | 0,87 | 0,87 | 0,97 | 0,97 |
+| MUT1 0,5NM | 0,63 | 0,63 | 0,59 | 0,59 |
+| **MUT1 1NM** | **0,24** | **0,47** | **0,27** | **0,52** |
+
+Sin A06 el grupo MUT1 1NM queda con n = 1 (solo A05), por lo que su barra de error (solo la del control)
+subestima la incertidumbre real. Tabla completa en `resultados/4_comparacion_con_sin_A06.csv`, gráfica en
+`figuras/fig7_comparacion_con_sin_A06.png`.
+
 ## Avisos / limitaciones
 
 - **A06 (MUT1 #13 1NM) es un valor atípico:** 26,5 copias/µL con 394 positivos de 17 658 gotas,
@@ -89,5 +104,6 @@ se convierte a copias absolutas por ng de RNA.
 | `fig2_target_dominante.png` | Target conservado por pocillo |
 | `fig3_medias_replicas[_porRNA][_sin_A06].png` | Media ± SD con réplicas (4 variantes) |
 | `fig4_normalizado[_porRNA][_sin_A06].png` | Veces vs control negativo (4 variantes) |
+| `fig7_comparacion_con_sin_A06.png` | MUT1: con vs sin A06, ambas métricas |
 | `fig6_RNA_por_pocillo.png` | µL de RNA usados por pocillo (libreta ÷ 2) |
 | `fig5_gotas.png` | Control de calidad: gotas aceptadas por pocillo |

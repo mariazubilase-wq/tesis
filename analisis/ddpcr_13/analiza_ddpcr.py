@@ -122,6 +122,30 @@ for m, suf, ylab, tit in METRICAS:
         fig_norm(nor, f"Normalizado vs c-, {tit}{' · sin A06' if sens else ''}", f"fig4_normalizado{suf}{sens}.png")
         RES[(m, sens)] = (res, nor)
 
+# Fig 7 y tabla: comparación con / sin A06 (normalizado vs c-, ambas métricas)
+filas = []
+for (m, sens), (res, nor) in RES.items():
+    for _, r in nor.iterrows():
+        filas.append(dict(Metrica="por RNA" if m == "Copias_por_uL_RNA" else "sin corregir",
+                          A06="sin A06" if sens else "con A06", Genotipo=r.Genotipo,
+                          Condicion=r.Condicion, fold=r.fold_vs_control, SD=r.SD_propagada, n=r.n_muestra))
+comp = pd.DataFrame(filas)
+comp.to_csv(f"{AQUI}/resultados/4_comparacion_con_sin_A06.csv", index=False, float_format="%.4f")
+fig, axs = plt.subplots(1, 2, figsize=(10, 4.2), sharey=True)
+for ax, met in zip(axs, ["sin corregir", "por RNA"]):
+    sub = comp[(comp.Metrica == met) & (comp.Genotipo == "MUT1")]
+    for k, cond in enumerate(["#13 0,5NM", "#13 1NM"]):
+        for j, (lab, col) in enumerate([("con A06", "#d1495b"), ("sin A06", "#888888")]):
+            r = sub[(sub.Condicion == cond) & (sub.A06 == lab)].iloc[0]
+            ax.bar(k + (j - .5) * .38, r.fold, .36, color=col, yerr=None if np.isnan(r.SD) else r.SD, capsize=3,
+                   label=lab if k == 0 else None)
+            ax.text(k + (j - .5) * .38, r.fold + (0 if np.isnan(r.SD) else r.SD), f"{r.fold:.2f}", ha="center", va="bottom", fontsize=8)
+    ax.axhline(1, color="grey", ls="--", lw=.8)
+    ax.set_xticks([0, 1]); ax.set_xticklabels(["#13 0,5NM", "#13 1NM"]); ax.set_title(f"MUT1 · {met}")
+axs[0].set_ylabel("veces vs mut1 c-"); axs[0].legend(frameon=False)
+fig.suptitle("Fig. 7 · MUT1: efecto de incluir o quitar A06 (A06 solo afecta a 1NM)")
+fig.tight_layout(); fig.savefig(f"{AQUI}/figuras/fig7_comparacion_con_sin_A06.png", dpi=200); plt.close(fig)
+
 # Fig 6: RNA por pocillo
 fig, ax = plt.subplots(figsize=(8, 3.8))
 ax.bar(range(len(dom)), dom.RNA_uL, color=[COL[g] for g in dom.Genotipo])
