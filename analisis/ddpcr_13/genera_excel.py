@@ -61,7 +61,7 @@ ancho(ws, 16)
 # 4 Normalizado
 ws = wb.create_sheet("Normalizado vs c-"); r = 1
 for tit, suf, sen in VAR:
-    n = R(f"3_normalizado_vs_control{suf}{sen}.csv").rename(columns={"fold_vs_control": "veces vs c-", "SD_propagada": "SD"})
+    n = R(f"3_normalizado_vs_control{suf}{sen}.csv").rename(columns={"fold_vs_control": "veces vs c-", "SD_propagada": "SD propagada (incluye c-)", "SD_propia": "SD propia del grupo", "SD_control_propia": "SD propia del c-"})
     r = escribe(ws, n, r, tit)
 ancho(ws, 18)
 # resumen compacto
@@ -82,5 +82,10 @@ ws["A48"] = "Medias ± SD por réplica"; ws["A48"].font = Font(bold=True)
 for k, (tit, suf, sen) in enumerate(VAR):
     col = "A" if k % 2 == 0 else "L"; row = 50 if k < 2 else 72
     img(f"fig3_medias_replicas{suf}{sen}.png", f"{col}{row}")
+
+ws["A94"] = "Normalizado vs c- con la SD propia de cada grupo (c- también con su SD)"; ws["A94"].font = Font(bold=True)
+for k, (tit, suf, sen) in enumerate(VAR):
+    col = "A" if k % 2 == 0 else "L"; row = 96 if k < 2 else 118
+    img(f"fig4_normalizado_SDpropia{suf}{sen}.png", f"{col}{row}")
 
 wb.save(f"{AQUI}/../ddpcr_13_resultados.xlsx")

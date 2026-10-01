@@ -19,6 +19,10 @@ Todo se reproduce con `python3 analiza_ddpcr.py` (genera `resultados/` y `figura
    Se da el cociente («veces vs c-», c- = 1), con SD propagada
    (`fold·√[(SD_m/m)² + (SD_c/c)²]`, solo si muestra y control tienen n ≥ 2; con n = 1 no hay SD) y los cocientes de cada réplica individual (puntos en la Fig. 4).
    (`3_normalizado_vs_control.csv`).
+4b. **Barras de error: dos opciones.** (a) `SD_propagada`: error del cociente, mezcla la variabilidad de la
+   muestra y la del c-. (b) `SD_propia` (figuras `fig4_normalizado_SDpropia*`): cada réplica se divide por la media
+   del c- (referencia fija) y cada barra muestra la SD de sus propias réplicas; el c- lleva también su SD
+   (`SD_control_propia`). Con n = 1 no se dibuja barra en ninguna.
 5. **Análisis de sensibilidad sin A06** (ver avisos): ficheros y figuras con sufijo `_sin_A06`.
 6. **Corrección por RNA (añadido después).** De la libreta se anotó el volumen de RNA de cada pocillo
    (A01–A12: 3 · 2,6 · 2,92 · 3,36 · 2,42 · 2,1 · 2,8 · 3,06 · 2,97 · 3,28 · 2,94 · 2,35 µL; las comillas «″»
@@ -105,5 +109,6 @@ se dibujaba una barra que solo recogía la variabilidad del control; era un erro
 | `fig3_medias_replicas[_porRNA][_sin_A06].png` | Media ± SD con réplicas (4 variantes) |
 | `fig4_normalizado[_porRNA][_sin_A06].png` | Veces vs control negativo (4 variantes) |
 | `fig7_comparacion_con_sin_A06.png` | MUT1: con vs sin A06, ambas métricas |
+| `fig4_normalizado_SDpropia[_porRNA][_sin_A06].png` | Veces vs c- con la SD propia de cada grupo (4 variantes) |
 | `fig6_RNA_por_pocillo.png` | µL de RNA usados por pocillo (libreta ÷ 2) |
 | `fig5_gotas.png` | Control de calidad: gotas aceptadas por pocillo |

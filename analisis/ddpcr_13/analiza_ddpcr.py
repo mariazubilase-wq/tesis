@@ -72,6 +72,7 @@ def normaliza(res, d, m):
             out.append(dict(Genotipo=gen, Condicion=r.Condicion, media_muestra=r.media,
                             media_control=c.media, n_muestra=r.n, n_control=c.n,
                             fold_vs_control=fold, SD_propagada=fold * rel,
+                            SD_propia=r.sd / c.media, SD_control_propia=c.sd / c.media,
                             ratios_replicas=";".join(f"{x:.3f}" for x in ind)))
     return pd.DataFrame(out)
 
@@ -111,6 +112,27 @@ def fig_norm(nor, titulo, fn):
         ax.set_ylabel("veces vs c-"); ax.set_title(gen)
     fig.suptitle(titulo); fig.tight_layout(); fig.savefig(f"{AQUI}/figuras/{fn}", dpi=200); plt.close(fig)
 
+def fig_norm_propia(nor, titulo, fn):
+    """Cada barra con SUS réplicas: valor / media del c- (referencia fija). El c- lleva su propia SD."""
+    fig, axs = plt.subplots(1, 2, figsize=(8, 4.2))
+    for ax, gen in zip(axs, ["WT2", "MUT1"]):
+        sub = nor[nor.Genotipo == gen]
+        sdc = sub.SD_control_propia.iloc[0]
+        ax.bar(0, 1, color="grey", alpha=.6, yerr=None if np.isnan(sdc) else sdc, capsize=4)
+        ax.axhline(1, color="grey", ls="--", lw=.8)
+        for j, (_, r) in enumerate(sub.iterrows(), 1):
+            sd = r.SD_propia
+            ax.bar(j, r.fold_vs_control, color=COL[gen], alpha=.7, yerr=None if np.isnan(sd) else sd, capsize=4)
+            ratios = [float(v) for v in r.ratios_replicas.split(";")]
+            ax.scatter(j + np.linspace(-.08, .08, len(ratios)), ratios, color="k", s=18, zorder=3)
+            top = r.fold_vs_control + (0 if np.isnan(sd) else sd)
+            ax.text(j, top, f"{r.fold_vs_control:.2f}" + ("\n(n=1, sin SD)" if r.n_muestra < 2 else ""), ha="center", va="bottom", fontsize=8)
+        ctrl = d_ctrl[gen]
+        ax.scatter(np.linspace(-.08, .08, len(ctrl)), ctrl, color="k", s=18, zorder=3)
+        ax.set_xticks(range(len(sub) + 1)); ax.set_xticklabels(["c- (=1)"] + list(sub.Condicion))
+        ax.set_ylabel("veces vs media del c-"); ax.set_title(gen)
+    fig.suptitle(titulo); fig.tight_layout(); fig.savefig(f"{AQUI}/figuras/{fn}", dpi=200); plt.close(fig)
+
 # (metrica, sufijo ficheros, etiqueta eje, nombre en título)
 METRICAS = [("Copias_uL", "", "copias/µL de reacción", "sin corregir por RNA"),
             ("Copias_por_uL_RNA", "_porRNA", "copias/µL ÷ µL de RNA", "corregido por RNA")]
@@ -122,6 +144,8 @@ for m, suf, ylab, tit in METRICAS:
         nor.to_csv(f"{AQUI}/resultados/3_normalizado_vs_control{suf}{sens}.csv", index=False, float_format="%.4f")
         fig_medias(d, m, ylab, f"Media ± SD de réplicas, {tit}{' · sin A06' if sens else ''}", f"fig3_medias_replicas{suf}{sens}.png")
         fig_norm(nor, f"Normalizado vs c-, {tit}{' · sin A06' if sens else ''}", f"fig4_normalizado{suf}{sens}.png")
+        d_ctrl = {g: (d[(d.Genotipo == g) & (d.Condicion == "c-")][m] / res[(res.Genotipo == g) & (res.Condicion == "c-")].media.iloc[0]).values for g in ["WT2", "MUT1"]}
+        fig_norm_propia(nor, f"Normalizado vs c-, SD propia de cada grupo, {tit}{' · sin A06' if sens else ''}", f"fig4_normalizado_SDpropia{suf}{sens}.png")
         RES[(m, sens)] = (res, nor)
 
 # Fig 7 y tabla: comparación con / sin A06 (normalizado vs c-, ambas métricas)

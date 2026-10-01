@@ -1,5 +1,5 @@
-Genotipo,Condicion,media_muestra,media_control,n_muestra,n_control,fold_vs_control,SD_propagada,ratios_replicas
-WT2,#13 1NM,1341.0502,1538.1225,2,2,0.8719,0.2912,0.995;0.748
-WT2,"#13 0,5NM",1759.6528,1538.1225,2,2,1.1440,0.3061,1.134;1.154
-MUT1,#13 1NM,761.9303,3180.2579,2,2,0.2396,0.3381,0.471;0.008
-MUT1,"#13 0,5NM",2004.0687,3180.2579,2,2,0.6302,0.3077,0.778;0.483
+Genotipo,Condicion,media_muestra,media_control,n_muestra,n_control,fold_vs_control,SD_propagada,SD_propia,SD_control_propia,ratios_replicas
+WT2,#13 1NM,1341.0502,1538.1225,2,2,0.8719,0.2912,0.1747,0.2672,0.995;0.748
+WT2,"#13 0,5NM",1759.6528,1538.1225,2,2,1.1440,0.3061,0.0143,0.2672,1.134;1.154
+MUT1,#13 1NM,761.9303,3180.2579,2,2,0.2396,0.3381,0.3270,0.3587,0.471;0.008
+MUT1,"#13 0,5NM",2004.0687,3180.2579,2,2,0.6302,0.3077,0.2087,0.3587,0.778;0.483
