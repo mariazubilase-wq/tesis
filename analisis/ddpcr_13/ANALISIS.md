@@ -17,7 +17,7 @@ Todo se reproduce con `python3 analiza_ddpcr.py` (genera `resultados/` y `figura
 4. **Normalización.** Cada condición se divide por la media de su control negativo del mismo genotipo:
    WT2 #13 (1 y 0,5NM) ÷ media de `wt2 c-`; MUT1 #13 (1 y 0,5NM) ÷ media de `mut1 c-`.
    Se da el cociente («veces vs c-», c- = 1), con SD propagada
-   (`fold·√[(SD_m/m)² + (SD_c/c)²]`) y los cocientes de cada réplica individual (puntos en la Fig. 4).
+   (`fold·√[(SD_m/m)² + (SD_c/c)²]`, solo si muestra y control tienen n ≥ 2; con n = 1 no hay SD) y los cocientes de cada réplica individual (puntos en la Fig. 4).
    (`3_normalizado_vs_control.csv`).
 5. **Análisis de sensibilidad sin A06** (ver avisos): ficheros y figuras con sufijo `_sin_A06`.
 6. **Corrección por RNA (añadido después).** De la libreta se anotó el volumen de RNA de cada pocillo
@@ -79,8 +79,8 @@ A06 solo pertenece a MUT1 #13 1NM, así que **solo cambia esa fila**; el resto e
 | MUT1 0,5NM | 0,63 | 0,63 | 0,59 | 0,59 |
 | **MUT1 1NM** | **0,24** | **0,47** | **0,27** | **0,52** |
 
-Sin A06 el grupo MUT1 1NM queda con n = 1 (solo A05), por lo que su barra de error (solo la del control)
-subestima la incertidumbre real. Tabla completa en `resultados/4_comparacion_con_sin_A06.csv`, gráfica en
+Sin A06 el grupo MUT1 1NM queda con n = 1 (solo A05): **no tiene SD ni barra de error** (en una versión previa
+se dibujaba una barra que solo recogía la variabilidad del control; era un error y está corregido). Tabla completa en `resultados/4_comparacion_con_sin_A06.csv`, gráfica en
 `figuras/fig7_comparacion_con_sin_A06.png`.
 
 ## Avisos / limitaciones

@@ -66,7 +66,8 @@ def normaliza(res, d, m):
         c = res[(res.Genotipo == gen) & (res.Condicion == "c-")].iloc[0]
         for _, r in res[(res.Genotipo == gen) & (res.Condicion != "c-")].iterrows():
             fold = r.media / c.media
-            rel = np.sqrt(np.nansum([(r.sd / r.media) ** 2, (c.sd / c.media) ** 2]))
+            # con n<2 en muestra o control no hay SD válida: no se propaga nada (NaN), no se usa solo la del otro
+            rel = np.sqrt((r.sd / r.media) ** 2 + (c.sd / c.media) ** 2) if min(r.n, c.n) > 1 else np.nan
             ind = d[(d.Genotipo == gen) & (d.Condicion == r.Condicion)][m] / c.media
             out.append(dict(Genotipo=gen, Condicion=r.Condicion, media_muestra=r.media,
                             media_control=c.media, n_muestra=r.n, n_control=c.n,
@@ -104,7 +105,8 @@ def fig_norm(nor, titulo, fn):
             ratios = [float(v) for v in r.ratios_replicas.split(";")]
             ax.scatter(j + np.linspace(-.08, .08, len(ratios)), ratios, color="k", s=18, zorder=3)
             top = r.fold_vs_control + (0 if np.isnan(r.SD_propagada) else r.SD_propagada)
-            ax.text(j, top, f"{r.fold_vs_control:.2f}", ha="center", va="bottom", fontsize=8)
+            et = f"{r.fold_vs_control:.2f}" + ("\n(n=1, sin SD)" if r.n_muestra < 2 else "")
+            ax.text(j, top, et, ha="center", va="bottom", fontsize=8)
         ax.set_xticks(range(len(sub) + 1)); ax.set_xticklabels(["c- (=1)"] + list(sub.Condicion))
         ax.set_ylabel("veces vs c-"); ax.set_title(gen)
     fig.suptitle(titulo); fig.tight_layout(); fig.savefig(f"{AQUI}/figuras/{fn}", dpi=200); plt.close(fig)
