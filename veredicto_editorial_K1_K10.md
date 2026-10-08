@@ -168,13 +168,79 @@ JID no lo da una figura más: lo da **pasar de estado estacionario a cinética**
 
 ---
 
-## 6. La oportunidad que el plan no ve
+## 6. La oportunidad — versión corregida
 
-`intermediate filament degron` en PubMed = **0 resultados**.
-`degron buried interface orphan quality control` = **0 resultados**.
+> ⚠️ **Corrección de una versión anterior de este documento.** Afirmé que
+> `intermediate filament degron` = 0 resultados en PubMed demostraba que *"no se ha
+> mapeado un determinante de degradación en ninguna proteína de filamento
+> intermedio"*. **Ese negativo no valía.** "Degron" es jerga del campo de
+> ubiquitina; nadie publica *"mapeamos el degrón de una queratina"*, publica *"el
+> dominio X es necesario para la acumulación"*. Buscando por los términos reales,
+> el mapeo existe — y está en *Cell*. Ver §6-bis.
 
-**No se ha mapeado un determinante de degradación en ninguna proteína de filamento
-intermedio.** Y el campo general ya fijó el estándar de qué cuenta como mecanismo:
+### 6-bis. Lo que sí está mapeado (y yo había dado por libre)
+
+**🔴 Lu X, Lane EB (1990).** *Retrovirus-mediated transgenic keratin expression in
+cultured fibroblasts: specific domain functions in keratin stabilization and
+filament formation.* Cell 62:681–96.
+[DOI](https://doi.org/10.1016/0092-8674(90)90114-t)
+
+Textual, según PubMed — y nótese que separan tres niveles:
+
+> *"Three levels of assembly show a different stringency for the involvement of
+> individual keratin domains: **protein accumulation requires the alpha helix
+> domains**; stable filament formation additionally requires both N- and
+> C-terminal domains of either one of the two interacting keratins...; and higher
+> order organization of the cytoplasmic network depends on **correct type I–type II
+> pairing** of keratins."*
+
+Es decir: **mapeo por dominios de qué necesita una queratina para acumularse** —
+o sea, para escapar a la degradación — publicado en Cell en 1990. Y además
+disocian acumulación / ensamblaje estable / organización de red, que es justo la
+lógica de la Fig. 6 del plan.
+
+Y hay toda una literatura de deleciones sobre el destino de FI truncadas:
+
+- **Hatzfeld M, Weber K (1990).** *Tailless keratins assemble into regular
+  intermediate filaments in vitro.* J Cell Sci 97:317–24.
+  [DOI](https://doi.org/10.1242/jcs.97.2.317) → la cola **no** es necesaria para
+  formar filamentos, ni en tipo I ni en tipo II.
+- **Bader BL, Magin TM, Freudenmann M, Stumpp S, Franke WW (1991).** *Intermediate
+  filaments formed de novo from tail-less cytokeratins in the cytoplasm and in the
+  nucleus.* J Cell Biol 115:1293–307.
+  [DOI](https://doi.org/10.1083/jcb.115.5.1293) → pares sin cola forman FI
+  regulares, pero **se acumulan en el núcleo**; sin cola *y* sin cabeza dan
+  depósitos no fibrilares nucleares; sin cabeza sola se quedan en citoplasma.
+- **Andreoli JM, Trevor KT (1994).** *Fate of a headless vimentin protein in stable
+  cell cultures: soluble and cytoskeletal forms.* Exp Cell Res 214:177–88.
+  [DOI](https://doi.org/10.1006/excr.1994.1247) → vimentina sin cabeza expresada
+  hasta **7× el endógeno**, mayoritariamente **soluble**, *"without deleterious
+  cellular effects"*. **Una FI no ensamblada que NO se degrada.** Contraejemplo
+  directo a "no ensamblado = degradado", y relevante para la rama "soluble" de la
+  Fig. 1 del plan.
+
+### 6-ter. Qué queda libre de verdad, dicho con precisión
+
+No esto: *"nadie ha mapeado un determinante de degradación en una FI"* — falso.
+
+Sí esto, que es más estrecho pero sigue siendo real y no lo cubre Lu & Lane:
+
+1. **Resolución de residuo, no de dominio.** Lu & Lane trabajan con deleciones de
+   dominios completos y atribuyen la acumulación al rod. Nadie ha bajado a
+   residuos.
+2. **Ningún determinante se ha ligado a una maquinaria concreta.** Lu & Lane
+   describen el requisito; no hay ligasa, ni receptor, ni vía asociada a ese
+   dominio.
+3. **Nadie ha mostrado que lo que se lee sea la ocupación del partner.** "Requiere
+   el rod para acumularse" es compatible con "necesita plegarse bien". La
+   hipótesis de ERISQ/UBE2O es distinta y más fuerte: que la señal es una
+   **superficie de la interfaz de heterodimerización** que el partner entierra, y
+   que su exposición es lo que se reconoce.
+
+Esa tercera es la que vale, y es la que explicaría la jerarquía K10 > K14 sin
+postularla. Pero hay que plantearla **citando a Lu & Lane como punto de partida**,
+no como hueco virgen. Y el marco general ya fijó el estándar de qué cuenta como
+mecanismo:
 
 - **ERISQ** (Sung et al. 2016, eLife, [DOI](https://doi.org/10.7554/eLife.19105)):
   Tom1/Huwe1 ubiquitina proteínas ribosómicas no ensambladas *"primarily via
@@ -203,6 +269,20 @@ Por qué esto lo cambia todo, en lenguaje de editor:
 
 Y conecta con lo que ya hay en casa: el mutante de K10 de §6/Fig. 6 es el
 experimento recíproco. Los dos brazos del mismo mecanismo.
+
+**Pero con la guardia alta, a la luz de §6-bis:** Lu & Lane ya atribuyeron la
+acumulación al rod por deleción de dominios. Una mutagénesis de interfaz que
+reduzca la estabilidad se leerá, por defecto, como *"has desestabilizado el
+plegamiento del rod, que es lo que Lu & Lane ya dijo"*. Para que el experimento
+signifique lo que se quiere que signifique hacen falta dos controles que el marco
+ERISQ/UBE2O impone:
+
+- una mutación de interfaz que **mantenga** el plegamiento y la capacidad de unir
+  K10 pero cambie la superficie expuesta (no un desestabilizante genérico), y
+- demostrar que el efecto **desaparece en ausencia de la maquinaria** (p62/ATG7, o
+  la ligasa), que es lo que separa "lee la interfaz" de "está mal plegado".
+
+Sin esos dos, el mapeo no sube de tier: repite 1990 con más resolución.
 
 ---
 
@@ -249,8 +329,10 @@ del manuscrito*. Propuesta:
 8. qPCR 3'UTR vs ORF-tag.
 9. Co-expresión K14 vs K10.
 10. Dispasa a tiempos largos → el cruce.
-11. **Nuevo: mapeo del degrón en la interfaz con K10.** Si 1–5 salen bien, esto es
-    lo que sube de tier.
+11. **Nuevo: mapeo del determinante en la interfaz con K10**, con los dos controles
+    de §6-ter (mutación que conserve plegamiento y unión; dependencia de
+    maquinaria). Si 1–5 salen bien, esto es lo que sube de tier. Leer Lu & Lane
+    1990 antes de diseñarlo.
 
 ---
 
@@ -260,17 +342,62 @@ del manuscrito*. Propuesta:
   espera por defecto.
 - **¿El concepto es novedoso?** No. Está publicado en 1988–89 y el plan lo vende
   como tesis central. Hay que reescribir §1 y los dos títulos candidatos.
-- **¿El mecanismo es novedoso?** Sí, y más de lo que el plan cree: la
-  dependencia de carga, la inducción, la identidad de la vía, la regla
-  monómero/polímero y el degrón están todos libres. Pero ninguno está demostrado
-  aún.
+- **¿El mecanismo es novedoso?** Sí: la dependencia de carga, la inducción, la
+  identidad de la vía y la regla monómero/polímero están libres. Pero ninguno está
+  demostrado aún.
+- **¿Y el mapeo del determinante?** Libre **sólo a resolución de residuo y ligado a
+  maquinaria**. El mapeo por dominios está hecho desde 1990 (Lu & Lane, *Cell*):
+  la acumulación requiere el rod. Ver §6-bis y §6-ter.
 - **¿Cuál es el riesgo real?** No la prioridad. **El tag y el clon.** Dos
-  confundidores que convierten el resultado estrella en ininterpretable, y uno de
-  ellos reproduce la arquitectura exacta del artefacto de 1989.
+  confundidores que convierten el resultado estrella en ininterpretable. El del
+  tag, eso sí, es **más contestable de lo que yo dije**: ver §10.
 - **¿Qué hacer primero?** Tag, CHX chase, inducible. En ese orden. Tres
   experimentos que caben en un trimestre y que determinan si esto es JID o IJMS.
-- **¿Qué cambiaría el techo?** El degrón. Nadie ha mapeado uno en ningún filamento
-  intermedio, y el marco general (ERISQ, UBE2O) ya predice dónde buscarlo.
+- **¿Qué cambiaría el techo?** Mostrar que lo que se lee es **la ocupación del
+  partner** y no el plegamiento: interfaz + dependencia de maquinaria. Eso sí no
+  lo tiene nadie, y ERISQ/UBE2O predicen dónde buscarlo.
+
+---
+
+## 10. Corrección al §6 del plan: el tag no es lo que el plan dice que es
+
+El plan justifica el riesgo del tag así: *"Myc-DDK va en C-terminal → tapa la cola
+de K1, que es justo la región implicada en interacciones con desmoplaquina"*.
+
+**Eso es incorrecto.** Según PubMed:
+
+**Meng JJ, Bornslaeger EA, Green KJ, Steinert PM, Ip W (1997).** *Two-hybrid
+analysis reveals fundamental differences in direct interactions between
+desmoplakin and cell type-specific intermediate filaments.* J Biol Chem
+272:21495–503. [DOI](https://doi.org/10.1074/jbc.272.34.21495)
+
+Textual: el C-terminal de desmoplaquina *"interact[s] with at least two regions of
+the **head domain** of the type II epidermal keratin K1"*, y *"the interaction
+between DPCT and K1 **requires the keratin head domain**"*.
+
+La región de K1 relevante para desmoplaquina es la **cabeza**, que el tag
+C-terminal deja libre.
+
+**Esto es, en conjunto, buena noticia, y reordena el riesgo:**
+
+| Objeción | Estado real |
+|---|---|
+| "El tag tapa el sitio de desmoplaquina" | **Falso** (Meng 1997: es la cabeza) |
+| "El tag impide el ensamblaje" | **Improbable**: la cola no es necesaria para formar FI, ni in vitro (Hatzfeld & Weber 1990) ni en células (Bader/Magin 1991) |
+| "El tag causa la degradación que atribuyes a la falta de K10" | **Improbable por la vía esperada**: la acumulación requiere el **rod**, no la cola (Lu & Lane 1990) |
+| "El tag perturba la localización" | **Real y poco intuitivo**: las queratinas sin cola se acumulan en el **núcleo** (Bader/Magin 1991). Mirar la IF con esto en mente |
+| "Es el truncado de Kulesh otra vez" | **Contestable**: el de Kulesh perdía cola **y parte del rod**; es el rod lo que gobierna la acumulación |
+
+Consecuencia práctica: la objeción del tag **se puede responder con citas**, no
+sólo con un experimento nuevo. Eso rebaja el riesgo de rechazo del párrafo 2 de
+Revisor 1 que describí en §4 — sigo recomendando el control de K1 sin tag porque es
+barato y blinda la figura principal, pero deja de ser el bloqueante absoluto que
+dije. **El clon, en cambio, sigue siéndolo.**
+
+Y hay que corregir el plan en dos sitios más: su §6 afirma que el tag compromete
+*"cualquier afirmación sobre anclaje desmosómico"* — lo contrario es lo cierto, el
+sitio de DP queda libre; y su §8 propone el eje desmosómico sin saber que el
+contacto DP–K1 está mapeado a la cabeza, lo cual **ayuda** a ese bloque.
 
 ---
 

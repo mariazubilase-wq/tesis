@@ -311,12 +311,34 @@ a la vez, porque es el primer sitio donde Magin (revisor probable) mirará.
 ## 7. Riesgos de precedente que no pude cerrar
 
 - **Ensamblaje K1/K14 in vitro (Hatzfeld & Franke, Hatzfeld & Weber, Steinert;
-  años 80–90).** Las búsquedas por términos MeSH no recuperan bien esta
-  literatura: es anterior a la indexación moderna y usa otro vocabulario
-  ("compatibilidad de pares tipo I/tipo II", "reconstitución in vitro"). **Hay
-  que ir a mano.** Si alguno ya midió que K1/K14 polimeriza con menor eficiencia
-  que K1/K10, la Fig. 5 pierde su primera mitad y queda sólo la de capacidad.
-  Este es el hueco de verificación más importante que queda.
+  años 80–90).** **Sigue abierto** tras una segunda ronda de búsqueda. Las
+  búsquedas por MeSH no recuperan esta literatura: es anterior a la indexación
+  moderna y usa otro vocabulario. **Hay que ir a mano.** Si alguno ya midió que
+  K1/K14 polimeriza con menor eficiencia que K1/K10, la Fig. 5 pierde su primera
+  mitad y queda sólo la de capacidad. Este es el hueco de verificación más
+  importante que queda.
+  Punto de entrada encontrado: **Lu X & Lane EB (1990), Cell 62:681–96**
+  ([DOI](https://doi.org/10.1016/0092-8674(90)90114-t)) dice que *"higher order
+  organization of the cytoplasmic network depends on correct type I–type II
+  pairing of keratins"* — es la afirmación publicada más próxima a la jerarquía de
+  pares. Empezar por ahí y seguir sus citas.
+
+### ⚠️ Corrección metodológica a la primera ronda de búsqueda
+
+La primera versión de este informe y del veredicto editorial usaron el negativo
+`intermediate filament degron` = 0 resultados para concluir que no se había mapeado
+ningún determinante de degradación en filamentos intermedios. **Ese negativo era un
+artefacto de vocabulario**: "degron" es jerga del campo de ubiquitina y esa
+literatura se publica como *"domain required for accumulation"*, *"deletion
+analysis"*, *"tailless/headless"*. Buscando por los términos reales aparece un
+cuerpo sustancial, encabezado por Lu & Lane 1990 en *Cell*. Está desarrollado en
+§6-bis de `veredicto_editorial_K1_K10.md`.
+
+Lección general para esta revisión bibliográfica: **un cero en PubMed con una query
+larga no es evidencia de hueco.** La traducción de PubMed hace AND de todos los
+términos, de modo que basta un sinónimo mal elegido para vaciar el resultado. Los
+huecos que este informe declara se sostienen sólo si se han probado los sinónimos
+del campo, no una sola formulación.
 - **"UV-Induced Keratin 1 Proteolysis Mediates UV-Induced Skin Damage"** —
   preprint en bioRxiv (226308), no indexado en PubMed. Conviene leerlo: es
   proteólisis de K1 por otra ruta, y si está publicado ya en algún sitio hay que
