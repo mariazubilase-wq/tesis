@@ -24,7 +24,7 @@ def escribe(ws, df, r0=1, titulo=None):
 def ancho(ws, w=16):
     for j in range(1, ws.max_column + 1): ws.column_dimensions[get_column_letter(j)].width = w
 def imagen(ws, base, fn, cell, w=520):
-    im = Image(f"{base}/figuras/{fn}"); im.width, im.height = w, int(w * im.height / im.width); ws.add_image(im, cell)
+    im = Image(f"{base}/figuras/{fn}" if not fn.startswith("/") else fn); im.width, im.height = w, int(w * im.height / im.width); ws.add_image(im, cell)
 
 wb = Workbook()
 
@@ -32,7 +32,7 @@ wb = Workbook()
 ws = wb.active; ws.title = "Leeme"
 txt = [
  "Análisis ddPCR · tesis KRT10 · #13 (silenciamiento alelo-específico)", "",
- "HOJAS:  E1 = experimento 01-oct (WT2 y MUT1)  ·  E2 = experimento 08-oct (solo MUT1)  ·  Resumen global = comparación de ambos.", "",
+ "HOJAS:  «Réplicas por separado» = cada réplica biológica sin promediar (E1 y E2)  ·  E1 = experimento 01-oct (WT2 y MUT1)  ·  E2 = experimento 08-oct (solo MUT1)  ·  Resumen global = comparación de ambos.", "",
  "MÉTODO COMÚN",
  "1) Por pocillo se conserva el target con más copias/µL (WT2 → T2/VIC; MUT1 → T1/FAM).",
  "2) Se promedian réplicas; se normaliza cada condición contra la media de su control negativo (c-).",
@@ -124,5 +124,23 @@ for tit, pat in cfg:
 ws.cell(fila, 1, "Datos crudos y control de calidad").font = Font(bold=True)
 imagen(ws, E2, "fig1_targets_por_pocillo.png", f"A{fila + 1}", 620); imagen(ws, E2, "fig2_target_dominante.png", f"L{fila + 1}", 620)
 imagen(ws, E2, "fig5_gotas.png", f"A{fila + 24}", 460); imagen(ws, E2, "fig6_RNA_por_replica.png", f"L{fila + 24}", 460)
+
+# ---------------- Réplicas por separado (E1 + E2) ----------------
+RP = f"{AQUI}/replicas_por_separado"
+t = pd.read_csv(f"{RP}/replicas_por_separado.csv")
+t = t[["Exp", "Genotipo", "Condicion", "Rep", "Pocillos", "Cop", "RNA", "RNA_u", "CopRNA",
+       "sin_vs_media", "sin_vs_par", "sin_menos_media", "sin_menos_par",
+       "RNA_vs_media", "RNA_vs_par", "RNA_menos_media", "RNA_menos_par", "Nota"]]
+t.columns = ["Experimento", "Genotipo", "Condición", "Réplica biológica", "Pocillos", "Copias/µL", "RNA", "Unid. RNA", "Copias/µL ÷ RNA",
+             "SIN CORREGIR · veces vs MEDIA c-", "SIN CORREGIR · veces vs c- MISMA réplica", "SIN CORREGIR · veces MENOS vs media c- (1/x)", "SIN CORREGIR · veces MENOS vs c- misma réplica (1/x)",
+             "POR RNA · veces vs MEDIA c-", "POR RNA · veces vs c- MISMA réplica", "POR RNA · veces MENOS vs media c- (1/x)", "POR RNA · veces MENOS vs c- misma réplica (1/x)", "Nota"]
+ws = wb.create_sheet("Réplicas por separado", 2)
+ws["A1"] = "Cada réplica biológica por separado (no la media). 'Misma réplica' asume que la réplica 1 se aparea con el c- 1 y la 2 con el c- 2. E2: media de los 2 pocillos técnicos. E1: cada pocillo = una réplica (1 = primer pocillo)."
+ws["A1"].font = Font(bold=True)
+escribe(ws, t, 3); ancho(ws, 17); ws.row_dimensions[3].height = 75
+from openpyxl.styles import Alignment
+for c in ws[3]: c.alignment = Alignment(wrap_text=True, vertical="top")
+ws["A23"] = "Gráficas (barra = réplica biológica; entre paréntesis ÷ = veces menos)"; ws["A23"].font = Font(bold=True)
+imagen(ws, RP, "E2_MUT1.png", "A25", 640); imagen(ws, RP, "E1_MUT1.png", "L25", 640); imagen(ws, RP, "E1_WT2.png", "A60", 640)
 
 wb.save(f"{AQUI}/ddpcr_resultados.xlsx")

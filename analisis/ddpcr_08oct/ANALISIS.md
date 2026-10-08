@@ -47,3 +47,7 @@ y esta dispersión no es concluyente; no se hizo test estadístico.
 - **Pocas gotas** en A09–A12 (#13 0,5NM): 7 600–8 500 (< 10 000). El c- también tiene variación entre biológicas (2509 vs 1919).
 - El cruce de señal (Target 2) sube a ~3 % en A11–A12; no afecta a la conclusión.
 - La foto de la libreta estaba girada 90°; los valores se leyeron tal cual (ver `datos/libreta_RNA_ngul.jpg`).
+
+## Réplicas biológicas por separado
+Ver hoja «Réplicas por separado» del Excel conjunto (`analisis/replicas_por_separado.py`, `analisis/replicas_por_separado/`). Cada réplica biológica se normaliza (a) contra la **media** del c- y (b) contra el c- **de la misma réplica** (supone que la 1 se aparea con el c- 1 y la 2 con el c- 2). «Veces menos» = 1/valor.
+Resultado E2 (corregido por RNA, vs c- de la misma réplica): #13 0,5NM bio1 = 0,73 (÷1,4), bio2 = 0,71 (÷1,4); #13 1NM bio1 = 0,38 (÷2,6), bio2 = 0,74 (÷1,4). Sin corregir, #13 1NM bio2 queda en 0,95 (÷1,0) frente a bio1 0,28 (÷3,5): la dosis alta solo reduce claramente en la réplica 1.
