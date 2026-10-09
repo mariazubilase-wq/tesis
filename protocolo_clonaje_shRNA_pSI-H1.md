@@ -24,8 +24,8 @@ La doble digestión BamHI+EcoRI sólo libera un fragmento de **9 pb** (`GATCCTCT
 sh13:
 5'-GATC CAATGACTGCCTGGCTTCCTTT CTTCCTGTCAGA AAAGGAAGCCAGGCAGTCATT TTTTTG    -3'
 3'-     GTTACTGACGGACCGAAGGAAA GAAGGACAGTCT TTTCCTTCGGTCCGTCAGTAA AAAAACTTAA-5'
-     ↑ compatible BamHI                                                   ↑ compatible EcoRI
-         sentido (21 nt)        bucle (12 nt)   antisentido (21 nt)    term. Pol III
+     ↑ compatible BamHI                                                  ↑ compatible EcoRI
+           sentido (21 nt)    bucle (12 nt)  antisentido (21 nt)  term.
 ```
 
 - Sentido y antisentido son complementarios exactos en ambas construcciones (verificado).
