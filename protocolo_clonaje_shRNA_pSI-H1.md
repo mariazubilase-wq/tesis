@@ -49,48 +49,71 @@ Aquí BamHI y EcoRI son de tipo II clásicas y **sus sitios se reconstruyen al l
 
 - Oligos a **100 µM** en agua o TE (sh13_TOP, sh13_BOT, shSCR_TOP, shSCR_BOT)
 - T4 PNK + tampón de ligasa T4 10× (lleva ATP)
-- **FastDigest BamHI (FD0054) y FastDigest EcoRI (FD0274)** de Thermo + 10× FastDigest Green Buffer
+- **BamHI (ER0051) y EcoRI (ER0271)** de Thermo, convencionales, 10 U/µL
+- **10× Tango Buffer** (BY5) + tampón de carga 6× (el Tango no lleva colorante)
 - T4 DNA ligasa + su tampón (alícuotas frescas: el ATP se degrada al congelar/descongelar)
 - Kit de purificación en gel, agarosa, bacterias competentes (DH5α o Stbl3)
 - **Kanamicina 50 µg/mL** (⚠️ no ampicilina)
 
 ---
 
-## 3. DÍA 1 — Digestión del vector (Thermo FastDigest, 20 µL)
+## 3. DÍA 1 — Digestión del vector (BamHI + EcoRI en 2× Tango, 20 µL)
 
-**Opción A — FastDigest (recomendada).** Las FastDigest son 100 % compatibles entre sí en un único tampón, así que la doble digestión va en un solo tubo. Es la línea que ya usáis en el protocolo de CRISPR.
+### 3.1 Por qué 2× Tango funciona aquí
 
-| Componente | Volumen |
-|---|---|
-| **10× FastDigest Green Buffer** | 2 µL |
-| pSI-H1-CMV-GFP (**1 µg**) | x µL |
-| FastDigest **BamHI** (FD0054) | 1 µL |
-| FastDigest **EcoRI** (FD0274) | 1 µL |
-| H₂O libre de nucleasas | hasta **20 µL** |
+Según las tablas de actividad de Thermo para estas enzimas convencionales:
 
-- **37 °C, 30 min.** El protocolo estándar de Thermo son 5–15 min, pero aquí los dos sitios están separados sólo por 3 pb y necesitas corte completo por ambos, así que alarga a 30 min.
-- **No pases de 1 h** ni lo dejes toda la noche: las FastDigest no están pensadas para incubaciones largas y puedes empezar a ver actividad *star*.
-- El **Green Buffer ya lleva tampón de carga y densificante**, así que los 20 µL se cargan directos en el gel sin añadir nada. (Si usas el FastDigest Buffer normal, añade tu tampón de carga antes de cargar.)
+| Enzima | Su tampón | Tango 1× | **Tango 2×** |
+|---|---|---|---|
+| BamHI (ER0051) | 100 % | 100 % | **50–100 %** |
+| EcoRI (ER0271) | 100 % | parcial | **100 %** |
+
+Es decir, 2× Tango es la única concentración en la que **las dos cortan a la vez**, y es la combinación que recomienda el propio protocolo de Fermentas/Thermo cuando ambas enzimas son compatibles con 2×: *"si tanto 1× como 2× sirven, usa 2× para evitar actividad star"*. El único matiz es que **BamHI puede quedarse en el 50 %**, así que se compensa dándole el doble de unidades que a EcoRI.
+
+### 3.2 Montaje (20 µL)
+
+| Componente | Volumen | Nota |
+|---|---|---|
+| **10× Tango Buffer** | **4 µL** | 4 µL en 20 µL = **2× final** |
+| pSI-H1-CMV-GFP (**1 µg**) | x µL | |
+| **BamHI** (10 U/µL) | 1 µL | **10 U** — doble, porque en 2× puede ir al 50 % |
+| **EcoRI** (10 U/µL) | 0,5 µL | **5 U** |
+| H₂O libre de nucleasas | hasta **20 µL** | |
+
+- **37 °C, 1 h.**
+- **No lo dejes toda la noche.** La ficha de EcoRI marca actividad *star* a partir de **5 veces la sobredigestión** (5 U × 1 h sobre 1 µg), que es justo donde está esta reacción. Pasar a 16 h la multiplicaría por 16 y empezarías a ver cortes inespecíficos que te destrozan el vector.
+- Si sospechas digestión incompleta, **alarga añadiendo más BamHI, nunca más EcoRI**: BamHI es muy resistente a la *star* (su ficha no detecta cambio de patrón ni con 80 veces de sobredigestión), mientras que EcoRI es la frágil de las dos. Añade 0,5 µL más de BamHI y otra hora.
+- **Mantén el volumen total de enzima por debajo de 2 µL** (10 % de la reacción). Las enzimas vienen en 50 % glicerol, y por encima del 5 % de glicerol final se dispara la actividad *star*. Con 1 + 0,5 µL vas en el 7,5 %, dentro de rango.
+- El Tango **no lleva colorante**: añade tampón de carga 6× antes de cargar el gel.
 - No hace falta inactivar por calor, porque el siguiente paso es purificación en gel.
 - **No defosforiles** el vector. Los oligos sintéticos no llevan fosfato en 5′ si no los fosforilas; si además quitas los fosfatos del vector, no ligará nada. Como la digestión es doble y con extremos incompatibles entre sí, el religado del vector vacío ya es bajo.
 
-> **Rendimiento:** 1 µg digerido te deja, tras purificar en gel, unos 400–600 ng (≈ 20–25 ng/µL en 25 µL). Son 8–10 ligaciones de 50 ng, de sobra para las dos construcciones. Si quieres más margen, monta **dos tubos de 20 µL** en paralelo y júntalos en el gel — es mejor que sobrecargar un solo tubo, porque por encima de 1 µg de ADN en 20 µL la digestión deja de ser completa.
+### 3.3 ⚠️ El gel NO te va a decir si la doble digestión funcionó
 
-**Opción B — enzimas convencionales (ER0051 / ER0271).** No hay un tampón de Thermo que dé 100 % de actividad a BamHI y EcoRI a la vez: cada una tiene el suyo (Buffer BamHI y Buffer EcoRI). Hazla **secuencial**:
+Esto es importante y es específico de tu construcción: entre BamHI y EcoRI sólo hay **9 pb**. Un vector cortado por una sola enzima y uno cortado por las dos corren **igual** en el gel (6.877 frente a 6.868 pb). Lo único que ves es superenrollado → lineal.
 
-1. EcoRI 1 µL + 2 µL de 10× Buffer EcoRI + 1 µg de plásmido + H₂O hasta 20 µL → 37 °C, 1–2 h.
-2. Limpia en columna, eluye en 16 µL.
-3. Añade 2 µL de 10× Buffer BamHI + 1 µL de BamHI + H₂O hasta 20 µL → 37 °C, 1–2 h.
-4. Gel y purificación como en la opción A.
+Por eso:
+- El gel sólo te confirma que **al menos una** enzima cortó.
+- Quien te dice de verdad si la doble digestión fue completa es el **control de ligación L2** (vector solo, sin inserto, punto 5). Si L2 te da tantas colonias como L1, es que una de las dos enzimas no cortó y el vector se está recircularizando.
+- Por eso merece la pena ser generosa con BamHI desde el principio: te ahorra repetir tres días después.
 
-Antes de montarla, comprueba la pareja en la calculadora [DoubleDigest de Thermo](https://www.thermofisher.com/order/catalog/product/B30) por si tu lote admite Tango; si el tanto por ciento de actividad no es 100/100, quédate con la digestión secuencial.
+### 3.4 Purificación en gel
 
-**Purificación en gel (importante):**
-1. Corre los 50 µL en gel de agarosa al 0,8 %.
-2. Corta la banda de ~6,9 kb (el fragmento de 9 pb se va con el frente) y purifícala con kit.
-3. Eluye en 25–30 µL y cuantifica (Nanodrop). Deberías tener ≥ 30 ng/µL.
+1. Añade tampón de carga y corre los 20 µL en agarosa al 0,8 %.
+2. Corta la banda de ~6,9 kb **por su parte baja**, para no arrastrar plásmido superenrollado sin cortar (migra cerca y es la fuente principal de falsos positivos).
+3. Eluye en 25–30 µL y cuantifica.
 
-> Control recomendado: carga en paralelo 200 ng de plásmido sin digerir. La diferencia entre superenrollado (sin cortar) y lineal te confirma que la digestión fue completa.
+> **Rendimiento:** 1 µg digerido te deja unos 400–600 ng tras el gel (≈ 20–25 ng/µL en 25 µL). Son 8–10 ligaciones de 50 ng, de sobra para las dos construcciones. Si quieres más margen, monta **dos tubos de 20 µL** en paralelo y júntalos en el gel — mejor que sobrecargar un solo tubo, porque por encima de 1 µg en 20 µL la digestión deja de ser completa.
+
+### 3.5 Alternativa si el fondo sale alto: escalado de Tango en dos pasos
+
+Es el procedimiento oficial de Fermentas para parejas que prefieren concentraciones distintas, y pone a **las dos enzimas al 100 %**:
+
+1. Monta **18 µL** en **1× Tango** (1,8 µL de 10× Tango) con 1 µg de ADN y **1 µL de BamHI** → 37 °C, 1 h. *(BamHI está al 100 % en 1× Tango.)*
+2. Sin purificar, añade **2,3 µL de 10× Tango** (1/8 del volumen inicial) para subir a **2× Tango**, y **0,5 µL de EcoRI** → 37 °C, 1 h. *(EcoRI está al 100 % en 2×.)*
+3. Sigue con el gel del punto 3.4.
+
+Tarda una hora más pero elimina el riesgo de que BamHI se quede corta.
 
 ---
 
@@ -187,7 +210,7 @@ Manda 4–6 clones positivos con el cebador **H1-F**. El inserto empieza ~83 pb 
 
 | Problema | Causa probable | Solución |
 |---|---|---|
-| Muchas colonias también en L2 (vector solo) | Digestión incompleta (sólo cortó una enzima) | Sube a 45 min (sin pasar de 1 h) y baja el ADN a 0,5 µg; corta la banda por la parte baja para no arrastrar plásmido superenrollado, que migra cerca |
+| Muchas colonias también en L2 (vector solo) | Digestión incompleta (sólo cortó una enzima) | Añade 0,5 µL más de **BamHI** y otra hora (nunca más EcoRI); o pasa al escalado de Tango en dos pasos (3.5). Baja el ADN a 0,5 µg y corta la banda por su parte baja |
 | Pocas o ninguna colonia en L1 | Vector sobre-purificado o poco; dúplex mal anillado | Sube a 100 ng de vector; comprueba el dúplex en gel al 3 % (debe ir como banda única de ~65 pb) |
 | Insertos en tándem | Exceso de dúplex | Diluye 1:500 o 1:1000 en vez de 1:250 |
 | Deleción en las 5 T | Deslizamiento en el homopolímero | Normal; cribar más clones. Stbl3 a 30 °C ayuda |
@@ -199,7 +222,7 @@ Manda 4–6 clones positivos con el cebador **H1-F**. El inserto empieza ~83 pb 
 
 | Día | Tarea |
 |---|---|
-| 1 (mañana) | Digestión del vector (30 min) + anillado de oligos (1 h) |
+| 1 (mañana) | Digestión del vector (1 h) + anillado de oligos (1 h) |
 | 1 (tarde) | Gel y purificación del vector → ligación a 16 °C O/N |
 | 2 | Transformación → placas O/N |
 | 3 | PCR de colonia, picar positivos → cultivos O/N |
