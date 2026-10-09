@@ -174,9 +174,30 @@ Tres tubos por construcción:
 
 ---
 
-## 7. DÍA 3 — Cribado
+## 7. DÍA 3 — Cómo verificar que el dúplex entró bien
 
-### 7.1 PCR de colonia (rápido)
+### 7.0 Antes de nada: tres cosas que tu construcción NO permite
+
+Conviene tenerlas claras para no perder un día interpretando mal un gel:
+
+| Método habitual | Por qué aquí no sirve |
+|---|---|
+| Ver si el plásmido "creció" en un gel | El inserto añade sólo **56 pb** sobre 6.877. 6.933 frente a 6.877 pb no se distinguen en un gel de agarosa |
+| Digestión diagnóstica con una enzima nueva | **Comprobado sobre tu secuencia: el inserto no crea ningún sitio de restricción nuevo.** Los únicos palíndromos de la zona son el BamHI y el EcoRI que se regeneran |
+| Linearizar y comparar | Mismo problema: 56 pb de diferencia |
+
+Así que la verificación va por **PCR de colonia → digestión BamHI/EcoRI → secuenciación**, en ese orden.
+
+### 7.1 Control previo: comprueba el anillado antes de ligar
+
+Merece la pena gastar un carril antes de montar la ligación. Carga **1 µL del dúplex sin diluir** (el de 10 µL recién salido del termociclador, no la dilución 1:250, que no se ve) en **agarosa al 3 % o acrilamida al 10 %**:
+
+- **Bien anillado:** una banda nítida de ~65 pb.
+- **Mal anillado:** una banda difusa que corre más rápido, o dos bandas → los oligos siguen monocatenarios. Repite la rampa de temperatura más lenta.
+
+Si el dúplex no está anillado, la ligación no puede funcionar, y te enteras aquí en vez de tres días después.
+
+### 7.2 PCR de colonia (cribado rápido, 10–20 colonias)
 
 Cebadores diseñados sobre tu secuencia:
 
@@ -186,23 +207,46 @@ Cebadores diseñados sobre tu secuencia:
 | **pSI-R** | `TGAGGCTTAAGCAGTGGGTTCC` | 3021–3042 (rev) | ~57 °C |
 
 - Ta = 58 °C, extensión 30 s.
-- **Vacío: 222 pb — con inserto: 278 pb.** Resuélvelo en agarosa al 2,5–3 %.
-- Si ves una banda claramente mayor (~334 pb o más) → inserción doble/concatémero: descártala.
+- **Vacío: 222 pb — con inserto: 278 pb.** Son 56 pb de diferencia sobre un fragmento pequeño, así que **sí** se resuelven, pero necesitas **agarosa al 2,5–3 %** y correr despacio. En un gel al 1 % no los vas a separar.
+- Pon siempre un carril con **plásmido vacío** como referencia de los 222 pb. Sin ese control es muy fácil confundirse.
+- **Banda de ~334 pb o mayor → concatémero** (dos o más dúplex en tándem). Descártala: expresará mal y recombina.
 
-### 7.2 Digestión diagnóstica (alternativa, sobre miniprep)
+> ⚠️ **La PCR no distingue sh13 de shSCR:** los dos dan 278 pb. Por eso haz las dos ligaciones y transformaciones **por separado y bien etiquetadas**; no intentes separarlas después.
 
-Como los dos sitios se regeneran, BamHI+EcoRI sobre el clon correcto libera un fragmento de **65 pb** que el vector vacío no tiene (en el vacío son 9 pb, invisibles). Hace falta gel al 3 % o acrilamida al 10 %.
+### 7.3 Digestión BamHI + EcoRI sobre miniprep (confirmación intermedia)
 
-### 7.3 Secuenciación (obligatoria)
+Al ligar **se regeneran los dos sitios**, así que puedes volver a cortar el inserto:
 
-Manda 4–6 clones positivos con el cebador **H1-F**. El inserto empieza ~83 pb después del cebador, así que la lectura lo cubre con buena calidad.
+- **Clon correcto:** vector ~6,9 kb + fragmento de **65 pb**.
+- **Vector vacío religado:** vector ~6,9 kb + fragmento de **9 pb** (invisible, se va con el frente).
 
-**Qué comprobar en la secuencia:**
-- Una sola copia del dúplex.
-- Que el tramo de **5 T seguidas** (terminador de Pol III) está intacto. Es el sitio donde más deleciones aparecen, porque las polimerasas y *E. coli* resbalan en homopolímeros.
-- Las dos secuencias esperadas:
-  - **sh13:** `GGATCCAATGACTGCCTGGCTTCCTTTCTTCCTGTCAGAAAAGGAAGCCAGGCAGTCATTTTTTTGAATTC`
-  - **shSCR:** `GGATCCCCTAAGGTTAAGTCGCCCTCGCTTCCTGTCAGACGAGGGCGACTTAACCTTAGGTTTTTGAATTC`
+La banda de 65 pb es la prueba directa de que el dúplex está dentro. Necesitas **agarosa al 3 % o acrilamida al 10 %**, y cargar bastante miniprep (500 ng–1 µg) porque 65 pb sobre 6.933 es muy poca masa: con 1 µg digerido sólo ~9 ng van a esa banda. Tiñe bien y no te asustes si es tenue.
+
+### 7.4 Secuenciación (la única prueba definitiva)
+
+Manda **4–6 clones** positivos por PCR. Usa **los dos cebadores**:
+
+- **H1-F** (directo): el inserto empieza ~83 pb después del cebador, en plena zona de buena calidad.
+- **pSI-R** (inverso): entra por el otro lado. Leer el horquilla desde ambos lados es lo que te salva cuando una de las dos lecturas se atasca.
+
+**Qué mirar, en este orden:**
+
+1. **Una sola copia del dúplex.** Si ves la secuencia repetida en tándem, es concatémero.
+2. **El tramo de 5 T (terminador de Pol III) intacto.** Es el punto donde más deleciones aparecen: tanto la polimerasa de secuenciación como *E. coli* resbalan en homopolímeros. Un clon con 4 T en vez de 5 termina mal la transcripción y silencia peor.
+3. **El bucle y las dos hebras completos**, sin deleciones internas.
+4. Secuencias esperadas de extremo a extremo:
+   - **sh13:** `GGATCCAATGACTGCCTGGCTTCCTTTCTTCCTGTCAGAAAAGGAAGCCAGGCAGTCATTTTTTTGAATTC`
+   - **shSCR:** `GGATCCCCTAAGGTTAAGTCGCCCTCGCTTCCTGTCAGACGAGGGCGACTTAACCTTAGGTTTTTGAATTC`
+
+> ⚠️ **Las horquillas se secuencian mal, y es normal.** El dúplex forma un tallo de 21 pb muy estable que hace que la polimerasa se pare o comprima picos justo ahí. Si la lectura muere al entrar en la horquilla: pide al servicio de secuenciación su protocolo para **GC-rich / hairpin** (betaína, DMSO o química dGTP), y manda el clon con los dos cebadores. Una lectura que entra limpia por un lado y otra que entra limpia por el otro te reconstruyen la secuencia completa aunque ninguna de las dos la cruce entera.
+
+### 7.5 Validación funcional (la que de verdad importa)
+
+Un clon con la secuencia perfecta todavía puede no silenciar. Antes de dar la construcción por buena:
+
+1. Transfecta y comprueba **GFP** a las 24–48 h: te confirma que el plásmido entra y se expresa.
+2. **RT-qPCR** del gen diana frente a shSCR. Esperable: 60–80 % de reducción con un shRNA que funcione.
+3. Si por PCR y secuencia está todo bien pero no silencia, lo más probable es que se esté cargando la hebra equivocada en el RISC. En ese caso toca probar otra diana, no repetir el clonaje.
 
 ---
 
