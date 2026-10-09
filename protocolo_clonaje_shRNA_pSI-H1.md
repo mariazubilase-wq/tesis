@@ -49,27 +49,41 @@ Aquí BamHI y EcoRI son de tipo II clásicas y **sus sitios se reconstruyen al l
 
 - Oligos a **100 µM** en agua o TE (sh13_TOP, sh13_BOT, shSCR_TOP, shSCR_BOT)
 - T4 PNK + tampón de ligasa T4 10× (lleva ATP)
-- BamHI-HF y EcoRI-HF (o versiones FastDigest) + tampón compatible con ambas (rCutSmart / NEBuffer r3.1; con Thermo, FastDigest Green)
+- **FastDigest BamHI (FD0054) y FastDigest EcoRI (FD0274)** de Thermo + 10× FastDigest Green Buffer
 - T4 DNA ligasa + su tampón (alícuotas frescas: el ATP se degrada al congelar/descongelar)
 - Kit de purificación en gel, agarosa, bacterias competentes (DH5α o Stbl3)
 - **Kanamicina 50 µg/mL** (⚠️ no ampicilina)
 
 ---
 
-## 3. DÍA 1 — Digestión del vector
+## 3. DÍA 1 — Digestión del vector (Thermo FastDigest, 20 µL)
 
-Monta la digestión **generosa** (necesitas vector bien cortado por los dos sitios; recuerda que sólo están separados por 3 pb):
+**Opción A — FastDigest (recomendada).** Las FastDigest son 100 % compatibles entre sí en un único tampón, así que la doble digestión va en un solo tubo. Es la línea que ya usáis en el protocolo de CRISPR.
 
 | Componente | Volumen |
 |---|---|
-| pSI-H1-CMV-GFP (3–5 µg) | x µL |
-| Tampón 10× | 5 µL |
-| BamHI-HF | 1,5 µL |
-| EcoRI-HF | 1,5 µL |
-| H₂O | hasta 50 µL |
+| **10× FastDigest Green Buffer** | 2 µL |
+| pSI-H1-CMV-GFP (**1 µg**) | x µL |
+| FastDigest **BamHI** (FD0054) | 1 µL |
+| FastDigest **EcoRI** (FD0274) | 1 µL |
+| H₂O libre de nucleasas | hasta **20 µL** |
 
-- **37 °C, 3 h** (o toda la noche si usas enzimas HF, que no tienen actividad *star*).
+- **37 °C, 30 min.** El protocolo estándar de Thermo son 5–15 min, pero aquí los dos sitios están separados sólo por 3 pb y necesitas corte completo por ambos, así que alarga a 30 min.
+- **No pases de 1 h** ni lo dejes toda la noche: las FastDigest no están pensadas para incubaciones largas y puedes empezar a ver actividad *star*.
+- El **Green Buffer ya lleva tampón de carga y densificante**, así que los 20 µL se cargan directos en el gel sin añadir nada. (Si usas el FastDigest Buffer normal, añade tu tampón de carga antes de cargar.)
+- No hace falta inactivar por calor, porque el siguiente paso es purificación en gel.
 - **No defosforiles** el vector. Los oligos sintéticos no llevan fosfato en 5′ si no los fosforilas; si además quitas los fosfatos del vector, no ligará nada. Como la digestión es doble y con extremos incompatibles entre sí, el religado del vector vacío ya es bajo.
+
+> **Rendimiento:** 1 µg digerido te deja, tras purificar en gel, unos 400–600 ng (≈ 20–25 ng/µL en 25 µL). Son 8–10 ligaciones de 50 ng, de sobra para las dos construcciones. Si quieres más margen, monta **dos tubos de 20 µL** en paralelo y júntalos en el gel — es mejor que sobrecargar un solo tubo, porque por encima de 1 µg de ADN en 20 µL la digestión deja de ser completa.
+
+**Opción B — enzimas convencionales (ER0051 / ER0271).** No hay un tampón de Thermo que dé 100 % de actividad a BamHI y EcoRI a la vez: cada una tiene el suyo (Buffer BamHI y Buffer EcoRI). Hazla **secuencial**:
+
+1. EcoRI 1 µL + 2 µL de 10× Buffer EcoRI + 1 µg de plásmido + H₂O hasta 20 µL → 37 °C, 1–2 h.
+2. Limpia en columna, eluye en 16 µL.
+3. Añade 2 µL de 10× Buffer BamHI + 1 µL de BamHI + H₂O hasta 20 µL → 37 °C, 1–2 h.
+4. Gel y purificación como en la opción A.
+
+Antes de montarla, comprueba la pareja en la calculadora [DoubleDigest de Thermo](https://www.thermofisher.com/order/catalog/product/B30) por si tu lote admite Tango; si el tanto por ciento de actividad no es 100/100, quédate con la digestión secuencial.
 
 **Purificación en gel (importante):**
 1. Corre los 50 µL en gel de agarosa al 0,8 %.
@@ -173,7 +187,7 @@ Manda 4–6 clones positivos con el cebador **H1-F**. El inserto empieza ~83 pb 
 
 | Problema | Causa probable | Solución |
 |---|---|---|
-| Muchas colonias también en L2 (vector solo) | Digestión incompleta (sólo cortó una enzima) | Alarga la digestión a toda la noche; purifica en gel con cuidado de no arrastrar plásmido superenrollado |
+| Muchas colonias también en L2 (vector solo) | Digestión incompleta (sólo cortó una enzima) | Sube a 45 min (sin pasar de 1 h) y baja el ADN a 0,5 µg; corta la banda por la parte baja para no arrastrar plásmido superenrollado, que migra cerca |
 | Pocas o ninguna colonia en L1 | Vector sobre-purificado o poco; dúplex mal anillado | Sube a 100 ng de vector; comprueba el dúplex en gel al 3 % (debe ir como banda única de ~65 pb) |
 | Insertos en tándem | Exceso de dúplex | Diluye 1:500 o 1:1000 en vez de 1:250 |
 | Deleción en las 5 T | Deslizamiento en el homopolímero | Normal; cribar más clones. Stbl3 a 30 °C ayuda |
@@ -185,7 +199,7 @@ Manda 4–6 clones positivos con el cebador **H1-F**. El inserto empieza ~83 pb 
 
 | Día | Tarea |
 |---|---|
-| 1 (mañana) | Digestión del vector (3 h) + anillado de oligos (1 h) |
+| 1 (mañana) | Digestión del vector (30 min) + anillado de oligos (1 h) |
 | 1 (tarde) | Gel y purificación del vector → ligación a 16 °C O/N |
 | 2 | Transformación → placas O/N |
 | 3 | PCR de colonia, picar positivos → cultivos O/N |
