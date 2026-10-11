@@ -31,7 +31,7 @@ INK, GREY = "#39414f", "#6b7280"
 
 
 # --------------------------------------------------------------- primitivas
-def lipido(x, y, ang, head, tail, hr=5.2, largo=22, sep=2.4, colas=2):
+def lipido(x, y, ang, head, tail, hr=5.2, largo=22, sep=2.4, colas=2, grosor=2.0):
     """Lípido con la cabeza en (x, y) y las colas apuntando hacia `ang`."""
     dx, dy = math.cos(ang), math.sin(ang)
     px, py = -dy, dx
@@ -43,7 +43,7 @@ def lipido(x, y, ang, head, tail, hr=5.2, largo=22, sep=2.4, colas=2):
         xm = (x0 + x1) / 2 + px * (2.6 if s else 2.2)
         ym = (y0 + y1) / 2 + py * (2.6 if s else 2.2)
         piezas.append(f'<path d="M{x0:.1f},{y0:.1f} Q{xm:.1f},{ym:.1f} {x1:.1f},{y1:.1f}" '
-                      f'fill="none" stroke="{tail}" stroke-width="2" stroke-linecap="round"/>')
+                      f'fill="none" stroke="{tail}" stroke-width="{grosor}" stroke-linecap="round"/>')
     piezas.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{hr}" fill="{head}"/>')
     return ''.join(piezas)
 
@@ -334,7 +334,56 @@ def microemulsion():
     return out
 
 
-FIGURAS = {'liposoma': liposoma, 'microemulsion': microemulsion}
+# ------------------------------------------------- liposoma, solo el dibujo
+def liposoma_solo():
+    """El liposoma a pelo: sin títulos, sin leyenda y sin señalar nada."""
+    L = 900
+    CX = CY = L / 2
+    R = 352
+    GROSOR = 104
+    RI = R - GROSOR
+    k = R / 146.0                      # escala respecto a la figura con texto
+
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{L}" height="{L}" '
+           f'viewBox="0 0 {L} {L}" font-family="Verdana, DejaVu Sans, sans-serif">',
+           f'<rect width="{L}" height="{L}" fill="#ffffff"/>']
+
+    out.append(f'<circle cx="{CX}" cy="{CY}" r="{RI - 8}" fill="{AGUA}"/>')
+    out.append(f'<circle cx="{CX}" cy="{CY}" r="{R - GROSOR / 2:.1f}" fill="none" '
+               f'stroke="#f2f6fa" stroke-width="{GROSOR}"/>')
+
+    # el DNA dentro
+    out.append(plasmido(CX - 54, CY + 10, 78, lobulos=5, amp=6, fase=0.4, grosor=9))
+    out.append(plasmido(CX + 104, CY + 118, 44, lobulos=5, amp=5, fase=1.7, grosor=8))
+    out.append(hebra(CX - 140, CY + 150, CX - 10, CY + 182, amp=11, ondas=2.5, grosor=7.5))
+
+    # monocapa externa
+    N = 78
+    for i in range(N):
+        a = 2 * math.pi * i / N - math.pi / 2
+        x, y = CX + R * math.cos(a), CY + R * math.sin(a)
+        if i % 9 == 4:
+            out.append(colesterol(CX + (R - 48) * math.cos(a), CY + (R - 48) * math.sin(a),
+                                  a + math.pi / 2, 2.1))
+        else:
+            out.append(lipido(x, y, a + math.pi, FOS_H, FOS_T, hr=5.2 * k * 0.8,
+                              largo=20 * k, sep=2.4 * k * 0.8, grosor=3.6))
+
+    # monocapa interna
+    NI = 56
+    for i in range(NI):
+        a = 2 * math.pi * i / NI - math.pi / 2
+        x, y = CX + RI * math.cos(a), CY + RI * math.sin(a)
+        out.append(lipido(x, y, a, FOS_H, FOS_T, hr=5.2 * k * 0.8,
+                          largo=20 * k, sep=2.4 * k * 0.8, grosor=3.6))
+
+    out.append('</svg>')
+    return out
+
+
+
+FIGURAS = {'liposoma': liposoma, 'microemulsion': microemulsion,
+           'liposoma_solo': liposoma_solo}
 
 if __name__ == '__main__':
     if len(sys.argv) != 3 or sys.argv[1] not in FIGURAS:
