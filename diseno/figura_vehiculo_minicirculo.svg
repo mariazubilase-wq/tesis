@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" font-family="Verdana, DejaVu Sans, sans-serif">
+
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f3a4f"/>
+    </marker>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8f8f8f"/>
+    </marker>
+    <radialGradient id="npcore" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#f6ded7"/>
+      <stop offset="100%" stop-color="#e3bcb1"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="960" height="540" fill="#ffffff"/>
+
+  <!-- cabecera -->
+  <rect x="0" y="0" width="960" height="54" fill="#39414f"/>
+  <text x="480" y="35" text-anchor="middle" font-size="22" font-weight="bold" fill="#ffffff">Podemos introducir DNA y siRNA dentro de las células</text>
+
+  <!-- PASO 1 : la carga -->
+  <text x="34" y="84" font-size="14.5" font-weight="bold" fill="#39414f">1 · La carga</text>
+  <text x="34" y="101" font-size="11" fill="#6b7280">lo que queremos meter en la célula</text>
+
+  <g transform="translate(96,118)">
+    <path d="M0,0 h70" stroke="#6cc24a" stroke-width="6.5" stroke-linecap="round"/>
+    <path d="M0,10 h70" stroke="#e2664f" stroke-width="6.5" stroke-linecap="round"/>
+    <g stroke="#ffffff" stroke-width="1.5">
+      <path d="M10,0 v10"/><path d="M21,0 v10"/><path d="M32,0 v10"/>
+      <path d="M43,0 v10"/><path d="M54,0 v10"/><path d="M64,0 v10"/>
+    </g>
+    <text x="84" y="2" font-size="12" font-weight="bold" fill="#39414f">siRNA</text>
+    <text x="84" y="16" font-size="10" fill="#6b7280">silencia el alelo mutado</text>
+  </g>
+
+  <g transform="translate(96,152)">
+    <path d="M0,4 h70" stroke="#6cc24a" stroke-width="8.5" stroke-linecap="round"/>
+    <text x="84" y="0" font-size="12" font-weight="bold" fill="#39414f">Gen KRT10 sano</text>
+    <text x="84" y="14" font-size="10" fill="#6b7280">aporta la copia correcta</text>
+  </g>
+
+  <line x1="34" y1="182" x2="480" y2="182" stroke="#e3e6ea" stroke-width="1.5"/>
+
+  <!-- PASO 2 : el empaquetado -->
+  <text x="34" y="206" font-size="14.5" font-weight="bold" fill="#39414f">2 · El empaquetado <tspan fill="#8f2436">en un minicírculo</tspan></text>
+  <text x="34" y="223" font-size="11" fill="#6b7280">el gen entra en un vector y después le quitamos todo lo que sobra</text>
+
+  <!-- plásmido -->
+  <g transform="translate(96,288)">
+    <circle r="32" fill="none" stroke="#b9bec7" stroke-width="8"/>
+    <path d="M -22.6,-22.6 A 32 32 0 0 1 22.6,-22.6" fill="none" stroke="#8f2436" stroke-width="8" stroke-linecap="round"/>
+    <text x="0" y="0" text-anchor="middle" font-size="8.5" fill="#949aa3">esqueleto</text>
+    <text x="0" y="10" text-anchor="middle" font-size="8.5" fill="#949aa3">bacteriano</text>
+    <text x="0" y="-44" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#39414f">Plásmido</text>
+  </g>
+
+  <g>
+    <line x1="140" y1="288" x2="196" y2="288" stroke="#8f8f8f" stroke-width="2" marker-end="url(#arw)"/>
+    <text x="168" y="279" text-anchor="middle" font-size="9.5" fill="#6b7280">recombinación</text>
+    <text x="166" y="304" text-anchor="middle" font-size="9" fill="#6b7280">fuera el esqueleto</text>
+  </g>
+
+  <!-- minicírculo -->
+  <g transform="translate(235,288)">
+    <circle r="21" fill="none" stroke="#8f2436" stroke-width="9"/>
+    <text x="0" y="-36" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#8f2436">Minicírculo</text>
+    <text x="0" y="40" text-anchor="middle" font-size="9" fill="#6b7280">EF1α + KRT10 + polyA</text>
+    <text x="0" y="52" text-anchor="middle" font-size="9" fill="#6b7280">≈ 3,2 kb</text>
+  </g>
+
+  <g font-size="10.5" fill="#39414f">
+    <text x="300" y="268">✓ mucho más pequeño</text>
+    <text x="300" y="290">✓ entra mejor en la célula</text>
+    <text x="300" y="312">✓ el gen se mantiene encendido</text>
+    <text x="314" y="326" fill="#6b7280" font-size="9.5">mucho más tiempo</text>
+  </g>
+
+  <line x1="34" y1="350" x2="480" y2="350" stroke="#e3e6ea" stroke-width="1.5"/>
+
+  <!-- PASO 3 : el transporte -->
+  <text x="34" y="374" font-size="14.5" font-weight="bold" fill="#39414f">3 · El transporte <tspan fill="#2f6f7e">en nanopartículas poliméricas</tspan></text>
+  <text x="34" y="391" font-size="11" fill="#6b7280">el polímero condensa el minicírculo y lo protege hasta la célula</text>
+
+  <!-- camión -->
+  <g transform="translate(44,428)">
+    <rect x="0" y="6" width="52" height="27" rx="3" fill="#4e8795"/>
+    <path d="M52,33 V15 h16 l13,18 z" fill="#5f98a6"/>
+    <rect x="56" y="18" width="13" height="10" rx="2" fill="#dfeef1"/>
+    <rect x="6" y="-5" width="37" height="13" rx="2" fill="#8f2436"/>
+    <circle cx="17" cy="37" r="6.5" fill="#39414f"/><circle cx="17" cy="37" r="2.8" fill="#cfd4da"/>
+    <circle cx="67" cy="37" r="6.5" fill="#39414f"/><circle cx="67" cy="37" r="2.8" fill="#cfd4da"/>
+    <text x="42" y="58" text-anchor="middle" font-size="9.5" fill="#6b7280">el vehículo</text>
+  </g>
+
+  <line x1="134" y1="452" x2="166" y2="452" stroke="#8f8f8f" stroke-width="2" marker-end="url(#arw)"/>
+
+  <!-- nanopartícula polimérica -->
+  <g transform="translate(222,455)">
+    <circle r="37" fill="url(#npcore)" stroke="#c98f80" stroke-width="1.5"/>
+    <g fill="none" stroke="#2f6f7e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M-28,-15 q9,-9 18,0 q9,9 18,0 q8,-8 16,2"/>
+      <path d="M-30,4 q9,9 18,0 q9,-9 18,0 q9,9 18,0"/>
+      <path d="M-21,21 q9,-8 18,0 q9,8 18,0"/>
+    </g>
+    <circle cx="-3" cy="2" r="10" fill="none" stroke="#8f2436" stroke-width="4.5"/>
+    <g font-size="11" font-weight="bold" fill="#2f6f7e" text-anchor="middle">
+      <text x="0" y="-41">+</text><text x="26" y="-31">+</text><text x="40" y="-5">+</text>
+      <text x="33" y="25">+</text><text x="9" y="46">+</text><text x="-19" y="43">+</text>
+      <text x="-39" y="19">+</text><text x="-44" y="-9">+</text><text x="-28" y="-33">+</text>
+    </g>
+    <text x="0" y="-52" text-anchor="middle" font-size="11" font-weight="bold" fill="#2f6f7e">Nanopartícula polimérica</text>
+  </g>
+
+  <g font-size="10.5" fill="#39414f">
+    <text x="300" y="437">✓ polímero catiónico (carga +)</text>
+    <text x="300" y="459">✓ protege el DNA de las nucleasas</text>
+    <text x="300" y="481">✓ la célula la capta por endocitosis</text>
+  </g>
+
+  <!-- llave y salida -->
+  <path d="M516,84 q12,0 12,12 v88 q0,12 12,12 q-12,0 -12,12 v88 q0,12 -12,12"
+        fill="none" stroke="#39414f" stroke-width="2"/>
+  <line x1="542" y1="196" x2="592" y2="196" stroke="#2f3a4f" stroke-width="2.5" marker-end="url(#ar)"/>
+
+  <!-- queratinocito -->
+  <g transform="translate(612,104)">
+    <rect x="0" y="0" width="166" height="186" rx="16" fill="#f3f7f8" stroke="#9fb7bd" stroke-width="2"/>
+    <text x="83" y="-10" text-anchor="middle" font-size="13" font-weight="bold" fill="#39414f">Queratinocito</text>
+
+    <g transform="translate(36,36)">
+      <circle r="15" fill="url(#npcore)" stroke="#2f6f7e" stroke-width="2"/>
+      <circle r="6" fill="none" stroke="#8f2436" stroke-width="3"/>
+    </g>
+    <line x1="54" y1="50" x2="76" y2="70" stroke="#8f8f8f" stroke-width="2" marker-end="url(#arw)"/>
+
+    <ellipse cx="104" cy="96" rx="44" ry="33" fill="#e7eef0" stroke="#6f949d" stroke-width="2"/>
+    <circle cx="104" cy="96" r="11" fill="none" stroke="#8f2436" stroke-width="4.5"/>
+    <text x="104" y="140" text-anchor="middle" font-size="9.5" fill="#6b7280">núcleo</text>
+
+    <g transform="translate(16,158)">
+      <path d="M0,8 q8,-11 16,0 q8,11 16,0 q8,-11 16,0" fill="none" stroke="#39414f" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="86" y="12" text-anchor="middle" font-size="10" fill="#39414f">queratina 10 sana</text>
+    </g>
+  </g>
+
+  <line x1="790" y1="196" x2="824" y2="196" stroke="#2f3a4f" stroke-width="2.5" marker-end="url(#ar)"/>
+
+  <!-- epidermis -->
+  <g transform="translate(838,130)">
+    <rect x="0" y="0" width="92" height="16" rx="3" fill="#f6ddc5" stroke="#d8b291" stroke-width="1.2"/>
+    <rect x="0" y="16" width="92" height="40" fill="#fbead9" stroke="#d8b291" stroke-width="1.2"/>
+    <rect x="0" y="56" width="92" height="44" fill="#f3d9bf" stroke="#d8b291" stroke-width="1.2"/>
+    <g fill="#e0b48d">
+      <circle cx="16" cy="34" r="4"/><circle cx="40" cy="28" r="4"/><circle cx="64" cy="36" r="4"/><circle cx="80" cy="28" r="4"/>
+      <circle cx="24" cy="74" r="4"/><circle cx="50" cy="80" r="4"/><circle cx="76" cy="70" r="4"/>
+    </g>
+    <text x="46" y="-10" text-anchor="middle" font-size="13" font-weight="bold" fill="#39414f">Epidermis</text>
+    <text x="46" y="118" text-anchor="middle" font-size="10" fill="#6b7280">barrera restaurada</text>
+  </g>
+
+  <text x="612" y="400" font-size="11.5" font-weight="bold" fill="#39414f">La célula fabrica queratina 10 sana</text>
+  <text x="612" y="420" font-size="10.5" fill="#6b7280">y el siRNA mantiene callado al alelo mutado</text>
+
+  <text x="34" y="524" font-size="9.5" fill="#9aa1a9">Terapia génica en ictiosis epidermolítica · KRT10</text>
+</svg>
