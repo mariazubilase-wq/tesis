@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="384" viewBox="0 0 720 384" font-family="Verdana, DejaVu Sans, sans-serif">
+
+  <rect width="720" height="384" fill="#ffffff"/>
+
+  <!-- nombres de los estratos, a la izquierda -->
+  <g text-anchor="end" fill="#6b7280">
+    <text x="172" y="36" font-size="12.5" font-weight="bold" fill="#39414f">Estrato córneo</text>
+    <text x="172" y="92" font-size="12.5" font-weight="bold" fill="#39414f">Estrato granuloso</text>
+    <text x="172" y="178" font-size="12.5" font-weight="bold" fill="#39414f">Estrato espinoso</text>
+    <text x="172" y="300" font-size="12.5" font-weight="bold" fill="#39414f">Estrato basal</text>
+  </g>
+  <g stroke="#d6dbe1" stroke-width="1.3" stroke-dasharray="4 4">
+    <line x1="180" y1="32" x2="196" y2="32"/>
+    <line x1="180" y1="88" x2="196" y2="88"/>
+    <line x1="180" y1="174" x2="196" y2="174"/>
+    <line x1="180" y1="296" x2="196" y2="296"/>
+  </g>
+
+  <!-- columna de células -->
+  <g fill="#ffffff" stroke="#e08a5c" stroke-width="2">
+    <!-- córneo -->
+    <rect x="202" y="18" width="66" height="28" rx="4"/>
+    <rect x="272" y="18" width="66" height="28" rx="4"/>
+    <rect x="342" y="18" width="66" height="28" rx="4"/>
+    <!-- granuloso -->
+    <rect x="202" y="52" width="66" height="70" rx="6"/>
+    <rect x="272" y="52" width="66" height="70" rx="6"/>
+    <rect x="342" y="52" width="66" height="70" rx="6"/>
+    <!-- espinoso -->
+    <rect x="202" y="128" width="66" height="92" rx="7"/>
+    <rect x="272" y="128" width="66" height="92" rx="7"/>
+    <rect x="342" y="128" width="66" height="92" rx="7"/>
+    <!-- basal -->
+    <rect x="202" y="226" width="66" height="140" rx="8"/>
+    <rect x="272" y="226" width="66" height="140" rx="8"/>
+    <rect x="342" y="226" width="66" height="140" rx="8"/>
+  </g>
+
+  <!-- núcleos -->
+  <g fill="#111827">
+    <circle cx="228" cy="86" r="7"/><circle cx="302" cy="80" r="7"/><circle cx="378" cy="92" r="6"/>
+    <circle cx="224" cy="166" r="11"/><circle cx="298" cy="182" r="11"/><circle cx="380" cy="170" r="11"/>
+    <circle cx="226" cy="334" r="13"/><circle cx="304" cy="292" r="13"/><circle cx="382" cy="318" r="13"/>
+  </g>
+
+  <!-- conectores a las etiquetas -->
+  <g stroke="#d6dbe1" stroke-width="1.3" stroke-dasharray="4 4">
+    <line x1="416" y1="88" x2="462" y2="88"/>
+    <line x1="416" y1="174" x2="462" y2="174"/>
+    <line x1="416" y1="296" x2="462" y2="296"/>
+  </g>
+
+  <!-- diferenciación tardía -->
+  <g>
+    <text x="470" y="68" font-size="11.5" fill="#8a9099">Diferenciación tardía</text>
+    <text x="470" y="96" font-size="21" font-weight="bold" fill="#a63b4b">K2 + K10</text>
+    <text x="470" y="116" font-size="10.5" fill="#6b7280">si falla: ictiosis epidermolítica superficial</text>
+  </g>
+
+  <!-- diferenciación temprana -->
+  <g>
+    <rect x="458" y="140" width="258" height="76" rx="6" fill="#fbeaec"/>
+    <text x="470" y="162" font-size="11.5" fill="#8a9099">Diferenciación temprana</text>
+    <text x="470" y="190" font-size="21" font-weight="bold" fill="#a63b4b">K1 + K10</text>
+    <text x="470" y="208" font-size="10.5" font-weight="bold" fill="#a63b4b">si falla: ictiosis epidermolítica</text>
+  </g>
+
+  <!-- célula progenitora -->
+  <g>
+    <text x="470" y="268" font-size="11.5" fill="#8a9099">Célula progenitora</text>
+    <text x="470" y="296" font-size="21" font-weight="bold" fill="#2f4b8f">K5 + K14</text>
+    <text x="470" y="320" font-size="18" font-weight="bold" fill="#2f4b8f">K5 + K15</text>
+    <text x="470" y="340" font-size="10.5" fill="#6b7280">si falla: epidermólisis ampollosa simple</text>
+  </g>
+</svg>
