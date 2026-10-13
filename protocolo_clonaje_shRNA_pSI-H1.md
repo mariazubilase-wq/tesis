@@ -154,8 +154,25 @@ Tres tubos por construcción:
 | T4 ligasa | 1 µL | 1 µL | — |
 | H₂O | hasta 20 µL | hasta 20 µL | hasta 20 µL |
 
-- **16 °C toda la noche** (mejor rendimiento) o **temperatura ambiente 1–2 h**.
+**Incubación: 20 min a temperatura ambiente.** Con extremos cohesivos y un inserto pequeño es de sobra — el propio protocolo de T4 ligasa de Thermo da 10 min a 22 °C para extremos cohesivos. No necesitas la noche entera.
+
+La relación molar que te queda con la dilución 1:250 es la óptima para esto:
+
+| | Cantidad | Concentración final |
+|---|---|---|
+| Vector (6.868 pb) | 50 ng = 11 fmol | 0,55 nM |
+| Dúplex (1:250, 2 µL) | — | 4,0 nM |
+| **Relación inserto:vector** | | **≈ 7:1** |
+
+*(Sin diluir sería 1.800:1, de ahí la dilución: a esa relación lo que obtienes son concatémeros.)*
+
+**Cuándo sí merece la pena pasar a 16 °C toda la noche:** el extremo de EcoRI es `AATT`, cuatro bases y todas A/T, así que el apareamiento transitorio que la ligasa tiene que "pillar" es débil y se deshace rápido al subir la temperatura. A 16 °C ese intermedio dura más. En la práctica:
+
+- **20 min a TA** → primera opción, y lo normal es que funcione.
+- **16 °C toda la noche** → si en la primera ronda salen pocas colonias, o si tu poyata está a 25–26 °C en verano.
+
 - L2 te dice cuánto fondo tienes por vector mal cortado/religado. Si L2 da tantas colonias como L1, repite la digestión.
+- No inactives la ligasa por calor antes de transformar: con 20 min de ligación transformas directamente, y así no pierdes producto.
 
 > El dúplex ligado no lleva fosfato en uno de los extremos de cada cadena si no fosforilaste; al haber usado PNK sí los lleva, así que la ligación es covalente en las cuatro uniones. (Si algún día se te olvida el PNK, también funciona: quedan dos mellas que repara la bacteria, sólo baja algo la eficiencia.)
 
@@ -267,7 +284,7 @@ Un clon con la secuencia perfecta todavía puede no silenciar. Antes de dar la c
 | Día | Tarea |
 |---|---|
 | 1 (mañana) | Digestión del vector (1 h) + anillado de oligos (1 h) |
-| 1 (tarde) | Gel y purificación del vector → ligación a 16 °C O/N |
-| 2 | Transformación → placas O/N |
+| 1 (tarde) | Gel y purificación del vector → ligación 20 min TA → transformación |
+| 2 | Placas O/N |
 | 3 | PCR de colonia, picar positivos → cultivos O/N |
 | 4 | Miniprep → mandar a secuenciar |
