@@ -51,8 +51,13 @@ Python 3.9+. Sin dependencias externas. No accede a internet.
 
 Cada componente se valida por separado antes de construir el combinado.
 
-> ⚠️ **El constructo 3 no puede llevar el cDNA silvestre nativo del constructo 1.**
-> sh13 es alelo-específico pero su desapareamiento frente al silvestre está mal
-> colocado, así que silenciaría también la copia de reemplazo. Hacen falta dos
-> cambios *wobble* (L157 `CTG`→`CTC`, A158 `GCT`→`GCC`) que no alteran la
-> proteína. El razonamiento completo está en `diseno_combinado_MN100A1.md` §1.
+El combinado se monta por **restricción pura, con los constructos 1 y 2 tal como
+están** — sin PCR, sin mutagénesis, sin síntesis. Dos pasos, y el orden importa:
+
+1. **Casete H1→sh13** (BglII/BglII, ~406 pb) → **BglII** del MCS1. *Primero,
+   porque el casete de KRT10 lleva 3 dianas BglII dentro.*
+2. **Casete EF1α→KRT10→polyA** (SpeI+NcoI, ~3530 pb) → **XbaI + NcoI**.
+   *Direccional; SpeI y XbaI comparten el saliente `CTAG`.*
+
+Detalle completo, controles y las dos comprobaciones previas en
+`diseno/diseno_combinado_MN100A1.md` §3.
