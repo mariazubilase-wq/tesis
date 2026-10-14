@@ -233,7 +233,132 @@ python3 herramientas/lee_snapgene.py secuencias/pMC.BESPX-MCS1.dna --dianas
 
 ---
 
-## 7. Lo que NO hay que hacer
+## 7. Qué acaba en el minicírculo, y por qué pregunto por attB/attP
+
+Sí: **attB y attP son exactamente la frontera entre lo que se queda y lo que se
+destruye.**
+
+Al añadir arabinosa, la cepa ZYCY10P3S2T induce dos enzimas a la vez:
+
+1. **Integrasa ΦC31** — recombina `attB × attP`. Eso **parte el plásmido parental
+   en dos círculos**: el que llevaba todo lo que estaba *entre* attB y attP (el
+   **minicírculo**, cerrado por un sitio híbrido `attR`), y el que llevaba el resto
+   (el **esqueleto bacteriano**).
+2. **Endonucleasa I-SceI** — corta el esqueleto por los **32 sitios I-SceI en
+   tándem** que lleva, lo hace trizas, y las exonucleasas de la cepa lo degradan.
+
+```
+   parental                               inducción
+   ┌──attB──[ lo tuyo ]──attP──┐          ───────────→   ○ minicírculo (attR)
+   │                           │           ΦC31              lo tuyo
+   └──[ KanR · ori · 32×I-SceI ]┘          I-SceI       ✂ esqueleto → degradado
+```
+
+**Regla única: lo que no esté entre attB y attP, no existe en el producto final.**
+
+Medido sobre tus dos parentales:
+
+| | total | **va al minicírculo** (attB→attP) | se destruye |
+|---|---|---|---|
+| MN502A-1 | 5985 pb | **1908 pb** | 4003 pb |
+| MNSI500A-1 | 6877 pb | **2840 pb** | 3963 pb |
+
+Y comprobado rasgo a rasgo: EF1α, WPRE, SV40 polyA y el sitio de clonaje del
+constructo 1 caen dentro; H1, el sitio de clonaje y el polyA del constructo 2
+también. Ninguno se pierde.
+
+**Por eso hay que mirar el mapa de MN100A-1.** No es burocracia: si el MCS1
+cayera fuera de su ventana attB–attP, los dos casetes se irían al esqueleto y el
+minicírculo saldría vacío. Por diseño está dentro —es un vector de clonaje de
+minicírculos— pero es el supuesto del que depende todo lo demás y no lo he visto.
+
+> **La otra cara de lo mismo, y ésta ya está comprobada:** los cuatro cortes con
+> los que saco los casetes (SpeI 829, NcoI 2599, BglII 2639, BglII 2988) caen
+> todos **dentro** de la ventana de su donante. Así que **ningún fragmento
+> arrastra un attB ni un attP de más**. Si lo hiciera, el combinado tendría tres
+> sitios ΦC31 y la recombinación daría productos que no quieres.
+
+---
+
+## 8. ¿Está todo para que se expresen los dos?
+
+**Sí. Los dos casetes son unidades de transcripción completas y no falta ningún
+elemento.** Repasado pieza por pieza:
+
+| Casete A — pol II | ¿está? |
+|---|---|
+| Promotor EF1α (546 pb) | ✔ el corte SpeI(829) cae 6 pb por delante de su inicio (835) |
+| Kozak | ✔ `GCC**ATG**T`, purina en −3 |
+| CDS de KRT10, sin etiqueta | ✔ |
+| Dos codones de parada en tándem | ✔ `TGA TAA` |
+| WPRE (estabiliza el mRNA) | ✔ 1429–1964, dentro del fragmento |
+| SV40 polyA | ✔ 2397–2528, y NcoI(2599) corta 71 pb por detrás |
+
+| Casete B — pol III | ¿está? |
+|---|---|
+| Promotor H1 completo | ✔ anotado 2712–2928; BglII(2639) deja 73 pb de margen |
+| Horquilla sh13 | ✔ |
+| Terminador pol III `TTTTT` | ✔ va en el propio oligo TOP |
+| polyA / caperuza | **no hacen falta** — la pol III no los usa |
+
+**Que MN100A-1 no tenga promotor ni polyA propios no es una carencia: es el
+motivo de elegirlo.** Cada casete trae el suyo, y así no hay un promotor huérfano
+del vector compitiendo ni leyendo hacia donde no debe.
+
+### 8.1 Lo que sí conviene tener en la cabeza
+
+Ninguna de estas tres cosas es un elemento que falte; son consecuencias de meter
+dos unidades de transcripción en un círculo pequeño.
+
+- **Interferencia transcripcional.** En un círculo de ~4 kb los dos casetes están
+  cerca. Si la pol II lee más allá del SV40 polyA, da la vuelta y atraviesa el
+  promotor H1 en sentido directo, lo que puede ocluirlo y bajar algo el shRNA. La
+  disposición en tándem con el casete pol III **por delante** es la que menos
+  expone a esto; la convergente sería la peor con diferencia. Es un efecto que se
+  mide, no que se predice: sale en la capa 3 de la validación (§4).
+- **No hay marcador ni reportero.** El minicírculo no lleva nada seleccionable —
+  que es justamente la gracia del formato. Para los experimentos de validación,
+  si necesitas saber qué células han recibido el constructo, la vía es
+  **cotransfectar** un reportero aparte, no meterlo dentro.
+- **El EF1α de este vector son 546 pb**, o sea la versión corta, sin el intrón 1.
+  Funciona perfectamente y el WPRE compensa; sólo conviene saberlo si algún día
+  comparas niveles con un EF1α de longitud completa.
+
+---
+
+## 9. Tamaño del minicírculo combinado
+
+| | pb |
+|---|---|
+| Casete A (EF1α→KRT10→WPRE→SV40pA) | 3530 |
+| Casete B (H1→sh13→TTTTT) | 406 |
+| MCS1 que se pierde entre los cortes XbaI y NcoI | −12 |
+| **Aporte neto de los insertos** | **3924** |
+| Ventana attB–attP del MN100A-1 vacío | *pendiente del mapa* |
+
+```
+minicírculo = 3924 pb + (ventana attB–attP de MN100A-1 vacío, incluido el attR)
+```
+
+Como MN100A-1 no lleva promotor, ni WPRE, ni polyA —sólo los espaciadores de los
+att y los 50 pb del MCS1—, esa ventana debería andar por los **150–500 pb**. Para
+comparar: en MN502A-1 la ventana son 1908 pb, de los cuales 1262 son elementos
+(EF1α, MCS, WPRE, polyA) y **646 pb son relleno**.
+
+> ### Estimación: **~4,1–4,4 kb**
+>
+> Frente a los ~8–9 kb que mediría el plásmido parental combinado. El dato exacto
+> sale en diez segundos en cuanto tenga el mapa.
+
+Para hacerse una idea de lo que eso significa en transfección: el minicírculo de
+sh13 solo (constructo 2) sería de ~2,9 kb y el de reemplazo solo (constructo 1)
+de ~3,7 kb. El combinado, con **~4,2 kb**, sigue estando en el rango bueno —
+bastante por debajo del umbral a partir del cual la eficiencia de transfección
+empieza a caer de verdad.
+
+---
+
+## 10. Lo que NO hay que hacer
 
 - ❌ **Meter el casete A antes que el B.** A lleva 3 BglII dentro; después de
   meterlo, B ya no tiene por dónde entrar.
