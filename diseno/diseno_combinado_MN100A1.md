@@ -158,7 +158,8 @@ SpeI + NcoI + PciI**, corta la banda de ~3530 pb.
 - `NcoI` (CATG) con `NcoI` (CATG) ✔
 - **Salientes distintos entre sí → clonaje direccional.** No hay que
   desfosforilar y el inserto no puede entrar invertido.
-- La unión SpeI×XbaI genera un híbrido (`ACTAGA`) **que no es ni SpeI ni XbaI**:
+- La unión SpeI×XbaI genera un híbrido (`TCTAGT` = la `T` de `T^CTAGA` + `CTAG`
+  + la `T` de `A^CTAGT`) **que no es ni SpeI ni XbaI**:
   las dos desaparecen. Es una ventaja, no un problema — no hay riesgo de
   re-corte, y además te da un diagnóstico (§4).
 
@@ -184,7 +185,7 @@ y el MCS1 en MN100A-1 (§6).
 | Qué | Cómo | Qué tiene que salir |
 |---|---|---|
 | Paso 1, orientación | PCR vector + H1 | banda sólo en la orientación buena |
-| Paso 2, inserción | **XbaI** | **no corta** — se destruyó en la unión SpeI×XbaI |
+| Paso 2, inserción | **XbaI** | **no corta** — la unión dejó `TCTAGT`, que no es diana |
 | Paso 2, inserción | **BglII** | 3 bandas (las 3 dianas internas del casete A) |
 | Estructura completa | **NcoI** | linealiza por el sitio del MCS1 + los internos del casete A |
 | Lo definitivo | Secuenciación de las dos uniones y del casete B | — |
@@ -198,15 +199,15 @@ y el MCS1 en MN100A-1 (§6).
 
 Las dos son instantáneas y las dos pueden tumbar el plan:
 
-**1. ¿El cDNA de KRT10 lleva SpeI o NcoI?** Si el CDS contiene `ACTAGT` o
-`CCATGG`, el casete A se parte durante la digestión del paso 2. `CCATGG` es un
-motivo frecuente, así que **esto hay que mirarlo sí o sí**:
+**1. ¿El cDNA de KRT10 lleva SpeI o NcoI?** ✅ **Comprobado: no.** Ni `ACTAGT` ni
+`CCATGG` en el CDS, así que la ruta SpeI + NcoI del paso 2 es válida. Si algún día
+se cambia el cDNA (otro clon, KRT1), hay que volver a mirarlo:
 
 ```bash
 python3 herramientas/lee_snapgene.py secuencias/pCMV6-KRT10.dna --dianas
 ```
 
-Si NcoI cortara dentro: la alternativa para el extremo 3' es **StuI** (única en
+Si en ese caso NcoI cortara dentro: la alternativa para el extremo 3' es **StuI** (única en
 2689, romo) contra la **EcoRV** del MCS1 — pero eso obliga a invertir el orden de
 los pasos, porque EcoRV queda por delante de XbaI. Si cortara SpeI: queda **ApaI
 (2718)** para el 3' y hay que replantear el extremo 5'.
