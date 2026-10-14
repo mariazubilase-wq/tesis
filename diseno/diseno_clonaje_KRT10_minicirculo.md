@@ -670,3 +670,105 @@ adelantando KRT1, no hay que rediseñar nada, sólo volver a ejecutarla.
 6. Comprobar los marcadores de resistencia de los dos plásmidos (§6.5).
 7. Pedir la polimerasa de alta fidelidad, DpnI y rSAP (§10).
 8. Confirmar el número de catálogo del parental al pedir (§1).
+
+---
+
+## 14. Addendum — los cebadores reales, verificados contra el mapa
+
+> Añadido después de recibir `ClonK10MC_F/R` y el SnapGene real de MN502A-1
+> (5985 pb). **Corrige dos cosas de los apartados anteriores.**
+
+### 14.1 Los cebadores no son de restricción: son de ensamblaje por homología
+
+```
+ClonK10MC_F  TTCGAATTTAAATCGG CC ATGTCTGTTCGATACAGCTCAAGC
+             └── 16 nt del vector, 1396-1411 ──┘    └ inicio del CDS ┘
+
+ClonK10MC_R  ACGCGGCCGCGGATC TTATCA GTATCTTGGTCCCTTAGATGAAGACTCGCC
+             └ 15 nt del vector ┘  └2 stops┘ └── fin del CDS (rc) ──┘
+             (rc de 1411-1425)
+```
+
+Lo verificado sobre la secuencia real:
+
+| Comprobación | Resultado |
+|---|---|
+| Cola 5' de F idéntica al vector | **16 nt**, posiciones 1396–1411 ✔ |
+| Cola 5' de R idéntica al vector (rc) | **15 nt**, posiciones 1411–1425 ✔ |
+| Extremo N traducido | `ATG TCT GTT CGA TAC AGC TCA AGC` = **M S V R Y S S S** ✔ |
+| Extremo C traducido | **G E S S S K G P R Y** ✔ (sin 3'UTR, sin Myc-DDK) |
+| Codones de parada | `TGA TAA` en tándem ✔ |
+| Kozak en el producto | `...TCGGCC **ATG** T` → **−3 = G (purina)** ✔, +4 = T |
+
+**Colas de 15–16 nt de identidad con el vector es la firma de In-Fusion /
+NEBuilder, no de una digestión doble.** O sea que el §4 de este documento se
+resolvió por el **Plan B**, no por el Plan A. La pareja **NheI-HF + BamHI-HF**
+que se recomendaba en §3.6 **no es la que se está usando**, y este addendum
+manda sobre aquel apartado.
+
+### 14.2 Qué linearización piden esas colas
+
+Los dos brazos son contiguos en el vector y **solapan en una sola base** (la
+1411, una `G`). El punto de unión que definen cae **exactamente donde corta
+BamHI** (`G^GATCC`, entre 1410 y 1411). O sea: **el vector se linealiza con
+BamHI sola.**
+
+- El brazo 3' (R) encaja **perfecto** con el extremo derecho del corte BamHI:
+  `GATCCGCGGCCGCGT`, los 15 nt terminales incluyendo el saliente. ✔
+- El brazo 5' (F) llega hasta 1411, o sea cubre la hebra superior hasta 1410
+  **más la primera base del saliente `GATC`**. Las otras tres (`ATC`) no se
+  reponen por ese lado — **se reponen por el otro**, dentro del brazo de R.
+
+Resultado: el constructo final lleva `...AAATCG` **`G`** `CCATG` en la unión 5'
+y `...TGATAA` `GATCC` `GCGGCCGC` en la 3'.
+
+**Esto parece un descuido y no lo es.** La alternativa «de libro» sería alargar F
+con `ATC` para restaurar los 15 nt terminales completos — pero eso deja
+`...GGATCCATG`, con **−3 = T**, una pirimidina, y **empeora el Kozak**. Tal como
+están, los cebadores cambian 3 nt del saliente por un contexto `GCCATGT` con
+purina en −3. Es el intercambio correcto. **No los toques.**
+
+Consecuencias prácticas, las dos:
+
+- **BamHI desaparece del constructo final** (`GGATCC` → `AGATCC` en la unión 3').
+  Deja de servir como diagnóstico. **NotI sobrevive**, como estaba previsto.
+- La eficiencia de ensamblaje por ese lado será algo menor de lo nominal (hay 3
+  bases del saliente sin aparear que repara *E. coli*). Se compensa secuenciando
+  una colonia más. No es un problema de diseño.
+
+### 14.3 Corrección: **NotI no es única en el parental**
+
+El §3.6 decía «si es única en el parental, es tu enzima de linearización para el
+diagnóstico». Comprobado, y **no lo es**:
+
+| NotI | Posición | Dónde cae |
+|---|---|---|
+| 1ª | 772 | **fuera** — justo antes de attB (782–816) |
+| 2ª | **1416** | **dentro** — en el MCS, por detrás del inserto |
+| 3ª | 2813 | **fuera** — entre attP (2763) y KanR (2850) |
+
+Pero el matiz salva la herramienta, y de hecho la mejora:
+
+> **Las dos dianas de sobra están fuera de attB–attP.** O sea: NotI corta **3×
+> en el parental** pero **1× en el minicírculo**.
+
+Lo cual la convierte en algo mejor que un diagnóstico: **NotI distingue parental
+de minicírculo en un solo gel.** Parental digerido → 3 bandas. Minicírculo
+digerido → **una banda lineal única**. Es un control de pureza de recombinación
+directo, además del qPCR de KanR del §10.
+
+### 14.4 Resumen de qué sobrevive en el constructo final
+
+| Sitio | Posición en el parental | ¿Sobrevive? |
+|---|---|---|
+| XbaI | 1381 | ✔ (por delante del inserto) |
+| NheI | 1387 | ✔ |
+| EcoRI | 1393 | ✔ |
+| BstBI | 1396 | ✔ (dentro del brazo de F) |
+| SwaI | 1401 | ✔ (ídem) |
+| **BamHI** | 1410 | ❌ **destruida en la unión** |
+| **NotI** | 1416 | ✔ — **el diagnóstico** (§14.3) |
+| SalI | 1424 | ✔ |
+
+Nada de lo que §3.6 daba por perdido (EcoRI, BstBI, SwaI) se pierde en realidad:
+al no usarse restricción, el MCS entero queda intacto por delante del ATG.
