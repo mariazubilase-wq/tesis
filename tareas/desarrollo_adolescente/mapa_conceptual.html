@@ -2,36 +2,30 @@
 <html lang="es"><head><meta charset="utf-8">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{width:1400px;background:#fff;font-family:"DejaVu Sans",Arial,sans-serif;color:#1d1d1f;padding:28px 30px}
-.c{text-align:center}
-.root{margin:0 auto;width:640px;background:#22303f;color:#fff;border-radius:14px;padding:16px 18px;text-align:center}
-.root h1{font-size:27px;letter-spacing:.5px}
-.root p{font-size:15px;margin-top:6px;opacity:.92}
+body{width:1640px;background:#fff;font-family:"DejaVu Sans",Arial,sans-serif;color:#1d1d1f;padding:26px 28px}
+.root{margin:0 auto;width:760px;background:#22303f;color:#fff;border-radius:14px;padding:14px 18px;text-align:center}
+.root h1{font-size:28px;letter-spacing:.5px}
+.root p{font-size:15px;margin-top:5px;opacity:.92}
 .link{font-size:14px;font-style:italic;color:#555;text-align:center;margin:7px 0}
-.link b{font-style:normal;color:#999}
-.phases{display:flex;gap:14px;justify-content:center}
-.ph{border:2px solid #22303f;border-radius:10px;padding:8px 12px;width:430px;font-size:13.5px;background:#f3f5f8}
-.ph h3{font-size:15px;margin-bottom:3px}
-.cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:4px}
-.col{display:flex;flex-direction:column;gap:0}
-.dim{border-radius:12px;color:#fff;padding:11px;text-align:center}
-.dim h2{font-size:20px}
-.dim p{font-size:13px;opacity:.95;margin-top:2px}
-.box{border:2px solid;border-radius:9px;padding:8px 10px;font-size:13.5px;line-height:1.32;background:#fff}
-.box+.box{margin-top:7px}
-.box b{display:block;font-size:14px;margin-bottom:2px}
-.sec{font-size:12.5px;font-weight:bold;text-transform:uppercase;letter-spacing:.6px;margin:2px 0 5px;text-align:center}
-.bio .dim{background:#2e7d4f}.bio .box{border-color:#2e7d4f}.bio .sec{color:#2e7d4f}
-.psi .dim{background:#8a3b8f}.psi .box{border-color:#8a3b8f}.psi .sec{color:#8a3b8f}
-.soc .dim{background:#1f5f9e}.soc .box{border-color:#1f5f9e}.soc .sec{color:#1f5f9e}
-.tic{background:#fdf1ea !important;border-style:dashed !important}
-.pos{background:#eef7ee !important}
-.arrow{text-align:center;font-size:13.5px;font-style:italic;color:#555;margin:6px 0}
-.arrow:before{content:"▼ ";font-style:normal;color:#999}
-.band{margin-top:6px;border:2px solid #c0562b;border-radius:12px;padding:10px 14px;background:#fdf1ea;font-size:14px;line-height:1.35}
+.tareas{display:flex;gap:10px;justify-content:center;margin-bottom:4px}
+.tareas div{border:2px solid #22303f;border-radius:20px;padding:5px 14px;font-size:13.5px;background:#f3f5f8;font-weight:bold}
+.grid{display:grid;grid-template-columns:150px 1fr 1fr 1fr 1.08fr;gap:8px}
+.hd{border-radius:10px;padding:8px 10px;text-align:center;background:#22303f;color:#fff}
+.hd h3{font-size:17px}.hd p{font-size:12.5px;opacity:.9;margin-top:1px}
+.hd.dig{background:#c0562b}
+.dim{border-radius:10px;color:#fff;padding:10px 8px;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.dim h2{font-size:19px}.dim p{font-size:12px;opacity:.95;margin-top:4px}
+.cell{border:2px solid;border-radius:9px;padding:8px 10px;font-size:13.2px;line-height:1.33;background:#fff}
+.cell ul{padding-left:15px}.cell li{margin:1px 0}
+.cell.dig{background:#fdf1ea;border-style:dashed}
+.bio .dim{background:#2e7d4f}.bio.cell{border-color:#2e7d4f}
+.psi .dim{background:#8a3b8f}.psi.cell{border-color:#8a3b8f}
+.soc .dim{background:#1f5f9e}.soc.cell{border-color:#1f5f9e}
+.bio{} .contents{display:contents}
+.band{margin-top:4px;border:2px solid #c0562b;border-radius:12px;padding:9px 14px;background:#fdf1ea;font-size:14px;line-height:1.35}
 .band h2{font-size:18px;color:#c0562b;text-align:center;margin-bottom:5px}
-.band .g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
-.final{margin-top:4px;background:#22303f;color:#fff;border-radius:12px;padding:12px 16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.final{margin-top:4px;background:#22303f;color:#fff;border-radius:12px;padding:11px 16px}
 .final h2{font-size:19px;text-align:center;margin-bottom:6px}
 .final .g{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;font-size:13.2px;line-height:1.3}
 .final .g div{background:rgba(255,255,255,.1);border-radius:8px;padding:7px 8px}
@@ -40,61 +34,84 @@ body{width:1400px;background:#fff;font-family:"DejaVu Sans",Arial,sans-serif;col
 </style></head><body>
 
 <div class="root"><h1>DESARROLLO DEL ADOLESCENTE</h1>
-<p>Tránsito de la infancia a la edad adulta (11–21 años): cambios físicos, psíquicos y sociales que configuran la personalidad</p></div>
-<div class="link">transcurre en tres fases (con ritmos distintos en cada persona y dimensión)</div>
-<div class="phases">
- <div class="ph"><h3>Temprana (11–13)</h3>Estirón y caracteres sexuales · pensamiento concreto · «audiencia imaginaria» · grupo del mismo sexo</div>
- <div class="ph"><h3>Media (14–17)</h3>~95 % de la talla adulta · inicio del pensamiento abstracto · omnipotencia y riesgo · máximo peso del grupo</div>
- <div class="ph"><h3>Tardía (17–21)</h3>Madurez física · pensamiento abstracto consolidado · orientación al futuro · relaciones íntimas estables</div>
+<p>Tránsito de la infancia a la edad adulta: cambios físicos, psíquicos y sociales que configuran la personalidad</p></div>
+<div class="link">tiene como tareas</div>
+<div class="tareas"><div>Independencia de los padres</div><div>Adaptación al grupo</div><div>Aceptar la nueva imagen corporal</div><div>Identidad sexual, moral y vocacional</div></div>
+<div class="link">evoluciona en tres fases (un continuo, con ritmos distintos en cada persona y en cada dimensión) y tres dimensiones</div>
+
+<div class="grid">
+ <div></div>
+ <div class="hd"><h3>Adolescencia temprana</h3><p>11–13 años</p></div>
+ <div class="hd"><h3>Adolescencia media</h3><p>14–17 años</p></div>
+ <div class="hd"><h3>Adolescencia tardía</h3><p>17–21 años</p></div>
+ <div class="hd dig"><h3>Influencia de las tecnologías digitales</h3><p>Save the Children (2024) · Desmurget (2020)</p></div>
+
+ <!-- BIO-FÍSICA -->
+ <div class="bio"><div class="dim" style="height:100%"><h2>Bio-física</h2><p>cuerpo y maduración sexual</p></div></div>
+ <div class="bio cell"><ul>
+  <li><b>Rápido crecimiento</b> somático (estirón).</li>
+  <li>Aparecen los <b>caracteres sexuales secundarios</b> (estadios de Tanner).</li>
+  <li>Chicas: botón mamario; menarquia ≈ 12,4 años. Chicos: aumento testicular; espermarquia ≈ 13,5 años.</li>
+  <li>Se pierde la imagen corporal infantil.</li></ul></div>
+ <div class="bio cell"><ul>
+  <li>Crecimiento y maduración sexual <b>prácticamente finalizados</b>.</li>
+  <li>Se alcanza ≈ <b>95 % de la talla adulta</b>.</li>
+  <li>Cambios mucho más lentos, lo que permite <b>restablecer la imagen corporal</b>.</li></ul></div>
+ <div class="bio cell"><ul>
+  <li>El crecimiento <b>ha terminado</b>.</li>
+  <li>Son <b>físicamente maduros</b>.</li></ul></div>
+ <div class="bio cell dig"><ul>
+  <li><b>Sueño</b>: 18 % duerme menos por estar conectado.</li>
+  <li><b>«Ocio paralizante»</b>: 12 % deja deporte o extraescolares.</li>
+  <li>Cánones de belleza inalcanzables, sexualización y cosificación del cuerpo (sobre todo en chicas).</li></ul></div>
+
+ <!-- PSICO-AFECTIVA -->
+ <div class="psi"><div class="dim" style="height:100%"><h2>Psico-afectiva</h2><p>pensamiento, emociones e identidad</p></div></div>
+ <div class="psi cell"><ul>
+  <li><b>Pensamiento concreto</b>: no perciben las consecuencias futuras de sus actos.</li>
+  <li><b>«Audiencia imaginaria»</b>: creen que todos les observan; sentido del ridículo exquisito.</li>
+  <li>Orientación existencialista, narcisista y egoísta.</li>
+  <li>Gran preocupación y curiosidad por los cambios físicos.</li></ul></div>
+ <div class="psi cell"><ul>
+  <li>Empieza el <b>pensamiento abstracto</b> (vuelve a ser concreto con el estrés).</li>
+  <li>Interés por temas idealistas; discuten ideas por placer.</li>
+  <li><b>Omnipotencia e invulnerabilidad</b> («a mí no me pasará») → conductas de riesgo: alcohol, tabaco, drogas, embarazo.</li>
+  <li>Fantasías románticas en pleno auge.</li></ul></div>
+ <div class="psi cell"><ul>
+  <li><b>Pensamiento abstracto consolidado</b> (no todos lo alcanzan).</li>
+  <li><b>Orientados al futuro</b>: actúan según las consecuencias de sus actos.</li>
+  <li>Fase estable, alterable por la «crisis de los 21» ante las exigencias del mundo adulto.</li></ul></div>
+ <div class="psi cell dig"><ul>
+  <li><b>Malestar emocional</b>: con +4 h/día, 30,9 % siente que las dificultades le superan (18,9 % el resto).</li>
+  <li><b>Atención y lenguaje</b>: multitarea, menos lectura (27,6 %) y «efecto deficitario del vídeo».</li>
+  <li>Autoestima ligada al <b>«like»</b>; enganche al scroll (TikTok).</li></ul></div>
+
+ <!-- SOCIO-MORAL -->
+ <div class="soc"><div class="dim" style="height:100%"><h2>Socio-moral</h2><p>familia, grupo, pareja y valores</p></div></div>
+ <div class="soc cell"><ul>
+  <li><b>Grupo de amigos del mismo sexo</b>: compensa la inestabilidad y sirve para comparar la propia normalidad.</li>
+  <li>Contactos con el otro sexo «exploratorios».</li>
+  <li>Primeros intentos de ganar <b>independencia e intimidad</b>, sin grandes conflictos familiares.</li></ul></div>
+ <div class="soc cell"><ul>
+  <li><b>Lucha por la emancipación</b> en plena efervescencia.</li>
+  <li>El <b>grupo</b> alcanza su máxima importancia: dicta cómo vestir, hablar y comportarse y fija el <b>código de conducta</b>.</li>
+  <li>Pesan más los amigos que los padres, aunque estos siguen siendo referencia («los padres permanecen, el grupo cambia»). Riesgo de grupos marginales.</li>
+  <li>Relaciones de pareja para comprobar la capacidad de atraer.</li></ul></div>
+ <div class="soc cell"><ul>
+  <li>Relación con la familia <b>de adulto a adulto</b>.</li>
+  <li>El grupo pierde peso frente a las <b>amistades individuales</b>.</li>
+  <li>Relaciones de pareja <b>estables</b>, recíprocas y con cariño; proyectos de vida en común (familia, futuro).</li></ul></div>
+ <div class="soc cell dig"><ul>
+  <li>El grupo se traslada a las redes: amistades y comunidades (+), pero <b>soledad física</b> y menos tiempo en familia (17 %).</li>
+  <li><b>Deshumanización</b>: ciberacoso, odio; 45 % justifica a veces mirar el móvil de la pareja.</li>
+  <li>58 % encuentra <b>pornografía</b> sin buscarla; modelos sexistas.</li></ul></div>
 </div>
-<div class="link">se manifiesta en tres dimensiones de la personalidad</div>
 
-<div class="cols">
- <div class="col bio">
-  <div class="dim"><h2>Bio-física</h2><p>cuerpo y cerebro</p></div>
-  <div class="arrow">se caracteriza por</div>
-  <div class="box"><b>Pubertad</b>Eje hipotálamo–hipófisis–gónadas (GnRH, FSH, LH). Chicas 8,5–13 años; chicos 9,5–14. Menarquia ≈ 12,4 años.</div>
-  <div class="box"><b>Crecimiento y nueva imagen corporal</b>Estirón, caracteres sexuales secundarios (estadios de Tanner). Preocupación por el propio cuerpo.</div>
-  <div class="box"><b>Cerebro en plena remodelación</b>Segundo gran periodo de conexiones neuronales tras el 0–3; gran plasticidad y necesidad de sueño.</div>
-  <div class="arrow">las tecnologías digitales influyen</div>
-  <div class="sec">Influencia digital</div>
-  <div class="box tic"><b>Sueño y sedentarismo</b>18 % deja de dormir por estar conectado; «ocio paralizante» que resta deporte (12 %).</div>
-  <div class="box tic"><b>Atención y circuito de recompensa</b>Notificaciones, «likes» y dopamina; más pantallas = más riesgo de déficit de atención (Desmurget).</div>
-  <div class="box tic"><b>Cuerpo e imagen</b>Cánones de belleza inalcanzables, sexualización y cosificación, sobre todo de las chicas.</div>
- </div>
-
- <div class="col psi">
-  <div class="dim"><h2>Psico-afectiva</h2><p>pensamiento, emociones e identidad</p></div>
-  <div class="arrow">se caracteriza por</div>
-  <div class="box"><b>Del pensamiento concreto al abstracto</b>Capacidad de prever consecuencias, idealismo, gusto por discutir ideas; retrocesos con el estrés.</div>
-  <div class="box"><b>Búsqueda de identidad y autoestima</b>Identidad sexual, moral y vocacional; egocentrismo, narcisismo, sentido del ridículo.</div>
-  <div class="box"><b>Vulnerabilidad emocional</b>Sensación de invulnerabilidad, baja percepción del riesgo, búsqueda de retos y emociones.</div>
-  <div class="arrow">las tecnologías digitales influyen</div>
-  <div class="sec">Influencia digital</div>
-  <div class="box tic"><b>Malestar emocional</b>Con +4 h/día, 30,9 % siente que no puede superar las dificultades (frente a 18,9 %).</div>
-  <div class="box tic"><b>Lenguaje, lectura y concentración</b>Menos interacción verbal y lectura; multitarea; «efecto deficitario del vídeo»; 27,6 % lee menos.</div>
-  <div class="box tic"><b>Identidad digital y validación</b>Necesidad del «like»; enganche no consciente (TikTok, scroll infinito).</div>
- </div>
-
- <div class="col soc">
-  <div class="dim"><h2>Socio-moral</h2><p>relaciones, valores y normas</p></div>
-  <div class="arrow">se caracteriza por</div>
-  <div class="box"><b>Emancipación de la familia</b>Conflicto y negociación de límites; los padres siguen siendo referencia estable.</div>
-  <div class="box"><b>El grupo de iguales</b>Dicta forma de vestir, hablar y actuar; la pertenencia es vital (riesgo de grupos marginales).</div>
-  <div class="box"><b>Construcción del juicio moral</b>Código de conducta propio, valores, relaciones de pareja y responsabilidad.</div>
-  <div class="arrow">las tecnologías digitales influyen</div>
-  <div class="sec">Influencia digital</div>
-  <div class="box tic"><b>Socialización conectada</b>Mantiene amistades y comunidades (+), pero genera soledad física y menos tiempo en familia (17 %).</div>
-  <div class="box tic"><b>Deshumanización y violencia online</b>Ciberacoso, odio, control de la pareja (45 % lo justifica a veces), grooming, sexting.</div>
-  <div class="box tic"><b>Pornografía y estereotipos</b>58 % la encuentra sin buscarla; modelos sexistas y masculinidades radicales.</div>
- </div>
-</div>
-
-<div class="link" style="margin-top:10px">factores que explican el impacto</div>
+<div class="link" style="margin-top:9px">factores que explican el impacto</div>
 <div class="band"><h2>¿Por qué la adolescencia es especialmente sensible a lo digital?</h2>
- <div class="g">
-  <div><b>Diseño persuasivo:</b> plataformas creadas para adultos que buscan maximizar el tiempo de uso y la atención (Save the Children; Desmurget).</div>
-  <div><b>Desplazamiento:</b> las pantallas ocupan el tiempo de sueño, lectura, estudio, deporte y diálogo cara a cara (efecto «ladrón de tiempo»).</div>
+ <div class="g3">
+  <div><b>Diseño persuasivo:</b> plataformas creadas para adultos que buscan maximizar el tiempo de uso y la atención; actúan sobre el circuito de recompensa (dopamina).</div>
+  <div><b>Desplazamiento:</b> el tiempo de pantalla se resta al sueño, la lectura, el estudio, el deporte y el diálogo cara a cara.</div>
   <div><b>«Huérfanos digitales»:</b> el mito del nativo digital ha ocultado la falta de educación digital; 98 % conectados, casi 1 de cada 3 desde antes de los 10 años.</div>
  </div>
 </div>
@@ -104,10 +121,10 @@ body{width:1400px;background:#fff;font-family:"DejaVu Sans",Arial,sans-serif;col
  <div class="g">
   <div><b>Primacía de lo humano</b>La relación docente–alumno, la conversación y la lectura no se sustituyen por pantallas.</div>
   <div><b>Tecnología con propósito</b>Solo cuando aporta valor didáctico real; nunca como relleno ni como ocio.</div>
-  <div><b>Móvil fuera del aula</b>Normas claras y consensuadas; proteger la atención y la convivencia.</div>
+  <div><b>Normas claras sobre el móvil</b>Consensuadas con el alumnado; proteger la atención y la convivencia.</div>
   <div><b>Educación digital</b>Ciudadanía digital, pensamiento crítico, privacidad, igualdad y educación afectivo-sexual.</div>
   <div><b>Acompañar, no solo prohibir</b>Coordinación con familias, ejemplo adulto y escucha del alumnado (enfoque de derechos).</div>
  </div>
 </div>
-<div class="src">Fuentes: Casas Rivero y Ceñal González-Fierro (2005); Save the Children España (2024), <i>Derechos sin conexión</i>; Desmurget (2020), <i>La fábrica de cretinos digitales</i>, cap. 6.</div>
+<div class="src">Fuentes: Casas Rivero y Ceñal González-Fierro (2005); Save the Children España (2024); Desmurget (2020), <i>La fábrica de cretinos digitales</i>, cap. 6.</div>
 </body></html>
