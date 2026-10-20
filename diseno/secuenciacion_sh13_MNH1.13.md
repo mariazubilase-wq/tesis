@@ -344,3 +344,93 @@ inicio del ORF y los dos codones de parada.
    2248: si vuelve a leer y los demás no, es el DNA; si no lee nada, es el
    servicio.
 6. **Pide las dos direcciones** con H1seq-F y H1seq-R.
+
+---
+
+# 14. ¿Está mal el plásmido de KRT10?
+
+## 14.1 Lo primero: una lectura sin señal no puede decirlo
+
+Es el punto que conviene fijar antes que nada. **Una reacción sin producto de
+extensión no es un veredicto sobre la construcción: es una reacción que no ha
+ocurrido.** No dice que el plásmido esté mal, ni que esté bien. No dice nada.
+
+Si el `.ab1` del K10 tiene la misma pinta que los ocho de aquí —traza plana, Q=0,
+`NNNNN`— entonces **no hay ninguna evidencia en contra del plásmido**. Lo único
+que sabes de él es que la PCR de colonia dio positivo, que es evidencia *a favor*.
+
+## 14.2 Y hay una explicación específica para el de K10
+
+Comprobado sobre la secuencia real de MN502A-1, buscando los sitios de los
+cebadores que los servicios ofrecen por defecto:
+
+| Cebador universal | ¿Está en MN502A-1? | ¿Está en pSI-H1? |
+|---|---|---|
+| **T7** | **NO** | NO |
+| **SP6** | **NO** | NO |
+| **M13F (−21)** | **NO** | NO |
+| **M13R** | **NO** | sí |
+| **CMV-F** | **NO** | sí |
+| **BGH-R** | **NO** | NO |
+| **EF1a-F (el estándar)** | **NO** | NO |
+| WPRE-R | sí | sí |
+| SV40pA-R | sí | sí |
+
+> ### En MN502A-1 no hay T7, ni SP6, ni M13, ni CMV-F, ni BGH-R.
+> Si pediste la secuenciación con un cebador universal —y **CMV-F, T7 y M13F son
+> el valor por defecto de casi todos los servicios**— el resultado sería
+> exactamente cero señal. No por el plásmido: porque no hay dónde anillar.
+
+Y hay un detalle que lo hace más probable todavía: **el EF1a-F estándar tampoco
+está.** Ese cebador apunta al EF1α de longitud completa con su intrón 1, y este
+vector lleva **el EF1α corto de 546 pb**. Es el error perfecto: pides «el de
+EF1α», el servicio tiene uno en stock, y no aparea.
+
+**Es la primera pregunta que hay que contestar: ¿qué cebador se usó?** Si fue
+uno universal, ya está explicado y el plásmido no tiene nada que ver.
+
+## 14.3 El test que responde a tu pregunta sin secuenciar
+
+**Digiere con NotI.** Hay tres dianas (772, 1416, 2813) y una de ellas queda
+justo detrás del inserto:
+
+| | Vector vacío | Con KRT10 dentro |
+|---|---|---|
+| NotI, 3 fragmentos | 3944 · 1397 · **644** | 3944 · **2404** · 1397 |
+
+**La banda de 644 pb se convierte en 2404 pb.** Un solo corte te dice si el
+inserto está, y además lo mide. Las tres bandas se separan bien al 0,8 %.
+
+Como confirmación añadida, **BamHI**: en el recombinante correcto la diana se
+destruye en la unión 3' (queda `AGATCC`), así que **no debe cortar**. El vector
+vacío linealiza.
+
+> Salvedad: esto supone que el cDNA de KRT10 no lleva un `GCGGCCGC` ni un
+> `GGATCC` internos. Ya confirmaste que no tiene `ACTAGT` ni `CCATGG`;
+> comprueba estos dos de paso en el GenBank.
+
+## 14.4 Entonces, ¿qué creo?
+
+**Que el plásmido está bien, con las reservas de siempre.** Los tres indicios
+apuntan en esa dirección:
+
+1. La PCR de colonia dio positivo.
+2. No hay ni una sola observación que incrimine al plásmido — sólo ausencia de
+   datos.
+3. Hay una causa alternativa concreta y comprobable (§14.2) que explica el fallo
+   entero sin necesidad de que nada esté mal.
+
+Las dos reservas, por honestidad:
+
+- **Si la PCR de colonia llevaba dos cebadores del inserto**, el positivo no
+  vale (§10).
+- **Si el `.ab1` del K10 sí tiene señal** y lo que pasa es que la secuencia no
+  cuadra, entonces estamos ante otra cosa y hay que mirarla. Dos candidatos:
+  un clon mal ensamblado, o la **cola de glicinas de K10** —repetitiva y muy
+  GC— haciendo patinar a la polimerasa. Se distinguen fácil: la cola de glicinas
+  da una lectura **limpia que se degrada de golpe** al llegar a la repetición,
+  no una lectura rara desde el principio.
+
+**Mándame los `.ab1` del K10** y te lo digo en un minuto: distinguir «sin señal»
+de «señal con secuencia que no cuadra» es inmediato, y son dos diagnósticos
+completamente distintos.
