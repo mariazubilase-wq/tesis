@@ -434,3 +434,85 @@ Las dos reservas, por honestidad:
 **Mándame los `.ab1` del K10** y te lo digo en un minuto: distinguir «sin señal»
 de «señal con secuencia que no cuadra» es inmediato, y son dos diagnósticos
 completamente distintos.
+
+---
+
+# 15. La PCR de colonia era de dos cebadores del inserto
+
+Confirmado. Entonces **ese positivo hay que retirarlo como evidencia**, y en tu
+caso concreto el motivo es más fuerte de lo habitual.
+
+## 15.1 Por qué aquí no vale nada
+
+El constructo 1 se montó por **ensamblaje por homología**. Eso significa que en
+la mezcla de transformación había, por diseño, **un producto de PCR purificado
+del cDNA de KRT10** en cantidad grande. Y ese amplicón:
+
+- lleva el CDS entero, así que **da positivo con dos cebadores del inserto**;
+- viaja en la placa, en la punta, en el palillo;
+- y encima arrastra trazas de su propio molde, `pCMV6-KRT10`, que también da
+  positivo.
+
+> **Una PCR de colonia con dos cebadores del inserto, sobre una placa de
+> ensamblaje, da positivo aunque la colonia no tenga el plásmido que buscas.**
+> No está midiendo el clon: está midiendo el arrastre.
+
+Esto no dice que tus clones sean malos. Dice que **no están comprobados**. Es
+una diferencia importante: no hay evidencia en contra, pero ahora tampoco a
+favor.
+
+## 15.2 La PCR que sí lo prueba — y no cuesta nada más
+
+**Los dos cebadores de secuenciación del §12 sirven también de PCR de colonia.**
+Uno cae en el EF1α y el otro en el WPRE, o sea **los dos en el vector, flanqueando
+el sitio de inserción**:
+
+```
+   EF1α ─────[K10seq-F]──────▶ │ inserto │ ◀──────[K10seq-R]───── WPRE
+            1275                 1411                1626
+```
+
+| Resultado | Producto | Qué es |
+|---|---|---|
+| **352 pb** | vector vacío o religado | descártalo |
+| **~2112 pb** | **KRT10 dentro** | el que buscas |
+| sin banda | sin plásmido / colonia mala | repite |
+
+Las dos bandas son **imposibles de confundir** en un gel al 1 %.
+
+Y lo que lo hace a prueba de arrastre: el amplicón de In-Fusion sólo lleva del
+vector las posiciones **1396–1411 y 1411–1425**. **Ninguno de los dos cebadores
+cae ahí** (están en 1275–1299 y 1602–1626). Así que **ni el producto de PCR
+remanente ni `pCMV6-KRT10` pueden dar banda**: les falta el vector a los dos
+lados.
+
+Extensión de 2,5 min y anillamiento a 55 °C. Como la banda buena son 2,1 kb,
+usa una polimerasa decente, no la de colonia más barata.
+
+> **Dos cebadores, tres trabajos**: cribado por tamaño, lectura de la unión 5' y
+> lectura de la unión 3'. No hay que pedir nada más.
+
+## 15.3 Orden de trabajo para el minicírculo de KRT10
+
+1. **PCR de colonia con K10seq-F + K10seq-R** sobre las colonias que guardaste.
+   Banda de 2,1 kb → sigue. Banda de 352 pb → tíralo.
+2. **NotI** sobre el miniprep de las que pasen: la banda de 644 pb del vacío
+   tiene que haberse convertido en **2404 pb** (§14.3).
+3. **Gel + Qubit** del miniprep antes de mandar nada (§11).
+4. **Secuencia con K10seq-F y K10seq-R**, que cubren las dos uniones, el Kozak,
+   el inicio del ORF y los dos codones de parada.
+
+Los pasos 1 y 2 cuestan una tarde y un gel, y te dicen si tienes clon **antes**
+de volver a gastar en secuenciación. Dado que el cribado original no era válido,
+empezar por ahí no es desconfianza: es que ese dato todavía no existe.
+
+## 15.4 Y lo mismo para sh13 y el scramble
+
+Si el cribado de esos también fue con dos cebadores del inserto, tiene el mismo
+problema — agravado porque ahí el «inserto» son 60 pb de oligo hibridado, y los
+oligos sobrantes de la ligación dan positivo igual.
+
+Para esos **no se puede hacer PCR de unión** (no cabe un cebador dentro de 60 pb).
+El cribado válido es el que ya está en §5.1: **HindIII primero** para descartar
+los deletados grandes, y **secuenciación con H1seq-F + H1seq-R** para lo demás.
+No hay atajo.
