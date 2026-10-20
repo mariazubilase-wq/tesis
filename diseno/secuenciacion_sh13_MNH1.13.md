@@ -149,3 +149,96 @@ inserto en el sitio correcto, en la orientación correcta, con las dos dianas
 regeneradas y el terminador completo. La ligación de oligos hibridados entre
 BamHI y EcoRI hace lo que tiene que hacer. El problema es la estabilidad de la
 horquilla en la cepa, que es un problema conocido y con solución conocida.
+
+---
+
+# Segunda tanda — MNH1SC.1 a SC.5
+
+**5 de 5 fallidas.** Con la primera tanda, el balance es **8 reacciones fallidas
+de 10**.
+
+## 7. No es el cebador
+
+> ## El cebador anilla perfectamente. El problema es el DNA molde.
+
+La prueba es directa: **el mismo cebador dio dos lecturas impecables de ~1090
+bases** (13.1 y 13.3), con Q≥20 en 924 bases cada una. Un cebador que no anilla
+falla 10 de 10, no 2 de 10 con lecturas de libro.
+
+### Lo que dicen las trazas crudas
+
+Medido sobre el envolvente de los cuatro canales, con el ruido de fondo de cada
+fichero como referencia:
+
+| Muestra | Bases | Q≥20 | Pico | Ruido | S/R | ¿Hay escalera? |
+|---|---|---|---|---|---|---|
+| **MNH1.13.1** | 1093 | **924** | 476 | 3 | 159 | **sí — 3221 scans** |
+| **MNH1.13.3** | 1089 | **924** | 2248 | 22 | 102 | **sí — 10744 scans** |
+| MNH1.13.2 | 5 | 0 | 240 | 2 | 120 | no — 54 scans |
+| MNH1.13.4 | 5 | 0 | 58 | 20 | 2,9 | no — 0 scans |
+| MNH1.13.5 | 5 | 0 | 113 | 6 | 18,8 | no — 0 scans |
+| MNH1SC.1 | 5 | 0 | 91 | 33 | 2,8 | no — 0 scans |
+| MNH1SC.2 | 5 | 0 | 98 | 29 | 3,4 | no — 0 scans |
+| MNH1SC.3 | 5 | 0 | 115 | 2 | 57,5 | no — 0 scans |
+| MNH1SC.4 | 133 | **0** | 576 | 2 | 288 | no — 536 scans |
+| MNH1SC.5 | 5 | 0 | 72 | 3 | 24,0 | no — 0 scans |
+
+**Ocho reacciones no tienen producto de extensión. No es que sea débil: no
+existe.**
+
+### El caso MNH1SC.4, que es el que lo demuestra
+
+Es la muestra más informativa de las diez. Tiene un **pico de 576 — más alto que
+13.1, que leyó 1093 bases.** Y sin embargo:
+
+- No llama ni una sola base con Q≥20.
+- La señal ocupa **536 scans de ~15 900**: un chorro aislado al principio de la
+  carrera (scan ≈2057), no una escalera.
+- De sus 133 bases «llamadas», sólo **15 caen sobre un pico de verdad**; el resto
+  son ruido que el llamador interpreta como bases.
+- **0 de 24** fragmentos de 15 nt de esa lectura existen en pSI-H1.
+
+O sea: un **blob de colorante libre** y nada más. Si el problema fuera el cebador,
+no habría ni eso.
+
+## 8. Qué está pasando entonces
+
+El patrón —unas pocas reacciones perfectas, la mayoría con cero producto, y
+amplitudes que van de 58 a 2248 (**un factor 39**) entre reacciones que deberían
+ser idénticas— sólo tiene una familia de causas: **el molde**.
+
+Por orden de probabilidad:
+
+1. **Va poco DNA.** La causa número uno. Para un plásmido de 6,9 kb hacen falta
+   del orden de 300–600 ng por reacción; comprueba qué pide exactamente tu
+   servicio.
+2. **Hay inhibidores arrastrados del miniprep.** RNasa A residual, sales de
+   guanidina, etanol, o resina de la columna. **Es la explicación clásica de
+   «mismo protocolo, señal completamente distinta entre tubos».**
+3. **Eluido en TE.** El EDTA quela el Mg²⁺ y frena la polimerasa. Eluye en agua
+   o en EB.
+4. **Cuantificación por Nanodrop.** Lee RNA y nucleótidos libres como si fueran
+   DNA: puedes creer que mandas 400 ng y mandar 60.
+
+Y hay un dato que apunta a algo sistemático: **la tanda SC falló entera, las
+cinco.** Eso no es azar de pipeteo. Misma sesión de minipreps, mismo tampón de
+elución, o un tubo de cebador mal diluido.
+
+## 9. Qué hacer antes de volver a mandar
+
+1. **Cuantifica con Qubit, no con Nanodrop.** Y mira los dos ratios:
+   A260/A280 ≈ 1,8 y **A260/A230 > 2,0**. Un 230 bajo es carryover de guanidina
+   o etanol, y es justo lo que mata estas reacciones.
+2. **Normaliza todos los clones** a la concentración que pida el servicio. No
+   mandes «lo que salga».
+3. **Re-eluye en agua o EB**, nunca en TE.
+4. **Mete un control conocido en la misma placa**: vuelve a mandar el DNA de
+   13.3, que ya leyó a 2248 de pico. Es el experimento que separa las dos
+   hipótesis de un plumazo:
+   - control lee, el resto no → **es tu DNA**
+   - no lee nada → es el servicio, el cebador o la química
+5. **Pregunta al servicio si ellos vieron señal.** Si en su control interno todo
+   fue bien, el problema entró con las muestras.
+
+> **Lo que NO hay que hacer:** rediseñar el cebador. Funciona. Cambiarlo te
+> costaría dos semanas y volverías al mismo sitio.
