@@ -11,6 +11,8 @@ silvestre, entregado como **minicírculos**.
 | `diseno/diseno_sh13_pSI_H1.md` | **Constructo 2 — sh13 en `pMC.SI-H1-MCS`** (MNSI500A-1). Oligos desmontados, protocolo, aviso sobre la posición del desapareamiento |
 | `diseno/diseno_combinado_MN100A1.md` | **Constructo 3 — los dos casetes en `pMC.BESPX-MCS1`** (MN100A-1). Estrategia + los cambios *wobble* que hacen falta |
 | `herramientas/disena_clonaje.py` | Calcula cebadores y tamaños a partir de los GenBank reales |
+| `diseno/cebadores.md` | **Lista de todos los cebadores** y para qué sirve cada uno |
+| `diseno/secuenciacion_sh13_MNH1.13.md` | Análisis de las secuenciaciones recibidas y diagnóstico de los fallos |
 | `herramientas/lee_snapgene.py` | Lee ficheros `.dna` de SnapGene: secuencia, rasgos y mapa de dianas |
 | `secuencias/` | Aquí van los ficheros de secuencia (ver `secuencias/LEEME.md`) |
 
