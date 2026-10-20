@@ -242,3 +242,105 @@ elución, o un tubo de cebador mal diluido.
 
 > **Lo que NO hay que hacer:** rediseñar el cebador. Funciona. Cambiarlo te
 > costaría dos semanas y volverías al mismo sitio.
+
+---
+
+# 10. El dato que lo cierra: colonias PCR-positivas
+
+Con la información nueva —**SC = scramble** (control negativo, otro inserto) y
+**lo mismo pasa con el minicírculo de KRT10, con colonias positivas por PCR**—
+el diagnóstico deja de ser una inferencia y pasa a ser una deducción.
+
+| | sh13 | scramble | KRT10 |
+|---|---|---|---|
+| Vector | pSI-H1 | pSI-H1 | pMC.EF1α |
+| Inserto | horquilla | horquilla distinta | cDNA de 1,76 kb |
+| Cebador de secuenciación | H1 | H1 | otro |
+| Colonia por PCR | — | — | **positiva** |
+| Secuenciación | 3/5 sin señal | **5/5 sin señal** | sin señal |
+
+> **Un problema que aparece en tres construcciones distintas, con dos vectores
+> distintos y cebadores distintos, no puede ser un cebador.** Lo único que
+> comparten las tres es el paso que va de la colonia al tubo que mandas: el
+> miniprep.
+
+Y la PCR de colonia lo remata: **la construcción está en la bacteria.** Entre
+«la colonia es correcta» y «la secuenciación no da nada» sólo queda el miniprep
+y la cuantificación.
+
+> ⚠️ **Un matiz sobre esa PCR de colonia.** Si la hiciste con **dos cebadores del
+> inserto**, el positivo no prueba que el clon sea bueno: amplifica igual el
+> plásmido donante o el producto de PCR que quedó en el banco (está avisado en
+> §11 del diseño de KRT10). Si usaste **uno del vector y otro del inserto**, el
+> positivo sí vale. Merece la pena mirar cuál de las dos hiciste.
+
+## 11. El primer experimento, que es gratis
+
+**Corre 2 µL de cada miniprep en un gel de agarosa al 0,8 %.**
+
+| Lo que ves | Qué significa |
+|---|---|
+| Banda de plásmido clara y nítida | Hay DNA → el problema es pureza o cantidad enviada |
+| Banda muy débil o nada | **Hay poco DNA** → ahí está la respuesta |
+| Mancha difusa por debajo | RNA sin digerir — y el Nanodrop lo cuenta como DNA |
+
+Esto, más un Qubit, resuelve la pregunta en una tarde y sin gastar
+secuenciaciones. **Hazlo antes que ninguna otra cosa.**
+
+Comprueba también el rendimiento: estos parentales de minicírculo **no son
+plásmidos pUC de alto número de copia**. Si de un miniprep estándar sacas menos
+de ~100 ng/µL, crece 5 mL en vez de 2 y eluye en 30 µL en lugar de 50.
+
+---
+
+# 12. Cebadores nuevos
+
+**No porque el actual esté roto** —dio dos lecturas de 1090 bases— sino porque
+los nuevos arreglan dos cosas reales:
+
+- El cebador actual empieza a leer **~54 nt antes del BamHI**, y de esos los
+  primeros ~13 son N. Entra en la horquilla casi sin carrerilla. El nuevo le da
+  **120 nt**.
+- **No tienes lectura reversa.** Es la que convierte la deleción de 13.1 de «muy
+  probable» en certeza, y la que cubre el lado 3' del inserto.
+
+Todos verificados sobre las secuencias reales: **únicos en su plásmido**, sin
+homopolímeros ≥5, anclaje 3' correcto y Tm calculada por vecino más próximo
+(50 mM Na⁺, 0,25 µM).
+
+### Para pSI-H1 — valen igual para sh13 y para el scramble
+
+| | Secuencia 5'→3' | nt | Tm | GC | Posición | Lee desde |
+|---|---|---|---|---|---|---|
+| **H1seq-F** | `TGCGCCCTGGCAGGAAGATGGCTGT` | 25 | 58,8 °C | 64 % | 2785 | 120 nt antes |
+| **H1seq-R** | `AGTCACACAACAGACGGGCACACACT` | 26 | 54,7 °C | 54 % | 3070 | 126 nt después |
+
+`H1seq-R` tiene la Tm algo baja porque la zona (R/U5 del dLTR) es rica en AT; no
+hay nada mejor ahí. A 50 °C de anillamiento va bien.
+
+### Para el minicírculo de KRT10 (MN502A-1)
+
+| | Secuencia 5'→3' | nt | Tm | GC | Posición | Lee |
+|---|---|---|---|---|---|---|
+| **K10seq-F** | `TCAGCCGGCTCTCCACGCTTTGCCT` | 25 | 58,6 °C | 64 % | 1275 | unión 5' desde 112 nt antes |
+| **K10seq-R** | `TGCCTGACAACGGGCCACAACTCCT` | 25 | 56,7 °C | 60 % | 1602 | unión 3' desde 190 nt después |
+
+**Las dos juntas no cubren el CDS entero.** Con ~900 bases útiles por lectura,
+F llega hasta ≈790 del inserto y R retrocede hasta ≈1050: queda un **hueco de
+unos 260 nt en medio**. Para cerrarlo hace falta **un cebador interno del CDS**,
+que puedo diseñar en cuanto esté `secuencias/pCMV6-KRT10.gb` en el repositorio.
+
+Para verificar el clon, con F y R basta: cubren las dos uniones, el Kozak, el
+inicio del ORF y los dos codones de parada.
+
+## 13. Cómo mandarlo la próxima vez
+
+1. **Gel + Qubit** de todos los minipreps (§11). Descarta los que no se vean.
+2. **A260/A230 > 2,0.** Si está bajo, vuelve a pasar por columna: es carryover
+   de guanidina o etanol y es lo que mata la reacción.
+3. **Eluye en agua o EB**, nunca en TE.
+4. **Normaliza** a lo que pida el servicio.
+5. **Manda el DNA de 13.3 como control** en la misma placa. Leyó con pico de
+   2248: si vuelve a leer y los demás no, es el DNA; si no lee nada, es el
+   servicio.
+6. **Pide las dos direcciones** con H1seq-F y H1seq-R.
