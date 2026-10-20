@@ -312,18 +312,18 @@ homopolímeros ≥5, anclaje 3' correcto y Tm calculada por vecino más próximo
 
 | | Secuencia 5'→3' | nt | Tm | GC | Posición | Lee desde |
 |---|---|---|---|---|---|---|
-| **H1seq-F** | `TGCGCCCTGGCAGGAAGATGGCTGT` | 25 | 58,8 °C | 64 % | 2785 | 120 nt antes |
-| **H1seq-R** | `AGTCACACAACAGACGGGCACACACT` | 26 | 54,7 °C | 54 % | 3070 | 126 nt después |
+| **H1seq-F** | `TGCGCCCTGGCAGGAAGATGGCTGT` | 25 | **68,6 °C** | 64 % | 2785 | 120 nt antes |
+| **H1seq-R** | `AGTCACACAACAGACGGGCACACACT` | 26 | **64,5 °C** | 54 % | 3070 | 126 nt después |
 
-`H1seq-R` tiene la Tm algo baja porque la zona (R/U5 del dLTR) es rica en AT; no
-hay nada mejor ahí. A 50 °C de anillamiento va bien.
+Las Tm están recalculadas (ver §16). La pareja casa bien: ΔTm de 4 °C. Para
+secuenciación el servicio usa su propio programa, así que no hay que indicar nada.
 
 ### Para el minicírculo de KRT10 (MN502A-1)
 
 | | Secuencia 5'→3' | nt | Tm | GC | Posición | Lee |
 |---|---|---|---|---|---|---|
-| **K10seq-F** | `TCAGCCGGCTCTCCACGCTTTGCCT` | 25 | 58,6 °C | 64 % | 1275 | unión 5' desde 112 nt antes |
-| **K10seq-R** | `TGCCTGACAACGGGCCACAACTCCT` | 25 | 56,7 °C | 60 % | 1602 | unión 3' desde 190 nt después |
+| **K10seq-F** | `TCAGCCGGCTCTCCACGCTTTGCCT` | 25 | **68,5 °C** | 64 % | 1275 | unión 5' desde 112 nt antes |
+| **K10seq-R** | `TGCCTGACAACGGGCCACAACTCCT` | 25 | **66,5 °C** | 60 % | 1602 | unión 3' desde 190 nt después |
 
 **Las dos juntas no cubren el CDS entero.** Con ~900 bases útiles por lectura,
 F llega hasta ≈790 del inserto y R retrocede hasta ≈1050: queda un **hueco de
@@ -486,8 +486,8 @@ cae ahí** (están en 1275–1299 y 1602–1626). Así que **ni el producto de P
 remanente ni `pCMV6-KRT10` pueden dar banda**: les falta el vector a los dos
 lados.
 
-Extensión de 2,5 min y anillamiento a 55 °C. Como la banda buena son 2,1 kb,
-usa una polimerasa decente, no la de colonia más barata.
+Extensión de 2,5 min y **anillamiento a 62 °C** (Tm corregidas, §16). Como la
+banda buena son 2,1 kb, usa una polimerasa decente, no la de colonia más barata.
 
 > **Dos cebadores, tres trabajos**: cribado por tamaño, lectura de la unión 5' y
 > lectura de la unión 3'. No hay que pedir nada más.
@@ -516,3 +516,110 @@ Para esos **no se puede hacer PCR de unión** (no cabe un cebador dentro de 60 p
 El cribado válido es el que ya está en §5.1: **HindIII primero** para descartar
 los deletados grandes, y **secuenciación con H1seq-F + H1seq-R** para lo demás.
 No hay atajo.
+
+---
+
+# 16. Corrección: las Tm que di antes estaban mal
+
+Al preparar los cebadores de PCR de colonia revisé el cálculo y **mi función de
+Tm tenía dos errores**: aplicaba la corrección de sales de forma incorrecta y
+usaba los términos de iniciación del modelo antiguo (1996) en vez de los
+unificados de SantaLucia 1998. El resultado salía **unos 10 °C por debajo de la
+realidad**.
+
+Recalculado con SantaLucia 1998, iniciación correcta y sal equivalente para
+condiciones de PCR (50 mM K⁺, 2 mM Mg²⁺, 0,8 mM dNTP, 0,25 µM de cebador):
+
+| Cebador | nt | GC | Tm que di | **Tm real** |
+|---|---|---|---|---|
+| H1seq-F | 25 | 64 % | 58,8 °C | **68,6 °C** |
+| H1seq-R | 26 | 54 % | 54,7 °C | **64,5 °C** |
+| K10seq-F | 25 | 64 % | 58,6 °C | **68,5 °C** |
+| K10seq-R | 25 | 60 % | 56,7 °C | **66,5 °C** |
+
+**Los cebadores en sí siguen valiendo** —están en un rango perfectamente bueno y
+las parejas siguen casando (ΔTm de 2–4 °C)— pero las temperaturas de
+anillamiento que deduje de aquellos números eran demasiado bajas. Las tablas de
+§12 y §15 ya están corregidas.
+
+| Pareja | Anillamiento |
+|---|---|
+| K10seq-F + K10seq-R (PCR de colonia) | **62 °C** |
+| H1col-F + H1col-R | **60 °C** |
+| H1col-F + sh13-R | **59 °C** |
+
+---
+
+# 17. PCR de colonia para sh13 y el scramble
+
+En 60 pb no cabe una PCR de unión como la de KRT10. Pero hay una que funciona
+igual de bien, y además detecta un fallo que la otra no veía.
+
+## 17.1 El ensayo principal: desplazamiento de tamaño
+
+**Los dos cebadores caen en el vector, flanqueando el sitio de clonaje.** El
+inserto añade **56 pb netos** (65 del oligo menos los 9 que se pierden entre
+BamHI y EcoRI).
+
+| | Secuencia 5'→3' | nt | Tm | GC | Posición |
+|---|---|---|---|---|---|
+| **H1col-F** | `AGGGGAGTGGCGCCCTGCAAT` | 21 | 65,5 °C | 67 % | 2817–2837 |
+| **H1col-R** | `TTAGCCAGAGAGCTCCCAGGCTCAGA` | 26 | 64,3 °C | 58 % | 2991–3016 |
+
+Las dos son **únicas en el plásmido**. ΔTm 1,2 °C. **Anillamiento 60 °C**,
+extensión 20 s.
+
+| Banda | Qué es |
+|---|---|
+| **200 pb** | sin inserto — vector sin cortar o religado |
+| **256 pb** | **una horquilla** ← el bueno |
+| **312 pb** | **dos en tándem** — descártalo |
+| 368 pb… | tres o más |
+
+> **Esto vale para sh13, para el scramble y para cualquier horquilla futura**,
+> porque no depende de la secuencia del inserto.
+>
+> Y caza algo que ni el gel ni la digestión veían: **los concatémeros**. Si los
+> oligos venían fosforilados, o si sobró dúplex en la ligación, entran dos y tres
+> horquillas en tándem. Es un modo de fallo real y hasta ahora no lo estabas
+> cribando.
+
+Corre el gel al **2,5–3 % de agarosa** con escalera de 50 pb: 200 contra 256 son
+28 % de diferencia y se ven de sobra, pero en un gel al 1 % no.
+
+## 17.2 El confirmatorio: ¿es sh13 o es el scramble?
+
+Útil si procesas los dos en paralelo y quieres descartar una confusión de placas
+sin esperar a secuenciar.
+
+| | Secuencia 5'→3' | nt | Tm | GC |
+|---|---|---|---|---|
+| **sh13-R** | `TGCCTGGCTTCCTTTTCTGACAGGAAG` | 27 | 62,9 °C | 52 % |
+
+Se usa **con H1col-F**, anillamiento 59 °C → **banda de 166 pb sólo si está
+sh13**. Con el scramble no da nada.
+
+El truco está en dónde ancla: **el extremo 3' cae dentro del bucle**
+(`CTTCCTGTCAGA`), que es la única parte del inserto que no está repetida. Un
+cebador que apareara sólo en los brazos se cebaría a sí mismo sobre la horquilla
+—los dos brazos son complementarios— y daría un artefacto de ~54 pb. Anclando en
+el bucle, eso no pasa.
+
+Y es a prueba de arrastre: `H1col-F` está en el vector, así que **los oligos
+sobrantes de la ligación no pueden dar banda** por mucho que queden en la placa.
+
+## 17.3 Para el scramble necesito su secuencia
+
+No me has pasado los oligos del scramble, así que **no puedo diseñar el
+`shSC-R` equivalente**. Mándame el `shSC_TOP` y te lo calculo igual: 3' anclado
+en su bucle, Tm casada con H1col-F y el tamaño de producto exacto.
+
+Mientras tanto, **H1col-F + H1col-R (§17.1) ya te criba los dos constructos**,
+que es el 90 % del trabajo.
+
+## 17.4 Una limitación que conviene anotar
+
+`H1col-R` está en 2991–3016, o sea **fuera del fragmento BglII (2639–2988)** que
+se mueve al constructo combinado. Esta pareja sirve para cribar clones en
+pSI-H1, **no** para cribar el combinado más adelante. Para eso valen los
+diagnósticos del §4 de `diseno_combinado_MN100A1.md`.
