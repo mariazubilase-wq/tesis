@@ -623,3 +623,28 @@ que es el 90 % del trabajo.
 se mueve al constructo combinado. Esta pareja sirve para cribar clones en
 pSI-H1, **no** para cribar el combinado más adelante. Para eso valen los
 diagnósticos del §4 de `diseno_combinado_MN100A1.md`.
+
+
+---
+
+# 18. Corrección al §14.2: `MN_EF1a_F` sí existe en MN502A-1
+
+En el §14.2 propuse que el fallo del K10 podía deberse a haber usado un cebador
+universal que no aparea en MN502A-1. **Visto el fichero de pedidos, esa
+hipótesis se cae**, al menos si se usó `MN_EF1a_F`:
+
+| | |
+|---|---|
+| `MN_EF1a_F` | `CCTTGGAGCCTACCTAGACTCAG` |
+| Posición en MN502A-1 | **1256–1278**, directo |
+| Empieza a leer | **133 nt antes** del punto de inserción |
+| Tm | 57,6 °C |
+
+Es un cebador correcto y bien colocado para leer la unión 5' del inserto. Si fue
+el que se mandó, **el cebador no explica nada** y el fallo del K10 vuelve al
+mismo sitio que el de sh13 y el del scramble: **el molde** (§8, §11).
+
+Lo que sigue en pie del §14.2: si se mandó un universal del catálogo del
+servicio (CMV-F, T7, M13F), sí lo explicaría, porque ninguno de esos está en
+MN502A-1. **La pregunta sigue siendo cuál se usó**, pero ahora con una
+alternativa concreta y válida sobre la mesa.

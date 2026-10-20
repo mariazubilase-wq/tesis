@@ -6,6 +6,27 @@ próximo (SantaLucia 1998) en condiciones de PCR: 50 mM K⁺, 2 mM Mg²⁺, 0,8 
 dNTP, 0,25 µM de cebador.
 
 **Pedir todos desalados, escala 25 nmol, resuspender a 100 µM en TE.**
+Hoja de pedido lista: `pedido_oligos_minicirculos.docx` (nomenclatura `MN_`,
+la misma de tus pedidos anteriores).
+
+| En este documento | En la hoja de pedido |
+|---|---|
+| K10seq-F / K10seq-R | `MN_K10seq_F` / `MN_K10seq_R` |
+| H1seq-F / H1seq-R | `MN_H1seq_F` / `MN_H1seq_R` |
+| H1col-F / H1col-R | `MN_H1col_F` / `MN_H1col_R` |
+| sh13-F | `MN_sh13_F` |
+
+### Los que ya tenías, comprobados
+
+| Nombre | nt | Tm | Dónde cae |
+|---|---|---|---|
+| `MN_EF1a_F` | 23 | 57,6 °C | **MN502A-1 pos 1256** — lee desde 133 nt antes del inserto. **Sirve** para la unión 5' de KRT10 |
+| `MN_H1_F` | 25 | 58,7 °C | pSI-H1 pos 2838 — lee desde 67 nt antes del BamHI. Sirve, pero con poca carrerilla ante la horquilla |
+| `MN_vc_R` | 16 | 51,1 °C | MN502A-1 pos 835, reverso — lee **hacia atrás**, hacia attB. No toca el inserto |
+
+`MN_EF1a_F` hace el mismo trabajo que `MN_K10seq_F` para secuenciar. Pide
+`MN_K10seq_F` igualmente porque es el que **casa en Tm con `MN_K10seq_R`** para
+la PCR de colonia (ΔTm 2 °C frente a 9 °C).
 
 ---
 
