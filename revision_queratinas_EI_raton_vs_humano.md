@@ -1,0 +1,248 @@
+# Queratinas epidérmicas humano vs. ratón y modelos murinos de ichtiosis epidermolítica (EI)
+
+Revisión bibliográfica — 27 octubre 2026
+
+> Fuente principal de la bibliografía: **PubMed** (búsquedas en PubMed/MEDLINE), complementada con búsqueda web para recursos de cepas (MGI, MRC Harwell). Cada referencia va con su DOI enlazado.
+
+---
+
+## 0. Respuesta corta a tus cuatro preguntas
+
+1. **¿Mi mutación afecta menos a K10 de ratón, o cualquier mutación en Krt10 afecta menos en ratón?**
+   Las dos cosas son ciertas pero en niveles distintos, y hay que separarlas:
+   - **Que el heterocigoto no tenga fenotipo NO es una diferencia de especie.** En humano, los portadores heterocigotos de alelos *KRT10* de pérdida de función (nonsense, frameshift con degradación del transcrito) también son **clínicamente normales** — es exactamente lo que describieron Müller et al. en la familia con EI recesiva por p.Q434X ([DOI](https://doi.org/10.1093/hmg/ddl028)). La dominancia en la EI humana clásica viene de **missense dominante-negativas** en el dominio en varilla (hotspot R156 y fronteras de hélice 1A/2B), no de haploinsuficiencia. Si tu heterocigoto es normal, la primera hipótesis a descartar es que **tu alelo no está produciendo proteína mutante estable incorporada al filamento** (NMD, splicing, inestabilidad proteica), es decir que se comporta como null/hipomorfo y no como dominante-negativo.
+   - **Que el homocigoto sea viable y con fenotipo leve-moderado SÍ es, en parte, una diferencia de especie documentada.** El K10-null verdadero de ratón tiene una epidermis sorprendentemente normal al nacer y de adulto muestra hiperproliferación **sin citólisis**, porque K5/K14 persisten suprabasalmente y forman filamentos K1/K14/K15 que rescatan la integridad (Reichelt et al. 2001, [DOI](https://doi.org/10.1091/mbc.12.6.1557); Reichelt & Magin 2002, [DOI](https://doi.org/10.1242/jcs.115.13.2639)). En el humano K10-null homocigoto, en cambio, se inducen fuertemente K6/K16/K17 **pero no compensan** y el fenotipo es severo ([DOI](https://doi.org/10.1093/hmg/ddl028)). O sea: mismo genotipo nulo, ratón tolera mucho mejor que humano, y el mecanismo tiene nombre.
+
+2. **Cuántos modelos murinos de EI hay (K10 y K1).**
+   Unos **10–12 modelos/líneas publicados** en total (ver §3): ~6–7 para K10 y ~4–5 para K1, más 2 de *Krt2* en el espectro EI superficial/IBS. Pero el dato relevante es otro: **casi todos son transgénicos sobreexpresores o knockouts; knock-ins de punto en el locus endógeno murino hay prácticamente uno bueno para K1 (Dsk12, Krt1 S194P) y no hay un equivalente canónico publicado para Krt10.** Ese es el hueco.
+
+3. **Cómo es el KO de K10 y si aporta publicar un KO con fenotipo distinto.**
+   Hay **dos líneas "KO" de K10 que se confunden constantemente en la literatura** y que tienen fenotipos opuestos (§4). Publicar "otro KO de K10" a secas aporta poco. Publicar **por qué tu alelo da un fenotipo distinto al de las líneas existentes** aporta bastante, y es un paper mecanístico, no descriptivo.
+
+4. **Requisitos para que un modelo de EI sea publicable e interesante.** §6.
+
+---
+
+## 1. Queratinas epidérmicas: humano vs. ratón
+
+### 1.1 Lo conservado
+- El esqueleto básico es el mismo: **K5/K14 basal** y **K1/K10 suprabasal** (par tipo II / tipo I obligado). Las familias de queratinas tienen ~54 genes funcionales tanto en humano como en ratón (Vijayaraj, Söhl & Magin 2007, [DOI](https://doi.org/10.1385/1-59745-165-7:203)).
+- K1 y K10 son las proteínas más abundantes de la epidermis superior en ambas especies, y en ambas su mutación produce fragilidad suprabasal (Wallace et al. 2012, [DOI](https://doi.org/10.1242/jcs.097139)).
+- La ortología K1↔Krt1 y K10↔Krt10 es clara, y los dominios de varilla (donde caen las mutaciones de EI) están muy conservados.
+
+### 1.2 Lo que NO es equivalente — y que afecta directamente a tu interpretación
+
+| Elemento | Humano | Ratón | Consecuencia para EI |
+|---|---|---|---|
+| **K2 (KRT2)** | Capa espinosa alta de **casi todo el cuerpo** | Restringida a **oreja, planta y regiones interescamas de la cola** (Herzog, Winter & Schweizer 1994, [DOI](https://doi.org/10.1111/1523-1747.ep12371757)) | El "repuesto" tipo II de K1 tiene geografía distinta: en ratón el tronco piloso carece de K2, pero la planta sí la tiene. Los sitios que fallan no son los mismos. |
+| **K77 (KRT77 / "K1b")** | Se **apaga tras el nacimiento**; queda en conductos de glándula sudorípara ecrina | **Se mantiene en epidermis adulta** e infundíbulo folicular | El ratón adulto tiene un parálogo tipo II extra en epidermis que el humano no tiene. Y es funcionalmente intercambiable con K1: en el *Krt77*-KO **sube K1 y rescata** el fenotipo (2024, [DOI](https://doi.org/10.1016/j.bbamcr.2024.119881)). Amortiguación extra en ratón del lado tipo II. |
+| **K9** | Palmoplantar (zonas de carga/fricción) | Prácticamente restringida a **almohadillas plantares**; en planta de ratón K1/K9/K10 predominan solo en footpads, mientras el resto de la planta es K2/K10 (2015, [DOI](https://doi.org/10.1016/j.jdermsci.2015.10.008)) | La "compensación local" difiere por sitio corporal. Fenotipar solo dorso es insuficiente. |
+| **K6** | *KRT6A/B/C* | *mK6α/mK6β*, que **evolucionaron de forma independiente** tras la divergencia de especies y con regulación distinta (Takahashi et al. 1998, [DOI](https://doi.org/10.1006/geno.1998.5476)) | La respuesta de queratinas de herida (K6/K16/K17), que es el principal mecanismo compensatorio humano, no es directamente comparable entre especies. |
+| **Arquitectura epidérmica** | Epidermis interfolicular gruesa (5–10 capas nucleadas), pelo escaso, zonas de carga mecánica (palmas, plantas, bipedismo) | Epidermis fina (2–3 capas), pelaje denso, cuadrupedismo | Mucho menos estrés de cizalla sobre la epidermis interfolicular del ratón. Bickenbach et al. ya observaron que el epitelio de almohadilla plantar (sin folículos) **ampollaba** mientras la piel pilosa no, y concluyeron que los folículos estabilizan/protegen la epidermis del trauma ([DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x)). |
+| **Recambio epidérmico** | Más lento | Más rápido | Los queratinocitos citolíticos se eliminan antes; menos acumulación de daño. En *K10−/−* el tránsito está acelerado y los label-retaining cells desaparecen (Reichelt et al. 2004, [DOI](https://doi.org/10.1111/j.0022-202X.2004.23426.x)). |
+| **Modificadores genéticos** | Fondos humanos heterogéneos | El fenotipo de los mutantes de queratina **depende del fondo** (de letalidad embrionaria a casi nada), lo que implica modificadores no identificados (Vijayaraj et al. 2007, [DOI](https://doi.org/10.1385/1-59745-165-7:203)) | **Tu fondo genético puede ser la explicación completa.** Ver §5. |
+
+### 1.3 Mensaje de esta sección
+El ratón tiene **más redundancia tipo II en epidermis adulta** (Krt77 + Krt2 en sitios específicos), **mantiene K5/K14 suprabasales** cuando falta K10, y **soporta mucho menos carga mecánica** en la epidermis interfolicular. Las tres cosas empujan en la misma dirección: **un defecto de K1/K10 se expresa más débilmente en ratón que en humano**, sobre todo en piel dorsal pilosa, y sobre todo en modo pérdida-de-función.
+
+---
+
+## 2. Dominante-negativo vs. pérdida de función: el eje que explica tu fenotipo
+
+Esto es lo que, en mi lectura, resuelve tu duda. La EI humana tiene **dos genéticas distintas**:
+
+- **EI dominante (la clásica, ~1/200.000–300.000).** Missense en varilla → proteína mutante que **se incorpora al filamento y lo envenena** (dominante-negativo). Fuchs, Esteves & Coulombe demostraron el mecanismo en ratón transgénico ([DOI](https://doi.org/10.1073/pnas.89.15.6906)).
+- **EI recesiva.** Alelos nulos bialélicos de *KRT10*. Heterocigotos **normales**, homocigotos severos (Müller et al. 2006, [DOI](https://doi.org/10.1093/hmg/ddl028)). Existen además casos de **self-improving EI** por alelos con splicing "leaky" y K10 residual — ojo, el reporte más citado de esto (Frommherz et al., Br J Dermatol 2019, [DOI](https://doi.org/10.1111/bjd.18325)) está **retractado**, úsalo solo con esa advertencia.
+- Y un tercer mecanismo aparte: **ichtiosis with confetti**, frameshifts de *KRT10* al mismo marco alternativo que generan una cola rica en arginina que redirige K10 al **nucléolo**; el fenotipo revierte por recombinación mitótica (Choate et al. 2010, Science, [DOI](https://doi.org/10.1126/science.1192280); Burger et al. 2011, [DOI](https://doi.org/10.1111/j.1365-2133.2011.10639.x)). No es un simple null ni un simple dominante-negativo.
+
+**Tu patrón (het normal / homo viable con fenotipo) es el patrón de la EI recesiva**, no de la dominante. Eso es un dato, no un fracaso: significa que tu alelo, *in vivo en ratón*, se está comportando como pérdida de función (total o parcial), y que la lectura correcta probablemente no es "el ratón es resistente a mi mutación" sino "**mi alelo no produce dominancia en ratón**". La pregunta experimental cambia por completo (§5).
+
+---
+
+## 3. Catálogo de modelos murinos de EI
+
+### 3.1 Krt10
+
+| # | Modelo | Tipo de alelo | Fenotipo | Ref. |
+|---|---|---|---|---|
+| 1 | Fuchs, Esteves & Coulombe 1992 | **Transgénico** K10 humana mutante (sobreexpresión) | Fenotipo EHK: citólisis suprabasal, agregación de tonofilamentos, hiperproliferación basal. Primera demostración del mecanismo. | [DOI](https://doi.org/10.1073/pnas.89.15.6906) |
+| 2 | Porter et al. 1996 — **Krt10<sup>tm1Tmm</sup>** | Gene targeting que deja una **K10 truncada (K10T)**, no un null limpio | **Homocigotos: fragilidad cutánea severa, mueren al poco de nacer** (deshidratación por ampollas generalizadas). **Heterocigotos: normales al nacer, desarrollan hiperqueratosis con la edad**, sobre todo en patas. | [DOI](https://doi.org/10.1083/jcb.132.5.925) |
+| 2b | Caracterización de K10T | — | K10T solo se empareja con K1; K6/K16/K17 forman agregados, no filamentos, y **no compensan**; pérdida total de K2e en planta de homocigotos. | Reichelt et al. 1997, [DOI](https://doi.org/10.1242/jcs.110.18.2175) |
+| 2c | Barrera en la línea tm1Tmm | — | TEWL basal ×8 en homocigotos neonatos; heterocigotos adultos con reparación de barrera retardada; esfingomielinasa ácida reducida. Lípidos de SC alterados con ultraestructura lamelar normal. | Jensen et al. 2000, [DOI](https://doi.org/10.1046/j.1523-1747.2000.00103.x); Reichelt et al. 1999, [DOI](https://doi.org/10.1046/j.1523-1747.1999.00702.x) |
+| 3 | Reichelt, Büssow, Grund & Magin 2001 — **K10 null verdadero** | Null limpio | **Epidermis neonatal normal**, sin fragilidad ni respuesta de herida. K5/K14 persisten suprabasalmente (a nivel de proteína, no de mRNA) y se forman filamentos K1/K14/K15. | [DOI](https://doi.org/10.1091/mbc.12.6.1557) |
+| 3b | K10−/− adulto | Null | **Sin citólisis**; hiperproliferación basal, aumento de tamaño celular, tránsito acelerado, inducción de c-Myc, ciclina D1, 14-3-3σ, K6/K16. | Reichelt & Magin 2002, [DOI](https://doi.org/10.1242/jcs.115.13.2639) |
+| 3c | K10−/− y tumores | Null | DMBA/TPA → **menos papilomas** que WT; primer modelo en que perder una queratina reduce tumorigénesis. | Reichelt et al. 2004, [DOI](https://doi.org/10.1111/j.0022-202X.2004.23426.x) |
+| 4 | Takahashi & Coulombe 1996 | Transgénico **inducible** (cassette regulable, inducción con éster de forbol) | Fenotipo ampolloso inducible tipo EHK, dependiente de trauma mecánico. | [DOI](https://doi.org/10.1073/pnas.93.25.14776) |
+| 5 | Arin & Roop 2001 — **K10 mutante activable por Cre inducible** | Knock-in condicional, activación somática espacio-temporal | Modelo de **mosaicismo**: áreas fenotípicas que persisten toda la vida del ratón (a diferencia del modelo EBS, donde las ampollas curan). Base conceptual de la terapia génica somática de genodermatosis dominantes. | [DOI](https://doi.org/10.1083/jcb.152.3.645); revisión Arin & Roop 2004, [DOI](https://doi.org/10.1159/000079990) |
+| 6 | Krt1−/−;Krt10−/− doble KO | Doble null | Letal postnatal por fragilidad. Sorpresa: **la estratificación y la barrera de agua son casi independientes de los filamentos K1/K10**; ausencia total de IF suprabasales, sin compensación por K5/K14; alteración de desmoplaquina, Dsc1, Dsg1 e integridad nuclear. | Wallace et al. 2012, [DOI](https://doi.org/10.1242/jcs.097139) |
+| 7 | Krt2−/−;Krt10−/− doble KO | Doble null | **Viables**; acantosis e hiperqueratosis en epidermis interfootpad de la planta; subida masiva de K1, K9 y K16. Demuestra que K2+K10 son los que sostienen la planta murina. | 2015, [DOI](https://doi.org/10.1016/j.jdermsci.2015.10.008) |
+
+### 3.2 Krt1
+
+| # | Modelo | Tipo | Fenotipo | Ref. |
+|---|---|---|---|---|
+| 1 | Bickenbach et al. 1996 | Transgénico K1 humana con **deleción de 60 residuos en 2B** | Recapitula **las dos fases clínicas**: neonatos con ampollas, adultos con hiperqueratosis escamosa, gránulos de queratohialina irregulares. Efecto dosis-dependiente del transgén. Ampollas en almohadilla plantar pero no en piel pilosa. **Único modelo transgénico que reprodujo la morfología del EHK adulto en su momento.** | [DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x) |
+| 2 | Serie transgénica de Roop/Rothnagel | Transgénicos K1/K10 mutantes | Revisados en Rothnagel et al. 1993, [DOI](https://doi.org/10.1001/archderm.1993.04540010008001) (ver también Leigh & Lane 1993, PMID 7504434) | — |
+| 3 | **Dsk12 (dark skin 12) — Krt1 S194P** | **Missense de punto en el locus endógeno**, mutagénesis química, **dominante** | **Heterocigotos afectados**: a los 2 días ampollas y erosiones intraepidérmicas en zonas de trauma, a las 2 semanas hiperqueratosis significativa; hiperpigmentación de almohadillas. Recapitula EHK humano en patología macro, histología y genética. **Es el mejor "verdadero" modelo murino de EI dominante.** | McGowan et al. 2006, [DOI](https://doi.org/10.1038/sj.jid.5700241) |
+| 4 | Krt1−/− (Roth et al. 2012) | Null | **Letalidad perinatal**, defecto de barrera, aumento prenatal de **IL-18, S100A8/A9**; el rescate parcial con depleción de IL-18 coloca a K1 **aguas arriba de una red inflamatoria**; firma transcriptómica parecida a eccema atópico y psoriasis (y distinta de la de Krt5−/−/EBS). | [DOI](https://doi.org/10.1242/jcs.116574) |
+| 5 | Krt1−/−;Krt10−/− | Doble null | Ver arriba. | [DOI](https://doi.org/10.1242/jcs.097139) |
+
+### 3.3 En el espectro EI (útiles como comparadores)
+- **Dsk10 — mutación en *Krt2e*** (misma pantalla de mutagénesis de Barsh): modelo del extremo "EI superficial"/ichtiosis bullosa de Siemens.
+- ***Krt2−/−***: existe y se usó para el doble KO con *Krt10* ([DOI](https://doi.org/10.1016/j.jdermsci.2015.10.008)).
+- ***Krt77−/−***: sin fenotipo cutáneo, rescatado por subida de K1 ([DOI](https://doi.org/10.1016/j.bbamcr.2024.119881)).
+- Fuera de queratinas pero con histología confundible con EHK: **plakoglobina−/−** ([DOI](https://doi.org/10.1006/dbio.1996.0346)).
+- Nota de recursos: MGI lista decenas de alelos de *Krt10* (muchos de consorcios tipo IMPC, sin fenotipado cutáneo dermatológico publicado). Para el censo definitivo: consulta directa de **MGI** (alleles de Krt10 y Krt1) e **IMSR**; la cepa `Balb/c.Cg-Krt10<tm1Tmm>/H` está en el MRC Harwell/National Mouse Archive.
+
+### 3.4 Conclusión del censo
+- Cantidad total: **~12 modelos** relevantes.
+- **Lo que falta**: un **knock-in de punto en el locus endógeno de *Krt10*** que reproduzca una mutación dominante humana concreta (R156H/R156C, L12 linker, 2B…) con expresión fisiológica. Para K1 eso existe (Dsk12) y para K10 no está publicado de forma canónica — los K10 "mutantes" son transgénicos sobreexpresores o condicionales activables por Cre. **Si tu línea es un knock-in endógeno, ahí está tu nicho.**
+- Y falta también un modelo **de EI recesiva humana** que recapitule la severidad humana — el null murino no lo hace (es demasiado leve).
+
+---
+
+## 4. "El KO de K10": aclara con cuál te comparas
+
+Esto es importante porque buena parte de la confusión bibliográfica viene de aquí:
+
+| | **Krt10<sup>tm1Tmm</sup>** (Porter 1996) | **K10 null** (Reichelt 2001) |
+|---|---|---|
+| Alelo | Produce **K10 truncada (K10T)** que se incorpora al filamento → comportamiento **dominante-negativo parcial** | **Null limpio**, sin proteína |
+| Homocigoto | Fragilidad severa, **letal neonatal**, TEWL ×8 | **Viable**, epidermis neonatal normal, adulto con hiperproliferación **sin citólisis** |
+| Heterocigoto | **Desarrolla hiperqueratosis con la edad** | Sin fenotipo descrito |
+| Paralelo humano | EI dominante | Portador humano KRT10-null → normal; homocigoto humano → severo (**discordante con el ratón**) |
+
+**Dos conclusiones prácticas para ti:**
+1. Si tu homocigoto es **viable con fenotipo**, se parece al null de Reichelt, no al tm1Tmm — y eso refuerza la hipótesis "mi alelo es pérdida de función".
+2. El contraste tm1Tmm vs. null es la prueba de concepto de que **en el mismo gen y la misma especie, el tipo de alelo decide el fenotipo mucho más que la especie**. Es el argumento central que necesitas para tu discusión.
+
+---
+
+## 5. Cómo distinguir experimentalmente "mi mutación" de "la especie"
+
+Orden de prioridad, de más informativo y barato a más costoso:
+
+**A. Caracterizar el alelo (imprescindible, y responde el 80% de la pregunta)**
+1. **¿Hay mRNA mutante?** RT-qPCR alelo-específica + cuantificación del ratio alélico en piel. Si hay NMD, tu alelo es funcionalmente un null → het normal es lo esperado y no hay nada "raro".
+2. **¿Hay proteína mutante, y a qué nivel?** Western con anticuerpo pan-K10, y si es posible detección específica de la forma mutante; cuantificar K10 total en het vs WT vs homo. En EI dominante humana la clave es que la mutante **se expresa e incorpora**.
+3. **¿Se incorpora al filamento o se agrega?** Inmunofluorescencia + **inmuno-EM / doble inmunogold** (como hicieron con K10T, [DOI](https://doi.org/10.1242/jcs.110.18.2175)). Si no hay agregados de tonofilamentos, no hay dominante-negativo, punto.
+4. **¿Splicing aberrante?** RT-PCR de la región + secuenciación del amplicón. Un sitio donador "leaky" cambia toda la interpretación (es el mecanismo propuesto en los fenotipos humanos autolimitados).
+5. **Conservación del residuo**: alinea K10 humana vs. murina en la posición mutada y su contexto (motivos de frontera de hélice, L12 linker). Si el residuo o su entorno no está conservado, tienes un argumento directo de "en ratón esta mutación no es equivalente" — y un paper de 2024 sobre variantes del **linker L12 de KRT10** te da marco para discutir dominio-dependencia del fenotipo.
+
+**B. Desenmascarar el fenotipo (si A dice que sí hay proteína mutante)**
+6. **Sitio corporal**: no te quedes en dorso. Fenotipa **almohadillas plantares, planta interfootpad, oreja, cola (escama vs. interescama)** — ahí cambian K2, K9 y la protección folicular. Bickenbach vio ampollas en footpad y no en piel pilosa ([DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x)).
+7. **Estrés mecánico controlado**: tape stripping, fricción estandarizada, herida por punch. Las queratinopatías murinas son fenotipos de estrés, no constitutivos (Bouameur & Magin 2017, [DOI](https://doi.org/10.1007/978-3-319-49674-0_7)).
+8. **TPA/éster de forbol tópico**: es lo que usó Coulombe para inducir el fenotipo en su modelo inducible ([DOI](https://doi.org/10.1073/pnas.93.25.14776)).
+9. **Curva temporal**: el fenotipo del het tm1Tmm **aparece con la edad**. Si solo has mirado neonatos/jóvenes, mira a 6–12 meses.
+10. **Barrera**: TEWL basal y reparación tras disrupción, hidratación de SC, dye exclusion, perfil de ceramidas. Los hets tm1Tmm eran "normales" clínicamente pero tenían **reparación de barrera retardada** ([DOI](https://doi.org/10.1046/j.1523-1747.2000.00103.x)). Un fenotipo subclínico sigue siendo un fenotipo publicable.
+11. **Fondo genético**: cruza a un segundo fondo (p. ej. C57BL/6 ↔ BALB/c o FVB). Los mutantes de queratina cambian de letal a casi-normal según fondo ([DOI](https://doi.org/10.1385/1-59745-165-7:203)); si tu het aparece en otro fondo, has encontrado un modificador y eso es un paper en sí.
+12. **Sensibilización por dosis**: cruza tu alelo contra *Krt10*<sup>+/−</sup> (hemicigosis: alelo mutante + null) y contra *Krt1*<sup>+/−</sup>. Si el fenotipo aparece, confirmas dominante-negativo dependiente de dosis relativa. Y cruza contra *Krt77*<sup>−/−</sup> o *Krt2*<sup>−/−</sup> para quitar la amortiguación específica de ratón — este es el experimento que **mide directamente cuánta de la diferencia es de especie**.
+13. **Compensadores**: cuantifica K5/K14/K15 suprabasales, K6/K16/K17, K1, K2, K9, K77 por sitio. Si tu homocigoto sube K5/K14 suprabasal como el null de Reichelt, ya tienes el mecanismo de tolerancia murina.
+
+**C. Puentes a humano**
+14. Queratinocitos humanos (de paciente si los hay, o HaCaT/iPSC-keratinocytes editados con la misma variante) y **organotípicos 3D**: compara el mismo cambio de aminoácido en contexto humano vs. murino. Es la prueba limpia de "especie, no alelo".
+
+---
+
+## 6. Qué hace que un modelo murino de EI sea publicable e *interesante*
+
+### 6.1 Requisitos mínimos (el "umbral de entrada")
+- **Causalidad genética establecida**: alelo definido a nivel de secuencia, en el locus endógeno idealmente, con expresión a nivel fisiológico. Sobreexpresión transgénica ya no se acepta bien como modelo de enfermedad dominante en 2026 — los transgénicos de los 90 fueron pioneros, pero el estándar actual es knock-in/CRISPR.
+- **Hallmarks morfológicos de EI demostrados**, no solo "piel escamosa":
+  - histología: hiperqueratosis, acantosis, **citólisis suprabasal**, gránulos de queratohialina irregulares;
+  - **ultraestructura (TEM) con agregación/clumping de tonofilamentos** — en EI esto es el criterio diagnóstico, y el inmuno-EM que demuestra que los agregados contienen K1/K10 es el estándar de la literatura;
+  - inmunofluorescencia de la red de filamentos.
+- **Función de barrera cuantificada**: TEWL, dye exclusion, hidratación de SC, idealmente lípidos/ceramidas.
+- **Perfil de compensación** de queratinas (K6/K16/K17, K5/K14, K2, K9) por sitio y edad.
+- **Rigor**: littermate controls, fondo genético declarado y puro, ambos sexos, curso temporal, n adecuado y potencia, ciego en la evaluación histológica, cumplimiento **ARRIVE 2.0**, aprobación ética.
+- **Disponibilidad**: alelo registrado en **MGI** con nomenclatura correcta y cepa depositada (EMMA/INFRAFRONTIER, JAX o MRC Harwell). Un modelo que nadie puede pedir se cita poco.
+
+### 6.2 Qué lo convierte en *interesante* (el "valor añadido")
+Necesitas al menos **uno** de estos, y lo ideal es dos:
+
+1. **Mecanismo, no descripción.** Los papers de modelos de queratina que más se citan no dicen "hice un ratón que se parece a la enfermedad", dicen *por qué*: K1 aguas arriba de IL-18/S100A8/A9 e inflamación tipo eccema/psoriasis ([DOI](https://doi.org/10.1242/jcs.116574)); K10 regulando proliferación vía c-Myc ([DOI](https://doi.org/10.1242/jcs.115.13.2639)); K1/K10 dispensables para estratificación y barrera de agua pero necesarios para desmosomas y la integridad nuclear ([DOI](https://doi.org/10.1242/jcs.097139)).
+2. **Explicar variabilidad clínica humana.** Dominante vs. recesiva, EI anular, EI superficial, autolimitada, ichtiosis with confetti. Un modelo que explique *por qué* una variante concreta da un fenotipo concreto encaja con la línea de trabajo de "residuos expuestos en superficie de K10 y base estructural de la variación fenotípica".
+3. **Plataforma preclínica.** Esto es lo que hoy más se valora, y es donde la EI tiene demanda real: edición génica alelo-específica (CRISPR/base editing, TALEN sobre el alelo mutante), siRNA/ASO alelo-específicos, con la lógica de que la **supresión parcial del alelo mutante puede bastar** porque el heterocigoto null es normal. Hay precedentes directos en el campo (TALEN sobre *KRT10* en queratinocitos de paciente y xenoinjerto; siRNA alelo-específico en K12 corneal) pero **no un modelo murino de knock-in endógeno con eficacia tópica demostrada**. Un modelo con **fenotipo medible, cuantificable y reversible** vale mucho más que un modelo severo-letal.
+4. **Mosaicismo y células madre.** El modelo inducible por Cre de Arin & Roop convirtió un modelo en un hallazgo conceptual (ausencia de presión selectiva contra mutaciones de K10 en células madre epidérmicas → por qué existen formas en mosaico de EHK y no de EBS) ([DOI](https://doi.org/10.1083/jcb.152.3.645)).
+5. **Resolver una discrepancia de la literatura.** Si tu alelo da un fenotipo que contradice al de las líneas existentes, y lo explicas, eso es publicable per se.
+6. **Fenotipo controlable**: inducible, sitio-específico, o adulto en vez de letal neonatal. Los modelos letales perinatales (Krt1−/−, Krt10 tm1Tmm homo, doble KO) **limitan todo estudio terapéutico**. Un homocigoto **viable con fenotipo**, como el tuyo, es precisamente lo que la comunidad necesita y lo que esos modelos no dan.
+
+### 6.3 ¿Aporta publicar "otro KO de K10 con fenotipo distinto"?
+- **Como KO a secas: no.** Hay dos líneas publicadas y ~8 papers de caracterización. Un tercer null sin más es incremental.
+- **Sí aporta, y bastante, si el ángulo es uno de estos:**
+  - **"Mismo gen, alelos distintos, fenotipos distintos"**: comparar de frente tu alelo con el null y con K10T y mostrar la relación estructura-alelo-fenotipo. Es el marco que la literatura ya validó y tú tendrías el tercer punto de la curva.
+  - **Modelo de EI recesiva humana**: tu genética (het normal, homo afectado) es la genética de la EI recesiva, y **no hay un buen modelo murino de EI recesiva** que reproduzca la severidad humana. Si tu homocigoto es más severo que el null de Reichelt, eso es novedad; si es más leve, la novedad es el mecanismo de tolerancia.
+  - **Homocigoto viable como plataforma terapéutica** (ver 6.2.3) — justo porque los demás se mueren.
+  - **Modificadores de fondo genético**, si el fenotipo cambia al cambiar de fondo.
+  - **Biología nueva**: inflamación/IL-18, autofagia y proteostasis, microbioma cutáneo, envejecimiento, carcinogénesis (hay precedente: K10−/− hace **menos** tumores, [DOI](https://doi.org/10.1111/j.0022-202X.2004.23426.x)).
+
+### 6.4 Mi recomendación sobre cómo encuadrar tu paper
+No lo plantees como "modelo murino de EI" (competirías con Dsk12 y con 10 modelos previos). Plantéalo como:
+
+> **"El alelo X de *Krt10* se comporta como pérdida de función en ratón: disección de los determinantes de dominancia en la ichtiosis epidermolítica y de los mecanismos de compensación específicos de especie."**
+
+Eso convierte tu "problema" (het sin fenotipo) en el resultado central, usa el homocigoto viable como herramienta, y te permite incluir el cruce con *Krt77*/*Krt2*/*Krt10*<sup>+/−</sup> como el experimento que cuantifica lo que es especie y lo que es alelo. Es un paper mecanístico con mensaje, no un paper descriptivo más.
+
+---
+
+## 7. Lagunas y advertencias sobre esta revisión
+
+- **No he podido confirmar** la existencia de un knock-in de punto publicado en el locus endógeno de *Krt10* que modele una mutación dominante humana. Antes de afirmarlo en tu tesis, haz una consulta directa en **MGI (alelos de Krt10)** e **IMSR**, y una búsqueda en bioRxiv — el servidor de bioRxiv no estaba accesible en esta sesión.
+- El paper de **Frommherz et al. 2019 (Br J Dermatol)** sobre EI autolimitada por *KRT10* bialélico está marcado como **publicación retractada** en PubMed. No lo cites como evidencia primaria.
+- El **censo exacto de modelos** depende de dónde pongas el límite (¿cuentan los dobles KO? ¿los transgénicos de los 90? ¿los alelos IMPC sin fenotipado dermatológico?). He dado el rango y el criterio.
+- Para el *Krt2−/−* no he localizado el paper original de generación de la línea; está confirmado indirectamente por el cruce *Krt2−/−;Krt10−/−*.
+
+---
+
+## 8. Bibliografía (orden de uso)
+
+Toda la bibliografía se recuperó de **PubMed**.
+
+**Humano / genética de EI**
+1. Müller FB, Huber M, et al. A human keratin 10 knockout causes recessive epidermolytic hyperkeratosis. *Hum Mol Genet* 2006. [DOI](https://doi.org/10.1093/hmg/ddl028)
+2. Choate KA, Lu Y, Zhou J, et al. Mitotic recombination in patients with ichthyosis causes reversion of dominant mutations in KRT10. *Science* 2010;330:94-7. [DOI](https://doi.org/10.1126/science.1192280)
+3. Burger B, Spoerri I, et al. Natural course and clinical manifestations of ichthyosis with confetti caused by a novel KRT10 mutation. *Br J Dermatol* 2012;166:434-9. [DOI](https://doi.org/10.1111/j.1365-2133.2011.10639.x)
+4. Frommherz L, et al. Skin fragility caused by biallelic KRT10 mutations: self-improving epidermolytic ichthyosis. *Br J Dermatol* 2020;182:780-5. **[RETRACTADO]** [DOI](https://doi.org/10.1111/bjd.18325)
+5. Leigh IM, Lane EB. Mutations in the genes for epidermal keratins in epidermolysis bullosa and epidermolytic hyperkeratosis. *Arch Dermatol* 1993;129:1571-7. PMID 7504434
+6. Jonkman MF, et al. Effects of keratin 14 ablation... *J Invest Dermatol* 1996;107:764-9 — contiene la observación de que **"el pronóstico de la ablación de K14 es mucho mejor en humano que en ratón"**, un precedente explícito de diferencia de especie en queratinopatías. [DOI](https://doi.org/10.1111/1523-1747.ep12365805)
+
+**Comparativa humano / ratón**
+7. Herzog F, Winter H, Schweizer J. The large type II 70-kDa keratin of mouse epidermis is the ortholog of human keratin K2e. *J Invest Dermatol* 1994;102:165-70. [DOI](https://doi.org/10.1111/1523-1747.ep12371757)
+8. Takahashi K, Yan B, et al. The two functional keratin 6 genes of mouse... evolved independently from their human orthologs. *Genomics* 1998;53:170-83. [DOI](https://doi.org/10.1006/geno.1998.5476)
+9. The loss of keratin 77 in murine skin is functionally compensated by keratin 1. *Biochim Biophys Acta Mol Cell Res* 2025. [DOI](https://doi.org/10.1016/j.bbamcr.2024.119881)
+10. Vijayaraj P, Söhl G, Magin TM. Keratin transgenic and knockout mice: functional analysis and validation of disease-causing mutations. *Methods Mol Biol* 2007;360:203-51. [DOI](https://doi.org/10.1385/1-59745-165-7:203)
+11. Bouameur JE, Magin TM. Lessons from animal models of cytoplasmic intermediate filament proteins. *Subcell Biochem* 2017;82:171-230. [DOI](https://doi.org/10.1007/978-3-319-49674-0_7)
+
+**Modelos K10**
+12. Fuchs E, Esteves RA, Coulombe PA. Transgenic mice expressing a mutant keratin 10 gene reveal the likely genetic basis for epidermolytic hyperkeratosis. *PNAS* 1992;89:6906-10. [DOI](https://doi.org/10.1073/pnas.89.15.6906)
+13. Porter RM, et al. Gene targeting at the mouse cytokeratin 10 locus: severe skin fragility and changes of cytokeratin expression. *J Cell Biol* 1996;132:925. [DOI](https://doi.org/10.1083/jcb.132.5.925)
+14. Reichelt J, et al. Out of balance: consequences of a partial keratin 10 knockout. *J Cell Sci* 1997;110:2175. [DOI](https://doi.org/10.1242/jcs.110.18.2175)
+15. Reichelt J, Doering T, et al. Normal ultrastructure, but altered stratum corneum lipid and protein composition in a mouse model for epidermolytic hyperkeratosis. *J Invest Dermatol* 1999;113:329-34. [DOI](https://doi.org/10.1046/j.1523-1747.1999.00702.x)
+16. Jensen JM, Schütze S, et al. Impaired cutaneous permeability barrier function, skin hydration, and sphingomyelinase activity in keratin 10 deficient mice. *J Invest Dermatol* 2000;115:708-13. [DOI](https://doi.org/10.1046/j.1523-1747.2000.00103.x)
+17. Reichelt J, Büssow H, Grund C, Magin TM. Formation of a normal epidermis supported by increased stability of keratins 5 and 14 in keratin 10 null mice. *Mol Biol Cell* 2001;12:1557. [DOI](https://doi.org/10.1091/mbc.12.6.1557)
+18. Reichelt J, Magin TM. Hyperproliferation, induction of c-Myc and 14-3-3σ, but no cell fragility in keratin-10-null mice. *J Cell Sci* 2002;115:2639. [DOI](https://doi.org/10.1242/jcs.115.13.2639)
+19. Reichelt J, et al. Loss of keratin 10 leads to MAPK activation, increased keratinocyte turnover, and decreased tumor formation in mice. *J Invest Dermatol* 2004. [DOI](https://doi.org/10.1111/j.0022-202X.2004.23426.x)
+20. Takahashi K, Coulombe PA. A transgenic mouse model with an inducible skin blistering disease phenotype. *PNAS* 1996;93:14776-81. [DOI](https://doi.org/10.1073/pnas.93.25.14776)
+21. Arin MJ, Roop DR (Cao T, et al.). Focal activation of a mutant allele defines the role of stem cells in mosaic skin disorders. *J Cell Biol* 2001;152:645. [DOI](https://doi.org/10.1083/jcb.152.3.645)
+22. Arin MJ, Roop DR. Inducible mouse models for inherited skin diseases: implications for skin gene therapy. *Cells Tissues Organs* 2004;177:160-8. [DOI](https://doi.org/10.1159/000079990)
+23. Wallace L, et al. Deletion of K1/K10 does not impair epidermal stratification but affects desmosomal structure and nuclear integrity. *J Cell Sci* 2012;125. [DOI](https://doi.org/10.1242/jcs.097139)
+24. Keratins K2 and K10 are essential for the epidermal integrity of plantar skin. *J Dermatol Sci* 2015. [DOI](https://doi.org/10.1016/j.jdermsci.2015.10.008)
+
+**Modelos K1**
+25. Bickenbach JR, Longley MA, et al. A transgenic mouse model that recapitulates the clinical features of both neonatal and adult forms of epidermolytic hyperkeratosis. *Differentiation* 1996;61:129-39. [DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x)
+26. McGowan KA, Aradhya S, Fuchs H, Hrabé de Angelis M, Barsh GS. A mouse keratin 1 mutation causes dark skin and epidermolytic hyperkeratosis. *J Invest Dermatol* 2006;126:1013-6. [DOI](https://doi.org/10.1038/sj.jid.5700241)
+27. Roth W, et al. Keratin 1 maintains skin integrity and participates in an inflammatory network in skin through interleukin-18. *J Cell Sci* 2012;125:5269. [DOI](https://doi.org/10.1242/jcs.116574)
+28. Rothnagel JA, Greenhalgh DA, et al. Transgenic models of skin diseases. *Arch Dermatol* 1993;129:1430-6. PMID 7694550
+
+**Comparadores**
+29. Bierkamp C, et al. Embryonic heart and skin defects in mice lacking plakoglobin. *Dev Biol* 1996;180:780-5. [DOI](https://doi.org/10.1006/dbio.1996.0346)
+30. Ness SL, et al. Mouse keratin 4 is necessary for internal epithelial integrity. *J Biol Chem* 1998;273:23904-11. [DOI](https://doi.org/10.1074/jbc.273.37.23904)
+
+**Recursos web consultados**
+- [MGI — Krt1 (MGI:96698)](https://www.informatics.jax.org/marker/MGI:96698)
+- [MRC Harwell National Mouse Archive — Balb/c.Cg-Krt10tm1Tmm/H](https://archive.har.mrc.ac.uk/stock?id=3154)
+- [Gene editing–mediated disruption of EI-associated KRT10 alleles restores filament stability in keratinocytes — J Invest Dermatol](https://www.jidonline.org/article/S0022-202X(19)31475-7/fulltext)
+- [Mutations affecting keratin 10 surface-exposed residues highlight the structural basis of phenotypic variation in EI — ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0022202X15601518)
+- [Variants in the L12 linker domain of KRT10 are causal to atypical epidermolytic ichthyosis (2024)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11484123/)
+- [Current strategies for the gene therapy of ichthyosis (revisión)](https://pmc.ncbi.nlm.nih.gov/articles/PMC8910354/)
+- [Differential evolution of the epidermal keratin cytoskeleton in terrestrial and aquatic mammals — Mol Biol Evol](https://academic.oup.com/mbe/article/36/2/328/5184281)
