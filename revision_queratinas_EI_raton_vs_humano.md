@@ -96,6 +96,71 @@ Y transversal a las tres: **¿se está produciendo e incorporando la proteína m
 3. **¿Queda cassette de selección, neo, o sitios loxP/FRT en el locus?**
 4. **¿Qué fenotipo tiene el homocigoto: con agregados de tonofilamentos y citólisis, o hiperproliferación sin citólisis?** Esto decide si es dominante-negativo con umbral (agregados) o si fenocopia al K10-null (sin citólisis, ver §4).
 
+## 2ter. El alelo R156C ya tiene modelo murino: Arin et al. 2001 — y reproduce tu patrón exacto
+
+Según PubMed, el texto completo de **Arin MJ, Longley MA, Wang XJ, Roop DR**, *Focal activation of a mutant allele defines the role of stem cells in mosaic skin disorders*, J Cell Biol 2001;152:645 ([DOI](https://doi.org/10.1083/jcb.152.3.645), PMC2195990) establece lo siguiente:
+
+### 2ter.1 Equivalencia de numeración
+El paper confirma que el hotspot humano es el **codón 156 de *KRT10***, un residuo de arginina evolutivamente muy conservado, hotspot por metilación de CpG y desaminación; y que el codón equivalente en el ***Krt10* murino es el 154**. Es decir:
+
+> **R156C humana ≡ R154C murina.** Si trabajas con "R156C", en nomenclatura de alelo murino tu mutación es **R154C**. Comprueba cómo está anotada tu línea: puede estar publicada o depositada bajo R154C y no la encontrarás buscando "R156C".
+
+### 2ter.2 Qué hicieron y qué obtuvieron
+- **Knock-in por recombinación homóloga en el locus endógeno** de *Krt10* (BAC de 129SVJ, mutagénesis por PCR, reemplazo del codón 154 Arg→Cys), con **cassette PGKneo flanqueado por loxP insertado en el intrón 1**.
+- Generaron **dos líneas**: `+/mut^neo` (neo retenido) y `+/mut` (neo escindido in vitro con Cre antes de la inyección), más el sistema **inducible** cruzando con CrePR1 (Cre–receptor de progesterona truncado, activable con RU486 tópico).
+
+**Y aquí está lo que te importa, literalmente del paper:**
+- *"el cassette neo suprime la expresión del alelo mutante. En consecuencia, los animales desarrollan un **fenotipo muy leve, principalmente restringido a piel expuesta a estrés mecánico**"*.
+- *"El análisis de RNA reveló que el mRNA del alelo mutante estaba **significativamente reducido al 35–40 % de los niveles del alelo salvaje**"*.
+- Al cruzar esos hets para obtener **homocigotos**: *"mostraron un fenotipo muy severo al nacer con ampollas y erosiones extensas, y **murieron poco después**"*, con desintegración completa del estrato espinoso y K10 abundante en capas suprabasales (toda procedente de alelos mutantes → **el mRNA mutante sí se traduce**).
+- Conclusión de los autores: *"la presencia de K10 salvaje en los heterocigotos `+/mut^neo` es **suficiente para superar los efectos del nivel reducido de K10 mutante**"*, y *"**la severidad del fenotipo clínico correlaciona con el nivel de expresión del alelo mutante**"*.
+- Los hets/quimeras con **neo escindido** sí tenían lesiones queratósicas focales en patas desde el nacimiento, que progresaban a hiperqueratosis gruesas.
+
+### 2ter.3 Las tres consecuencias para tu tesis
+1. **Mi hipótesis nº1 (desequilibrio de expresión alélica por cassette residual) no es teórica: es el mecanismo publicado y medido de este mismísimo alelo.** Un neo en el intrón 1 bajó el mutante al 35–40 % y eso bastó para borrar el fenotipo del heterocigoto. **Si tu línea conserva cassette, neo, o incluso solo la cicatriz loxP/FRT en un intrón, tienes la explicación completa de tu patrón, ya validada en la literatura para R154C.** Esto pasa a ser la primera cosa que debes comprobar, no la tercera.
+2. **Tu homocigoto es viable; los de Arin con neo morían al nacer.** Esa es una diferencia real y es tu dato más interesante: sugiere que tu alelo mutante se expresa **aún por debajo del 35–40 %**, o que el fondo genético amortigua más. Un **R156C viable en homocigosis** es precisamente la herramienta que falta (los modelos severos son letales y no sirven para ensayos terapéuticos longitudinales).
+3. **El encuadre "primer modelo de R156C" está ocupado.** Reposiciona: no es un modelo nuevo de EI, es un **punto nuevo en la serie alélica de dosis** del mismo alelo. Arin ya dejó escrito que *"la mejora del fenotipo de EHK puede lograrse mediante supresión parcial del alelo mutante"* — tu línea es la validación genética in vivo de ese umbral, y eso es exactamente lo que necesita un programa de siRNA/edición alelo-específica.
+
+> **Encuadre sugerido, revisado:** *"Una serie alélica de dosis de Krt10 R154C define el umbral de K10 mutante necesario para la ichtiosis epidermolítica, y proporciona un modelo viable en homocigosis para ensayo de supresión alelo-específica."* Cuantifica el ratio mutante:WT en tus hets y homocigotos y correlacionalo con fenotipo: esa curva dosis–respuesta es el paper.
+
+### 2ter.4 Y el detalle químico que sí es específico de R156**C**
+R156C introduce una **cisteína libre** en el motivo de iniciación de hélice de 1A. Las queratinas usan puentes disulfuro de forma funcional (p. ej. [los disulfuros dependientes de K14 regulan la homeostasis epidérmica](https://elifesciences.org/articles/53165.pdf)), así que una Cys ectópica puede formar **disulfuros no nativos** y agregados **covalentemente entrecruzados**, resistentes al proteasoma y dependientes de autofagia para su eliminación. Es una diferencia mecanística real frente a R156H (que no aporta tiol) y un ángulo propio y poco explorado. Para verlo: **geles no reductores vs reductores (±DTT/βME)** y fraccionamiento soluble/insoluble.
+
+## 2quater. ¿Por qué vías se degrada una queratina? (y cómo distinguirlas de un problema de expresión)
+
+**Distinción previa, importante:** lo del cassette/desequilibrio alélico ocurre a nivel de **mRNA** (transcripción/estabilidad del transcrito) — en Arin el mutante estaba al 35–40 % *de mRNA*. La degradación proteica es una **hipótesis distinta**. Ambas bajan la proteína mutante efectiva, pero se distinguen con un experimento simple: **ratio alélico de mRNA vs ratio de proteína**. Si el mRNA está 1:1 y la proteína mutante está baja → degradación. Si el mRNA ya está desbalanceado → es expresión, no degradación.
+
+### 2quater.1 Vía ubicuitina–proteasoma (UPS): la mejor documentada
+- **Las queratinas son sustrato rutinario del UPS.** El silenciamiento de **Hsp40/DNAJ** en queratinocitos humanos **aumenta** los niveles de K5, K14 y **K10** y **reduce la ubicuitinación** de queratinas **sin cambiar su expresión génica** → Hsp40 dirige queratinas al UPS ([DOI](https://doi.org/10.3892/ijmm.2011.826)).
+- **Hay una E3 ligasa descrita específicamente para K10: MDM2.** En infección por VZV, MDM2 se une a KRT10 y lo dirige a degradación **vía ubicuitina–proteasoma**; bloquear la degradación de K10 reduce la propagación viral ([DOI](https://doi.org/10.1016/j.jid.2019.08.448)). Es la referencia más directa para "cómo se degrada K10".
+- **La fosforilación es el interruptor.** El E1^E4 de HPV16 provoca **hiperfosforilación + ubicuitinación** de queratinas (incluidas las de diferenciación), dirigiéndolas a degradación proteasomal; y la acumulación de esas estructuras **deteriora la función del proteasoma** ([DOI](https://doi.org/10.1242/jcs.061978)).
+- **Evidencia directa en una queratinopatía:** en queratinocitos de pacientes con EBS (*KRT5*), pretratar con el **inhibidor del proteasoma MG132** y con el inhibidor de **p38-MAPK SB203580** **aumentó** la proporción de células con agregados, *"sugiriendo un papel de los proteasomas y de la fosforilación en la eliminación de la queratina mutada"*. Las chaperonas químicas **TMAO y 4-PBA reducían** los agregados, y HSPA1A colocalizaba con K5 fosforilada ([DOI](https://doi.org/10.1038/jid.2011.93)). **Este es el experimento modelo a replicar con tu alelo.**
+- **Cullina-3/KLHL24** es otra ruta: mutaciones de ganancia de función en el adaptador de E3 **KLHL24** causan EBS con cardiomiopatía degradando queratinas (K7, K8, K17, K18 y K14) por el proteasoma ([DOI](https://doi.org/10.1093/hmg/ddab318)). Demuestra que una ligasa concreta puede vaciar el pool de queratinas in vivo.
+
+### 2quater.2 Chaperonas y respuesta a proteínas mal plegadas
+No es una vía de degradación en sí, pero decide el destino: el knock-in de **K12 L132P** mostró **inducción de genes de chaperonas** y marcadores **apoptóticos de UPR (CHOP, caspasa 12)** con apoptosis ×17 ([DOI](https://doi.org/10.1093/hmg/ddw001)). En el modelo celular de EBS por K14 mutante se indujo **BiP**, fosforilación de c-Jun y apoptosis por caspasas 3 y 8 — y, crucialmente, **los agregados de K14 mutante ubicuitinada suprimían la función del proteasoma 20S en lugar de ser degradados por él** ([DOI](https://doi.org/10.1074/jbc.M307242200)).
+
+### 2quater.3 Autofagia / agrefagia
+Es la vía **esperable para agregados grandes** (el proteasoma no procesa agregados insolubles; la ruta canónica es p62/SQSTM1–NBR1 → LC3 → lisosoma), y es complementaria del UPS: en glándula de Harder, la deleción de *Atg7* acumula **proteínas ubicuitinadas y agregados positivos para SQSTM1/p62**, y la inhibición del proteasoma era **más tóxica en células deficientes en autofagia** ([DOI](https://doi.org/10.4161/15548627.2014.978221)). La autofagia es además funcionalmente relevante en queratinocitos ([DOI](https://doi.org/10.1080/15548627.2020.1816342)).
+**Pero sé honesta en la tesis:** en mis búsquedas **no he encontrado una demostración directa de aclaramiento de agregados de queratina mutante por autofagia/agrefagia en queratinocitos**. Es una laguna real de la literatura — y por tanto una oportunidad, sobre todo con una mutación que introduce una Cys (§2ter.4).
+
+### 2quater.4 La vía que se olvida y que probablemente domina in vivo: diferenciación terminal
+En la epidermis, la K10 de las capas altas **no se degrada: se entrecruza**. La proteómica del corneocito muestra que **K1, K10 y loricrina son componentes prominentes de la envuelta cornificada**, incorporados por transglutaminasas, y que también forman parte de la red de queratina unida por disulfuros del corneocito ([DOI](https://doi.org/10.1021/acs.jproteome.6b00108)). O sea: la ruta principal de "eliminación" de K10 mutante in vivo es **cornificación + descamación**, más la **citólisis de la propia célula afectada**.
+Esto tiene una consecuencia de especie directa: Arin señala que **la epidermis murina se renueva cada 8–10 días** ([DOI](https://doi.org/10.1083/jcb.152.3.645)), más rápido que la humana; y los ratones K10−/− muestran **recambio de queratinocitos acelerado** con pérdida de células retenedoras de marca ([DOI](https://doi.org/10.1111/j.0022-202X.2004.23426.x)). Un recambio más rápido = menos tiempo para acumular daño por proteína mutante. **Esta es una vía de "amortiguación murina" que no es degradación proteolítica y que casi nadie discute.**
+
+### 2quater.5 Cómo distinguirlas experimentalmente
+| Pregunta | Experimento |
+|---|---|
+| ¿Expresión o degradación? | **Ratio alélico de mRNA (pirosecuenciación) vs ratio de proteína (Western/MS)** |
+| ¿La proteína mutante existe y dónde está? | **Fraccionamiento soluble/insoluble (Tritón → urea/SDS)**. ⚠️ Un Western de RIPA estándar puede "perder" la queratina agregada en el pellet y parecer degradación. Carga siempre la fracción insoluble. |
+| ¿Proteasoma o lisosoma/autofagia? | Queratinocitos primarios de tus ratones + **MG132/bortezomib** vs **bafilomicina A1/cloroquina**: cuál rescata la proteína mutante |
+| ¿Vida media? | **Chase con cicloheximida**, mutante vs WT |
+| ¿Está ubicuitinada? | **IP de K10 + anti-ubicuitina**; y si quieres la ligasa, candidatos MDM2 y adaptadores de cullina-3 |
+| ¿Agrefagia? | Colocalización de agregados con **p62/SQSTM1 y LC3**, y flujo de LC3-II |
+| ¿Disulfuros por la Cys nueva? | **Geles no reductores vs reductores (±DTT)**; especies de alto peso molecular que colapsan al reducir |
+| ¿Chaperonas/UPR? | HSPA1A, BiP, CHOP, caspasa 12; y rescate con **4-PBA o TMAO** |
+| ¿Se elimina por recambio/descamación? | Cinética de BrdU/EdU, células retenedoras de marca, grosor y recambio del estrato córneo |
+
 ## 3. Catálogo de modelos murinos de EI
 
 ### 3.1 Krt10
@@ -110,7 +175,7 @@ Y transversal a las tres: **¿se está produciendo e incorporando la proteína m
 | 3b | K10−/− adulto | Null | **Sin citólisis**; hiperproliferación basal, aumento de tamaño celular, tránsito acelerado, inducción de c-Myc, ciclina D1, 14-3-3σ, K6/K16. | Reichelt & Magin 2002, [DOI](https://doi.org/10.1242/jcs.115.13.2639) |
 | 3c | K10−/− y tumores | Null | DMBA/TPA → **menos papilomas** que WT; primer modelo en que perder una queratina reduce tumorigénesis. | Reichelt et al. 2004, [DOI](https://doi.org/10.1111/j.0022-202X.2004.23426.x) |
 | 4 | Takahashi & Coulombe 1996 | Transgénico **inducible** (cassette regulable, inducción con éster de forbol) | Fenotipo ampolloso inducible tipo EHK, dependiente de trauma mecánico. | [DOI](https://doi.org/10.1073/pnas.93.25.14776) |
-| 5 | Arin & Roop 2001 — **K10 mutante activable por Cre inducible** | Knock-in condicional, activación somática espacio-temporal | Modelo de **mosaicismo**: áreas fenotípicas que persisten toda la vida del ratón (a diferencia del modelo EBS, donde las ampollas curan). Base conceptual de la terapia génica somática de genodermatosis dominantes. | [DOI](https://doi.org/10.1083/jcb.152.3.645); revisión Arin & Roop 2004, [DOI](https://doi.org/10.1159/000079990) |
+| 5 | **Arin, Longley, Wang & Roop 2001 — knock-in R154C en el locus endógeno de *Krt10* (= R156C humana)** ⚠️ **ESTE ES TU ALELO** | **Knock-in de punto por recombinación homóloga** en el *Krt10* murino: codón 154 Arg→Cys. Dos líneas: `+/mut^neo` (cassette neo retenido) y `+/mut` (neo escindido). Más versión Cre-inducible (CrePR1/RU486) | Ver §2ter — detalle completo. Resumen: la línea **con neo** expresa el alelo mutante al **35–40 %** del WT y tiene fenotipo **muy leve, restringido a piel con estrés mecánico**; sus **homocigotos mueren al nacer** con desintegración del estrato espinoso. Los **quimeras/hets con neo escindido** tienen lesiones queratósicas focales en patas desde el nacimiento. Modelo de **mosaicismo**: las áreas fenotípicas persisten de por vida. | [DOI](https://doi.org/10.1083/jcb.152.3.645); revisión Arin & Roop 2004, [DOI](https://doi.org/10.1159/000079990) |
 | 6 | Krt1−/−;Krt10−/− doble KO | Doble null | Letal postnatal por fragilidad. Sorpresa: **la estratificación y la barrera de agua son casi independientes de los filamentos K1/K10**; ausencia total de IF suprabasales, sin compensación por K5/K14; alteración de desmoplaquina, Dsc1, Dsg1 e integridad nuclear. | Wallace et al. 2012, [DOI](https://doi.org/10.1242/jcs.097139) |
 | 7 | Krt2−/−;Krt10−/− doble KO | Doble null | **Viables**; acantosis e hiperqueratosis en epidermis interfootpad de la planta; subida masiva de K1, K9 y K16. Demuestra que K2+K10 son los que sostienen la planta murina. | 2015, [DOI](https://doi.org/10.1016/j.jdermsci.2015.10.008) |
 
@@ -133,8 +198,8 @@ Y transversal a las tres: **¿se está produciendo e incorporando la proteína m
 
 ### 3.4 Conclusión del censo
 - Cantidad total: **~12 modelos** relevantes.
-- **Lo que falta**: un **knock-in de punto en el locus endógeno de *Krt10*** que reproduzca una mutación dominante humana concreta (R156H/R156C, L12 linker, 2B…) con expresión fisiológica. Para K1 eso existe (Dsk12) y para K10 no está publicado de forma canónica — los K10 "mutantes" son transgénicos sobreexpresores o condicionales activables por Cre. **Si tu línea es un knock-in endógeno, ahí está tu nicho.**
-- Y falta también un modelo **de EI recesiva humana** que recapitule la severidad humana — el null murino no lo hace (es demasiado leve).
+- **CORRECCIÓN IMPORTANTE:** sí existe un knock-in de punto en el locus endógeno de *Krt10* que reproduce la mutación dominante humana más frecuente: **Arin et al. 2001, R154C murina = R156C humana** ([DOI](https://doi.org/10.1083/jcb.152.3.645)). Una versión previa de este documento afirmaba lo contrario; era incorrecto. Esto **elimina la novedad de "primer knock-in de R156C"** y obliga a reposicionar cualquier modelo nuevo de ese alelo (§2ter).
+- **Lo que sí falta**: un modelo de **EI recesiva humana** que recapitule la severidad humana (el null murino es demasiado leve); y un alelo R156C **viable en homocigosis** utilizable como banco de pruebas terapéutico — los homocigotos de Arin mueren al nacer.
 
 ---
 
@@ -280,9 +345,21 @@ Toda la bibliografía se recuperó de **PubMed**.
 30. Garcia M, et al. Development of skin-humanized mouse models of pachyonychia congenita — *KRT6A* N171K: piel regenerada fenotípicamente normal que solo manifiesta PC tras tape stripping. [PubMed 21150925](https://pubmed.ncbi.nlm.nih.gov/21150925/)
 31. [OMIM *KRT14* (148066)](https://omim.org/entry/148066) — mutación descrita como *partial dominant*: heterocigotos leves/localizados, homocigotos severos.
 
+**Degradación y proteostasis de queratinas (§2quater)**
+32. Yamazaki S, Uchiumi A, Katagata Y. Hsp40 regulates the amount of keratin proteins via ubiquitin-proteasome pathway in cultured human cells. *Int J Mol Med* 2012;29:165-8. [DOI](https://doi.org/10.3892/ijmm.2011.826)
+33. Tommasi C, Rogerson C, et al. Kallikrein-mediated cytokeratin 10 degradation is required for varicella zoster virus propagation in skin. *J Invest Dermatol* 2020;140:774-784 — **MDM2 ubicuitina K10 y lo dirige al proteasoma**. [DOI](https://doi.org/10.1016/j.jid.2019.08.448)
+34. McIntosh PB, et al. E1^E4-mediated keratin phosphorylation and ubiquitylation. *J Cell Sci* 2010;123:2810-22. [DOI](https://doi.org/10.1242/jcs.061978)
+35. Chamcheu JC, Navsaria H, et al. Chemical chaperones protect EBS keratinocytes from heat stress-induced keratin aggregation: involvement of HSPs and MAP kinases. *J Invest Dermatol* 2011;131:1684-91 — **MG132 y SB203580 aumentan agregados; TMAO y 4-PBA los reducen**. [DOI](https://doi.org/10.1038/jid.2011.93)
+36. Logli E, et al. Proteasome-mediated degradation of keratins 7, 8, 17 and 18 by mutant KLHL24. *Hum Mol Genet* 2022;31:1308-24. [DOI](https://doi.org/10.1093/hmg/ddab318)
+37. Yoneda K, et al. An autocrine/paracrine loop linking keratin 14 aggregates to TNFα-mediated cytotoxicity. *J Biol Chem* 2004;279:7296-303 — los agregados **inhiben** el proteasoma 20S en lugar de ser degradados. [DOI](https://doi.org/10.1074/jbc.M307242200)
+38. Koenig U, et al. Autophagy facilitates secretion and protects against degeneration of the Harderian gland. *Autophagy* 2015;11:298-313 — complementariedad UPS/autofagia, agregados p62⁺. [DOI](https://doi.org/10.4161/15548627.2014.978221)
+39. Qiang L, et al. Keratinocyte autophagy enables the activation of keratinocytes and fibroblasts and facilitates wound healing. *Autophagy* 2021;17:2128-43. [DOI](https://doi.org/10.1080/15548627.2020.1816342)
+40. Proteomic analysis of loricrin knockout mouse epidermis. *J Proteome Res* 2016 — K1, K10 y loricrina como componentes prominentes de la envuelta cornificada. [DOI](https://doi.org/10.1021/acs.jproteome.6b00108)
+41. [Keratin 14-dependent disulfides regulate epidermal homeostasis — eLife](https://elifesciences.org/articles/53165.pdf)
+
 **Comparadores**
-32. Bierkamp C, et al. Embryonic heart and skin defects in mice lacking plakoglobin. *Dev Biol* 1996;180:780-5. [DOI](https://doi.org/10.1006/dbio.1996.0346)
-33. Ness SL, et al. Mouse keratin 4 is necessary for internal epithelial integrity. *J Biol Chem* 1998;273:23904-11. [DOI](https://doi.org/10.1074/jbc.273.37.23904)
+42. Bierkamp C, et al. Embryonic heart and skin defects in mice lacking plakoglobin. *Dev Biol* 1996;180:780-5. [DOI](https://doi.org/10.1006/dbio.1996.0346)
+43. Ness SL, et al. Mouse keratin 4 is necessary for internal epithelial integrity. *J Biol Chem* 1998;273:23904-11. [DOI](https://doi.org/10.1074/jbc.273.37.23904)
 
 **Recursos web consultados**
 - [MGI — Krt1 (MGI:96698)](https://www.informatics.jax.org/marker/MGI:96698)
