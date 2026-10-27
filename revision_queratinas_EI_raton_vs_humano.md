@@ -10,7 +10,7 @@ Revisión bibliográfica — 27 octubre 2026
 
 1. **¿Mi mutación afecta menos a K10 de ratón, o cualquier mutación en Krt10 afecta menos en ratón?**
    Las dos cosas son ciertas pero en niveles distintos, y hay que separarlas:
-   - **Si tu alelo es una mutación causante de EI (dominante-negativa en humano), el het sin fenotipo es un problema de UMBRAL, no de tipo de alelo.** El efecto dominante-negativo de las queratinas es **dependiente de dosis**: el het expresa ~50 % de proteína mutante, el homocigoto ~100 %. Si el ratón amortigua más (§1.3), el 50 % cae por debajo del umbral patogénico y el 100 % lo supera. Hay demostración directa de este umbral: Bickenbach et al. concluyeron que **"se requería una concentración crítica de la K1 humana mutante, por encima de la MK1 endógena, para alterar la integridad estructural"** ([DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x)); y en Dsk12 los homocigotos son más severos que los het al nacer ([DOI](https://doi.org/10.1038/sj.jid.5700241)). Lo que sigue siendo obligatorio verificar es si la proteína mutante **se produce y se incorpora al filamento en el het** — un missense puede desestabilizarse y degradarse, y entonces actúa como hipomorfo aunque por secuencia sea una mutación "dominante" (§2bis).
+   - **Si tu alelo es una mutación causante de EI (dominante-negativa en humano), el het sin fenotipo es un problema de UMBRAL, no de tipo de alelo.** El efecto dominante-negativo de las queratinas es **dependiente de dosis**: el het expresa ~50 % de proteína mutante, el homocigoto ~100 %. Si el ratón amortigua más (§1.4), el 50 % cae por debajo del umbral patogénico y el 100 % lo supera. Hay demostración directa de este umbral: Bickenbach et al. concluyeron que **"se requería una concentración crítica de la K1 humana mutante, por encima de la MK1 endógena, para alterar la integridad estructural"** ([DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x)); y en Dsk12 los homocigotos son más severos que los het al nacer ([DOI](https://doi.org/10.1038/sj.jid.5700241)). Lo que sigue siendo obligatorio verificar es si la proteína mutante **se produce y se incorpora al filamento en el het** — un missense puede desestabilizarse y degradarse, y entonces actúa como hipomorfo aunque por secuencia sea una mutación "dominante" (§2bis).
    - **Que el homocigoto sea viable y con fenotipo leve-moderado SÍ es, en parte, una diferencia de especie documentada.** El K10-null verdadero de ratón tiene una epidermis sorprendentemente normal al nacer y de adulto muestra hiperproliferación **sin citólisis**, porque K5/K14 persisten suprabasalmente y forman filamentos K1/K14/K15 que rescatan la integridad (Reichelt et al. 2001, [DOI](https://doi.org/10.1091/mbc.12.6.1557); Reichelt & Magin 2002, [DOI](https://doi.org/10.1242/jcs.115.13.2639)). En el humano K10-null homocigoto, en cambio, se inducen fuertemente K6/K16/K17 **pero no compensan** y el fenotipo es severo ([DOI](https://doi.org/10.1093/hmg/ddl028)). O sea: mismo genotipo nulo, ratón tolera mucho mejor que humano, y el mecanismo tiene nombre.
 
 2. **Cuántos modelos murinos de EI hay (K10 y K1).**
@@ -42,7 +42,41 @@ Revisión bibliográfica — 27 octubre 2026
 | **Recambio epidérmico** | Más lento | Más rápido | Los queratinocitos citolíticos se eliminan antes; menos acumulación de daño. En *K10−/−* el tránsito está acelerado y los label-retaining cells desaparecen (Reichelt et al. 2004, [DOI](https://doi.org/10.1111/j.0022-202X.2004.23426.x)). |
 | **Modificadores genéticos** | Fondos humanos heterogéneos | El fenotipo de los mutantes de queratina **depende del fondo** (de letalidad embrionaria a casi nada), lo que implica modificadores no identificados (Vijayaraj et al. 2007, [DOI](https://doi.org/10.1385/1-59745-165-7:203)) | **Tu fondo genético puede ser la explicación completa.** Ver §5. |
 
-### 1.3 Mensaje de esta sección
+### 1.3 La piel palmoplantar: la asimetría K1/K10 está **invertida** entre humano y ratón
+
+Esto explica por qué los ratones de Arin tienen hiperqueratosis **en las patas**, algo que en clínica humana no es típico de *KRT10*.
+
+**En humano, la regla genotipo-fenotipo de la EI es:**
+- **Mutaciones en *KRT1* → queratodermia palmoplantar (QPP) prominente.**
+- **Mutaciones en *KRT10* → palmas y plantas característicamente respetadas.**
+
+Y la razón está explícita en [OMIM #113800](https://omim.org/entry/113800): *"la queratodermia palmoplantar es un rasgo más prominente en pacientes con BCIE con mutaciones en KRT1 que en los que tienen mutaciones en KRT10"*, porque **la queratina 1 es la principal pareja de la queratina 9 en la epidermis palmoplantar**. K9 es un tipo I **exclusivo de epidermis palmoplantar terminalmente diferenciada** en humano (y su mutación causa la QPP epidermolítica de Vörner, con hotspot en el codón 163 de *KRT9*, [revisión](https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2018.00645/full)).
+
+Es decir, en **humano el hub de la piel de carga es K1**: empareja con K10 en el cuerpo y con **K9** en palmas y plantas. Una K1 mutante envenena los dos sistemas → QPP. Una K10 mutante no toca el sistema K1/K9 → palmas y plantas se salvan.
+
+**En ratón el hub es K10, no K1.** Los datos:
+- En la planta murina normal, **K2 y K10 son las queratinas suprabasales predominantes**, con la excepción de las almohadillas (*footpads*), donde predominan **K1, K9 y K10** ([DOI](https://doi.org/10.1016/j.jdermsci.2015.10.008)).
+- El K9 murino está **restringido a las almohadillas**, no cubre toda la superficie palmoplantar como en humano.
+- Prueba directa de la dependencia: en homocigotos del knockout de K10, **la K2e se perdía por completo en la epidermis de la planta de la pata**, *"señalando a la queratina 10 como su pareja"* ([DOI](https://doi.org/10.1242/jcs.110.18.2175)).
+- Y el doble KO *Krt2*−/−;*Krt10*−/− desarrolla acantosis e hiperqueratosis precisamente en la **epidermis interalmohadilla de la planta**, con subida masiva de K1, K9 y K16 ([DOI](https://doi.org/10.1016/j.jdermsci.2015.10.008)).
+
+Conclusión: **en la planta del ratón, K10 es la única queratina tipo I que soporta la carga, y es la pareja compartida de K1 *y* de K2.** Una K10 mutante envenena ahí todo el citoesqueleto suprabasal. Por eso un modelo murino de *Krt10* da fenotipo plantar, mientras que en humano ese sitio es territorio de K9/K1.
+
+| | Hub tipo II/tipo I en piel de carga | Mutación que da QPP |
+|---|---|---|
+| **Humano** | **K1** empareja con K10 (cuerpo) y con **K9** (palmoplantar) | ***KRT1*** (y *KRT9*) |
+| **Ratón** | **K10** empareja con K1 y con **K2** (planta); K9 solo en almohadillas | ***Krt10*** |
+
+**Se suma una capa anatómica:** las patas del ratón son **lampiñas y de carga**, el único sitio sin protección folicular. Bickenbach et al. observaron que el epitelio de almohadilla plantar **ampollaba** mientras la piel pilosa no, y lo atribuyeron a que los folículos estabilizan la epidermis frente al trauma ([DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x)). En las patas coinciden, por tanto, **máxima carga mecánica y máxima dependencia de K10**. Doble motivo.
+
+**Tres implicaciones prácticas para tu tesis:**
+1. **Fenotipa las patas.** Si tu heterocigoto tiene algo, está ahí, y a P0–P2. Mirar dorso piloso de adulto es mirar donde el ratón está protegido por partida doble.
+2. **No vendas un fenotipo plantar como fidelidad al fenotipo humano de *KRT10*.** Un revisor con criterio verá que, en términos humanos, hiperqueratosis palmoplantar "parece" fenotipo de *KRT1*. Preséntalo como lo que es: una consecuencia de la **geografía de queratinas propia del ratón**, no como recapitulación de la EI humana por K10.
+3. **Es un buen resultado de discusión.** La inversión del hub K1/K10 entre especies en piel de carga explica de un golpe por qué los modelos murinos de *Krt10* se manifiestan en patas y por qué el ratón amortigua tanto en el tronco. No lo he visto planteado así de explícito en la literatura que he revisado.
+
+> ⚠️ Cautela honesta: la regla *KRT1*→QPP / *KRT10*→respeta palmas es una **tendencia, no una ley**. Hay casos descritos de *KRT10* con QPP, y la QPP epidermolítica solapa con *KRT9*. Cítala como tendencia con la fuente de OMIM y no como dicotomía absoluta.
+
+### 1.4 Mensaje de esta sección
 El ratón tiene **más redundancia tipo II en epidermis adulta** (Krt77 + Krt2 en sitios específicos), **mantiene K5/K14 suprabasales** cuando falta K10, y **soporta mucho menos carga mecánica** en la epidermis interfolicular. Las tres cosas empujan en la misma dirección: **un defecto de K1/K10 se expresa más débilmente en ratón que en humano**, sobre todo en piel dorsal pilosa, y sobre todo en modo pérdida-de-función.
 
 ---
@@ -151,7 +185,7 @@ Por mi lectura del texto completo, el paper caracteriza: (a) el **het germinal c
 2. **Indeles o HDR parcial** en el alelo editado, o **deleciones grandes on-target / pérdida de heterocigosidad** en el sitio de corte (bien documentado en embriones editados).
 3. **Mosaicismo del fundador**: confirma transmisión germinal y secuencia el alelo transmitido completo.
 4. **Integración aberrante del donador** (concatémeros, inserción parcial): número de copias por ddPCR/Southern o lectura larga.
-5. **Fondo genético.** Los de Arin eran 129SVJ × C57BL/6. Si el tuyo es B6 puro, los modificadores no son los mismos (§1.3).
+5. **Fondo genético.** Los de Arin eran 129SVJ × C57BL/6. Si el tuyo es B6 puro, los modificadores no son los mismos (§1.2).
 6. **Dónde y cuándo has mirado.** Las lesiones de Arin estaban **en las patas, al nacer**, y el fenotipo del het con neo estaba *"restringido a piel expuesta a estrés mecánico"*. Fenotipar dorso piloso de adulto da negativo por diseño.
 
 **Y el enigma de tu homocigoto, que es tu mejor dato.** Un homocigoto CRISPR limpio tendría ratio 1,0 **y ~200 unidades** de proteína mutante — es decir, **más** mutante que el homocigoto letal de Arin (~75 unidades). Debería ser igual o peor, y el tuyo es **viable**. Eso deja pocas salidas: o tu alelo se expresa muy por debajo de lo esperado (vuelta a los puntos 1–4), o el fondo rescata, o tu homocigoto es fenotípicamente más leve que el de Arin por una razón que aún no está descrita. **Cualquiera de las tres es un resultado, y la tercera sería el paper.**
