@@ -42,39 +42,56 @@ Revisión bibliográfica — 27 octubre 2026
 | **Recambio epidérmico** | Más lento | Más rápido | Los queratinocitos citolíticos se eliminan antes; menos acumulación de daño. En *K10−/−* el tránsito está acelerado y los label-retaining cells desaparecen (Reichelt et al. 2004, [DOI](https://doi.org/10.1111/j.0022-202X.2004.23426.x)). |
 | **Modificadores genéticos** | Fondos humanos heterogéneos | El fenotipo de los mutantes de queratina **depende del fondo** (de letalidad embrionaria a casi nada), lo que implica modificadores no identificados (Vijayaraj et al. 2007, [DOI](https://doi.org/10.1385/1-59745-165-7:203)) | **Tu fondo genético puede ser la explicación completa.** Ver §5. |
 
-### 1.3 La piel palmoplantar: la asimetría K1/K10 está **invertida** entre humano y ratón
+### 1.3 La piel palmoplantar: NO es una inversión, son dos compartimentos
 
-Esto explica por qué los ratones de Arin tienen hiperqueratosis **en las patas**, algo que en clínica humana no es típico de *KRT10*.
+> **Corrección.** Una versión previa de esta sección afirmaba que "el hub K1/K10 está invertido" entre especies y que por eso los modelos de *Krt10* dan fenotipo plantar. **Era una simplificación incorrecta**, y la falsa de inmediato un dato: **los modelos murinos de K1 también tienen fenotipo en almohadillas.** La explicación real es más fina y requiere distinguir dos compartimentos dentro de la planta del ratón.
 
-**En humano, la regla genotipo-fenotipo de la EI es:**
-- **Mutaciones en *KRT1* → queratodermia palmoplantar (QPP) prominente.**
-- **Mutaciones en *KRT10* → palmas y plantas característicamente respetadas.**
+#### El dato que yo había aplanado
+La planta murina **no es homogénea**. Del estudio del doble KO ([DOI](https://doi.org/10.1016/j.jdermsci.2015.10.008)): *"K2 y K10 son las queratinas suprabasales más prominentes en plantas normales de ratón **con la excepción de las almohadillas, donde predominan K1, K9 y K10**"*.
 
-Y la razón está explícita en [OMIM #113800](https://omim.org/entry/113800): *"la queratodermia palmoplantar es un rasgo más prominente en pacientes con BCIE con mutaciones en KRT1 que en los que tienen mutaciones en KRT10"*, porque **la queratina 1 es la principal pareja de la queratina 9 en la epidermis palmoplantar**. K9 es un tipo I **exclusivo de epidermis palmoplantar terminalmente diferenciada** en humano (y su mutación causa la QPP epidermolítica de Vörner, con hotspot en el codón 163 de *KRT9*, [revisión](https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2018.00645/full)).
+Aplicando el apareamiento obligado tipo II + tipo I — K1(II) con K10(I) y con K9(I); K2(II) con K10(I):
 
-Es decir, en **humano el hub de la piel de carga es K1**: empareja con K10 en el cuerpo y con **K9** en palmas y plantas. Una K1 mutante envenena los dos sistemas → QPP. Una K10 mutante no toca el sistema K1/K9 → palmas y plantas se salvan.
+| Compartimento | Queratinas | Filamentos | ¿Equivalente humano? |
+|---|---|---|---|
+| **Almohadillas** (*footpads*) del ratón | K1, K9, K10 | **K1/K10 + K1/K9** | **Sí**, composición parecida a palma/planta humana |
+| **Planta interalmohadilla** del ratón | K2, K10 | **K2/K10** | **No tiene equivalente humano claro** |
+| **Palmoplantar humana** | K1, K9, K10, (K2) | **K1/K9** dominante | — |
 
-**En ratón el hub es K10, no K1.** Los datos:
-- En la planta murina normal, **K2 y K10 son las queratinas suprabasales predominantes**, con la excepción de las almohadillas (*footpads*), donde predominan **K1, K9 y K10** ([DOI](https://doi.org/10.1016/j.jdermsci.2015.10.008)).
-- El K9 murino está **restringido a las almohadillas**, no cubre toda la superficie palmoplantar como en humano.
-- Prueba directa de la dependencia: en homocigotos del knockout de K10, **la K2e se perdía por completo en la epidermis de la planta de la pata**, *"señalando a la queratina 10 como su pareja"* ([DOI](https://doi.org/10.1242/jcs.110.18.2175)).
-- Y el doble KO *Krt2*−/−;*Krt10*−/− desarrolla acantosis e hiperqueratosis precisamente en la **epidermis interalmohadilla de la planta**, con subida masiva de K1, K9 y K16 ([DOI](https://doi.org/10.1016/j.jdermsci.2015.10.008)).
+#### Lo que predice, y lo que de hecho se observa
+- **K10 mutante** es tipo I en **los dos** compartimentos (K1/K10 y K2/K10) → debería afectar **toda la planta**.
+- **K1 mutante** es tipo II en las almohadillas (K1/K10 y K1/K9) pero **no participa en el compartimento K2/K10** → debería afectar **almohadillas**, con la zona interalmohadilla relativamente amortiguada por K2/K10.
 
-Conclusión: **en la planta del ratón, K10 es la única queratina tipo I que soporta la carga, y es la pareja compartida de K1 *y* de K2.** Una K10 mutante envenena ahí todo el citoesqueleto suprabasal. Por eso un modelo murino de *Krt10* da fenotipo plantar, mientras que en humano ese sitio es territorio de K9/K1.
+Y la literatura confirma **las dos cosas, no una**:
+- **Modelos de K1 con fenotipo en almohadillas:** en Dsk12 (*Krt1* S194P) el fenotipo se detectó **por hiperpigmentación de las almohadillas** en heterocigotos, con ampollas e hiperqueratosis después ([DOI](https://doi.org/10.1038/sj.jid.5700241)). Y en el transgénico de K1 humana mutante, *"el epitelio de almohadilla plantar, que carece de folículos pilosos, mostró ampollas en la capa espinosa"* ([DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x)).
+- **Modelos de K10 con fenotipo plantar:** los heterocigotos `Krt10^tm1Tmm` desarrollan descamación y engrosamiento *"principalmente en los pies"*; los de Arin, hiperqueratosis en las patas ([DOI](https://doi.org/10.1083/jcb.152.3.645)); y en el KO homocigoto de K10 **se perdía toda la K2e de la epidermis plantar**, *"señalando a la K10 como su pareja"* ([DOI](https://doi.org/10.1242/jcs.110.18.2175)).
 
-| | Hub tipo II/tipo I en piel de carga | Mutación que da QPP |
+**Respuesta directa a la pregunta: no, deberías ver alteración plantar en los modelos de K1 *y* en los de K10 — y así es.** Mi formulación anterior era errónea.
+
+#### Dónde está la divergencia real entre especies
+No en una inversión de hub, sino en **cuánto participa K10 en la piel de carga**:
+
+| | Mutación en **K1** | Mutación en **K10** |
 |---|---|---|
-| **Humano** | **K1** empareja con K10 (cuerpo) y con **K9** (palmoplantar) | ***KRT1*** (y *KRT9*) |
-| **Ratón** | **K10** empareja con K1 y con **K2** (planta); K9 solo en almohadillas | ***Krt10*** |
+| **Humano** | QPP prominente ✔ | Palmas y plantas **respetadas** |
+| **Ratón** | Fenotipo en almohadillas ✔ | Fenotipo **en toda la planta** |
 
-**Se suma una capa anatómica:** las patas del ratón son **lampiñas y de carga**, el único sitio sin protección folicular. Bickenbach et al. observaron que el epitelio de almohadilla plantar **ampollaba** mientras la piel pilosa no, y lo atribuyeron a que los folículos estabilizan la epidermis frente al trauma ([DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x)). En las patas coinciden, por tanto, **máxima carga mecánica y máxima dependencia de K10**. Doble motivo.
+La regla humana ([OMIM #113800](https://omim.org/entry/113800)) es que *"la queratodermia palmoplantar es un rasgo más prominente en pacientes con BCIE con mutaciones en KRT1 que en los que tienen mutaciones en KRT10"*, porque **K1 es la principal pareja de K9 en la epidermis palmoplantar**; y K9 es un tipo I **exclusivo de epidermis palmoplantar terminalmente diferenciada** humana (su mutación causa la QPP epidermolítica de Vörner, hotspot en el codón 163 de *KRT9*, [revisión](https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2018.00645/full)).
 
-**Tres implicaciones prácticas para tu tesis:**
-1. **Fenotipa las patas.** Si tu heterocigoto tiene algo, está ahí, y a P0–P2. Mirar dorso piloso de adulto es mirar donde el ratón está protegido por partida doble.
-2. **No vendas un fenotipo plantar como fidelidad al fenotipo humano de *KRT10*.** Un revisor con criterio verá que, en términos humanos, hiperqueratosis palmoplantar "parece" fenotipo de *KRT1*. Preséntalo como lo que es: una consecuencia de la **geografía de queratinas propia del ratón**, no como recapitulación de la EI humana por K10.
-3. **Es un buen resultado de discusión.** La inversión del hub K1/K10 entre especies en piel de carga explica de un golpe por qué los modelos murinos de *Krt10* se manifiestan en patas y por qué el ratón amortigua tanto en el tronco. No lo he visto planteado así de explícito en la literatura que he revisado.
+Es decir: en humano la piel palmoplantar **se apoya en K9** y puede prescindir en buena medida de K10 → *KRT10* la respeta. En ratón, K10 **es la tipo I de toda la planta**, en ambos compartimentos → *Krt10* sí la afecta. **K1 afecta la piel de carga en las dos especies**; lo que divergen es K10.
 
-> ⚠️ Cautela honesta: la regla *KRT1*→QPP / *KRT10*→respeta palmas es una **tendencia, no una ley**. Hay casos descritos de *KRT10* con QPP, y la QPP epidermolítica solapa con *KRT9*. Cítala como tendencia con la fuente de OMIM y no como dicotomía absoluta.
+**Y el compartimento K2/K10 interalmohadilla es el único exclusivamente K10-dependiente — y no tiene equivalente humano.** Por tanto, la parte del fenotipo plantar de tu ratón que venga de ahí **no es traducible a la clínica humana**. Eso es una limitación que conviene que escribas tú antes de que lo escriba un revisor.
+
+**Capa anatómica adicional:** las patas del ratón son **lampiñas y de carga**, el único sitio sin protección folicular — Bickenbach atribuyó a los folículos un papel estabilizador frente al trauma ([DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x)). Por eso las patas son el sitio donde *cualquier* queratinopatía suprabasal murina se manifiesta antes, con independencia del gen.
+
+#### El experimento que sale de aquí (y que es barato)
+Mapea la **distribución de la lesión dentro de la planta**: almohadillas vs. zona interalmohadilla, con inmunofluorescencia de K1, K2, K9 y K10 en paralelo.
+- Si tu K10 mutante afecta **también** la interalmohadilla → coherente con envenenamiento del sistema K2/K10, y es el compartimento sin paralelo humano.
+- Si se limita a las almohadillas → está actuando sobre K1/K10 y K1/K9, lo más parecido a la situación humana.
+- Comparar esa distribución con la de un modelo de K1 (Dsk12 está publicado) te da un contraste interpretable con datos ya existentes.
+
+Es una histología dirigida, sobre tejido que probablemente ya tienes, y responde a una pregunta mecanística concreta. Buen candidato a figura.
+
+> ⚠️ Cautelas: (1) la regla *KRT1*→QPP / *KRT10*→respeta palmas es una **tendencia, no una ley** — hay casos de *KRT10* con QPP, y solapa con *KRT9*; cítala como tendencia. (2) La asignación de queratinas por compartimento viene esencialmente de **un** estudio ([DOI](https://doi.org/10.1016/j.jdermsci.2015.10.008)); confírmala con tus propias tinciones antes de construir un argumento sobre ella.
 
 ### 1.4 Mensaje de esta sección
 El ratón tiene **más redundancia tipo II en epidermis adulta** (Krt77 + Krt2 en sitios específicos), **mantiene K5/K14 suprabasales** cuando falta K10, y **soporta mucho menos carga mecánica** en la epidermis interfolicular. Las tres cosas empujan en la misma dirección: **un defecto de K1/K10 se expresa más débilmente en ratón que en humano**, sobre todo en piel dorsal pilosa, y sobre todo en modo pérdida-de-función.
