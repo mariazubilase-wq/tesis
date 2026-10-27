@@ -167,6 +167,49 @@ El paper confirma que el hotspot humano es el **codón 156 de *KRT10***, un resi
 - Conclusión de los autores: *"la presencia de K10 salvaje en los heterocigotos `+/mut^neo` es **suficiente para superar los efectos del nivel reducido de K10 mutante**"*, y *"**la severidad del fenotipo clínico correlaciona con el nivel de expresión del alelo mutante**"*.
 - Los hets/quimeras con **neo escindido** sí tenían lesiones queratósicas focales en patas desde el nacimiento, que progresaban a hiperqueratosis gruesas.
 
+### 2ter.2bis Sobreexpresión vs. knock-in: las dos categorías de modelo, y por qué importa
+
+**El modelo de Arin NO sobreexpresa.** Es importante no mezclarlo con los transgénicos de los 90, porque son dos categorías distintas de experimento y se interpretan de forma distinta.
+
+| | **Transgénico (sobreexpresión)** | **Knock-in en locus endógeno** |
+|---|---|---|
+| Ejemplos | Fuchs 1992 ([DOI](https://doi.org/10.1073/pnas.89.15.6906)); Bickenbach 1996 ([DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x)); Takahashi & Coulombe 1996 ([DOI](https://doi.org/10.1073/pnas.93.25.14776)) | **Arin 2001** ([DOI](https://doi.org/10.1083/jcb.152.3.645)); Dsk12 ([DOI](https://doi.org/10.1038/sj.jid.5700241)); K12 L132P ([DOI](https://doi.org/10.1093/hmg/ddw001)); **tu línea CRISPR** |
+| Qué se mete | **Copias extra** del gen mutante, insertadas al azar en el genoma | Se **cambia el codón** del gen real, en su sitio |
+| Nº de copias | Variable, a menudo muchas | Una por alelo. Máximo dos |
+| Promotor | Uno artificial del constructo | **El del propio gen** |
+| Nivel de expresión | Depende del nº de copias y del sitio de inserción; suele estar **por encima** del endógeno | **Fisiológico** |
+| Gen endógeno | Sigue intacto y funcionando | **Sustituido** por el mutante |
+| Problema interpretativo | El fenotipo puede deberse a la dosis artificial, no a la mutación | Ninguno de ese tipo |
+
+Bickenbach lo dice sin rodeos para su transgénico: hacía falta *"una concentración crítica de la HK1 mutante, por encima de la MK1 endógena"* para romper la integridad — es decir, el fenotipo **dependía de sobreexpresar**. Por eso hoy el estándar es el knock-in, y por eso **tu línea y la de Arin son comparables entre sí** (misma categoría, misma mutación, mismo locus) y no lo son con los transgénicos.
+
+### 2ter.2ter Las tres capas de regulación del modelo de Arin
+
+1. **El promotor propio del gen.** Al estar la mutación dentro del *Krt10* real, se expresa donde y cuando se expresa *Krt10*: queratinocitos suprabasales en diferenciación. No hay promotor artificial ni dosis extra.
+2. **El cassette PGKneo en el intrón 1 = un regulador de intensidad involuntario.** Interfiere con la transcripción/splicing normales y el alelo mutante solo produce el **35–40 %** del mRNA del salvaje. **No lo diseñaron como regulador: lo descubrieron y lo aprovecharon.** El paper no detalla el mecanismo molecular de esa supresión.
+3. **Cre/loxP = el interruptor.** El neo está flanqueado por sitios **loxP**, y la Cre recombinasa corta lo que haya entre dos loxP. De ahí salen los tres estados del mismo alelo:
+   - **neo puesto** → mutante al 35–40 % ("bajito") → het muy leve.
+   - **neo quitado en la placa** (electroporando el plásmido pOG231 con Cre en las células ES antes de inyectarlas) → mutante al 100 % en todo el ratón.
+   - **neo quitado luego, solo donde tú quieras** → el sistema inducible.
+
+**Cómo funciona el inducible, en concreto:** cruzaron los `+/mut^neo` con una línea **CrePR1**, que expresa una Cre fusionada a un **receptor de progesterona truncado**, bajo un promotor epitelial activo en la **capa basal** (donde viven las células madre). Esa proteína de fusión solo responde a **RU486** (mifepristona), no a la progesterona del animal. Sin RU486 se queda secuestrada en el citoplasma y no llega al DNA. Al pintar RU486 tópico (0,5 mg/ml, una vez al día, 4–5 días en neonatos) entra al núcleo, **corta el neo**, y esa célula y toda su descendencia pasan a expresar K10 mutante al 100 % — solo en la zona pintada.
+
+Y lo demostraron bien: las lesiones persistían **6 meses**, cuando la epidermis murina se renueva cada 8–10 días → tenía que haber ocurrido en células madre. Lo confirmaron por **microdisección con captura láser** de las lesiones + PCR de loxP/neo: en el tejido lesional el neo había desaparecido; en la piel vecina normal seguía estando.
+
+### 2ter.2quater Cómo lo metieron, paso a paso (métodos pre-CRISPR)
+1. Clon **BAC** con el gen *Krt10* completo de una genoteca de **129SVJ**.
+2. Fusionaron dos fragmentos genómicos solapantes (4 kb EcoRI + 6 kb BamHI) por un sitio EcoRI del intrón 2 → fragmento de 4,8 kb.
+3. Introdujeron la mutación **Arg→Cys en el codón 154** por mutagénesis mediada por PCR sobre un fragmento de 400 pb (BstEII–NdeI), que reinsertaron en el constructo.
+4. Metieron el **PGKneo** en un sitio NdeI único del **intrón 1**.
+5. Todo al vector **pPNT**, que lleva **timidina quinasa de HSV** (selección negativa contra integración al azar).
+6. Electroporaron en células **ES AB2.2** sobre feeders SNL76/7.
+7. **Doble selección: G418** (a favor del neo = integró) **+ FIAU** (contra la tk = integró en el sitio correcto, por recombinación homóloga, perdiendo la tk).
+8. Cribado por **Southern blot** con sondas externas al constructo + sonda interna de neo para confirmar **integración única**.
+9. Opcional: quitar el neo en la placa con **pOG231** (Cre).
+10. Inyección en blastocistos **C57BL/6** → hembras ICR pseudogestantes → quimeras → cruce con C57BL/6 → crías agutí genotipadas por PCR de cola. Homocigotos por intercruce de heterocigotos.
+
+**La diferencia con lo tuyo:** tú llegas al mismo destino (cambiar el codón en el locus real) por una ruta sin cassettes de selección, porque CRISPR te da el corte dirigido y no necesitas G418/FIAU para encontrar los clones correctos. **Consecuencia: tú no tienes el "regulador de intensidad" de Arin — y por tanto tu alelo debería expresarse al 100 %.** Que tu fenotipo sea más leve de lo esperado apunta a que algo te lo está atenuando de forma no intencionada (§2ter.6).
+
 ### 2ter.3 Las tres consecuencias para tu tesis
 1. **Mi hipótesis nº1 (desequilibrio de expresión alélica por cassette residual) no es teórica: es el mecanismo publicado y medido de este mismísimo alelo.** Un neo en el intrón 1 bajó el mutante al 35–40 % y eso bastó para borrar el fenotipo del heterocigoto. **Si tu línea conserva cassette, neo, o incluso solo la cicatriz loxP/FRT en un intrón, tienes la explicación completa de tu patrón, ya validada en la literatura para R154C.** Esto pasa a ser la primera cosa que debes comprobar, no la tercera.
 2. **Tu homocigoto es viable; los de Arin con neo morían al nacer.** Esa es una diferencia real y es tu dato más interesante: sugiere que tu alelo mutante se expresa **aún por debajo del 35–40 %**, o que el fondo genético amortigua más. Un **R156C viable en homocigosis** es precisamente la herramienta que falta (los modelos severos son letales y no sirven para ensayos terapéuticos longitudinales).
