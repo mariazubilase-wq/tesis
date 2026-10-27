@@ -123,7 +123,40 @@ El paper confirma que el hotspot humano es el **codón 156 de *KRT10***, un resi
 
 > **Encuadre sugerido, revisado:** *"Una serie alélica de dosis de Krt10 R154C define el umbral de K10 mutante necesario para la ichtiosis epidermolítica, y proporciona un modelo viable en homocigosis para ensayo de supresión alelo-específica."* Cuantifica el ratio mutante:WT en tus hets y homocigotos y correlacionalo con fenotipo: esa curva dosis–respuesta es el paper.
 
-### 2ter.4 Y el detalle químico que sí es específico de R156**C**
+### 2ter.4 La curva dosis–respuesta de Arin, en números
+
+Tomando como unidad la expresión de **un** alelo WT = 100:
+
+| Genotipo | K10 WT | K10 mutante | **Ratio mut/total** | Fenotipo |
+|---|---|---|---|---|
+| `+/+` | 200 | 0 | 0 | Normal |
+| `+/mut^neo` (germinal) | 100 | **35–40** | **~0,27** | **Muy leve**, restringido a piel con estrés mecánico |
+| `+/mut` neo escindido (**quimeras**) | 100 | ~100 | **~0,5** | Lesiones queratósicas **focales en patas al nacer** → hiperqueratosis gruesas marrones |
+| `mut^neo/mut^neo` | 0 | ~70–80 | **1,0** | **Letal al nacer**, desintegración completa del estrato espinoso |
+| **Humano R156C/+** | 50 % | 50 % | **~0,5** | **EI severa generalizada** |
+
+**Dos lecturas que son el corazón del paper:**
+
+1. **Manda el ratio, no la cantidad absoluta.** El homocigoto `mut^neo/mut^neo` tiene **menos** proteína mutante en términos absolutos (~75 unidades) que el het limpio (~100) y sin embargo pasa de "lesiones en patas" a **letal**. La diferencia no es cuánta proteína mutante hay, sino que **no queda K10 salvaje con la que copolimerizar**. Es literalmente la conclusión de los autores: hay que *"alterar el ratio de proteína salvaje a mutante"*.
+2. **El umbral murino está entre 0,5 y 1,0; el humano está por debajo de 0,5.** A ratio 0,5 el ratón solo tiene enfermedad focal en patas; el humano con el mismo ratio tiene EI severa generalizada. **Esa es la diferencia de especie, cuantificada**, y se puede defender con datos publicados. Es el argumento que necesitas para tu discusión.
+
+### 2ter.5 Un hueco real en el paper
+Por mi lectura del texto completo, el paper caracteriza: (a) el **het germinal con neo** (muy leve), (b) el **homocigoto con neo** (letal), y (c) **quimeras** derivadas de clones ES con neo escindido (lesiones focales en patas). Lo que **no** describe en detalle es el fenotipo completo de una **línea germinal heterocigota limpia (`+/R154C` sin neo)** en todos los sitios corporales y a lo largo de la vida. Si tu línea CRISPR es exactamente eso, **puedes estar llenando un hueco que la literatura dejó abierto desde 2001**. Verifícalo leyendo las figuras del original ([PMC2195990](https://pmc.ncbi.nlm.nih.gov/articles/PMC2195990/)).
+
+### 2ter.6 Si tu alelo es CRISPR + HDR (sin cassette): qué cambia
+
+**La hipótesis del cassette deja de aplicar**, y por tanto tu het "debería" expresar ~50 % de mutante y comportarse como las quimeras de Arin, es decir **con lesiones focales en patas al nacer**. Que no tenga nada es una discrepancia que hay que explicar. Causas específicas de un knock-in CRISPR, por orden de probabilidad:
+
+1. **Mutaciones silenciosas / de bloqueo del PAM en el donador.** Es la práctica estándar para evitar el recorte repetido, y es el **equivalente moderno del cassette de Arin**: pueden romper un *exonic splicing enhancer* o crear un sitio críptico de splicing y bajar o alterar el mRNA. ⚠️ **Por eso hay que secuenciar el cDNA, no solo el gDNA alrededor del corte.**
+2. **Indeles o HDR parcial** en el alelo editado, o **deleciones grandes on-target / pérdida de heterocigosidad** en el sitio de corte (bien documentado en embriones editados).
+3. **Mosaicismo del fundador**: confirma transmisión germinal y secuencia el alelo transmitido completo.
+4. **Integración aberrante del donador** (concatémeros, inserción parcial): número de copias por ddPCR/Southern o lectura larga.
+5. **Fondo genético.** Los de Arin eran 129SVJ × C57BL/6. Si el tuyo es B6 puro, los modificadores no son los mismos (§1.3).
+6. **Dónde y cuándo has mirado.** Las lesiones de Arin estaban **en las patas, al nacer**, y el fenotipo del het con neo estaba *"restringido a piel expuesta a estrés mecánico"*. Fenotipar dorso piloso de adulto da negativo por diseño.
+
+**Y el enigma de tu homocigoto, que es tu mejor dato.** Un homocigoto CRISPR limpio tendría ratio 1,0 **y ~200 unidades** de proteína mutante — es decir, **más** mutante que el homocigoto letal de Arin (~75 unidades). Debería ser igual o peor, y el tuyo es **viable**. Eso deja pocas salidas: o tu alelo se expresa muy por debajo de lo esperado (vuelta a los puntos 1–4), o el fondo rescata, o tu homocigoto es fenotípicamente más leve que el de Arin por una razón que aún no está descrita. **Cualquiera de las tres es un resultado, y la tercera sería el paper.**
+
+### 2ter.7 Y el detalle químico que sí es específico de R156**C**
 R156C introduce una **cisteína libre** en el motivo de iniciación de hélice de 1A. Las queratinas usan puentes disulfuro de forma funcional (p. ej. [los disulfuros dependientes de K14 regulan la homeostasis epidérmica](https://elifesciences.org/articles/53165.pdf)), así que una Cys ectópica puede formar **disulfuros no nativos** y agregados **covalentemente entrecruzados**, resistentes al proteasoma y dependientes de autofagia para su eliminación. Es una diferencia mecanística real frente a R156H (que no aporta tiol) y un ángulo propio y poco explorado. Para verlo: **geles no reductores vs reductores (±DTT/βME)** y fraccionamiento soluble/insoluble.
 
 ## 2quater. ¿Por qué vías se degrada una queratina? (y cómo distinguirlas de un problema de expresión)
