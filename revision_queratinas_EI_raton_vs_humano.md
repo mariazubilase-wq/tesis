@@ -10,7 +10,7 @@ Revisión bibliográfica — 27 octubre 2026
 
 1. **¿Mi mutación afecta menos a K10 de ratón, o cualquier mutación en Krt10 afecta menos en ratón?**
    Las dos cosas son ciertas pero en niveles distintos, y hay que separarlas:
-   - **Que el heterocigoto no tenga fenotipo NO es una diferencia de especie.** En humano, los portadores heterocigotos de alelos *KRT10* de pérdida de función (nonsense, frameshift con degradación del transcrito) también son **clínicamente normales** — es exactamente lo que describieron Müller et al. en la familia con EI recesiva por p.Q434X ([DOI](https://doi.org/10.1093/hmg/ddl028)). La dominancia en la EI humana clásica viene de **missense dominante-negativas** en el dominio en varilla (hotspot R156 y fronteras de hélice 1A/2B), no de haploinsuficiencia. Si tu heterocigoto es normal, la primera hipótesis a descartar es que **tu alelo no está produciendo proteína mutante estable incorporada al filamento** (NMD, splicing, inestabilidad proteica), es decir que se comporta como null/hipomorfo y no como dominante-negativo.
+   - **Si tu alelo es una mutación causante de EI (dominante-negativa en humano), el het sin fenotipo es un problema de UMBRAL, no de tipo de alelo.** El efecto dominante-negativo de las queratinas es **dependiente de dosis**: el het expresa ~50 % de proteína mutante, el homocigoto ~100 %. Si el ratón amortigua más (§1.3), el 50 % cae por debajo del umbral patogénico y el 100 % lo supera. Hay demostración directa de este umbral: Bickenbach et al. concluyeron que **"se requería una concentración crítica de la K1 humana mutante, por encima de la MK1 endógena, para alterar la integridad estructural"** ([DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x)); y en Dsk12 los homocigotos son más severos que los het al nacer ([DOI](https://doi.org/10.1038/sj.jid.5700241)). Lo que sigue siendo obligatorio verificar es si la proteína mutante **se produce y se incorpora al filamento en el het** — un missense puede desestabilizarse y degradarse, y entonces actúa como hipomorfo aunque por secuencia sea una mutación "dominante" (§2bis).
    - **Que el homocigoto sea viable y con fenotipo leve-moderado SÍ es, en parte, una diferencia de especie documentada.** El K10-null verdadero de ratón tiene una epidermis sorprendentemente normal al nacer y de adulto muestra hiperproliferación **sin citólisis**, porque K5/K14 persisten suprabasalmente y forman filamentos K1/K14/K15 que rescatan la integridad (Reichelt et al. 2001, [DOI](https://doi.org/10.1091/mbc.12.6.1557); Reichelt & Magin 2002, [DOI](https://doi.org/10.1242/jcs.115.13.2639)). En el humano K10-null homocigoto, en cambio, se inducen fuertemente K6/K16/K17 **pero no compensan** y el fenotipo es severo ([DOI](https://doi.org/10.1093/hmg/ddl028)). O sea: mismo genotipo nulo, ratón tolera mucho mejor que humano, y el mecanismo tiene nombre.
 
 2. **Cuántos modelos murinos de EI hay (K10 y K1).**
@@ -55,9 +55,46 @@ Esto es lo que, en mi lectura, resuelve tu duda. La EI humana tiene **dos genét
 - **EI recesiva.** Alelos nulos bialélicos de *KRT10*. Heterocigotos **normales**, homocigotos severos (Müller et al. 2006, [DOI](https://doi.org/10.1093/hmg/ddl028)). Existen además casos de **self-improving EI** por alelos con splicing "leaky" y K10 residual — ojo, el reporte más citado de esto (Frommherz et al., Br J Dermatol 2019, [DOI](https://doi.org/10.1111/bjd.18325)) está **retractado**, úsalo solo con esa advertencia.
 - Y un tercer mecanismo aparte: **ichtiosis with confetti**, frameshifts de *KRT10* al mismo marco alternativo que generan una cola rica en arginina que redirige K10 al **nucléolo**; el fenotipo revierte por recombinación mitótica (Choate et al. 2010, Science, [DOI](https://doi.org/10.1126/science.1192280); Burger et al. 2011, [DOI](https://doi.org/10.1111/j.1365-2133.2011.10639.x)). No es un simple null ni un simple dominante-negativo.
 
-**Tu patrón (het normal / homo viable con fenotipo) es el patrón de la EI recesiva**, no de la dominante. Eso es un dato, no un fracaso: significa que tu alelo, *in vivo en ratón*, se está comportando como pérdida de función (total o parcial), y que la lectura correcta probablemente no es "el ratón es resistente a mi mutación" sino "**mi alelo no produce dominancia en ratón**". La pregunta experimental cambia por completo (§5).
+**Importante:** si tu alelo es una mutación *causante de EI* (missense dominante en humano), tu patrón **no** se explica diciendo "es un alelo recesivo". Lo que observas es que **la dominancia se pierde en el ratón**, y eso tiene tres explicaciones posibles que hay que ordenar — umbral de dosis, desequilibrio de expresión alélica del knock-in, o dilución del pool tipo I específica de ratón (§2bis).
+
+Lo que sí sigue siendo cierto del marco anterior: la pérdida de función de *KRT10* es recesiva en **ambas** especies (portadores humanos nulos normales, Müller et al. [DOI](https://doi.org/10.1093/hmg/ddl028)), así que **si tu missense se degrada en lugar de incorporarse al filamento, el fenotipo que verás será indistinguible del de un hipomorfo** — y esa es la primera cosa que hay que excluir a nivel de proteína, no de genotipo.
 
 ---
+
+## 2bis. Una mutación dominante humana que en ratón solo se manifiesta en homocigosis: precedentes y causas
+
+Este es tu escenario exacto, y **tiene un precedente publicado y muy bueno**.
+
+### 2bis.1 El precedente: el knock-in humanizado de K12 L132P (distrofia corneal de Meesmann)
+Allen et al. generaron un **knock-in humanizado** con la mutación **K12-Leu132Pro**, una mutación dominante-negativa *severa* de una enfermedad **autosómica dominante** humana. Resultado ([DOI](https://doi.org/10.1093/hmg/ddw001)):
+- **No había cambios evidentes en lámpara de hendidura.**
+- **Los homocigotos** sí mostraban fenotipos histológicos y ultraestructurales de fragilidad epitelial, agregados citoplásmicos de queratina, perfil de queratinas alterado, inducción de chaperonas, marcadores apoptóticos de UPR (CHOP, caspasa 12) y **apoptosis aumentada ×17**.
+- Los autores validaron los hallazgos en córnea de **paciente** con la misma mutación (MS, inmunohistoquímica) → el modelo era fiel aunque el fenotipo requiriese homocigosis.
+- Y lo publicaron en *Human Molecular Genetics* declarando explícitamente: *"aunque el fenotipo más severo se observa en los ratones homocigotos, este modelo proporcionará un banco de pruebas para terapias, no solo para distrofias corneales sino también para **otras queratinopatías causadas por mutaciones similares**"*.
+
+Es del laboratorio de **W.H.I. McLean**, el grupo de referencia en genética de queratinas. **Que tu fenotipo esté en el homocigoto no te impide publicar: hay precedente directo, en buena revista, con esa misma limitación asumida y argumentada.**
+
+### 2bis.2 Otros precedentes de dominancia incompleta/dependiente de dosis en queratinas
+- **Bickenbach et al. 1996 (K1 humana mutante en ratón):** se necesita una **concentración crítica** de queratina mutante sobre la endógena para romper la integridad; los neonatos **homocigotos para el transgén** tenían piel más gruesa e índice de marcaje aumentado y colapso de la red perinuclear ([DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x)).
+- **Dsk12 (Krt1 S194P):** aunque es dominante, los **homocigotos son más severos que los heterocigotos** al nacer → efecto gradual de dosis dentro del propio ratón ([DOI](https://doi.org/10.1038/sj.jid.5700241)).
+- **"Dominantes parciales" en humano:** OMIM recoge para *KRT14* una mutación que actúa como *partial dominant*, con heterocigotos de enfermedad localizada más leve y homocigotos de enfermedad más severa. La dominancia de las queratinas **no es binaria ni siquiera en humano**.
+- **Mutaciones dominantes latentes hasta el estrés:** en el modelo de piel humanizada de paquioniquia congénita con *KRT6A* **N171K** (una mutación dominante inequívoca), **la piel regenerada era fenotípicamente normal** y solo desarrolló rasgos de PC sostenidos **tras un estímulo hiperproliferativo agudo (tape stripping)** ([PubMed 21150925](https://pubmed.ncbi.nlm.nih.gov/21150925/)). Un het "sin fenotipo" sin desafío mecánico puede ser un **falso negativo**.
+
+### 2bis.3 Las tres hipótesis para tu het, en orden de prioridad
+
+| | Hipótesis | Predicción | Cómo se descarta |
+|---|---|---|---|
+| **1** | **Desequilibrio de expresión alélica del knock-in** (cassette de selección residual, cicatriz loxP/FRT en intrón, splicing/poliadenilación alterados, silenciamiento): el alelo mutante se expresa por debajo del WT → la fracción mutante efectiva en el het es **<50 %**. En el homocigoto no hay WT que diluya, así que el fenotipo aparece. | Ratio alélico mutante:WT < 1 en piel | **RNA-seq/pirosecuenciación alelo-específica + Western cuantitativo.** Es un artefacto frecuente y **explicaría tu patrón completo por sí solo**: hay que excluirlo antes de cualquier afirmación sobre especie. |
+| **2** | **Umbral de dosis con amortiguación mayor en ratón** (la hipótesis "de especie"). 50 % de mutante por debajo del umbral, 100 % por encima. | Ratio alélico ~1:1, proteína mutante presente e incorporada en el het, pero sin agregados ni citólisis; homocigoto con agregados | Cruces de sensibilización: **alelo mutante / null** (*Krt10*<sup>mut/−</sup>, el mutante pasa a ser el ~100 % del pool con una sola copia) y **mutante en fondo *Krt77*<sup>−/−</sup> o *Krt2*<sup>−/−</sup>**. Si *Krt10*<sup>mut/−</sup> fenocopia al homocigoto → umbral confirmado. |
+| **3** | **Dilución del pool tipo I específica de ratón.** En ratón K5/K14 **persisten suprabasalmente** y forman filamentos K1/K14/K15 ([DOI](https://doi.org/10.1091/mbc.12.6.1557)); más Krt77 y K2 como parejas tipo II extra. La K10 mutante puede ser desplazada/diluida en ratón y no en humano. | K14/K15 suprabasales elevados en el het | IF/Western por capa y sitio; comparar con queratinocitos humanos editados con **la misma sustitución** en organotípico 3D. |
+
+Y transversal a las tres: **¿se está produciendo e incorporando la proteína mutante?** Un missense puede desestabilizarse y degradarse vía proteostasis/chaperonas — el propio paper de K12 encontró **inducción de chaperonas y UPR**, lo que indica que la célula está gestionando activamente la proteína mutante. Si en tu het la K10 mutante se degrada, tienes un hipomorfo funcional pese a ser una mutación "dominante" por secuencia. **Western + inmuno-EM en el het son el experimento que ordena todo lo demás.**
+
+### 2bis.4 Qué necesito saber de tu alelo para afinar esto
+1. **Qué mutación exactamente** (¿R156H/R156C del motivo de iniciación de hélice 1A? ¿2B? ¿linker L12?). El motivo de iniciación de 1A está hiperconservado entre especies, lo que **debilita** la hipótesis "en ratón ese residuo es distinto" y **refuerza** la de umbral/dosis. Los dominios distintos tienen severidades distintas en humano.
+2. **¿Knock-in humanizado o sustitución del codón equivalente en el *Krt10* murino?** Un exón humanizado puede expresarse peor o emparejar peor con la K1 murina.
+3. **¿Queda cassette de selección, neo, o sitios loxP/FRT en el locus?**
+4. **¿Qué fenotipo tiene el homocigoto: con agregados de tonofilamentos y citólisis, o hiperproliferación sin citólisis?** Esto decide si es dominante-negativo con umbral (agregados) o si fenocopia al K10-null (sin citólisis, ver §4).
 
 ## 3. Catálogo de modelos murinos de EI
 
@@ -122,8 +159,10 @@ Esto es importante porque buena parte de la confusión bibliográfica viene de a
 
 Orden de prioridad, de más informativo y barato a más costoso:
 
+> Nota: si tu alelo es una mutación causante de EI (missense dominante), lee esto junto con **§2bis.3**, que ordena las tres hipótesis específicas para ese caso. El bloque A sigue siendo el primer paso.
+
 **A. Caracterizar el alelo (imprescindible, y responde el 80% de la pregunta)**
-1. **¿Hay mRNA mutante?** RT-qPCR alelo-específica + cuantificación del ratio alélico en piel. Si hay NMD, tu alelo es funcionalmente un null → het normal es lo esperado y no hay nada "raro".
+1. **¿Hay mRNA mutante, y en qué proporción respecto al WT?** RT-qPCR/pirosecuenciación **alelo-específica** en piel. Un ratio mutante:WT <1 (cassette residual, splicing alterado) explicaría el het normal sin invocar nada de especie — es la hipótesis nº1 de §2bis.3.
 2. **¿Hay proteína mutante, y a qué nivel?** Western con anticuerpo pan-K10, y si es posible detección específica de la forma mutante; cuantificar K10 total en het vs WT vs homo. En EI dominante humana la clave es que la mutante **se expresa e incorpora**.
 3. **¿Se incorpora al filamento o se agrega?** Inmunofluorescencia + **inmuno-EM / doble inmunogold** (como hicieron con K10T, [DOI](https://doi.org/10.1242/jcs.110.18.2175)). Si no hay agregados de tonofilamentos, no hay dominante-negativo, punto.
 4. **¿Splicing aberrante?** RT-PCR de la región + secuenciación del amplicón. Un sitio donador "leaky" cambia toda la interpretación (es el mecanismo propuesto en los fenotipos humanos autolimitados).
@@ -179,9 +218,11 @@ Necesitas al menos **uno** de estos, y lo ideal es dos:
 ### 6.4 Mi recomendación sobre cómo encuadrar tu paper
 No lo plantees como "modelo murino de EI" (competirías con Dsk12 y con 10 modelos previos). Plantéalo como:
 
-> **"El alelo X de *Krt10* se comporta como pérdida de función en ratón: disección de los determinantes de dominancia en la ichtiosis epidermolítica y de los mecanismos de compensación específicos de especie."**
+> **"Knock-in de la mutación [X] de *Krt10*: la dominancia en la ichtiosis epidermolítica es dependiente de umbral y está amortiguada en el ratón."**
 
-Eso convierte tu "problema" (het sin fenotipo) en el resultado central, usa el homocigoto viable como herramienta, y te permite incluir el cruce con *Krt77*/*Krt2*/*Krt10*<sup>+/−</sup> como el experimento que cuantifica lo que es especie y lo que es alelo. Es un paper mecanístico con mensaje, no un paper descriptivo más.
+Eso convierte tu "problema" (het sin fenotipo) en el **resultado central**, usa el homocigoto viable como la herramienta que los modelos letales no ofrecen, y hace del cruce *Krt10*<sup>mut/−</sup> / *Krt77*<sup>−/−</sup> / *Krt2*<sup>−/−</sup> el experimento que **cuantifica** qué parte es especie y qué parte es alelo. Es un paper mecanístico con mensaje, no un modelo descriptivo más.
+
+Y usa el precedente de K12 L132P ([DOI](https://doi.org/10.1093/hmg/ddw001)) explícitamente en la discusión: te da cobertura bibliográfica para la limitación (fenotipo en homocigosis) y el encuadre que los revisores ya aceptaron en *Hum Mol Genet* — "banco de pruebas para terapias de queratinopatías causadas por mutaciones similares". Refuerza mucho el argumento si, como hicieron ellos, **validas en tejido/queratinocitos de paciente** con la misma mutación.
 
 ---
 
@@ -234,9 +275,14 @@ Toda la bibliografía se recuperó de **PubMed**.
 27. Roth W, et al. Keratin 1 maintains skin integrity and participates in an inflammatory network in skin through interleukin-18. *J Cell Sci* 2012;125:5269. [DOI](https://doi.org/10.1242/jcs.116574)
 28. Rothnagel JA, Greenhalgh DA, et al. Transgenic models of skin diseases. *Arch Dermatol* 1993;129:1430-6. PMID 7694550
 
+**Dominancia dependiente de dosis / knock-ins de mutaciones dominantes (§2bis)**
+29. Allen EHA, Courtney DG, Atkinson SD, et al. (lab. McLean/Moore). Keratin 12 missense mutation induces the unfolded protein response and apoptosis in Meesmann epithelial corneal dystrophy. *Hum Mol Genet* 2016;25:1176-91. **Precedente clave: knock-in humanizado de una mutación dominante con fenotipo en homocigotos, publicado y defendido como banco de pruebas terapéutico.** [DOI](https://doi.org/10.1093/hmg/ddw001)
+30. Garcia M, et al. Development of skin-humanized mouse models of pachyonychia congenita — *KRT6A* N171K: piel regenerada fenotípicamente normal que solo manifiesta PC tras tape stripping. [PubMed 21150925](https://pubmed.ncbi.nlm.nih.gov/21150925/)
+31. [OMIM *KRT14* (148066)](https://omim.org/entry/148066) — mutación descrita como *partial dominant*: heterocigotos leves/localizados, homocigotos severos.
+
 **Comparadores**
-29. Bierkamp C, et al. Embryonic heart and skin defects in mice lacking plakoglobin. *Dev Biol* 1996;180:780-5. [DOI](https://doi.org/10.1006/dbio.1996.0346)
-30. Ness SL, et al. Mouse keratin 4 is necessary for internal epithelial integrity. *J Biol Chem* 1998;273:23904-11. [DOI](https://doi.org/10.1074/jbc.273.37.23904)
+32. Bierkamp C, et al. Embryonic heart and skin defects in mice lacking plakoglobin. *Dev Biol* 1996;180:780-5. [DOI](https://doi.org/10.1006/dbio.1996.0346)
+33. Ness SL, et al. Mouse keratin 4 is necessary for internal epithelial integrity. *J Biol Chem* 1998;273:23904-11. [DOI](https://doi.org/10.1074/jbc.273.37.23904)
 
 **Recursos web consultados**
 - [MGI — Krt1 (MGI:96698)](https://www.informatics.jax.org/marker/MGI:96698)
