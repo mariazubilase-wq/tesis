@@ -175,6 +175,75 @@ murina : GGGFGGDGGSLLSGNGRVTMQNLNDRLASYMDKVRALEESNYELEGKIKEW
 
 **Detalle útil:** la murina es 14 aa más corta en total, pero en la posición 156 el desplazamiento es solo de **2**. Es decir, la mayor parte de la diferencia de longitud está en la **cola C-terminal rica en glicina**, no en la cabeza — consistente con el patrón descrito para ortólogos de queratinas, donde las diferencias de tamaño se concentran en los subdominios V ricos en glicina ([DOI](https://doi.org/10.1111/1523-1747.ep12371757)).
 
+### 2ter.0bis 📋 FICHA COMPLETA DEL MODELO DE ARIN et al. 2001
+
+Descripción puramente factual, a partir del **texto completo** ([DOI](https://doi.org/10.1083/jcb.152.3.645), [PMC2195990](https://pmc.ncbi.nlm.nih.gov/articles/PMC2195990/)). Marco explícitamente qué es cita, qué es inferencia mía y qué no dice el paper.
+
+> ⚠️ **Límite de mi lectura, importante.** El texto extraído de PMC **pierde los superíndices**, así que `+/mut^neo` y `+/mut` aparecen los dos como "+/mut". En varias frases he tenido que **inferir por contexto** de qué línea se habla. Lo señalo caso por caso. **Verifica contra el PDF original y los pies de figura.** Lo mismo con el codón: en el texto extraído la mutación aparece como "(GC→GC)", claramente mutilado; el cambio real es Arg→Cys pero **no puedo leer los codones exactos**.
+
+#### 1. Construcción genética (todo esto es textual)
+| Elemento | Detalle |
+|---|---|
+| Gen diana | *Krt10* murino, **locus endógeno** |
+| Mutación | **Codón 154 Arg→Cys** ("reemplazando el codón salvaje en la posición 154") |
+| Origen del DNA | Clon **BAC** de genoteca genómica **129 SVJ** (Incyte Genomics) |
+| Constructo | Fragmentos solapantes de 4 kb EcoRI + 6 kb BamHI, fusionados en un sitio EcoRI del **intrón 2** → fragmento de 4,8 kb BglII-XhoI |
+| Mutagénesis | Por PCR, sobre un fragmento de **400 pb BstEII-NdeI**, reinsertado en el constructo |
+| Cassette de selección | **PGKneo**, en un sitio **NdeI único del intrón 1**, flanqueado por **loxP** |
+| Vector | **pPNT**, con **timidina quinasa de HSV** bajo promotor PGK (selección negativa) |
+| Células | **ES AB2.2**, sobre feeders SNL76/7; vector linealizado con NotI, electroporación |
+| Selección | **G418 (geneticina) + FIAU** |
+| Cribado | **Southern blot** con sondas externas al constructo + sonda interna de neo (integración única) |
+| Escisión del neo | Electroporación de **pOG231** (vector de expresión de Cre) en clones ES diana |
+| Generación | ES → blastocistos **C57BL/6** → hembras **ICR** pseudogestantes → quimeras → cruce con **C57BL/6** → crías **agutí** genotipadas por PCR de cola |
+| Homocigotos | Por **intercruce de heterocigotos** |
+| Línea inducible | Cruce de heterocigotos con una línea transgénica **CrePR1** "previamente descrita" |
+
+#### 2. Los cinco animales: genética, mosaicismo, inducción y fenotipo
+
+| # | Genotipo | Alelo mutante | ¿Mosaico? | ¿Inducido? | Fenotipo |
+|---|---|---|---|---|---|
+| **1** | `+/mut^neo` germinal | Con neo → **atenuado** | **No** | No | *"Fenotipo muy leve"*, **descamación leve**, *"principalmente restringido a piel expuesta a estrés mecánico"* (textual) |
+| **2** | `mut^neo/mut^neo` germinal | Con neo, doble dosis, **sin WT** | **No** | No | *"Fenotipo muy severo al nacer con ampollas y erosiones extensas, y murieron poco después"*. Biopsias: *"desintegración completa del estrato espinoso"* en zonas lesionales. IF: *"expresión abundante de K10 en capas suprabasales"* (toda de alelos mutantes) (textual) |
+| **3** | **Quimeras** de clones ES `+/mut` (neo escindido in vitro) | Sin neo → **pleno** | **Sí**, pero mosaico **entre células derivadas de ES y del blastocisto huésped** | **No — ningún inductor** | *"Lesiones queratósicas focales en las patas al nacer que se desarrollaron en hiperqueratosis gruesas y marronáceas"* (textual) |
+| **4** | `+/mut^neo; CrePR1` **sin** RU486 | Atenuado | No | No | No descrito aparte; se usa como estado basal |
+| **5** | `+/mut^neo; CrePR1` **+ RU486** | Atenuado → **pleno solo donde se pinta** | **Sí, por diseño** (mosaicismo **de expresión**) | **Sí** | Ampollas en el sitio tras **3–5 aplicaciones**; al romperse, descamación alrededor; con el inicio del crecimiento del pelo la descamación disminuye *"dejando áreas hiperqueratósicas en las patas"*; persisten y evolucionan a *"hiperqueratosis gruesas y marronáceas como se ven en pacientes mayores con EHK"*. **Persistencia de 6 meses** (textual) |
+
+**Inferencia mía, no textual:** que el animal #2 proviene de intercruzar los heterocigotos **con neo** (y no los limpios). Lo deduzco de que el objetivo declarado era *"confirmar que el mRNA de K10 mutante se traducía eficientemente"* — es decir, comprobar que el mRNA **reducido** se traduce — y de la frase final: *"la presencia de K10 salvaje en los heterocigotos es suficiente para superar los efectos del **nivel reducido** de K10 mutante"*. **Verifícalo en el original.**
+
+**No existe en el paper:** un animal **germinal heterocigoto sin neo** caracterizado a fondo. El alelo limpio solo se describe en **quimeras** (#3).
+
+#### 3. Niveles de expresión
+- Línea con neo: *"el mRNA del alelo mutante estaba significativamente reducido al **35–40 %** de los niveles del alelo salvaje"*.
+- ⚠️ **Y el paper añade "(datos no mostrados)".** O sea, **esa cifra no está respaldada por una figura publicada.** Es un dato declarado, no mostrado. Tenlo en cuenta al citarlo.
+- Método: RT-PCR sobre cDNA, amplicón de 280 pb, cebadores biotinilados, **digestión con AciI** (la mutación destruye el sitio: WT → 210 + 70 pb; mutante resistente), transferencia a nylon y detección quimioluminiscente.
+- Conclusión declarada: *"la severidad del fenotipo clínico en este modelo correlaciona con el nivel de expresión del alelo mutante"*.
+
+#### 4. El sistema de inducción, en detalle
+- **Construcción:** proteína de fusión **Cre + receptor de progesterona truncado (PR1)**, secuestrada en el citoplasma hasta unir ligando; al unirlo, translocación al núcleo y escisión de lo flanqueado por loxP **en la misma orientación**.
+- **Promotor:** *"un promotor específico de epitelio que dirige la expresión del transgén en la capa basal de la epidermis, donde se localizan las células madre epidérmicas"*. ⚠️ **El texto extraído no nombra el promotor** (la cita se perdió); es una línea previamente descrita. No asumas que es K5 o K14 sin comprobarlo.
+- **Inductor: RU486 (mifepristona)**, **0,5 mg/ml en etanol/DMSO**, **tópico**, **una vez al día durante 4–5 días**, en **neonatos**, sobre el **lado ventral del tronco y las extremidades**, hasta que las ampollas eran visibles.
+- **Prueba de que ocurrió en células madre:** persistencia 6 meses frente a renovación epidérmica de **8–10 días**; y **microdisección con captura láser** de lesiones persistentes + PCR de loxP y neo → **neo ausente** en la lesión, **presente** en la piel vecina no inducida. Conclusión: *"los queratinocitos que contenían el cassette neo no migraron a las áreas lesionales"*.
+
+#### 5. ¿Puede el inductor ser tóxico y favorecer el fenotipo? — buena pregunta, y la respuesta es matizada
+
+**El riesgo es real, por tres razones:**
+1. **El vehículo es irritante.** Etanol/DMSO tópico, repetido 4–5 días sobre piel **neonatal**, altera la barrera y es un insulto químico en sí mismo. Más el acto mecánico de aplicarlo.
+2. **La piel mutante de queratina es, por definición, hipersensible al trauma.** Un irritante repetido es exactamente el tipo de estímulo que puede precipitar ampollas en un animal predispuesto — es decir, podría estar **desencadenando** fenotipo en lugar de solo **revelarlo** genéticamente.
+3. **RU486 es además antagonista del receptor de glucocorticoides**, y los glucocorticoides influyen en barrera, proliferación y diferenciación epidérmicas. Un antiglucocorticoide tópico podría alterar la homeostasis epidérmica por una vía independiente de Cre.
+
+**Controles que yo querría ver y que NO aparecen descritos en el texto que he leído:** un grupo de **solo vehículo** (etanol/DMSO sin RU486), y **RU486 sobre monotransgénicos** (solo CrePR1, o solo `+/mut^neo`). ⚠️ No digo que no los hicieran — digo que **no los veo descritos**; es un *Report* breve de JCB, así que revisa figuras y pies.
+
+**Pero la conclusión central del paper está en buena medida protegida de ese artefacto, por tres evidencias internas:**
+- **La prueba de escisión es molecular, no fenotípica.** El LCM + PCR demuestra que el neo desapareció en la lesión y persiste al lado. Eso es genotipo, y la irritación no lo explica.
+- **La persistencia de 6 meses** tras una aplicación de 4–5 días. Una dermatitis irritativa se resuelve; no puede explicar lesiones que duran 6 meses en un tejido que se renueva cada 8–10 días.
+- **Las quimeras (#3) desarrollaron lesiones focales en patas al nacer SIN RU486 ni inductor alguno.** Es una ruta independiente al mismo fenotipo sin ningún irritante. **Este es el control más potente contra la objeción de toxicidad.**
+
+**Resumen honesto:** la objeción es legítima para el **evento agudo de ampollación** en el sitio pintado, donde vehículo y trauma pueden contribuir. No es una explicación viable para el **fenotipo persistente** ni para las quimeras.
+
+#### 6. Qué NO hay en este paper
+Métodos declarados: histología (H&E), inmunofluorescencia de doble marcaje (conejo anti-K10 murina + cobaya anti-K14 murina; secundarios FITC y Texas red), análisis de RNA (RFLP de AciI) y microdisección láser. Por tanto **no hay**: microscopía electrónica, Western blot, cuantificación de proteína, función de barrera (TEWL, *dye exclusion*), perfil de otras queratinas más allá de K10 y K14, mapa sistemático por sitio corporal, n declarados, desglose por sexos, ni fondo genético puro (es 129×B6 mixto).
+
 ### 2ter.1 Equivalencia de numeración
 El paper confirma que el hotspot humano es el **codón 156 de *KRT10***, un residuo de arginina evolutivamente muy conservado, hotspot por metilación de CpG y desaminación; y que el codón equivalente en el ***Krt10* murino es el 154**. Es decir:
 
