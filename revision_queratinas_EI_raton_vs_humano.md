@@ -241,6 +241,26 @@ Bickenbach lo dice sin rodeos para su transgénico: hacía falta *"una concentra
 
    Bonus de diseño: piel tratada y no tratada **en el mismo animal** = control interno perfecto, sin variabilidad entre camadas.
 
+   #### ⚠️ Cuál de los ratones del paper es mosaico y cuál no
+   Error fácil al citar: **"el ratón de Arin" no es un ratón, son cuatro animales distintos**, y solo uno es mosaico por diseño.
+
+   | Animal | ¿Mosaico? | Por qué |
+   |---|---|---|
+   | `+/mut^neo` germinal | **No** | Todas las células llevan el alelo atenuado. Fenotipo muy leve, piel con estrés mecánico |
+   | `mut^neo/mut^neo` germinal | **No** | Todas las células. Letal al nacer |
+   | **Quimeras** de clones ES con neo escindido | **Sí**, pero de otro tipo | Mosaico **entre células derivadas de ES y del blastocisto huésped**, no entre estados del alelo. Lesiones focales en patas |
+   | `+/mut^neo; CrePR1` **+ RU486** | **Sí, por diseño** | Solo las zonas pintadas pierden el neo y expresan el mutante al 100 % |
+
+   **Dos sentidos distintos de "mosaico"** que conviene no mezclar: mosaicismo **genético** (células con genotipos distintos) y mosaicismo **de expresión** (mismo genotipo, pero el alelo activo solo en unas células). El modelo inducible es del segundo tipo: todas las células tienen el alelo mutante desde la concepción, pero solo en el parche pintado está *encendido*.
+
+   #### Y tu ratón: NO es mosaico
+   Un knock-in constitutivo por CRISPR tiene la mutación en **todas** las células, por igual, desde la concepción. Eso significa:
+   - **No te sirve para la pregunta del mosaicismo** — pero da igual, ya está respondida.
+   - **Sí modelas la forma generalizada de EI**, que es la forma humana común, no la nevoide/en mosaico que es rara. Es la diana correcta.
+   - En arquitectura, tu animal equivale a la **tercera fila** (alelo limpio, expresión plena) pero **como línea germinal estable**, no como quimera. Y ahí está el hueco de §2ter.5: Arin **nunca caracterizó a fondo ese animal**. Tu línea es exactamente el que falta.
+
+   ⚠️ **La única excepción: los fundadores F0 de CRISPR SÍ son habitualmente mosaicos.** La edición ocurre en el cigoto o después, así que un F0 puede tener una fracción variable de células editadas, también en piel. **Un fundador mosaico con poca contribución mutante en epidermis se vería normal.** Si tus heterocigotos "sin fenotipo" fueran F0, el mosaicismo lo explicaría todo por sí solo. Tener homocigotos implica que estás al menos en F2, así que probablemente no es tu caso — pero **confírmalo**: fenotipa solo animales de transmisión germinal (F2 o posterior) y sobre fondo estabilizado.
+
    **Tú no necesitas nada de esto.** No tienes cassette que quitar, tu homocigoto viable ya te da fenotipo sin letalidad, y la pregunta del mosaicismo ya está respondida. Tu valor está en otro sitio: el umbral de dosis y el homocigoto viable como banco de pruebas terapéutico.
 
 **Cómo funciona el inducible, en concreto:** cruzaron los `+/mut^neo` con una línea **CrePR1**, que expresa una Cre fusionada a un **receptor de progesterona truncado**, bajo un promotor epitelial activo en la **capa basal** (donde viven las células madre). Esa proteína de fusión solo responde a **RU486**, no a la progesterona del animal.
