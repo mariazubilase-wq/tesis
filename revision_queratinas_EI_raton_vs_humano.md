@@ -384,6 +384,48 @@ Esto tiene una consecuencia de especie directa: Arin señala que **la epidermis 
 - Fuera de queratinas pero con histología confundible con EHK: **plakoglobina−/−** ([DOI](https://doi.org/10.1006/dbio.1996.0346)).
 - Nota de recursos: MGI lista decenas de alelos de *Krt10* (muchos de consorcios tipo IMPC, sin fenotipado cutáneo dermatológico publicado). Para el censo definitivo: consulta directa de **MGI** (alleles de Krt10 y Krt1) e **IMSR**; la cepa `Balb/c.Cg-Krt10<tm1Tmm>/H` está en el MRC Harwell/National Mouse Archive.
 
+### 3.3bis Modelos animales espontáneos NO murinos: el perro ⭐
+
+Esto no estaba en la primera versión y es lo más relevante que he encontrado después del paper de Arin.
+
+| Especie / raza | Gen y variante | Herencia | Fenotipo | Ref. |
+|---|---|---|---|---|
+| **Norfolk terrier** ⭐⭐ | ***KRT10*, sitio donador de splicing del intrón 5** (GT→TT), en homocigosis | **Autosómica recesiva** | **EI leve, NO palmoplantar**, generalizada con hiperqueratosis pigmentada y fragilidad epidérmica | Credille et al. 2005, *Br J Dermatol*, [DOI](https://doi.org/10.1111/j.1365-2133.2005.06735.x) |
+| **Chihuahua** | ***KRT10* missense, heterocigoto** | **Dominante** | **EI severa** | Kiener, Åhman, Jagannathan, Soto & Leeb 2023, *Anim Genet*, [DOI](https://doi.org/10.1111/age.13341) |
+| **Shar-pei chino** | ***KRT1* c.567_569del → p.(Asn190del)**, *de novo*, heterocigoto; asparagina del motivo coil 1A | Dominante *de novo* (padres sanos) | Ichtiosis **NO epidermolítica**, escamación generalizada, alopecia y **lesiones en almohadillas**; KRT1 en niveles normales por IHQ | Affolter, Kiener, et al. 2022, *PLoS One*, [DOI](https://doi.org/10.1371/journal.pone.0275367) |
+
+#### Por qué el Norfolk terrier es, probablemente, tu comparador más importante
+Del resumen (según PubMed): fue **la primera mutación espontánea de queratina confirmada en una especie no humana y la primera forma recesiva descrita de EHK** — anterior incluso al caso humano recesivo de Müller 2006. Y los detalles son casi un espejo de tu situación:
+
+- **Perros heterocigotos: normales** en clínica, histología **y expresión de proteína K10**.
+- **Homocigotos: fenotipo leve**, no letal.
+- La mutación del sitio donador **activa al menos tres sitios crípticos o alternativos de splicing**, generando transcritos con **codones de terminación prematuros**; uno de ellos acortaría la porción proximal del dominio **2B** antes de la región *stutter*.
+- **mRNA de *KRT10* significativamente reducido** y **proteína K10 indetectable** por inmunoblot en los afectados.
+- Ultraestructura: **descenso de tonofilamentos y agregación filamentosa anómala** en queratinocitos de capas espinosa alta y granular.
+
+**Es decir: het normal + homocigoto viable con fenotipo leve + mecanismo de splicing + pérdida de proteína.** Es exactamente el patrón que tú describes y exactamente el mecanismo que sospecho en tu línea por las silenciosas del donador (§2ter.6). **Cita obligatoria**, y además te da un marco publicado para interpretar tu modelo sin tener que apoyarte solo en Arin.
+
+#### El contraste que ordena todo el campo
+Con el perro tienes, **dentro de una misma especie**, la serie alélica completa de *KRT10*:
+
+| Mecanismo del alelo | Herencia observada | Severidad |
+|---|---|---|
+| **Missense** (Chihuahua) | Dominante | Severa |
+| **Splicing con pérdida de proteína** (Norfolk terrier) | **Recesiva** | **Leve** |
+
+Eso confirma, en un animal y no solo en humano, que **el tipo de alelo manda sobre la especie** — el argumento central de §4. Y el humano encaja igual: missense dominante severa vs. nulo bialélico recesivo.
+
+#### Dos detalles finos que dan juego
+- El Norfolk terrier es **NO palmoplantar**, mientras los modelos murinos de *Krt10* son **predominantemente plantares** (§1.3). Otra pieza para el argumento de geografía de queratinas entre especies.
+- La K10 canina tiene **86 % de identidad de aminoácidos con la humana** y el gen está muy conservado entre mamíferos; además *"se ha descrito que la longitud de KRT10 es polimórfica en humanos"* (Minor et al. 2005, [DOI](https://doi.org/10.1080/10425170500069932)). **Ese polimorfismo de longitud es un aviso para la numeración de residuos**: refuerza que el número de codón hay que anclarlo al **motivo conservado**, no al valor absoluto (§2ter.2sexies).
+- En el shar-pei, la **KRT1 estaba en niveles normales por inmunohistoquímica**, y los autores proponen que la variante interfiere con la **dimerización** más que con la estabilidad. Buen precedente de que "hay proteína" no equivale a "la proteína funciona" — relevante para cómo interpretes tu Western.
+
+### 3.3ter Otros ratones con K10 manipulada que NO son modelos de EI
+Para que no los confundas al citar: hay transgénicos que **expresan K10 fuera de su dominio normal** para estudiar señalización, no fragilidad.
+- K10 en la **capa basal**: activación deficiente de NF-κB y más TNF-α ([DOI](https://doi.org/10.1074/jbc.M208170200)).
+- K10 en el dominio de K6: **anomalías graves en mucosa oral**, lengua y paladar ([DOI](https://doi.org/10.1074/jbc.M205143200)).
+Son ganancia de función ectópica. No son modelos de EI y no sirven como comparadores de tu línea.
+
 ### 3.4 Conclusión del censo
 - Cantidad total: **~12 modelos** relevantes.
 - **CORRECCIÓN IMPORTANTE:** sí existe un knock-in de punto en el locus endógeno de *Krt10* que reproduce la mutación dominante humana más frecuente: **Arin et al. 2001, R154C murina = R156C humana** ([DOI](https://doi.org/10.1083/jcb.152.3.645)). Una versión previa de este documento afirmaba lo contrario; era incorrecto. Esto **elimina la novedad de "primer knock-in de R156C"** y obliga a reposicionar cualquier modelo nuevo de ese alelo (§2ter).
