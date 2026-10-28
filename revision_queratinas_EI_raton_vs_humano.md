@@ -338,6 +338,78 @@ Y lo demostraron bien: las lesiones persistían **6 meses**, cuando la epidermis
 5. Comprueba tu fondo genético.
 6. Busca en MGI (alelos de *Krt10*) y en preprints lo que yo no pude.
 
+### 2ter.2septies ⭐ CÓMO USAR ESTE PAPER PARA TU MODELO: guía práctica
+
+Olvidando el mosaicismo, esto es todo lo aprovechable del paper de Arin ([DOI](https://doi.org/10.1083/jcb.152.3.645), texto completo en [PMC2195990](https://pmc.ncbi.nlm.nih.gov/articles/PMC2195990/)).
+
+#### A. Tabla de comparación directa — rellena la columna derecha
+
+| Parámetro | Arin et al. 2001 | **Tu línea** |
+|---|---|---|
+| Mutación | Krt10 codón 154 Arg→Cys | ¿R154C confirmada por secuencia? |
+| Locus / estrategia | Knock-in por HR en locus endógeno | Knock-in por HDR con CRISPR |
+| Cicatriz en el locus | PGKneo en intrón 1, o loxP residual tras escisión | ¿Silenciosas de bloqueo del PAM? ¿Cuántas y dónde? |
+| **mRNA mutante / mRNA WT** | **35–40 %** (línea con neo) | **← el dato que falta** |
+| Proteína K10 total | No cuantificada por Western | ¿? |
+| Het: fenotipo | Muy leve, **restringido a piel con estrés mecánico** | Sin fenotipo |
+| Het limpio (quimeras): fenotipo | **Lesiones queratósicas focales en patas al nacer** → hiperqueratosis gruesas marrones | ¿Has mirado patas a P0–P2? |
+| Homocigoto: supervivencia | **Muere poco después de nacer** | **Viable** ← tu mejor dato |
+| Homocigoto: histología | **Desintegración completa del estrato espinoso** en zonas lesionales | ¿? |
+| Homocigoto: K10 por IF | **Abundante en capas suprabasales** (toda de alelos mutantes → el mRNA mutante se traduce) | ¿? |
+| Fondo genético | 129SVJ × C57BL/6 (crías agutí) | ¿? |
+| Edad del fenotipado | Neonatos y hasta ~6 meses (inducidos) | ¿? |
+
+#### B. Métodos que puedes copiar tal cual
+
+**1. El ensayo de ratio alélico por AciI — esto es oro y es para ti.**
+La mutación **destruye un sitio de restricción AciI**. Por tanto, el mismo ensayo te sirve porque tienes la misma mutación. Del paper, verbatim:
+- RT-PCR sobre **cDNA**, fragmento de **280 pb** que abarca la mutación
+- Cebadores (ambos biotinilados): `5'-biotin GGATTCGGAGGAGATGGTGG-3'` y `5'-biotin CAATCTGCAGCAGCACGTTG-3'`
+- Digestión con **AciI** → el alelo **WT se corta en 210 + 70 pb**; el alelo **mutante es resistente**
+- Transferencia a nylon, detección quimioluminiscente no isotópica, y **cuantificación**
+
+Es un ensayo barato, cuantitativo, sobre mRNA, y **te da directamente el número que te falta**. Hoy lo harías con NGS de amplicón o ddPCR, pero el RFLP sigue valiendo y además te permite comparar con su cifra con el mismo método.
+
+⚠️ **Antes de pedir los cebadores, comprueba en silico:** (a) que tus **silenciosas de bloqueo del PAM no caen sobre las zonas de unión de los cebadores**; (b) que no **crean ni destruyen otros sitios AciI** dentro del amplicón, lo que te cambiaría el patrón de bandas; (c) que tu cambio de codón a Cys es **CGC→TGC** como el suyo — si usaste **TGT**, revisa si el sitio AciI se pierde igual.
+
+**2. Inmunofluorescencia de doble marcaje K10/K14.** Anticuerpos del paper: conejo anti-K10 murina + cobaya anti-K14 murina; secundarios anti-conejo-FITC y anti-cobaya-Texas red. Te da la combinación exacta para comparar tus imágenes con las suyas.
+
+**3. Genotipado** por PCR de biopsia de cola; homocigotos por intercruce de heterocigotos.
+
+**4. Dato de referencia reutilizable:** la **epidermis murina se renueva cada 8–10 días**. Lo necesitas para cualquier argumento de recambio o de persistencia.
+
+#### C. Lo que el paper NO hizo = tu plan de figuras
+
+Esto es, en mi lectura de sus Métodos (histología, IF, análisis de RNA y LCM), lo que **no** incluyeron. Cada línea es un hueco que puedes llenar:
+
+| Falta en Arin 2001 | Tu oportunidad |
+|---|---|
+| **Microscopía electrónica** | Sin TEM no hay demostración de *clumping* de tonofilamentos. **Es el criterio ultraestructural de EI.** Figura obligada y tuya |
+| **Western / cuantificación de proteína** | Solo hicieron IF. Nadie ha cuantificado K10 mutante vs WT en este alelo. Y con fracción **insoluble** incluida |
+| **Función de barrera** | Ni TEWL, ni *dye exclusion*, ni hidratación del córneo, ni lípidos |
+| **Mapa sistemático por sitio corporal** | Dorso vs patas (almohadilla vs interalmohadilla, §1.3) vs cola vs oreja |
+| **Perfil de compensación** | Solo miraron K10 y K14. Faltan K6/K16/K17, K5/K15, K2, K9, K77 |
+| **Caracterización del het germinal limpio** | Su alelo limpio solo se describió en **quimeras** (§2ter.5). Tu línea es ese animal |
+| **Curso temporal largo y envejecimiento** | Nada más allá de ~6 meses |
+| **Inflamación / transcriptómica** | Nada. Y hay precedente fuerte en K1 con IL-18 ([DOI](https://doi.org/10.1242/jcs.116574)) |
+| **Rigor moderno** | Sin n declarados ni sexos ni fondo puro ni ARRIVE. Tú sí puedes |
+| **Proteostasis** | Nada de ubicuitinación, autofagia ni UPR (§2quater) |
+
+#### D. Cautelas al comparar
+
+- **Fondo distinto** (129×B6 mixto en su caso): una diferencia de fenotipo puede ser de modificadores, no de alelo.
+- **Cicatriz distinta**: su atenuador es un cassette, el tuyo —si existe— serían silenciosas. No son el mismo insulto molecular.
+- **Su fenotipado es descriptivo**, no cuantificado, y de 2001. No intentes comparar severidades "a ojo": compara **variables medibles** (ratio alélico, TEWL, grosor epidérmico, índice mitótico).
+- **Compara genotipo contra genotipo equivalente**, no "mi het contra su ratón". Su het con neo y su het limpio son animales distintos.
+
+#### E. El orden en que yo lo haría
+1. **Ratio alélico de mRNA** (ensayo AciI o NGS de amplicón). Es el número que decide toda la interpretación.
+2. **Secuenciar el cDNA** completo y buscar splicing aberrante.
+3. **Western con fracción insoluble**, het y homocigoto.
+4. **Patas a P0–P2**, histología por compartimento.
+5. **TEM** del homocigoto: ¿hay *clumping* o no? Decide si es dominante-negativo o fenocopia del nulo.
+6. Barrera, compensación, y a partir de ahí la historia.
+
 ### 2ter.3 Las tres consecuencias para tu tesis
 1. **Mi hipótesis nº1 (desequilibrio de expresión alélica por cassette residual) no es teórica: es el mecanismo publicado y medido de este mismísimo alelo.** Un neo en el intrón 1 bajó el mutante al 35–40 % y eso bastó para borrar el fenotipo del heterocigoto. **Si tu línea conserva cassette, neo, o incluso solo la cicatriz loxP/FRT en un intrón, tienes la explicación completa de tu patrón, ya validada en la literatura para R154C.** Esto pasa a ser la primera cosa que debes comprobar, no la tercera.
 2. **Tu homocigoto es viable; los de Arin con neo morían al nacer.** Esa es una diferencia real y es tu dato más interesante: sugiere que tu alelo mutante se expresa **aún por debajo del 35–40 %**, o que el fondo genético amortigua más. Un **R156C viable en homocigosis** es precisamente la herramienta que falta (los modelos severos son letales y no sirven para ensayos terapéuticos longitudinales).
