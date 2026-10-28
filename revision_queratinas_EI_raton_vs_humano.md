@@ -210,6 +210,26 @@ Y lo demostraron bien: las lesiones persistían **6 meses**, cuando la epidermis
 
 **La diferencia con lo tuyo:** tú llegas al mismo destino (cambiar el codón en el locus real) por una ruta sin cassettes de selección, porque CRISPR te da el corte dirigido y no necesitas G418/FIAU para encontrar los clones correctos. **Consecuencia: tú no tienes el "regulador de intensidad" de Arin — y por tanto tu alelo debería expresarse al 100 %.** Que tu fenotipo sea más leve de lo esperado apunta a que algo te lo está atenuando de forma no intencionada (§2ter.6).
 
+### 2ter.2quinquies Sí: se integra por recombinación homóloga, **sin CRISPR**
+
+**La recombinación homóloga (HR) la hace la célula, no la herramienta.** Es una vía de reparación propia del genoma, que copia de un molde homólogo. CRISPR **no recombina**: solo hace un corte de doble cadena que *estimula* esa vía. Quita CRISPR y la vía sigue ahí — solo que mucho menos eficiente.
+
+| | **Gene targeting clásico (Arin 2001)** | **Knock-in asistido por CRISPR (tu línea)** |
+|---|---|---|
+| Vía de reparación | **HR / HDR** — la misma | **HR / HDR** — la misma |
+| Qué la inicia | **Nada**. Evento espontáneo | **Corte dirigido** por Cas9 + gRNA |
+| Eficiencia | Rarísima (orden de 1 en 10⁶–10⁷ células), y la integración **al azar es mucho más frecuente** que la homóloga | Órdenes de magnitud mayor |
+| Dónde se hace | **Células ES** en placa, porque hay que cribar miles de clones | **Directamente en el cigoto** |
+| Brazos de homología | **Largos** (aquí 4,8 kb de *Krt10* genómico, y del **mismo fondo**, 129SVJ — el DNA isogénico mejora la eficiencia) | Cortos, o incluso un ssODN |
+| ¿Hace falta selección? | **Sí, obligatoria**: G418 (a favor) + FIAU (contra la tk) y luego Southern | **No** |
+| Cicatriz que deja | **Cassette de selección** (o los loxP/FRT residuales tras escindirlo) | **Mutaciones silenciosas de bloqueo del PAM** (± indeles) |
+
+**Por qué la selección era obligatoria y ahora no.** Sin corte, los eventos correctos son tan raros que no puedes encontrarlos cribando a ciegas. De ahí el truco de la doble selección: el **neo** queda *dentro* de los brazos de homología (sobrevive a la recombinación homóloga) y la **timidina quinasa** queda *fuera* (se pierde si la recombinación fue homóloga, se conserva si la integración fue al azar). Así, G418 mata lo que no integró nada y FIAU mata lo que integró en sitio equivocado. **El cassette no era un elemento de diseño del modelo: era el instrumento de búsqueda.** Que acabara atenuando la expresión fue un efecto secundario.
+
+**Nota de vocabulario** (porque mencionaste "una guía de recombinación homóloga"): son **dos moléculas distintas**. El **gRNA** solo dirige el corte de Cas9. El **molde/donador de HDR** es el que aporta la secuencia a copiar. La guía corta; el donador escribe.
+
+> **La idea que une las dos eras: cada método deja su propia cicatriz, y las dos pueden atenuar la expresión.** La clásica deja un cassette; CRISPR deja cambios silenciosos para que la guía no vuelva a cortar el alelo ya corregido. Arin acabó con un alelo al 35–40 % por un cassette; **tú puedes acabar con un alelo atenuado por unas silenciosas que rompan un *exonic splicing enhancer* o creen un sitio críptico de splicing.** Mismo resultado fenotípico, origen técnico distinto. Por eso el experimento decisivo es el mismo en ambos casos: **cuantificar el ratio alélico de mRNA y secuenciar el cDNA.**
+
 ### 2ter.3 Las tres consecuencias para tu tesis
 1. **Mi hipótesis nº1 (desequilibrio de expresión alélica por cassette residual) no es teórica: es el mecanismo publicado y medido de este mismísimo alelo.** Un neo en el intrón 1 bajó el mutante al 35–40 % y eso bastó para borrar el fenotipo del heterocigoto. **Si tu línea conserva cassette, neo, o incluso solo la cicatriz loxP/FRT en un intrón, tienes la explicación completa de tu patrón, ya validada en la literatura para R154C.** Esto pasa a ser la primera cosa que debes comprobar, no la tercera.
 2. **Tu homocigoto es viable; los de Arin con neo morían al nacer.** Esa es una diferencia real y es tu dato más interesante: sugiere que tu alelo mutante se expresa **aún por debajo del 35–40 %**, o que el fondo genético amortigua más. Un **R156C viable en homocigosis** es precisamente la herramienta que falta (los modelos severos son letales y no sirven para ensayos terapéuticos longitudinales).
