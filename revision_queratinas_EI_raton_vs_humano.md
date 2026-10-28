@@ -242,6 +242,35 @@ Y lo demostraron bien: las lesiones persistían **6 meses**, cuando la epidermis
 
 > **La idea que une las dos eras: cada método deja su propia cicatriz, y las dos pueden atenuar la expresión.** La clásica deja un cassette; CRISPR deja cambios silenciosos para que la guía no vuelva a cortar el alelo ya corregido. Arin acabó con un alelo al 35–40 % por un cassette; **tú puedes acabar con un alelo atenuado por unas silenciosas que rompan un *exonic splicing enhancer* o creen un sitio críptico de splicing.** Mismo resultado fenotípico, origen técnico distinto. Por eso el experimento decisivo es el mismo en ambos casos: **cuantificar el ratio alélico de mRNA y secuenciar el cDNA.**
 
+### 2ter.2sexies ⚠️ Estado epistémico de la comparación con Arin: qué está verificado y qué no
+
+**No dar por equivalentes los dos modelos sin comprobar esto.** Reparto honesto:
+
+**Sólido (leído en el texto completo del paper):**
+- El paper dice que el hotspot humano es el **codón 156** de *KRT10* y que ellos reemplazaron *"el codón salvaje en la posición 154"* por Cys en el *Krt10* murino.
+- Es un **knock-in por recombinación homóloga en el locus endógeno**, con expresión fisiológica, no sobreexpresión.
+- Los niveles (35–40 %) y los fenotipos por genotipo que cito son suyos, textuales.
+
+**Dado por bueno sin verificar (tu palabra, no he visto tu constructo ni tu secuencia):**
+- Que tu alelo sea R156C.
+- Que sea un knock-in endógeno sin cassette.
+
+**No verificado por mí, y me falta:**
+- **El alineamiento humano/ratón.** Deduzco la equivalencia R156↔R154 de lo que afirma el paper, no de un alineamiento propio. El dominio cabeza de K10 difiere de longitud entre especies, así que **haz tú el alineamiento**.
+- **El listado completo de alelos de *Krt10* en MGI** y los **preprints**: no pude acceder (fallos de DNS y de los servidores de bioRxiv/Consensus). Mi afirmación de que no hay otro modelo de R156C viene de **una búsqueda incompleta**.
+
+**Diferencias ciertas entre los dos modelos:** método (HR en ES con selección vs HDR asistida por CRISPR), cicatriz (cassette/loxP residual vs silenciosas de bloqueo del PAM), fondo genético (los suyos 129SVJ × C57BL/6) y — lo importante — **el fenotipo**.
+
+> **Y ahí está el argumento de fondo: si fueran equivalentes, tu heterocigoto tendría lesiones en patas al nacer y tu homocigoto estaría muerto. No es el caso.** Así que o algo atenúa tu alelo, o tienes un resultado propio. Las dos cosas son publicables, pero son historias distintas y hay que decidir cuál es antes de escribir.
+
+**Checklist antes de afirmar "nuestro modelo es equivalente al de Arin":**
+1. Alinea tú las proteínas K10 humana y murina y confirma el número de codón equivalente.
+2. Comprueba en qué numeración está anotada tu línea (R156C humana vs R154C murina) y **secuencia el codón real**.
+3. Confirma ausencia de cassette/loxP y **lista todas las silenciosas del donador**; secuencia el **cDNA** y busca splicing aberrante.
+4. Consigue las **figuras** del paper original y compara sitio por sitio, edad por edad, genotipo por genotipo.
+5. Comprueba tu fondo genético.
+6. Busca en MGI (alelos de *Krt10*) y en preprints lo que yo no pude.
+
 ### 2ter.3 Las tres consecuencias para tu tesis
 1. **Mi hipótesis nº1 (desequilibrio de expresión alélica por cassette residual) no es teórica: es el mecanismo publicado y medido de este mismísimo alelo.** Un neo en el intrón 1 bajó el mutante al 35–40 % y eso bastó para borrar el fenotipo del heterocigoto. **Si tu línea conserva cassette, neo, o incluso solo la cicatriz loxP/FRT en un intrón, tienes la explicación completa de tu patrón, ya validada en la literatura para R154C.** Esto pasa a ser la primera cosa que debes comprobar, no la tercera.
 2. **Tu homocigoto es viable; los de Arin con neo morían al nacer.** Esa es una diferencia real y es tu dato más interesante: sugiere que tu alelo mutante se expresa **aún por debajo del 35–40 %**, o que el fondo genético amortigua más. Un **R156C viable en homocigosis** es precisamente la herramienta que falta (los modelos severos son letales y no sirven para ensayos terapéuticos longitudinales).
