@@ -1,0 +1,35 @@
+========================================================================
+SECUENCIAS
+  humana : sp|P13645|K1C10_HUMAN Keratin, type I cytoskeletal 10 OS=Homo sapiens 
+           longitud = 584 aa
+  murina : sp|P02535|K1C10_MOUSE Keratin, type I cytoskeletal 10 OS=Mus musculus 
+           longitud = 570 aa
+  diferencia de longitud = +14 aa
+
+========================================================================
+RESIDUO HUMANO EN LA POSICION 156: R
+
+========================================================================
+(A) VENTANA DE CONTEXTO
+  ventana humana : GNEKVTMQNLNDRLASYLDKVRALE
+  ventana murina : GNGRVTMQNLNDRLASYMDKVRALE
+  identidad en la ventana: 22/25
+  --> posicion murina equivalente: 154  (residuo R)
+  --> desplazamiento humano->raton: -2
+
+========================================================================
+(B) ALINEAMIENTO GLOBAL (control independiente)
+  longitud del alineamiento: 592
+  identidad global: 478/570 = 83.9%
+  --> posicion murina equivalente: 154  (residuo R)
+
+  bloque alineado alrededor del residuo diana:
+    humana : GGGFGGDGG-LLSGNEKVTMQNLNDRLASYLDKVRALEESNYELEGKIKEW
+    murina : GGGFGGDGGSLLSGNGRVTMQNLNDRLASYMDKVRALEESNYELEGKIKEW
+                                      ^                         
+
+========================================================================
+VEREDICTO
+  Los dos metodos COINCIDEN: humana 156R  ==  murina 154R
+  Numeracion fiable. Desplazamiento -2 aa.
+========================================================================

@@ -151,6 +151,30 @@ Y transversal a las tres: **¿se está produciendo e incorporando la proteína m
 
 Según PubMed, el texto completo de **Arin MJ, Longley MA, Wang XJ, Roop DR**, *Focal activation of a mutant allele defines the role of stem cells in mosaic skin disorders*, J Cell Biol 2001;152:645 ([DOI](https://doi.org/10.1083/jcb.152.3.645), PMC2195990) establece lo siguiente:
 
+### 2ter.0 ✅ ALINEAMIENTO VERIFICADO: humana R156 ≡ murina R154
+
+Alineamiento hecho y comprobado (UniProt **P13645** humana, 584 aa; **P02535** murina, 570 aa; identidad global 83,9 %). Dos métodos independientes — ventana de contexto y Needleman-Wunsch global — **coinciden**. Script y resultado reproducibles en `alineamiento_k10/`.
+
+```
+humana : GGGFGGDGG-LLSGNEKVTMQNLNDRLASYLDKVRALEESNYELEGKIKEW
+murina : GGGFGGDGGSLLSGNGRVTMQNLNDRLASYMDKVRALEESNYELEGKIKEW
+                                  ^  (R156 humana = R154 murina)
+```
+
+| | |
+|---|---|
+| Residuo humano en 156 | **R** ✔ |
+| Posición murina equivalente | **154**, residuo **R** ✔ |
+| Desplazamiento | **−2 aa** |
+| Identidad en la ventana de 25 aa | 22/25 |
+| Motivo | `LNDRLASY` — **idéntico en ambas especies** (motivo de iniciación de hélice de coil 1A) |
+
+**Conclusión 1: la afirmación del paper de Arin queda confirmada de forma independiente.** Humana R156 = murina R154. Puedes citarlo con seguridad, y tu alelo R156C corresponde a **R154C** en nomenclatura murina.
+
+**Conclusión 2, y es un resultado negativo importante: queda descartada la hipótesis de que "en ratón ese residuo o su contexto son distintos".** El residuo es la misma arginina, el motivo `LNDRLASY` es idéntico, y las únicas diferencias de la ventana (E→G y K→R en 148–149, y L→M justo tras el motivo) están fuera del motivo. **La atenuación murina no se explica por el contexto local de secuencia.** Tiene que venir del nivel de expresión, de la compensación por otras queratinas, o de la carga mecánica (§1.4) — no de la secuencia alrededor de la mutación. Eso elimina una de las explicaciones candidatas y estrecha el problema.
+
+**Detalle útil:** la murina es 14 aa más corta en total, pero en la posición 156 el desplazamiento es solo de **2**. Es decir, la mayor parte de la diferencia de longitud está en la **cola C-terminal rica en glicina**, no en la cabeza — consistente con el patrón descrito para ortólogos de queratinas, donde las diferencias de tamaño se concentran en los subdominios V ricos en glicina ([DOI](https://doi.org/10.1111/1523-1747.ep12371757)).
+
 ### 2ter.1 Equivalencia de numeración
 El paper confirma que el hotspot humano es el **codón 156 de *KRT10***, un residuo de arginina evolutivamente muy conservado, hotspot por metilación de CpG y desaminación; y que el codón equivalente en el ***Krt10* murino es el 154**. Es decir:
 
@@ -255,9 +279,11 @@ Y lo demostraron bien: las lesiones persistían **6 meses**, cuando la epidermis
 - Que tu alelo sea R156C.
 - Que sea un knock-in endógeno sin cassette.
 
-**No verificado por mí, y me falta:**
-- **El alineamiento humano/ratón.** Deduzco la equivalencia R156↔R154 de lo que afirma el paper, no de un alineamiento propio. El dominio cabeza de K10 difiere de longitud entre especies, así que **haz tú el alineamiento**.
-- **El listado completo de alelos de *Krt10* en MGI** y los **preprints**: no pude acceder (fallos de DNS y de los servidores de bioRxiv/Consensus). Mi afirmación de que no hay otro modelo de R156C viene de **una búsqueda incompleta**.
+**Ya verificado (antes figuraba como pendiente):**
+- ✅ **El alineamiento humano/ratón.** Hecho con P13645 y P02535, dos métodos concordantes: **R156 humana = R154 murina**, desplazamiento −2 (§2ter.0). Ya no depende de la palabra del paper.
+
+**No verificado, y me falta:**
+- **El listado completo de alelos de *Krt10* en MGI** y los **preprints**: no pude acceder (DNS bloqueado para informatics.jax.org y NCBI; los servidores de bioRxiv/Consensus nunca conectaron). Mi afirmación de que no hay otro modelo murino de R156C/R154C viene de **una búsqueda incompleta** — ver §3.4bis para por qué y cómo cerrarla.
 
 **Diferencias ciertas entre los dos modelos:** método (HR en ES con selección vs HDR asistida por CRISPR), cicatriz (cassette/loxP residual vs silenciosas de bloqueo del PAM), fondo genético (los suyos 129SVJ × C57BL/6) y — lo importante — **el fenotipo**.
 
@@ -426,6 +452,25 @@ Para que no los confundas al citar: hay transgénicos que **expresan K10 fuera d
 - K10 en el dominio de K6: **anomalías graves en mucosa oral**, lengua y paladar ([DOI](https://doi.org/10.1074/jbc.M205143200)).
 Son ganancia de función ectópica. No son modelos de EI y no sirven como comparadores de tu línea.
 
+### 3.4bis ¿Hay algún otro ratón con esta misma mutación (R154C)?
+
+**Lo que encontré: solo el de Arin et al. 2001.** No localicé ningún otro modelo murino publicado que porte R154C/R156C.
+
+**Pero esa búsqueda tiene un agujero metodológico que debes conocer, porque afecta a cómo lo escribes:**
+
+⚠️ **PubMed no indexa texto completo.** El paper de Arin **nunca dice "R154C" en el título ni en el resumen** — habla de "una mutación de K10", y el codón 154 solo aparece en Materiales y Métodos. Por eso **una búsqueda en PubMed de "R154C" NO lo encuentra** (lo comprobé: cero resultados). Y por la misma lógica, esa búsqueda podría estar perdiendo otros modelos. **No puedes concluir "no existe otro" desde PubMed.**
+
+Añade a eso lo que no pude consultar en esta sesión: **MGI** (DNS bloqueado; un fragmento de búsqueda web mencionaba ~22 mutaciones/alelos de *Krt10* listados, sin detallarlos), **NCBI**, **IMSR** y los **preprints** (bioRxiv/Consensus no conectaron).
+
+**Cómo cerrarlo de verdad, en este orden:**
+1. **MGI → búsqueda de alelos de *Krt10*** (informatics.jax.org). Es la fuente canónica: lista cada alelo con su tipo (targeted, point mutation, endonuclease-mediated…) y la sustitución nombrada. Es lo único que te da el censo completo.
+2. **IMSR** para saber qué cepas están disponibles físicamente.
+3. **Google Scholar con búsqueda a texto completo**: `"R154C" keratin`, `"R154C" Krt10`, `"K10" "R154C"`. Scholar sí indexa el cuerpo del artículo, a diferencia de PubMed.
+4. **Rastreo de citas hacia adelante de Arin 2001** (JCB 152:645): quién lo cita es la vía más fiable para encontrar trabajos que reutilicen esa línea.
+5. **Alliance of Genome Resources** y **bioRxiv**.
+
+**Y una gestión que puede valer más que toda la búsqueda:** la línea de Arin puede seguir existiendo. Merece la pena escribir a **Dennis Roop** (U. Colorado Anschutz) o a **Meral Arin** (Colonia) y preguntar. Si consiguieras esa línea, **una comparación lado a lado de los dos alelos R154C en el mismo fondo genético sería un paper muy fuerte** — y resolvería de golpe tu enigma del homocigoto viable.
+
 ### 3.4 Conclusión del censo
 - Cantidad total: **~12 modelos** relevantes.
 - **CORRECCIÓN IMPORTANTE:** sí existe un knock-in de punto en el locus endógeno de *Krt10* que reproduce la mutación dominante humana más frecuente: **Arin et al. 2001, R154C murina = R156C humana** ([DOI](https://doi.org/10.1083/jcb.152.3.645)). Una versión previa de este documento afirmaba lo contrario; era incorrecto. Esto **elimina la novedad de "primer knock-in de R156C"** y obliga a reposicionar cualquier modelo nuevo de ese alelo (§2ter).
@@ -461,7 +506,7 @@ Orden de prioridad, de más informativo y barato a más costoso:
 2. **¿Hay proteína mutante, y a qué nivel?** Western con anticuerpo pan-K10, y si es posible detección específica de la forma mutante; cuantificar K10 total en het vs WT vs homo. En EI dominante humana la clave es que la mutante **se expresa e incorpora**.
 3. **¿Se incorpora al filamento o se agrega?** Inmunofluorescencia + **inmuno-EM / doble inmunogold** (como hicieron con K10T, [DOI](https://doi.org/10.1242/jcs.110.18.2175)). Si no hay agregados de tonofilamentos, no hay dominante-negativo, punto.
 4. **¿Splicing aberrante?** RT-PCR de la región + secuenciación del amplicón. Un sitio donador "leaky" cambia toda la interpretación (es el mecanismo propuesto en los fenotipos humanos autolimitados).
-5. **Conservación del residuo**: alinea K10 humana vs. murina en la posición mutada y su contexto (motivos de frontera de hélice, L12 linker). Si el residuo o su entorno no está conservado, tienes un argumento directo de "en ratón esta mutación no es equivalente" — y un paper de 2024 sobre variantes del **linker L12 de KRT10** te da marco para discutir dominio-dependencia del fenotipo.
+5. ~~**Conservación del residuo**~~ ✅ **RESUELTO, y en negativo.** El alineamiento está hecho (§2ter.0): R156 humana = R154 murina, mismo residuo, motivo `LNDRLASY` idéntico. **No puedes argumentar que "en ratón esta mutación no es equivalente" por contexto de secuencia.** Para discutir dominio-dependencia del fenotipo sigue sirviendo el trabajo sobre variantes del **linker L12 de *KRT10***, pero no como explicación de tu caso.
 
 **B. Desenmascarar el fenotipo (si A dice que sí hay proteína mutante)**
 6. **Sitio corporal**: no te quedes en dorso. Fenotipa **almohadillas plantares, planta interfootpad, oreja, cola (escama vs. interescama)** — ahí cambian K2, K9 y la protección folicular. Bickenbach vio ampollas en footpad y no en piel pilosa ([DOI](https://doi.org/10.1046/j.1432-0436.1996.6120129.x)).
