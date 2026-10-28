@@ -226,7 +226,22 @@ Bickenbach lo dice sin rodeos para su transgénico: hacía falta *"una concentra
 
    Misma herramienta, efectos opuestos: en un caso Cre **arregla**, en el otro Cre **destruye**. Cuando leas "floxed" en un paper, mira siempre qué hay entre los loxP.
 
-   **Qué aportó Cre/loxP científicamente** (más allá de la limpieza rutinaria): les permitió **esquivar la letalidad neonatal** de la expresión plena, **modelar la forma en mosaico** del EHK, **demostrar que células madre mutantes y salvajes coexisten** (microdisección láser + PCR), y construir el argumento de **dosis–respuesta** que fundamenta el "basta con supresión parcial del alelo mutante" para terapia. **Tú no necesitas Cre/loxP**: no tienes cassette que quitar, y tu homocigoto viable ya te da el fenotipo sin letalidad.
+   **¿Para qué se molestaron en hacerlo inducible?** No era para "tener un modelo de EI" — era para responder una pregunta que un ratón constitutivo **no puede** responder. La pregunta, textual del paper: *"¿por qué existen formas en mosaico del EHK y nunca se han descrito para la EBS?"*
+
+   La **EHK en mosaico** son pacientes con franjas alternas de piel afectada y normal siguiendo las líneas de Blaschko, por mutaciones **postcigóticas** durante la embriogénesis: unas células llevan la mutación y otras no. Para estudiar eso necesitas **fabricar mosaicismo a propósito**, y un knock-in constitutivo no sirve: ahí *todas* las células llevan la mutación desde la concepción.
+
+   El sistema inducible resuelve cuatro cosas de golpe:
+
+   1. **Esquiva la letalidad.** Con el neo puesto el ratón está casi normal y **vivo**. Luego subes el alelo al 100 % **solo en un parche de piel**. Obtienes epidermis mutante a plena potencia en un **adulto vivo** — algo que el homocigoto, que muere al nacer, no te da nunca.
+   2. **Crea el mosaico.** Al pintar una zona, unas células basales pierden el neo (pasan a mutantes plenas) y sus vecinas no. Eso **es** la EHK en mosaico humana, reconstruida.
+   3. **Demuestra que ocurre en células madre.** Las lesiones **persistieron 6 meses** mientras la epidermis murina se renueva cada 8–10 días. Si la escisión hubiera ocurrido en células transitorias, el parche se habría descamado en días. Confirmado además por microdisección láser + PCR: neo ausente en la lesión, presente en la piel vecina.
+   4. **Da la respuesta a la pregunta inicial.** En EHK el parche mutante **persiste de por vida**; en el modelo equivalente de EBS las ampollas **curan**, porque las células madre normales de alrededor migran y repueblan. ¿Por qué? **Porque el alelo mutante de K10 no se expresa en la capa basal** (K10 es suprabasal): una célula madre mutante de EHK se ve y se comporta como normal, **no hay presión selectiva contra ella**, sobrevive y sigue produciendo progenie defectuosa indefinidamente. En EBS la mutación está en K5/K14, que **sí** son basales, así que la propia célula madre está enferma y es eliminada por competencia.
+
+   **Y el beneficio terapéutico que se deriva, que es lo más citado:** (a) para EHK no basta con corregir células, hay que **eliminar las células madre defectuosas**, porque solas no se van — mientras que para EBS corregir basta; (b) como la severidad **seguía al nivel de expresión del mutante**, *"la mejora del fenotipo puede lograrse mediante supresión parcial del alelo mutante"*. Ese es el fundamento de las estrategias de siRNA/ASO alelo-específicos.
+
+   Bonus de diseño: piel tratada y no tratada **en el mismo animal** = control interno perfecto, sin variabilidad entre camadas.
+
+   **Tú no necesitas nada de esto.** No tienes cassette que quitar, tu homocigoto viable ya te da fenotipo sin letalidad, y la pregunta del mosaicismo ya está respondida. Tu valor está en otro sitio: el umbral de dosis y el homocigoto viable como banco de pruebas terapéutico.
 
 **Cómo funciona el inducible, en concreto:** cruzaron los `+/mut^neo` con una línea **CrePR1**, que expresa una Cre fusionada a un **receptor de progesterona truncado**, bajo un promotor epitelial activo en la **capa basal** (donde viven las células madre). Esa proteína de fusión solo responde a **RU486**, no a la progesterona del animal.
 
