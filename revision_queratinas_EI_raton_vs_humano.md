@@ -196,6 +196,12 @@ Bickenbach lo dice sin rodeos para su transgénico: hacía falta *"una concentra
 
    ⚠️ **Y deja cicatriz: un loxP residual.** Tras la escisión siempre **queda un sitio loxP** en el locus — en este caso, en el **intrón 1**. Es decir, el alelo "limpio" de Arin **no tiene arquitectura totalmente salvaje**: lleva 34 pb exógenas en el intrón 1. Relevante para ti por dos motivos: (a) tu alelo CRISPR no tiene ese loxP, así que no sois estrictamente idénticos ni siquiera comparando con su línea sin neo; (b) un loxP intrónico residual es, en principio, otro candidato a alterar splicing — menos que un cassette entero, pero no es nada.
 
+   📖 **Vocabulario: "floxed" tiene dos usos muy distintos y se confunden.** *Floxed* = *flanked by loxP*. Pero según **qué** flanquees:
+   - **Cassette floxeado** (lo de Arin): los loxP rodean el **neo**. Cre → se va el cassette → el gen queda normal. Sirve para **limpiar la herramienta de selección**.
+   - **Exón floxeado** (el "alelo condicional" clásico): los loxP rodean un **exón del propio gen**. Cre → se va el exón → el gen se **rompe**. Sirve para hacer **knockouts tejido-específicos**.
+
+   Misma herramienta, efectos opuestos: en un caso Cre **arregla**, en el otro Cre **destruye**. Cuando leas "floxed" en un paper, mira siempre qué hay entre los loxP.
+
    **Qué aportó Cre/loxP científicamente** (más allá de la limpieza rutinaria): les permitió **esquivar la letalidad neonatal** de la expresión plena, **modelar la forma en mosaico** del EHK, **demostrar que células madre mutantes y salvajes coexisten** (microdisección láser + PCR), y construir el argumento de **dosis–respuesta** que fundamenta el "basta con supresión parcial del alelo mutante" para terapia. **Tú no necesitas Cre/loxP**: no tienes cassette que quitar, y tu homocigoto viable ya te da el fenotipo sin letalidad.
 
 **Cómo funciona el inducible, en concreto:** cruzaron los `+/mut^neo` con una línea **CrePR1**, que expresa una Cre fusionada a un **receptor de progesterona truncado**, bajo un promotor epitelial activo en la **capa basal** (donde viven las células madre). Esa proteína de fusión solo responde a **RU486** (mifepristona), no a la progesterona del animal. Sin RU486 se queda secuestrada en el citoplasma y no llega al DNA. Al pintar RU486 tópico (0,5 mg/ml, una vez al día, 4–5 días en neonatos) entra al núcleo, **corta el neo**, y esa célula y toda su descendencia pasan a expresar K10 mutante al 100 % — solo en la zona pintada.
