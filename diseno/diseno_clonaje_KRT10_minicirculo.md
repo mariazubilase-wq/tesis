@@ -440,7 +440,31 @@ que no es K10.
 
 ---
 
-### 5.4 Simular el clonaje antes de hacerlo
+### 5.4 La vía que finalmente se ha seguido: In-Fusion en MN502A1
+
+Lo de arriba (restricción direccional NheI + BamHI) sigue siendo válido, pero el
+clonaje se ha hecho por **ensamblado por homología** (In-Fusion de Takara) sobre
+**MN502A1**, con los cebadores `ClonK10MC_F` / `ClonK10MC_R` y el vector
+linealizado con **BamHI** (sitio único, posición 1410). Protocolo de banco:
+`2026-10-08_Protocolo_InFusion_K10MC_MN502A1`.
+
+Verificado contra los dos `.dna` reales:
+
+| | |
+|---|---|
+| Producto | **7.746 pb** circular (5.985 del vector + 1.761 nuevos) |
+| Inserto | ORF de **584 aa**, sin stops internos, Myc-DDK recortada |
+| Uniones | sin cicatriz; brazos de 15 nt a cada lado |
+| BamHI | **destruida** en el clon → cribado directo (el clon correcto no corta) |
+| Diagnóstico de tamaño | NheI (1387) + SalI (3185): libera el inserto + 37 pb |
+| PCR de colonia | `MN_EF1a_F` + `ClonK10MC_R` → 1.931 pb |
+| Resto del plásmido | idéntico al parental, incluidas las 32 repeticiones I-SceI |
+
+El recorte de la etiqueta cae donde debe: el ORF acaba en `…SVGESSSKGPRY` + dos
+stops, y el linker `TRTRPLE` + `EQKLISEEDL` (Myc) + `DYKDDDDK` (DDK) del donante
+queda fuera.
+
+### 5.4b Simular el clonaje antes de hacerlo
 
 Con los cebadores ya decididos, `herramientas/simula_clonaje.py` monta el plásmido
 resultante en el ordenador y lo escribe como `.dna` (lo abre SnapGene Viewer, que

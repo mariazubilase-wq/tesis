@@ -173,6 +173,7 @@ def _lee_cebadores(cuerpo: bytes) -> list[Rasgo]:
     except ET.ParseError:
         return []
     fuera: list[Rasgo] = []
+    vistos = set()
     for c in xml.findall("Primer"):
         for s in c.findall("BindingSite"):
             loc = s.get("location", "")
@@ -184,8 +185,13 @@ def _lee_cebadores(cuerpo: bytes) -> list[Rasgo]:
             except ValueError:
                 continue
             hebra = -1 if s.get("boundStrand") == "1" else 1
-            fuera.append(Rasgo("primer_bind", i, f + 1, hebra,
-                               c.get("name", "cebador"),
+            nombre = c.get("name", "cebador")
+            # SnapGene repite cada sitio (normal y simplified="1").
+            clave = (nombre, i, f, hebra)
+            if clave in vistos:
+                continue
+            vistos.add(clave)
+            fuera.append(Rasgo("primer_bind", i, f + 1, hebra, nombre,
                                {"note": c.get("sequence", "")}))
     return fuera
 

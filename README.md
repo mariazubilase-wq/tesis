@@ -63,6 +63,31 @@ Sale el `.dna`, el `.gb`, el GenBank del amplicón sin digerir y un informe con 
 uniones, el ORF traducido y las digestiones diagnósticas. Si no le pasas los
 cebadores, con `--auto` los calcula del CDS del donante.
 
+### Ensamblado por homología (In-Fusion de Takara, Gibson, HiFi)
+
+Es la vía que se ha seguido para **K10MC en MN502A1**: el vector se linealiza con
+**una** enzima y los brazos de homología los llevan las colas 5' de los cebadores,
+sin digerir el inserto y sin cicatriz en las uniones.
+
+```bash
+python3 simula_clonaje.py \
+    --aceptor  ../secuencias/MN502A1.dna \
+    --donante  ../secuencias/pCMV6-KRT10.dna \
+    --directo  TTCGAATTTAAATCGGCCATGTCTGTTCGATACAGCTCAAGC \
+    --reverso  ACGCGGCCGCGGATCTTATCAGTATCTTGGTCCCTTAGATGAAGACTCGCC \
+    --infusion BamHI-HF \
+    --nombre-orf KRT10 \
+    --nombre   MN502A1-K10MC \
+    --salida   ../resultados
+```
+
+Resultado: **7.746 pb**, ORF de **584 aa** sin stops internos, la diana BamHI
+**destruida** (el cribado del protocolo) y el resto del plásmido idéntico al
+parental, repeticiones I-SceI incluidas. Comprueba además que los brazos midan lo
+que pide el protocolo (≥15 nt), que no aparezcan dos veces en el vector y que las
+uniones reconstruyan la secuencia del parental sin cicatriz; por debajo de 8 nt de
+solape se para, porque eso ya no es un brazo de homología.
+
 Acepta de entrada `.gb`, `.gbk`, `.fa`, `.fasta`, **`.dna`** y texto plano, así que
 si SBI te manda el vector como `.dna` de SnapGene vale directamente.
 
