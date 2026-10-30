@@ -1,0 +1,24 @@
+LOCUS       amplicon_pDonante-GEN_DEMO_DEMO         336 bp    DNA     linear SYN 30-OCT-2026
+DEFINITION  amplicón de PCR antes de digerir
+ACCESSION   amplicon_pDonante-GEN_DEMO_DEMO
+VERSION     .
+KEYWORDS    .
+SOURCE      secuencia construida in silico
+  ORGANISM  secuencia construida in silico
+FEATURES             Location/Qualifiers
+     CDS             19..321
+                     /label="GEN_DEMO"
+     primer_bind     1..50
+                     /label="cebador directo"
+                     /note="cola 5' de 18 nt + 32 nt de apareamiento"
+     primer_bind     complement(294..336)
+                     /label="cebador reverso"
+                     /note="cola 5' de 15 nt + 28 nt de apareamiento"
+ORIGIN
+        1 caccacgcta gcgccaccat gtttcctcat gcaattcaaa accatgtccg taatgtaggc
+       61 gaaatagtaa accattttac ggaggatacc aaattcctcc ttattcagga cctaacctgc
+      121 ggtaaaccag gtctctccgc ccccttatac aagctgttgc acctagccaa gttcaacggc
+      181 agctgcaatg gaaataggca atgccggata tatattaaaa agtgttttaa gatacattgc
+      241 ggcccgttcg tgctcctcgc cctgaagcat tgctttgtga agagggactt cagccaatac
+      301 acctgcatac cggctcatta atgaggatcc gtggtg
+//

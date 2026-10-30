@@ -11,3 +11,6 @@ diseno/informe_*.md
 
 __pycache__/
 *.pyc
+
+# Salidas de simula_clonaje.py (lo versionado es ejemplo/)
+resultados/

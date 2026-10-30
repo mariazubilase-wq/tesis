@@ -34,6 +34,11 @@ Así que el diseño va en dos piezas:
 |---|---|---|
 | **Este documento** | Todas las decisiones de diseño, la lógica, los protocolos y los controles | Cerrado |
 | **`herramientas/disena_clonaje.py`** | Calcula las secuencias literales de los cebadores y todos los tamaños a partir de **tus** dos ficheros | Escrito y probado (29/29 comprobaciones) |
+| **`herramientas/simula_clonaje.py`** | Monta el plásmido resultante a partir de **tus** dos ficheros y lo escribe como `.dna` de SnapGene y como GenBank | Escrito y probado (96/96 comprobaciones) |
+
+Las dos herramientas están probadas contra vectores sintéticos; lo que **no** está
+verificado es ninguna secuencia real, porque no las tengo. El `.dna` que sale es
+tan correcto como los dos ficheros que le des.
 
 Lo que sí está verificado por búsqueda: la existencia y el nombre del vector
 parental, y el número de catálogo **MN502A-1** (aparece en la ficha de producto;
@@ -435,6 +440,38 @@ que no es K10.
 
 ---
 
+### 5.4 Simular el clonaje antes de hacerlo
+
+Con los cebadores ya decididos, `herramientas/simula_clonaje.py` monta el plásmido
+resultante en el ordenador y lo escribe como `.dna` (lo abre SnapGene Viewer, que
+es gratis) y como GenBank:
+
+```bash
+cd herramientas
+python3 simula_clonaje.py \
+    --aceptor ../secuencias/pMC.EF1a-MCS-SV40polyA.gb \
+    --donante ../secuencias/pCMV6-KRT10.gb \
+    --directo <el que haya salido en §5.2> \
+    --reverso <el que haya salido en §5.2> \
+    --enzimas NheI-HF,BamHI-HF \
+    --nombre  pMC.EF1a-KRT10-SV40polyA \
+    --salida  ../resultados
+```
+
+Hace la PCR (localiza el apareamiento de cada cebador y añade las colas), digiere
+amplicón y vector, liga en dirección y comprueba que **las dos dianas se
+regeneran**. Si algo no cuadra se para y lo dice en vez de escribir un mapa
+bonito y falso: diana repetida, extremos iguales, cebadores intercambiados, MCS a
+caballo del origen del fichero.
+
+El informe que saca trae las uniones con 24 nt a cada lado —justo las dos cajas de
+§5.1b, ya con la secuencia real de KRT10 dentro— y la traducción de los extremos
+del ORF. **Compara esas uniones con §5.1b antes de pedir los cebadores.**
+
+Lo que predice es lo que *debería* salir. No sustituye a §7.
+
+---
+
 ## 6. Protocolo de banco
 
 ### 6.1 PCR del inserto
@@ -542,6 +579,12 @@ No des por bueno nada antes de esto:
    (b) hay dos stops y no hay etiqueta detrás, (c) **attB y attP están intactos**,
    y (d) la traducción del inserto coincide con K10 silvestre de referencia,
    incluido el número de repeticiones de glicina de la cola.
+4. **Alinea las lecturas contra el mapa predicho** (§5.4). El `.dna`/`.gb` que sale
+   de `simula_clonaje.py` es la referencia frente a la que alinear: así las
+   diferencias salen como diferencias en vez de tener que leerlas a ojo. Ojo con
+   el sentido de la comprobación: que la lectura case con el mapa predicho
+   confirma el clonaje, no que la secuencia de partida fuera la correcta —de eso
+   responde (d).
 
 > Sobre (d): el dominio de cola de K1/K10 tiene **polimorfismo de longitud** en el
 > número de repeticiones ricas en glicina. Que tu clon difiera del RefSeq en esa

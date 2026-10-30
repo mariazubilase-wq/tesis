@@ -1,0 +1,82 @@
+LOCUS       pMC.EF1a-GEN_DEMO-SV40polyA        2211 bp    DNA     circular SYN 30-OCT-2026
+DEFINITION  pMC.EF1a-GEN_DEMO-SV40polyA: amplicón de pDonante-GEN_DEMO_DEMO clonado en pMC.EF1a-MCS-SV40polyA_DEMO con NheI-HF + BamHI-HF. Simulado, sin verificar por secuenciación.
+ACCESSION   pMC.EF1a-GEN_DEMO-SV40polyA
+VERSION     .
+KEYWORDS    .
+SOURCE      secuencia construida in silico
+  ORGANISM  secuencia construida in silico
+FEATURES             Location/Qualifiers
+     misc_recomb     1..34
+                     /label="attB"
+     promoter        75..294
+                     /label="promoter_EF1a"
+     misc_feature    301..306
+                     /label="unión 5' (NheI-HF)"
+                     /note="diana regenerada en la ligación"
+     misc_feature    302..619
+                     /label="inserto"
+                     /note="amplicón digerido, 318 pb"
+     primer_bind     302..344
+                     /label="cebador directo"
+                     /note="porción retenida tras la digestión"
+     regulatory      307..312
+                     /label="Kozak"
+                     /note="GCCACC"
+     CDS             313..615
+                     /label="GEN_DEMO"
+     CDS             313..615
+                     /label="ORF del inserto"
+                     /note="100 aminoácidos + stop"
+     primer_bind     complement(588..619)
+                     /label="cebador reverso"
+                     /note="porción retenida tras la digestión"
+     misc_feature    619..624
+                     /label="unión 3' (BamHI-HF)"
+                     /note="diana regenerada en la ligación"
+     polyA_signal    638..706
+                     /label="polyA_SV40"
+     misc_recomb     767..811
+                     /label="attP"
+     rep_origin      812..1411
+                     /label="rep_origin"
+     CDS             1412..2211
+                     /label="KanR"
+ORIGIN
+        1 gtgccagggc gtgcccttgg gctccccggg cgcgcgattc aaatgacggc agcaggccgg
+       61 gagtccctga gagggggcag gggcggggtt cggcttctgg cgtgtgaccg gcggcagatt
+      121 ttcatattat gcagaaaatc tacttcgcct gatacgagtc ggttatcttc ggatactgta
+      181 tagtcccacc tggtgatcct atgcttgtga gtacccagaa aatagcgacg gaccgcggtg
+      241 ttaagtgtcg agctacatca cttctcatgt agccagaagg ctgcaactca tcgatctaga
+      301 gctagcgcca ccatgtttcc tcatgcaatt caaaaccatg tccgtaatgt aggcgaaata
+      361 gtaaaccatt ttacggagga taccaaattc ctccttattc aggacctaac ctgcggtaaa
+      421 ccaggtctct ccgccccctt atacaagctg ttgcacctag ccaagttcaa cggcagctgc
+      481 aatggaaata ggcaatgccg gatatatatt aaaaagtgtt ttaagataca ttgcggcccg
+      541 ttcgtgctcc tcgccctgaa gcattgcttt gtgaagaggg acttcagcca atacacctgc
+      601 ataccggctc attaatgagg atccgcggcc gcgtcgaaac ttgtttattg cagcttataa
+      661 tggttacaaa taaagcaata gcatcacaaa tttcacaaat aaagcaggat cacagtctac
+      721 actgctcact ccaaccccgg cccctgagtc cgaggagagg gtgcttgtag tgccccaact
+      781 ggggtaacct ttgagttctc tcagttgggg gaaagcggca cttgtgaagt gttccccacg
+      841 ccgcttgggt cttctgtgtt gttcgcgtgg tgctgagaca aagcacgcca taaggccaaa
+      901 aaaaggccca taccaagagg tagtagtctc agaatcttgc gggtacagac ccatcaccta
+      961 gacggtgaca ttcaacaaac cacattgtcc ttaatcatga aggggataag catatttcaa
+     1021 gaggactcag ttcgtagaaa gtcaatatgg tcggttttgt cctgtaaagc ctaaacgtcg
+     1081 tcgactagcg cctctgctta tctatgtgtt ggaccttagt tcaatctcat cgctcattgc
+     1141 tcagatatgt gtaagctgca ctttgcagta gattcgtctg agggggtact cagactcgaa
+     1201 atgcggagtg cttgtctcgg cactcgcgcc cgttgggtga ggttcggtta cgtcaagcga
+     1261 tagctgtcgg ctaccggctg gagcccagga ccattgcgag tcatttgatt tctttaatca
+     1321 catgtagagc cactagtatc atcacaacag ccgtacacat cactgtcacc ctcggtctct
+     1381 ggaatggtgc tcaaccctac agtaccgaca cccgtaatgc ctttccctaa cagagttttt
+     1441 cgaactcgtg ttgtcgagcg acggaattag atcagttaaa tggcagaaaa ctggcagggc
+     1501 ttttagtcgt gggatgatca gtgggtaaag gtggcgcggg gtaacgcgcg ctaaggctca
+     1561 gctgcaacgc ggagctggtg tgttatccat tcatggcaga caactaatac gcataagcgt
+     1621 agccaaccgc attagcgtat gaacaaaata atgcgagttg ggcgtacata cagttatagt
+     1681 gtttaccgat ctcagggata tagaatccta aatcagaaat ggaacaaagc acccttggtg
+     1741 tatctcttct ccatttccgc cgcgtgcgag ttccgcgtct tctatatatc cacgccgcca
+     1801 gcagctaaaa ggagtgaagg tttacttcga gatatgaggt ggagatgagc ccgtaacgtg
+     1861 cttgcaactg aggtacatgc ggttagtacg aaaccttcct ccccgggatt tggtgtacaa
+     1921 ctctcccata gcctaaagca taggggcaaa gcactctgaa tacctttatc tgattttcta
+     1981 gggtgtcacg gctcccactc acacttcaat tgtaactatt accattccga gaaggtgtcg
+     2041 agggaataaa aaacatacgc tgtgatgtag ctatgtctgc gttcttggct taccataagc
+     2101 aattggaact aggataccac caacgcctgc tcaaaaacga attcatgtta gttcaatgag
+     2161 gctagtaccg agcttagcgc ccttgctttt agacaacgat accgttagtc g
+//

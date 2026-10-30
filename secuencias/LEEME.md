@@ -1,7 +1,8 @@
 # Ficheros de secuencia
 
-Deja aquí los dos ficheros. La herramienta acepta **GenBank** (`.gb`, `.gbk`),
-**FASTA** (`.fa`, `.fasta`) o texto plano con sólo la secuencia.
+Deja aquí los dos ficheros. Las herramientas aceptan **GenBank** (`.gb`, `.gbk`),
+**SnapGene** (`.dna`), **FASTA** (`.fa`, `.fasta`) o texto plano con sólo la
+secuencia. El `.dna` que manda SBI vale tal cual: no hay que convertirlo.
 
 ## 1. Donante — `pCMV6-KRT10`
 

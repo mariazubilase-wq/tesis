@@ -147,6 +147,9 @@ def lee_fasta(texto: str, procedencia: str = "") -> Registro:
 
 
 def lee(ruta: str) -> Registro:
+    if ruta.lower().endswith(".dna"):
+        from snapgene import lee_dna          # importación tardía: evita ciclo
+        return lee_dna(ruta)
     with open(ruta, "r", encoding="utf-8", errors="replace") as fh:
         texto = fh.read()
     if re.search(r"^LOCUS", texto, re.M):
@@ -162,3 +165,56 @@ def lee(ruta: str) -> Registro:
     if bases:
         raise ValueError(f"{ruta}: bases no reconocidas {sorted(bases)[:8]}")
     return r
+
+
+# ---------------------------------------------------------------------------
+# Escritura de GenBank
+# ---------------------------------------------------------------------------
+
+def _loc_genbank(r: "Rasgo") -> str:
+    loc = f"{r.inicio + 1}..{r.fin}"
+    return f"complement({loc})" if r.hebra == -1 else loc
+
+
+def escribe_genbank(registro: "Registro", ruta: str, descripcion: str = "") -> str:
+    """Escribe el registro en GenBank. Devuelve la ruta."""
+    import datetime
+
+    seq = limpia(registro.seq).lower()
+    topologia = "circular" if registro.circular else "linear"
+    fecha = datetime.date.today().strftime("%d-%b-%Y").upper()
+    nombre = (registro.nombre or "sin_nombre").replace(" ", "_")
+
+    # Columnas de la línea LOCUS tal y como las espera un lector estricto.
+    lineas = [
+        f"LOCUS       {nombre.ljust(16)} {len(seq):>11} bp    DNA     "
+        f"{topologia} SYN {fecha}",
+        f"DEFINITION  {descripcion or registro.nombre}",
+        f"ACCESSION   {nombre}",
+        "VERSION     .",
+        "KEYWORDS    .",
+        "SOURCE      secuencia construida in silico",
+        "  ORGANISM  secuencia construida in silico",
+        "FEATURES             Location/Qualifiers",
+    ]
+
+    for r in registro.rasgos:
+        if r.fin <= r.inicio:
+            continue
+        lineas.append(f"     {r.clave:<16}{_loc_genbank(r)}")
+        etiqueta = r.etiqueta or r.clave
+        lineas.append(f'                     /label="{etiqueta}"')
+        nota = r.cualificadores.get("note", "")
+        if nota:
+            lineas.append(f'                     /note="{nota}"')
+
+    lineas.append("ORIGIN")
+    for i in range(0, len(seq), 60):
+        bloque = seq[i:i + 60]
+        grupos = " ".join(bloque[j:j + 10] for j in range(0, len(bloque), 10))
+        lineas.append(f"{i + 1:>9} {grupos}")
+    lineas.append("//")
+
+    with open(ruta, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(lineas) + "\n")
+    return ruta
