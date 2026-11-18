@@ -52,13 +52,13 @@ def bars(ss,t,g,treats,title,lowflag,est=None,letter=''):
     ax.grid(axis='y',color='#e6e5e0',lw=0.5,zorder=0); ax.set_axisbelow(True)
     from matplotlib.patches import Patch
     ax.legend(handles=[Patch(color=TCOL[k],label=k) for k in treats],frameon=False,fontsize=7,loc='upper left',ncol=3,handlelength=1,columnspacing=1)
-blot_panel(gs[0,0],T1,[('K1','M1_K1'),('GAPDH','M1_GAPDH'),('β-catenina','M2_bcat'),('GAPDH','M2_GAPDH')],'A')
-blot_panel(gs[0,1],T2,[('K1','M3_K1'),('GAPDH','M3_GAPDH'),('p62','M4_p62'),('GAPDH','M4_GAPDH')],'B')
+blot_panel(gs[0,0],T1,[('K1','BR_t'),('GAPDH','BR_g'),('β-catenina','BL_t'),('GAPDH','BL_g')],'A')   # M1, M2
+blot_panel(gs[0,1],T2,[('K1','TR_t'),('GAPDH','TR_g'),('p62','TL_t'),('GAPDH','TL_g')],'B')            # M3, M4
 def low(g): return g/g.mean()<0.5
-t,g=vals(1,10);  bars(gs[1,0],t,g,T1,'K1',low(g),letter='C')
-t,g=vals(19,28); bars(gs[2,0],t,g,T1,'β-catenina',low(g),letter='E')
-t,g=vals(37,46); bars(gs[1,1],t,g,T2,'K1',low(g),letter='D')
-t,g=vals(55,63,None); t[8]=630; bars(gs[2,1],t,g,T2,'p62',low(g),est=8,letter='F')
+t,g=vals(55,63,None); t[8]=630; bars(gs[1,0],t,g,T1,'K1',low(g),est=8,letter='C')   # M1
+t,g=vals(37,46); bars(gs[2,0],t,g,T1,'β-catenina',low(g),letter='E')                # M2
+t,g=vals(19,28); bars(gs[1,1],t,g,T2,'K1',low(g),letter='D')                        # M3
+t,g=vals(1,10);  bars(gs[2,1],t,g,T2,'p62',low(g),letter='F')                       # M4
 fig.text(0.10,0.012,'n = 1. Señal (Image Studio, fondo restado) normalizada a GAPDH de la misma membrana y relativa a KerCT sin tratar.\n'
  '† GAPDH < 50 % de la media de la membrana (carga baja).   * Valor estimado desde la imagen (sin cuantificar en Image Studio).',fontsize=6.5,color='#444')
 for ext in ('png','pdf','svg'):
